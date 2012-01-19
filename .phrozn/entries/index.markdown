@@ -1,7 +1,10 @@
-layout: default.twig
-tags: [my tag, web, test]
+title: My title
+tags:
+  - my tag
+  - web
+  - test
 ---
-this is index page
+this is the index page
 
 # Title
 
