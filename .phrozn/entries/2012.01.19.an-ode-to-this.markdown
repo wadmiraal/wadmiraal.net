@@ -1,14 +1,46 @@
 title: An Ode To This
 date: "2012-01-19"
-permalink: /log/:date/:title
+permalink: /log/:date/:title/
 ---
 
-Well, not really an "ode". But the `this` keyword in Javascript has been screamed at,
-laughed at, insulted, and many more terrible things. When I believe we should be thankful
-for this little guy: he's here for a reason.
+Well, not really an "ode". But the `this` keyword in Javascript has been
+screamed at, laughed at, insulted, and many more terrible things. When I believe
+we should be thankful for this little guy: he's here for a reason.
 
 ## A little “history”
 
-Well, **I have no proof of what I'm advancing here**. But I can only imagine that it went
-somewhat like this. Some smart guys working on Javascript decided to implement *Objects*,
-similar to *Classes* in some ways. And Bill said ()
+**I'm completely making this up! Don't post in on Wikipedia claiming this is
+for real and all!**
+
+I can only imagine that it went somewhat like this. Some smart guys working on
+Javascript decided to implement *Objects*, similar to *Classes* in some ways.
+And Bill said:
+> Wait a minute. We have this uber-cool method on our String object called
+> *toUpperCase*, and your telling me that every single string will have to
+> recompile this method for its own use? What if we have 200 strings\*? Have you
+> any idea how much memory that would use?
+
+*\* Remember, in those days, javascript was slooooow. 200 strings? You're kiddin'
+me?*
+
+And Dr Dre said:
+> So what do you suggest, smarty pants ?
+
+So Bill said:
+> Hmmm. What if we kept a “copy” of our String object, like the parent of all
+> strings, and only compiled the methods on that one. Then all the “child”
+> strings could simply re-use those methods!
+
+So Dr Dre said:
+> Duh, how would you get the actual string's string property? We can't ask
+> programmers to pass the string as a parameter al the time. That won't look
+> cool. Remember, we want to play with the cool kids. That's why we called it
+> *Java*script, remember?
+
+And Bill said, sealing Javascript's fate forever:
+> What if the *this* keyword did not necessarily refer to the object the method
+> was compiled on? What if it depended *on the context it was called on?*
+
+And the rest is (actual) history.
+
+## Why this is so powerful (pun intended)
