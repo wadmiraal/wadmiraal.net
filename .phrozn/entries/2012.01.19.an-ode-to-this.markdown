@@ -1,0 +1,14 @@
+title: An Ode To This
+date: "2012-01-19"
+permalink: /log/:date/:title
+---
+
+Well, not really an "ode". But the `this` keyword in Javascript has been screamed at,
+laughed at, insulted, and many more terrible things. When I believe we should be thankful
+for this little guy: he's here for a reason.
+
+## A little “history”
+
+Well, **I have no proof of what I'm advancing here**. But I can only imagine that it went
+somewhat like this. Some smart guys working on Javascript decided to implement *Objects*,
+similar to *Classes* in some ways. And Bill said ()
