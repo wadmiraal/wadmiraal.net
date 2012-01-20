@@ -1,0 +1,88 @@
+/**
+ * Constants
+ */
+@color1: #000;
+@color2: #497b64;
+@linkColor: #7a6348;
+@linkHoverColor: #ad8658;
+@linkVisitedColor: #4e361a;
+@linkActiveColor: #cda87d;
+
+/**
+ * Fonts
+ */
+.font-default {
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+.font-console {
+  font-family: monospace;
+}
+
+.font-decorative {
+  font-family: Arizonia, cursive;
+}
+
+/**
+ * Tags
+ */
+body {
+  .font-default;
+  color: @color1;
+}
+
+p { text-indent: 2em; }
+
+p:first-letter {
+  .font-decorative;
+  font-size: 2em;
+  color: @color2;
+}
+
+a { color: @linkColor; }
+a:hover { color: @linkHoverColor; }
+a:visited { color: @linkVisitedColor; }
+a:active { color: @linkActiveColor; }
+
+/**
+ * Layout
+ */
+#container {
+  overflow: hidden;
+  position: relative;
+  margin: 1em auto;
+  width: 44em;
+}
+
+#left, #right {
+  position: fixed;
+  top: 5em;
+  width: 20%;
+}
+
+#left {
+  .content {
+    text-align: right;
+    padding-right: 1em;
+  }
+}
+
+#content {
+  position: absolute;
+  left: 20%;
+  width: 40%;
+}
+
+#right {
+  .content {
+    padding-left: 1em;
+  }
+}
+
+/**
+ * Misc
+ */
+.published-info {
+  font-size: .75em;
+  font-style: italic;
+}

@@ -7,28 +7,47 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title></title>
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<title>{{entry.title}} | wadmiraal.net</title>
+	<meta name="description" content="{{entry.description}}">
+	<meta name="author" content="Wouter Admiraal">
 
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
 	<link rel="stylesheet" href="styles/html5boilerplate.css">
-
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arizonia" />
+	<link rel="stylesheet" href="styles/default.css" />
+	
+	<!--[if lt IE 9]>
 	<script src="scripts/modernizr-2.0.6.min.js"></script>
+	<![endif]-->
 </head>
 <body>
-
-<div id="container">
-	<header>
-    <h1>{{entry.title}}</h1>
-	</header>
-	<div id="main" role="main">
-    {{content}}
+	<div id="container">
+		<nav id="left">
+			<div class="content">
+				<a href="#">About me</a>
+				<a href="#">Log</a>
+			</div>
+		</nav>
+		
+		<div id="center">
+			<header>
+				<h1>{{entry.title}}</h1>
+				
+				<p class="published-info">Published on <time>{{entry.date}}</time></p>
+			</header>
+			
+			<article>
+				{{content}}
+			</article>
+		</div>
+		
+		<aside id="right">
+			<div class="content">
+				<a href="#">About me</a>
+				<a href="#">Log</a>
+			</div>
+		</aside>
 	</div>
-	<footer>
-
-	</footer>
-</div> <!--! end of #container -->
 </body>
 </html>
