@@ -41,6 +41,6 @@ And Bill said, sealing Javascript's fate forever:
 > What if the *this* keyword did not necessarily refer to the object the method
 > was compiled on? What if it depended *on the context it was called on?*
 
-And the rest is (actual) history.
+And the rest is history.
 
 ## Why this is so powerful (pun intended)
