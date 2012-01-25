@@ -12,42 +12,48 @@
 	<meta name="author" content="Wouter Admiraal">
 
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-
+  
 	<link rel="stylesheet" href="styles/html5boilerplate.css">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arizonia" />
-	<link rel="stylesheet" href="styles/default.css" />
+	<link rel="stylesheet" href="styles.css" />
 	
 	<!--[if lt IE 9]>
 	<script src="scripts/modernizr-2.0.6.min.js"></script>
 	<![endif]-->
 </head>
 <body>
-	<div id="container">
+	<div id="main">
+    <nav id="header" class="center">
+      wadmiraal.net
+    </nav>
+    
 		<nav id="left">
-			<div class="content">
-				<a href="#">About me</a>
-				<a href="#">Log</a>
-			</div>
+      <a href="#" class="lore-navigation"></a>
+		</nav>
+    
+    <nav id="right">
+      <a href="#" class="lore-navigation"></a>
 		</nav>
 		
-		<div id="center">
+		<div id="content" class="center">
 			<header>
-				<h1>{{entry.title}}</h1>
+				<h1><span class="tiny" style="left:12px; top:23px;">an</span><span>Ode</span><span class="small" style="left:113px; top:26px;">to</span><span style="left:113px; top:50px;">this</span></h1>
 				
 				<p class="published-info">Published on <time>{{entry.date}}</time></p>
 			</header>
 			
 			<article>
-				{{content}}
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac massa ante, convallis eleifend lacus. Donec fringilla porta vestibulum. Proin neque odio, gravida eget rutrum nec, euismod at tellus. Aliquam vel auctor eros. Aliquam dolor arcu, facilisis quis fermentum eget, tempus nec tortor. Phasellus est purus, bibendum ut facilisis eu, pretium id arcu. Morbi sit amet ante at ligula porttitor pharetra id in arcu.</p>
+
+<p>Nulla facilisi. Sed odio sem, sodales sit amet pellentesque quis, laoreet et ligula. Nunc commodo velit sed mi feugiat aliquet. Sed adipiscing est vitae mauris ullamcorper fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac elit ligula, pulvinar mattis augue. Cras lorem nisi, porttitor vitae consectetur non, porta at tellus. Morbi urna urna, blandit non vulputate elementum, ullamcorper ac neque. Suspendisse elementum lobortis imperdiet. Donec vel erat quis felis gravida egestas laoreet sed est. Donec sit amet libero nisl, rhoncus volutpat ligula. Duis orci tortor, convallis vel facilisis a, congue nec dolor. Vivamus id odio nec nibh aliquet lacinia. Nulla pretium, lorem sed hendrerit eleifend, enim justo volutpat enim, et volutpat mauris nulla quis felis. Sed id ligula sed lacus ullamcorper dictum vel sit amet quam.</p>
 			</article>
+      
+      <footer>
+        <a href="#">Back to top</a>
+      </footer>
 		</div>
 		
-		<aside id="right">
-			<div class="content">
-				<a href="#">About me</a>
-				<a href="#">Log</a>
-			</div>
-		</aside>
+		
 	</div>
 </body>
 </html>

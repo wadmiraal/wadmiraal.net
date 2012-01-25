@@ -2,87 +2,115 @@
  * Constants
  */
 @color1: #000;
-@color2: #497b64;
-@linkColor: #7a6348;
-@linkHoverColor: #ad8658;
-@linkVisitedColor: #4e361a;
-@linkActiveColor: #cda87d;
-
-/**
- * Fonts
- */
-.font-default {
-  font-family: Georgia, Times, "Times New Roman", serif;
-}
-
-.font-console {
-  font-family: monospace;
-}
-
-.font-decorative {
-  font-family: Arizonia, cursive;
-}
+@color2: #079374;
+@linkColor: #079374;
+@linkHoverColor: #2fbe9e;
+@linkVisitedColor: #05604c;
+@linkActiveColor: #65dac0;
+@arrowWidth: 60px;
+@arrowHeight: 85px;
+@centerPadding: 1em;
 
 /**
  * Tags
  */
+html { min-height: 100%; }
+
 body {
-  .font-default;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
   color: @color1;
+  background: #f9f9f9;
+  min-height: 100%;
+  line-height: 1.5;
+  letter-spacing: 1px;
 }
 
 p { text-indent: 2em; }
-
-p:first-letter {
-  .font-decorative;
-  font-size: 2em;
-  color: @color2;
-}
 
 a { color: @linkColor; }
 a:hover { color: @linkHoverColor; }
 a:visited { color: @linkVisitedColor; }
 a:active { color: @linkActiveColor; }
 
+h1:first-of-type {
+  margin-top: 0;
+  font-size: 3.5em;
+  position: relative;
+  height: 120px;
+  overflow: hidden;
+  font-weight: normal;
+}
+
 /**
  * Layout
  */
-#container {
-  overflow: hidden;
+#main {
+  min-height: 100%;
+  width: 35em;
+  margin: 0 auto;
+  font-size: 0.875em;
+}
+
+.center {
   position: relative;
-  margin: 1em auto;
-  width: 44em;
+  margin: 0 @arrowWidth;
+  padding: 0 @centerPadding;
+  background: #fff;
 }
 
-#left, #right {
-  position: fixed;
-  top: 5em;
-  width: 20%;
-}
-
-#left {
-  .content {
-    text-align: right;
-    padding-right: 1em;
-  }
+#header {
+  .center;
 }
 
 #content {
-  position: absolute;
-  left: 20%;
-  width: 40%;
+  .center;
+  margin-top: 40px;
+}
+
+#left {
+  float: left;
+  min-height: 100%;
 }
 
 #right {
-  .content {
-    padding-left: 1em;
-  }
+  float: right;
+  min-height: 100%;
+}
+
+.lore-navigation {
+  width: @arrowWidth;
+  height: @arrowHeight;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+#left a { background-image: url(../media/arrow-left.png); }
+
+#right a { background-image: url(../media/arrow-right.png); }
+
+footer {
+  text-align: center;
+  clear: both;
 }
 
 /**
  * Misc
  */
 .published-info {
-  font-size: .75em;
-  font-style: italic;
+  position: absolute;
+  font-size: 0.857em;
+  top: 0;
+  right: @centerPadding;
+  margin: 0;
+  text-align: right;
+}
+
+h1:first-of-type {
+  * { position: absolute; }
+  .tiny { font-size: 0.339em; }
+  .small { font-size: 0.518em; }
+  .medium { font-size: 0.7em; }
 }
