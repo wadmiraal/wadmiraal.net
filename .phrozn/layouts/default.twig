@@ -15,9 +15,9 @@
   
 	<link rel="stylesheet" href="/styles/html5boilerplate.css">
 	<link rel="stylesheet" href="/styles/default.css" />
-	{{ if entry.layoutStyle }}
+	{% if entry.layoutStyle %}
 		<link rel="stylesheet" href="/styles/{{ entry.layoutStyle }}.css" />
-	{{ endif }}
+	{% endif %}
 	
 	<!--[if lt IE 9]>
 	<script src="/scripts/modernizr-2.0.6.min.js"></script>
@@ -37,19 +37,19 @@
       </nav>
       
       <nav id="lore-nav">
-      	{{ if entry.prev }}
+      	{% if entry.prev %}
 					<a href="/{{ entry.prev }}">&lt; previous</a>
-				{{ endif }}
+				{% endif %}
 				
-				{{ if entry.prev }}
-					{{ if entry.next }}
+				{% if entry.prev %}
+					{% if entry.next %}
 					&nbsp;|&nbsp;
-					{{ endif }}
-				{{ endif }}
+					{% endif %}
+				{% endif %}
 				
-				{{ if entry.next }}
+				{% if entry.next %}
 					<a href="/">next &gt;</a>
-				{{ endif }}
+				{% endif %}
       </nav>
     </header>
 		
