@@ -1,116 +1,36 @@
-/**
- * Constants
- */
-@color1: #000;
-@color2: #079374;
-@linkColor: #079374;
-@linkHoverColor: #2fbe9e;
-@linkVisitedColor: #05604c;
-@linkActiveColor: #65dac0;
-@arrowWidth: 60px;
-@arrowHeight: 85px;
-@centerPadding: 1em;
-
-/**
- * Tags
- */
-html { min-height: 100%; }
-
 body {
-  padding: 0;
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: @color1;
-  background: #f9f9f9;
-  min-height: 100%;
-  line-height: 1.5;
-  letter-spacing: 1px;
+	background: @bodyBackground;
+  font-family: @bodyFont;
+	font-size: 62.5%;
+	line-height: 1.5;
+	color: @bodyColor; 
 }
-
-p { text-indent: 2em; }
 
 a { color: @linkColor; }
-a:hover { color: @linkHoverColor; }
-a:visited { color: @linkVisitedColor; }
-a:active { color: @linkActiveColor; }
+a:hover { color: @linkColorHover; }
+a:visited { color: @linkColorVisited; }
 
-h1:first-of-type {
-  margin-top: 0;
-  font-size: 3.5em;
-  position: relative;
-  height: 120px;
-  overflow: hidden;
-  font-weight: normal;
-}
-
-/**
- * Layout
- */
 #main {
-  min-height: 100%;
-  width: 40em;
-  margin: 0 auto;
-  font-size: 0.875em;
+	margin: 0 auto;
+	font-size: 1.4em;
+	max-width:  @maxWidth;
 }
 
-.center {
-  position: relative;
-  margin: 0 @arrowWidth;
-  padding: 0 @centerPadding;
-  background: #fff;
-}
+	header {
+		overflow: hidden;
+	}
 
-#header {
-  .center;
-}
-
-#content {
-  .center;
-  margin-top: 40px;
-}
-
-#left {
-  float: left;
-  min-height: 100%;
-}
-
-#right {
-  float: right;
-  min-height: 100%;
-}
-
-.lore-navigation {
-  width: @arrowWidth;
-  height: @arrowHeight;
-  display: block;
-  background-repeat: no-repeat;
-  background-position: left top;
-}
-
-#left a { background-image: url(../media/arrow-left.png); }
-
-#right a { background-image: url(../media/arrow-right.png); }
-
+		#left { float: left; }
+		
+		#right { float: right; }
+		
+		#lore-nav {
+			clear: both;
+			text-align: center;
+		}
+		
+	.published-info { font-style: italic; }
+		
 footer {
-  text-align: center;
-  clear: both;
-}
-
-/**
- * Misc
- */
-.published-info {
-  position: absolute;
-  font-size: 0.857em;
-  top: 0;
-  right: @centerPadding;
-  margin: 0;
-  text-align: right;
-}
-
-h1:first-of-type {
-  * { position: absolute; }
-  .tiny { font-size: 0.339em; }
-  .small { font-size: 0.518em; }
-  .medium { font-size: 0.7em; }
+	text-align: center;
 }

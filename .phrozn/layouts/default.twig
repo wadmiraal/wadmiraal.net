@@ -7,8 +7,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>{{entry.title}} | wadmiraal.net</title>
-	<meta name="description" content="{{entry.description}}">
+	<title>{{ entry.title }} | wadmiraal.net</title>
+	<meta name="description" content="{{ entry.description }}">
 	<meta name="author" content="Wouter Admiraal">
 
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,6 +16,9 @@
 	<link rel="stylesheet" href="styles/html5boilerplate.css">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arizonia" />
 	<link rel="stylesheet" href="styles/default.css" />
+	{{ if entry.layoutStyle }}
+		<link rel="stylesheet" href="styles/{{ entry.layoutStyle }}.css" />
+	{{ endif }}
 	
 	<!--[if lt IE 9]>
 	<script src="scripts/modernizr-2.0.6.min.js"></script>
@@ -23,37 +26,47 @@
 </head>
 <body>
 	<div id="main">
-    <nav id="header" class="center">
-      wadmiraal.net
-    </nav>
-    
-		<nav id="left">
-      <a href="#" class="lore-navigation"></a>
-		</nav>
-    
-    <nav id="right">
-      <a href="#" class="lore-navigation"></a>
-		</nav>
-		
-		<div id="content" class="center">
-			<header>
-				<h1><span class="tiny" style="left:12px; top:23px;">an</span><span>Ode</span><span class="small" style="left:113px; top:26px;">to</span><span style="left:113px; top:50px;">this</span></h1>
+  	<header id="header">
+      <nav id="left">
+        <a href="/">wadmiraal.net</a>
+      </nav>
+      
+      <nav id="right">
+      	<a href="/lore">lore</a> 
+      	<a href="http://www.twitter.com/wadmiraal">twitter</a> 
+      	<a href="http://github.com/wadmiraal">github</a> 
+      </nav>
+      
+      <nav id="lore-nav">
+      	{{ if entry.prev }}
+					<a href="/{{ entry.prev }}">&lt; previous</a>
+				{{ endif }}
 				
-				<p class="published-info">Published on <time>{{entry.date}}</time></p>
-			</header>
-			
+				{{ if entry.prev }}
+					{{ if entry.next }}
+					&nbsp;|&nbsp;
+					{{ endif }}
+				{{ endif }}
+				
+				{{ if entry.next }}
+					<a href="/">next &gt;</a>
+				{{ endif }}
+      </nav>
+    </header>
+		
+		<div id="content">
 			<article>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac massa ante, convallis eleifend lacus. Donec fringilla porta vestibulum. Proin neque odio, gravida eget rutrum nec, euismod at tellus. Aliquam vel auctor eros. Aliquam dolor arcu, facilisis quis fermentum eget, tempus nec tortor. Phasellus est purus, bibendum ut facilisis eu, pretium id arcu. Morbi sit amet ante at ligula porttitor pharetra id in arcu.</p>
-
-<p>Nulla facilisi. Sed odio sem, sodales sit amet pellentesque quis, laoreet et ligula. Nunc commodo velit sed mi feugiat aliquet. Sed adipiscing est vitae mauris ullamcorper fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac elit ligula, pulvinar mattis augue. Cras lorem nisi, porttitor vitae consectetur non, porta at tellus. Morbi urna urna, blandit non vulputate elementum, ullamcorper ac neque. Suspendisse elementum lobortis imperdiet. Donec vel erat quis felis gravida egestas laoreet sed est. Donec sit amet libero nisl, rhoncus volutpat ligula. Duis orci tortor, convallis vel facilisis a, congue nec dolor. Vivamus id odio nec nibh aliquet lacinia. Nulla pretium, lorem sed hendrerit eleifend, enim justo volutpat enim, et volutpat mauris nulla quis felis. Sed id ligula sed lacus ullamcorper dictum vel sit amet quam.</p>
+				<h1>{{ entry.title }}</h1>
+				
+				<p class="published-info">Published on <time>{{ entry.date }}</time></p>
+        
+				{{ content }}
 			</article>
       
       <footer>
         <a href="#">Back to top</a>
       </footer>
 		</div>
-		
-		
 	</div>
 </body>
 </html>

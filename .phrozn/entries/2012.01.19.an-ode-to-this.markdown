@@ -1,6 +1,10 @@
 title: An Ode To This
-date: "2012-01-19"
+description: For SEO
+date: 2012-01-19
 permalink: /log/:date/:title/
+entry.layoutStyle: layout02
+next:
+previous:
 ---
 
 Well, not really an "ode". But the `this` keyword in Javascript has been
@@ -33,7 +37,7 @@ So Bill said:
 
 So Dr Dre said:
 > Duh, how would you get the actual string's string property? We can't ask
-> programmers to pass the string as a parameter al the time. That won't look
+> programmers to pass the string as a parameter all the time. That won't look
 > cool. Remember, we want to play with the cool kids. That's why we called it
 > *Java*script, remember?
 
@@ -44,3 +48,43 @@ And Bill said, sealing Javascript's fate forever:
 And the rest is history.
 
 ## Why this is so powerful (pun intended)
+
+You see, Javascript's *prototypal* inheritance model is actually really flexible
+and useful. It allows developpers to access the *parent* methods, properties, etc
+without adding having to compile them on their child objects\*.
+
+It also allows developpers to create *Interface* like objects, that can interact
+with elements by using the *this* keyword, without having to add any methods to
+the element's `prototype` property.
+
+*\*Now this sounds really cool and nice and all, but it's actually not *really*
+what's happening behind the scenes. Read this for more info.*
+
+For more info I really recommend vjeux's article [Javascript – How Prototypal
+Inheritance really
+works](http://blog.vjeux.com/2011/javascript/how-prototypal-inheritance-really-works.html).
+
+### Why's everyone confused ?
+
+I personnaly believe (and have found this to be true for me) that the reason
+people get confused about *this* (and javascript in general) is that developpers
+(and even javascript creators like [Brendan Eich](http://brendaneich.com/)) tend
+to treat javascript (or try to make it behave) like OO languages. Look at the
+`new` keyword: just syntactic sugar. There's no such thing as a `new` instance
+in *prototypal* inheritance. There are even [discussions](http://brendaneich.com/2011/10/jsconf-eu/)
+about adding *Classes* to javascript in the future. But only as a **syntax**. So
+the whole issue about *this* will still remain. This might confuse people even
+more.
+
+#### What to do
+
+I personnaly believe that we should just start using javascript the way it was
+supposed to be. True, we are bound to using `new`, as javascript does not provide
+a *real* way to extend another Object's prototype otherwise. But we should embrace
+*this* in all it's weird, awkward forms.
+
+In the words of Princess Fiona (Shrek):
+
+> You're a little unorthodox, I'll admit.
+> But thy deed is great, and thy heart is pure.
+> I am eternally in your debt.
