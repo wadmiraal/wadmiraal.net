@@ -1,7 +1,8 @@
 title: My title
 layout: page.twig
+permalink: /about/
 ---
-this is the index page
+this is the about page
 
 # Title
 

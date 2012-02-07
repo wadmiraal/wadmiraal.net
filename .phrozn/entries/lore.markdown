@@ -1,7 +1,8 @@
-title: My title
+title: Lore
 layout: page.twig
+permalink: /lore/
 ---
-this is the index page
+this is the lore page
 
 # Title
 
