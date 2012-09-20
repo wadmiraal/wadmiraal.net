@@ -1,10 +1,7 @@
 title: PHP: the language you love to hate
 description: You there
-date: 2012-03-10
+date: "2012-03-10"
 permalink: /lore/:date/:title/
-layoutStyle: layout01
-next:
-previous:
 ---
 
 ## I love PHP
@@ -58,7 +55,7 @@ I hate the fact that on the documentation pages, 50% of the comments are just du
 
 I hate the obscure error messages (*T_PAAMAYIM_NEKUDOTAYIM* what ?!?).
 
-I ***hate*** the fact that PHP tries to be always backward-compatible. I mean: what the heck ?? Come on ! This is just insane ! Turn to [Drupal](http://www.drupal.org) for some great advice on how to manage your releases with still being able to innovate and use the latest technologies / paradigms available.
+I ***hate*** the fact that PHP tries to be always backward-compatible. I mean: what the heck ??
 
 I *hate* PHP...
 

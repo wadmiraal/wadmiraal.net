@@ -1,13 +1,10 @@
-title: An Ode To This
+title: Thank You This
 description: For SEO
-date: 2012-01-19
-permalink: /log/:date/:title/
-layoutStyle: layout02
-next:
-previous:
+date: "2012-01-19"
+permalink: /lore/:date/:title/
 ---
 
-Well, not really an &ldquo;ode&rdquo;. But the `this` keyword in Javascript has been
+The `this` keyword in Javascript has been
 screamed at, laughed at, insulted, and many more terrible things. When I believe
 we should be thankful for this little guy: he's here for a reason.
 
@@ -16,7 +13,7 @@ we should be thankful for this little guy: he's here for a reason.
 *I'm completely making this up! Don't post in on Wikipedia claiming this is
 for real and all!*
 
-I can only imagine that it went somewhat like this. Some smart guys working on
+We can only imagine that it went somewhat like this. Some smart guys working on
 Javascript decided to implement *Objects*, similar to *Classes* in some ways.
 And Bill said:
 > Wait a minute. We have this uber-cool method on our String object called
@@ -39,7 +36,7 @@ So Dr Dre said:
 > Duh, how would you get the actual string's string property? We can't ask
 > programmers to pass the string as a parameter all the time. That won't look
 > cool. Remember, we want to play with the cool kids. That's why we called it
-> *Java*script, remember?
+> **Java**script, remember?
 
 And Bill said, sealing Javascript's fate forever:
 > What if the `this` keyword did not necessarily refer to the object the method
@@ -61,36 +58,36 @@ Consider this example:
     }
 
     MyObj.prototype.myMethod = function() {
-      var hi = "hi", 
+      var hi = "hi",
           there = "there",
           you = "you",
           yes = "yes";
     }
-    
+
     MyObj.prototype.myOtherMethod = function() {
-      var hi = "hi", 
+      var hi = "hi",
           there = "there",
           you = "you",
           yes = "yes";
     }
-    
+
     MyObj.prototype.myThirdMethod = function() {
       this.myOtherMethod();
       this.myMethod();
-      
+
       return this.myFourthMethod();
     }
-    
-    MyObj.prototype.myFourthMethod = function() {	
+
+    MyObj.prototype.myFourthMethod = function() {
       return this.name;
     }
-    
+
     for (i = 0; i < 1000; i++) {
       var obj = new MyObj("obj" + i);
-      
+
       var name = obj.myThirdMethod();
-      
-      objects[name] = obj;	
+
+      objects[name] = obj;
     }
 
 What we're doing here is creating 1000 instances of the MyObj object. Let's popup
@@ -107,42 +104,42 @@ Hmm&hellip; And what if we try this:
 
     function MyObj(name) {
       this.name = name;
-      
+
       // Private methods! Yay!
       var myMethod = function() {
-        var hi = "hi", 
+        var hi = "hi",
             there = "there",
             you = "you",
             yes = "yes";
       }
-      
+
       var myOtherMethod = function() {
-        var hi = "hi", 
+        var hi = "hi",
             there = "there",
             you = "you",
             yes = "yes";
       }
-      
+
       this.myThirdMethod = function() {
         myOtherMethod();
         myMethod();
-      
+
         return this.myFourthMethod();
       }
-      
-      this.myFourthMethod = function() {	
+
+      this.myFourthMethod = function() {
         return this.name;
       }
     }
-    
+
     for (i = 0; i < 1000; i++) {
       var obj = new MyObj("obj" + i);
-      
+
       var name = obj.myThirdMethod();
-      
-      objects[name] = obj;	
+
+      objects[name] = obj;
     }
-    
+
 Let's check Chrome again:
 
 ![Figure 02](/media/entries/an-ode-to-this/fig02.jpg)
@@ -156,7 +153,7 @@ So, what else can we do, knowing that all public methods need only be present on
 the Object declaration, the *parent*, so to speek?
 
 The prototypal model allows developpers to extend Objects (by adding to the
-`prototype` property) at runtime (like Ruby). This is means that, if you think
+`prototype` property) at runtime (like Ruby). This means that, if you think
 `Array` misses a method, you can add it at runtime like so:
 
     Array.prototype.first = function () {
@@ -171,18 +168,18 @@ he finds it there. And because `this` is bound to the *context* and not the
 object itself, we can safely use it in our code and access all the properties we
 need. In the words of the great Einstein:
 
-> &ldquo;This is great!&rdquo;\*\*.
+> This is great!\*\*
 
 `this` also allows developpers to create *Interface*-like objects, that can interact
 with elements by using the `this` keyword without having to add any methods to
 the element's `prototype` at all.
 
-For more info I really recommend vjeux's article [Javascript &endash; How Prototypal
+For more info I really recommend vjeux's article [Javascript – How Prototypal
 Inheritance really
 works](http://blog.vjeux.com/2011/javascript/how-prototypal-inheritance-really-works.html).
 
-*\*Now this sounds really cool and nice and all, but it's actually not that
-memory efficient. You have to take into account speed, retained size, etc.*
+*\*Now this obviously sounds really cool and nice and all, but there's actually a few gotchas.
+You have to take into account speed, retained size, etc.*
 
 *\*\*Come on, I'm sure he must have said at least **once**.*
 
@@ -195,9 +192,9 @@ to treat javascript like OO languages. Look at the `new` keyword: just syntactic
 sugar. There's no such thing as a `new` instance in javascript. There are even
 [discussions](http://brendaneich.com/2011/10/jsconf-eu/)
 about adding *Classes* to javascript in the future. But only as a **syntax**.
-Behind the scenes, javascript will still be the same. 
+Behind the scenes, javascript will still be the same.
 
-#### What to do
+### What to do
 
 I personnaly believe that we should just start using javascript the way it was
 supposed to be. True, we are bound to using `new`, as javascript does not provide
@@ -208,7 +205,9 @@ love he deserves, the warmth he craves for.
 In the words of Princess Fiona (Shrek):
 
 > You're a little unorthodox, I'll admit.
+>
 > But thy deed is great, and thy heart is pure.
+>
 > I am eternally in your debt.
 
 Thank you `this`.

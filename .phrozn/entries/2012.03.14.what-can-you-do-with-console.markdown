@@ -1,10 +1,7 @@
 title: What can you do with console
 description: For SEO
-date: 2012-03-14
-permalink: /log/:date/:title/
-layoutStyle: layout01
-next:
-previous:
+date: "2012-03-14"
+permalink: /lore/:date/:title/
 ---
 
 Lately I've been wondering: *what can you do with the javascript console object ?*. Let's figure that out.

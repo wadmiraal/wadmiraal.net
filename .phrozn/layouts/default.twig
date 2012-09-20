@@ -12,13 +12,10 @@
 	<meta name="author" content="Wouter Admiraal">
 
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-  
+
 	<link rel="stylesheet" href="/styles/html5boilerplate.css">
 	<link rel="stylesheet" href="/styles/default.css" />
-	{% if entry.layoutStyle %}
-		<link rel="stylesheet" href="/styles/{{ entry.layoutStyle }}.css" />
-	{% endif %}
-	
+
 	<!--[if lt IE 9]>
 	<script src="/scripts/modernizr-2.0.6.min.js"></script>
 	<![endif]-->
@@ -29,39 +26,37 @@
       <nav id="left">
         <a href="/">wadmiraal.net</a>
       </nav>
-      
+
       <nav id="right">
-      	<a href="/lore">lore</a> 
-      	<a href="http://www.twitter.com/wadmiraal">twitter</a> 
-      	<a href="http://github.com/wadmiraal">github</a> 
+      	<a href="/lore">lore</a>&nbsp;&nbsp;<a href="http://www.twitter.com/wadmiraal">twitter</a>&nbsp;&nbsp;<a href="http://github.com/wadmiraal">github</a>
       </nav>
-      
+
       <nav id="lore-nav">
       	{% if entry.prev %}
 					<a href="/{{ entry.prev }}">&lt; previous</a>
 				{% endif %}
-				
+
 				{% if entry.prev %}
 					{% if entry.next %}
 					&nbsp;|&nbsp;
 					{% endif %}
 				{% endif %}
-				
+
 				{% if entry.next %}
 					<a href="/">next &gt;</a>
 				{% endif %}
       </nav>
     </header>
-		
+
 		<div id="content">
 			<article>
 				<h1>{{ entry.title }}</h1>
-				
+
 				<p class="published-info">Published on <time>{{ entry.date }}</time></p>
-        
+
 				{{ content }}
 			</article>
-      
+
       <footer>
         <a href="#">Back to top</a>
       </footer>
