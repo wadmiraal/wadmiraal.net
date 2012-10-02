@@ -1,0 +1,48 @@
+title: My Symfony Project: the plan
+description: For SEO
+date: "2012-10-02"
+permalink: /lore/:date/:title/
+---
+
+I like making stuff.
+
+Actually, I like it so much that I hardly ever *finish* anything. The thrill of exploring new possibilities, new technologies, new designs...
+
+But, what the heck...
+
+I've been wanting to try out Symfony 2 for a while now. Especially now that Drupal 8 will include some fundamental Symfony 2 components (I'll have to write about that in some other post).
+
+So I thought: how about creating a small webapp, that will run on my shared hosting provider ?
+
+### Shared hosting ?
+
+Yup, that's right. I like creating stuff, but I'm dutch ([see no 4 on this list](http://www.traveljo.com/7-common-stereotypes-about-the-dutch/)). So I like keeping it cheap.
+
+I have a shared hosting provider that allows me to host up to three sites. So from time to time I ditch a late project and replace it with a new one. Simple (and cheap).
+
+## An idea
+
+So what should it be about ? Something simple, quick to set up, visually simple but appealing.
+
+After some thought, I came up with this:
+
+## An app that will help you quit !
+
+Quit what you'll ask ? Anything, be it Facebook, smoking, etc. I'll call it Qwit.
+
+The idea is that, every day, you tell the app if you managed to achieve your "goal" for that day. This will allow you to keep track of how you're doing. The concept is that, even if people trying to stop, say, drinking, manage to stay sober for days, just slipping once or twice in a row can give the feeling your not getting anywhere.
+
+However, if you can *visually* see how many days you remained sober, as opposed to how many you did not, it can really be a motivator to keep on going.
+
+Obviously, I didn't come up with this method. It's well known. I just thought it would make a great, free, app. I like making things, but I like it even more when it's usefull to others.
+
+# The plan
+
+The plan is to make this app with "state of the art" tools and paradigms, and give them a spin. Like using [composer](http://getcomposer.org/) for managing PHP dependencies and [bower](http://twitter.github.com/bower/) for JS or CSS dependencies.
+
+Also, I want to use [PHPUnit](https://github.com/sebastianbergmann/phpunit/) for Functional tests, instead of only Unit tests. I've done this a lot with Drupal, but never with other frameworks. And [QUnit](http://qunitjs.com/) for JS, obviously (if you haven't used it before, do it - it rocks).
+
+And, finally, I'll keep track of my progress and thoughts here.
+
+Stay tuned.
+
