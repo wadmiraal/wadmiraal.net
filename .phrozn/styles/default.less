@@ -49,16 +49,9 @@ a { color: @linkColor; }
 a:hover { color: @linkColorHover; }
 a:visited { color: @linkColorVisited; }
 
-h1:before {	content: "# "; }
-h1 { margin-left: -1.2em; }
-
-h2:before {	content: "## "; }
-h2 { margin-left: -1.8em; }
-
-h3:before {	content: "### "; }
-h3 { margin-left: -2.4em; }
-
-p { text-indent: 2em; }
+h1 { font-size: 2em; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.6em; }
 
 img {
 	max-width: 100%;
@@ -126,4 +119,17 @@ pre {
 		display: block;
 		padding: 1em;
 	}
+}
+
+@media only screen and (min-width: 767px) {
+	h1:before {	content: "# "; }
+	h1 { margin-left: -1.2em; }
+
+	h2:before {	content: "## "; }
+	h2 { margin-left: -1.8em; }
+
+	h3:before {	content: "### "; }
+	h3 { margin-left: -2.4em; }
+
+	p { text-indent: 2em; }
 }

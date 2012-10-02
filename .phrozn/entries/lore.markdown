@@ -1,6 +1,6 @@
 title: Lore
-layout: page.twig
 permalink: /lore/
+layout: page.twig
 ---
 this is the lore page
 
