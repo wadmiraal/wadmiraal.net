@@ -4,48 +4,65 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>{{ entry.title }} | wadmiraal.net</title>
-	<meta name="description" content="{{ entry.description }}">
-	<meta name="author" content="Wouter Admiraal">
+  <title>{{ entry.title }} | wadmiraal.net</title>
+  <meta name="description" content="{{ entry.description }}">
+  <meta name="author" content="Wouter Admiraal">
 
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-  
-	<link rel="stylesheet" href="/styles/html5boilerplate.css">
-	<link rel="stylesheet" href="/styles/default.css" />
-	
-	<!--[if lt IE 9]>
-	<script src="/scripts/modernizr-2.0.6.min.js"></script>
-	<![endif]-->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="/styles/html5boilerplate.css">
+  <link rel="stylesheet" href="/styles/default.css" />
+
+  <!--[if lt IE 9]>
+  <script src="/scripts/modernizr-2.0.6.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-	<div id="main">
-  	<header id="header">
+  <div id="main">
+    <header id="header">
       <nav id="left">
         <a href="/">wadmiraal.net</a>
       </nav>
-      
+
       <nav id="right">
-      	<a href="/lore">lore</a> 
-      	<a href="/about">about</a> 
-      	<a href="http://www.twitter.com/wadmiraal">twitter</a> 
-      	<a href="http://github.com/wadmiraal">github</a> 
+        <a href="/lore/">lore</a>&nbsp;&nbsp;<a href="/about/">about</a>&nbsp;&nbsp;<a href="http://www.twitter.com/wadmiraal">twitter</a>&nbsp;&nbsp;<a href="http://github.com/wadmiraal">github</a>
+      </nav>
+
+      <nav id="lore-nav">
+        {% if entry.prev %}
+          <a href="/{{ entry.prev }}">&lt; previous</a>
+        {% endif %}
+
+        {% if entry.prev %}
+          {% if entry.next %}
+          &nbsp;|&nbsp;
+          {% endif %}
+        {% endif %}
+
+        {% if entry.next %}
+          <a href="/">next &gt;</a>
+        {% endif %}
       </nav>
     </header>
-		
-		<div id="content">
-			<article>
-				<h1>{{ entry.title }}</h1>
-        
-				{{ content }}
-			</article>
-      
+
+    <div id="content">
+      <article>
+        <h1>{{ entry.title }}</h1>
+
+        {% if entry.date %}
+          <p class="published-info">Published on <time>{{ entry.date }}</time></p>
+        {%endif %}
+
+        {{ content }}
+      </article>
+
       <footer>
         <a href="#">Back to top</a>
       </footer>
-		</div>
-	</div>
+    </div>
+  </div>
 </body>
 </html>

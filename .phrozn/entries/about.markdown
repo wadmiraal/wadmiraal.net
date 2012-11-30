@@ -1,13 +1,6 @@
-title: My title
-layout: page.twig
+title: About Wouter Admiraal
 permalink: /about/
+layout: page.twig
 ---
-this is the about page
+I'm a webdeveloper
 
-# Title
-
-my text
-
-## Hi
-
-asdkjslfdkj
