@@ -14,7 +14,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
 	<link rel="stylesheet" href="/css/html5boilerplate.css">
-	<link rel="stylesheet" href="/css/default.css" />
+	<link rel="stylesheet" href="/css/styles.css" />
 
 	<script src="/js/modernizr-2.0.6.min.js"></script>
 </head>
@@ -30,11 +30,7 @@
       	<a href="/about">about</a> 
       	<a href="http://www.twitter.com/wadmiraal">twitter</a> 
       	<a href="http://github.com/wadmiraal">github</a> 
-      </nav>
-
-      <nav id="lore-nav">
-      	test
-      </nav>
+			</nav>
     </header>
 
 		<div id="content">
@@ -45,9 +41,43 @@
 
 				{{ content }}
 			</article>
+			
+			<div id="disqus_thread"></div>
+			
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wadmiraalnet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+			
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
       <footer>
         <a href="#">Back to top</a>
+				
+				<nav id="lore-nav">
+					{% if page.previous %}
+						<a href="{{ page.previous.url }}">&lt; {{ page.previous.title }}</a>
+					{% endif %}
+	
+					{% if page.previous %}
+						{% if page.next %}
+						&nbsp;|&nbsp;
+						{% endif %}
+					{% endif %}
+	
+					{% if page.next %}
+						<a href="{{ page.next.url }}">{{ page.next.title }} &gt;</a>
+					{% endif %}
+				</nav>
       </footer>
 		</div>
 	</div>

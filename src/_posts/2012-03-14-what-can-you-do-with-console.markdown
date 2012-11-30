@@ -1,8 +1,7 @@
 ---
-title: What can you do with console
+title: "What can you do with console"
 layout: post
-description: For SEO
-permalink: /lore/:year/:month/:day/:title
+description: "For SEO"
 ---
 
 Lately I've been wondering: *what can you do with the javascript console object ?*. Let's figure that out.

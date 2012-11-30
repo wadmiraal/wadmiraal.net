@@ -1,12 +1,7 @@
 ---
-title: Thank You This
+title: "Thank You This"
 layout: post
-description: For SEO
-permalink: /lore/:year/:month/:day/:title
-tags:
-  - Javascript
-  - Code
-  - Rant
+description: "For SEO"
 ---
 
 The `this` keyword in Javascript has been

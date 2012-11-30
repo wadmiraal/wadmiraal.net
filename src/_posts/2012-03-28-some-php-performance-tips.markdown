@@ -1,8 +1,7 @@
 ---
-title: Some PHP performance tips
+title: "Some PHP performance tips"
 layout: post
-description: For SEO
-permalink: /lore/:year/:month/:day/:title
+description: "For SEO"
 ---
 
 I sometimes run some &ldaquo;scientific&rdaquo; (read &laquo;completely biased&raquo;) benchmarking for my PHP code to check for the most optimized way of writing some expression. But I keep on forgetting. So this is the place where I'm going to keep some references.

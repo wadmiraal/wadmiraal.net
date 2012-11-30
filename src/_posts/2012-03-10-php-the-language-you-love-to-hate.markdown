@@ -1,8 +1,7 @@
 ---
-title: PHP: the language you love to hate
+title: "PHP: the language you love to hate"
 layout: post
-description: For SEO
-permalink: /lore/:year/:month/:day/:title
+description: "For SEO"
 ---
 
 ## I love PHP

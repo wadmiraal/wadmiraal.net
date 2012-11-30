@@ -1,8 +1,7 @@
 ---
-title: Content Editable Hacks: IE and the new line
+title: "Content Editable Hacks: IE and the new line"
 layout: post
-description: For SEO
-permalink: /lore/:year/:month/:day/:title
+description: "For SEO"
 ---
 
 Lately I've been busy creating an in-house spellchecker for our company. First of all: *content editable is a real pain !*
