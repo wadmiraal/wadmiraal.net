@@ -1,6 +1,3 @@
-styles/
-about/
-lore/
-media/
-scripts/
-index.html
+src/_site
+src/.sass-cache
+design
