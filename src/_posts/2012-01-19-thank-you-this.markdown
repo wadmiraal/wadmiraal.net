@@ -1,7 +1,8 @@
 ---
 title: "Thank You This"
-layout: post
 description: "For SEO"
+layout: post
+favorite: true
 ---
 
 The `this` keyword in Javascript has been
@@ -93,7 +94,7 @@ Consider this example:
 What we're doing here is creating 1000 instances of the MyObj object. Let's popup
 Chrome's web profiler and see what we've got:
 
-![Figure 01](/media/entries/an-ode-to-this/fig01.jpg)
+![Figure 01](/posts-media/thank-you-this/fig01.jpg)
 
 This is very scientific. We see that our first element's *shallow size* is 12B and
 all child instances 16B.
@@ -142,7 +143,7 @@ Hmm&hellip; And what if we try this:
 
 Let's check Chrome again:
 
-![Figure 02](/media/entries/an-ode-to-this/fig02.jpg)
+![Figure 02](/posts-media/thank-you-this/fig02.jpg)
 
 Lo! Behold! Now, all shallow sizes have gone up to 24B! What happened? Well,
 simply put, each and every child instance has his very own methods, compiled just

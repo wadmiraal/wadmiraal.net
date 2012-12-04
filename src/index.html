@@ -1,22 +1,45 @@
 ---
+title: "Wadmiraal.net"
 layout: page
-title: Hi
 ---
-
-<h1>Welcome</h1>
-
-<p>This is the log of Wouter Admiraal - swiss-based dutch developer, working on... stuff.</p>
-
-<div id="latest-articles">
-  <h2>Latest lore</h2>
+<div class="col twelvecol last">
+  <h1>The weblog of Wouter Admiraal</h1>
   
-  {% for post in site.posts limit:5 %}
-    <article>
-      <header>
-        <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-        
-        <time datetime='{{ post.date | date_to_utc | date:"%Y-%m-%dT%H:%M:%SZ" }}'>{{ post.date | date:"%Y-%m-%d" }}</time>
-      </header>
-    </article>
-  {% endfor %}
+  <p>This is the personal weblog of Wouter Admiraal. Come here for rants, stuff and loosing precious time.</p>
+
+  <div class="row">
+    <aside id="latest-articles" class="col sixcol">
+      <h2>Latest posts</h2>
+      
+      {% for post in site.posts limit:2 %}
+        <article>
+          <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+          
+          {% if post.teaser %}
+            <div class="teaser">
+              {{ post.teaser }}
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </aside>
+    
+    <aside id="favorite-articles"  class="col sixcol last">
+      <h2>Favorite posts</h2>
+      
+      {% for post in site.posts %}
+        {% if post.favorite %}
+          <article>
+            <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+            
+            {% if post.teaser %}
+              <div class="teaser">
+                {{ post.teaser }}
+              </div>
+            {% endif %}
+          </article>
+        {% endif %}
+      {% endfor %}
+    </aside>
+  </div>
 </div>

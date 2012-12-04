@@ -1,7 +1,8 @@
 ---
 title: "PHP: the language you love to hate"
-layout: post
 description: "For SEO"
+layout: post
+favorite: true
 ---
 
 ## I love PHP

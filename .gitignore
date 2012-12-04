@@ -1,3 +1,4 @@
-src/_site
-src/.sass-cache
-design
+src/_site/
+src/_sass/.sass-cache/
+design/
+.phrozn/

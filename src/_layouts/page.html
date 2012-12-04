@@ -7,41 +7,52 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>{{ page.title }} | wadmiraal.net</title>
-	<meta name="description" content="{{ entry.description }}">
+	<title>{{ page.title }} // wadmiraal.net</title>
+	
+	{% if page.description %}
+		<meta name="description" content="{{ page.description }}">
+	{% endif %}
+	
 	<meta name="author" content="Wouter Admiraal">
-
 	<meta name="viewport" content="width=device-width,initial-scale=1">
   
 	<link rel="stylesheet" href="/css/html5boilerplate.css">
+	<link rel="stylesheet" href="/css/1140px.css">
 	<link rel="stylesheet" href="/css/styles.css" />
 	
 	<script src="/js/modernizr-2.0.6.min.js"></script>
 </head>
 <body>
-	<div id="main">
-  	<header id="header">
-      <nav id="left">
-        <a href="/">wadmiraal.net</a>
-      </nav>
-      
-      <nav id="right">
-      	<a href="/lore">lore</a> 
-      	<a href="/about">about</a> 
-      	<a href="http://www.twitter.com/wadmiraal">twitter</a> 
-      	<a href="http://github.com/wadmiraal">github</a> 
-      </nav>
-    </header>
-		
-		<div id="content">
-			<article>        
-				{{ content }}
-			</article>
-      
-      <footer>
-        <a href="#">Back to top</a>
-      </footer>
+	<header id="header" class="container">
+		<div class="row">
+			<nav class="col twelvecol last"id="menu">
+				<ul>
+					<li><a id="logo" href="/"><img src="/img/logo.png" alt="wadmiraal.net"/></a></li>
+					<li><a href="/lore">lore</a></li>
+					<li><a href="/about">about</a></li>
+					<li><a href="http://www.twitter.com/wadmiraal">twitter</a></li>
+					<li><a href="http://github.com/wadmiraal">github</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	
+	<div id="content" class="container" role="main">
+		<div class="row">      
+			{{ content }}
 		</div>
 	</div>
+	
+	<footer id="footer" class="container">
+		<div class="row">
+			<div class="col sixcol">
+				&copy;2012 Wouter Admiraal
+			</div>
+			
+			<div class="col sixcol last">
+				
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

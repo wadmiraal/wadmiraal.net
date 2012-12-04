@@ -3,3 +3,4 @@ markdown: rdiscount
 auto: false
 permalink: /lore/:year/:month/:day/:title
 paginate: 5
+favorite: false

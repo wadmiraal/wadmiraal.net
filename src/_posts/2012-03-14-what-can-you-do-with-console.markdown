@@ -1,7 +1,7 @@
 ---
 title: "What can you do with console"
-layout: post
 description: "For SEO"
+layout: post
 ---
 
 Lately I've been wondering: *what can you do with the javascript console object ?*. Let's figure that out.
