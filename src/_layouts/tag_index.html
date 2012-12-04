@@ -1,0 +1,22 @@
+---
+layout: page
+---
+<div class="col twelvecol last">
+  <h2>{{ page.title }}</h2>
+  
+  {% for post in site.posts %}
+    {% for tag in post.tags %}
+      {% if tag == page.tag %}
+      <article>
+        <h4><time datetime='{{post.date | date: "%Y-%m-%d"}}'>{{post.date | date: "%Y-%m-%d"}}</time> <a class="archive_list_article_link" href='{{post.url}}'>{{post.title}}</a></h4>
+        
+        {% if post.teaser %}
+          <div class="teaser">
+            {{ post.teaser }}
+          </div>
+        {% endif %}
+      </article>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+</div>
