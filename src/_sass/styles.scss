@@ -2,7 +2,7 @@
 /**
  * Fonts
  */
-@import url(http://fonts.googleapis.com/css?family=Orienta|Source+Sans+Pro);
+@import url(http://fonts.googleapis.com/css?family=Orienta|Source+Code+Pro);
 
 
 /**
@@ -17,8 +17,8 @@ $linkColorVisited: #912d2d;
 
 $maxWidth: 900px;
 
-$codeFont: 'Source Sans Pro', console;
-$codeBackground: #dce2e4;
+$codeFont: 'Source Code Pro', console;
+$codeBackground: #F0F0F0;
 $codeBorderColor: #9caeb3;
 
 
@@ -65,13 +65,13 @@ img {
 code {
 	font-family: $codeFont;
 	background: $codeBackground;
-	border: 1px solid $codeBorderColor;
 	line-height: 1.2;
+	border: 1px solid $codeBorderColor;
 }
 
 pre > code {
 	display: block;
-	padding: 1em;
+	padding: 2em;
 	margin-left: 2em;
 }
 
