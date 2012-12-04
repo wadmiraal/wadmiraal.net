@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6, p { text-indent: 2em; }
 
 h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 
-h1:before, h2:before { font-size: 0.8em; }
+h1:before, h2:before, h3:before { font-size: 0.8em; }
 
 h1:before {	content: "# "; }
 h1 { margin-left: -1.4em; }
@@ -56,7 +56,7 @@ h2:before {	content: "## "; }
 h2 { margin-left: -1.8em; }
 
 h3:before {	content: "### "; }
-h3 { margin-left: -2.4em; }
+h3 { margin-left: -2em; }
 
 img {
 	max-width: 100%;
