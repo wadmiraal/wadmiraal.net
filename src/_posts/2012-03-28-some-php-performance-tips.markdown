@@ -4,7 +4,7 @@ description: "For SEO"
 layout: post
 ---
 
-I sometimes run some &ldaquo;scientific&rdaquo; (read &laquo;completely biased&raquo;) benchmarking for my PHP code to check for the most optimized way of writing some expression. But I keep on forgetting. So this is the place where I'm going to keep some references.
+I sometimes run some &laquo;scientific&raquo; (read &laquo;completely biased&raquo;) benchmarking for my PHP code to check for the most optimized way of writing some expression. But I keep on forgetting. So this is the place where I'm going to keep some references.
 
 So, to keep thing short, I'm just going to make some *bold assertions* here (sue me).
 
