@@ -2,6 +2,12 @@
 title: "What can you do with console"
 description: "For SEO"
 layout: post
+tags:
+  - Javascript
+  - Code
+  - Fun
+  - Experiment
+  - Useful
 ---
 
 Lately I've been wondering: *what can you do with the javascript console object ?*. Let's figure that out.

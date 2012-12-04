@@ -26,7 +26,8 @@ $codeBorderColor: #9caeb3;
  * Tags
  */
 html {
-	padding-bottom: 20px;
+	padding: 50px 0;
+	-webkit-font-smoothing: subpixel-antialiased;
 }
 
 body {
@@ -50,13 +51,22 @@ h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 h1:before, h2:before, h3:before { font-size: 0.8em; }
 
 h1:before {	content: "# "; }
-h1 { margin-left: -1.4em; }
+h1 {
+	font-size: 2em;
+	margin-left: -1.8em;
+}
 
 h2:before {	content: "## "; }
-h2 { margin-left: -1.8em; }
+h2 {
+	font-size: 1.75em;
+	margin-left: -1.8em;
+}
 
 h3:before {	content: "### "; }
-h3 { margin-left: -2em; }
+h3 {
+	font-size: 1.5em;
+	margin-left: -2em;
+}
 
 img {
 	max-width: 100%;
@@ -110,7 +120,7 @@ blockquote {
 
 #menu {
 	position: absolute;
-	left: -100px;
+	left: -150px;
 }
 
 @media screen and (max-width: 1200px) {

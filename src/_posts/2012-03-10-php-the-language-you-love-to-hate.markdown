@@ -3,6 +3,10 @@ title: "PHP: the language you love to hate"
 description: "For SEO"
 layout: post
 favorite: true
+tags:
+  - PHP
+  - Code
+  - Rant
 ---
 
 ## I love PHP

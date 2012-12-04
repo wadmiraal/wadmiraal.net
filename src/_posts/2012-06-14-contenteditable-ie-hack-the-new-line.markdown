@@ -2,6 +2,11 @@
 title: "Content Editable Hacks: IE and the new line"
 description: "For SEO"
 layout: post
+tags:
+  - Javascript
+  - Code
+  - Rant
+  - Useful
 ---
 
 Lately I've been busy creating an in-house spellchecker for our company. First of all: *content editable is a real pain !*
