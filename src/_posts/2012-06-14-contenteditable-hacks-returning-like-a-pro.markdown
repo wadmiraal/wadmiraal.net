@@ -5,7 +5,6 @@ layout: post
 tags:
   - Javascript
   - Code
-  - Rant
   - Useful
 ---
 

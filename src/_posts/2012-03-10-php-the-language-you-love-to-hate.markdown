@@ -46,8 +46,12 @@ I hate that it's so incredibly bloated with unnecessary functionality.
 
 I hate that for some functions / language constructs, there are like 20 aliases available.
     
-    foreach (array('string', 'array', 'soap', 'curl', 'xml', 'file') as $language_construct) {
+    foreach (array(
+        'string', 'array', 'soap', 'curl', 'xml', 'file', 'regex', '?]#@"',
+      ) as $language_construct) {
+      
       echo sprintf("I hate the fact that the %s API is so inconsistent.", $language_construct);
+      
     }
 
 I hate that there are so many irrelevant products and frameworks out there\*.
