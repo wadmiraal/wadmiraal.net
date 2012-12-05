@@ -2,8 +2,11 @@
 
 This is my new, personal and english weblog. It will contain news, thoughts and experiments.
 
-It will also allow me to finally play with some new technologies, like LESS, html5, etc.
+It will also allow me to finally play with some new technologies, like SASS, html5, etc.
 
-## Static and Phrozn
 
-Site will be static, using [Phrozn](http://www.phrozn.info/en/) for generation.
+## Static and Jekyll
+
+Blogging like a hacker !
+
+Site is static, using [Jekyll](http://www.jekyllrb.com).
