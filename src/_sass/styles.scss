@@ -44,9 +44,12 @@ a { color: $linkColor; }
 a:hover { color: $linkColorHover; }
 a:visited { color: $linkColorVisited; }
 
-h1, h2, h3, h4, h5, h6, p { text-indent: 2em; }
+p { text-indent: 2em; }
 
-h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+h1, h2, h3, h4, h5, h6 {
+	padding-left: 2em;
+	font-weight: normal;
+}
 
 h1:before, h2:before, h3:before { font-size: 0.8em; }
 
@@ -67,6 +70,7 @@ h3 {
 	font-size: 1.5em;
 	margin-left: -2em;
 }
+
 
 img {
 	max-width: 100%;
@@ -124,6 +128,10 @@ blockquote {
 }
 
 @media screen and (max-width: 1200px) {
+	#header {
+		overflow: hidden;
+	}
+	
 	#menu {
 		position: relative;
 		overflow: hidden;
