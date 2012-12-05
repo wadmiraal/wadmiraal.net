@@ -6,11 +6,10 @@ favorite: true
 tags:
   - Javascript
   - Code
-  - Fun
+  - For lolz
 ---
 
-The `this` keyword in Javascript has been
-screamed at, laughed at, insulted, and many more terrible things. When I believe
+The `this` keyword in Javascript has been screamed at, laughed at, insulted, and many more terrible things. When I believe
 we should be thankful for this little guy: he's here for a reason.
 
 ## A little &ldquo;history&rdquo;
@@ -26,8 +25,7 @@ And Bill said:
 > recompile this method for its own use? What if we have 200 strings\*? Have you
 > any idea how much memory that would use?
 
-*\* Remember, in those days, javascript was slooooow. 200 strings? You're kiddin'
-me?*
+*\* Remember, in those days, javascript was slooooow.*
 
 And Dr Dre said:
 > So what do you suggest, smarty pants?
@@ -100,7 +98,7 @@ Chrome's web profiler and see what we've got:
 
 ![Figure 01](/posts-media/thank-you-this/fig01.jpg)
 
-This is very scientific. We see that our first element's *shallow size* is 12B and
+We see that our first element's *shallow size* is 12B and
 all child instances 16B.
 
 Hmm&hellip; And what if we try this:
@@ -158,7 +156,7 @@ So, what else can we do, knowing that all public methods need only be present on
 the Object declaration, the *parent*, so to speek?
 
 The prototypal model allows developpers to extend Objects (by adding to the
-`prototype` property) at runtime (like Ruby). This means that, if you think
+`prototype` property) at runtime. This means that, if you think
 `Array` misses a method, you can add it at runtime like so:
 
     Array.prototype.first = function () {
@@ -175,6 +173,13 @@ need. In the words of the great Einstein:
 
 > This is great!\*\*
 
+*\*Now this obviously sounds really cool and nice and all, but there's actually a few gotchas.
+You have to take into account speed, retained size, etc.*
+
+*\*\*Come on, I'm sure he must have said at least **once**.*
+
+### Bonus feature
+
 `this` also allows developpers to create *Interface*-like objects, that can interact
 with elements by using the `this` keyword without having to add any methods to
 the element's `prototype` at all.
@@ -183,28 +188,24 @@ For more info I really recommend vjeux's article [Javascript – How Prototypal
 Inheritance really
 works](http://blog.vjeux.com/2011/javascript/how-prototypal-inheritance-really-works.html).
 
-*\*Now this obviously sounds really cool and nice and all, but there's actually a few gotchas.
-You have to take into account speed, retained size, etc.*
-
-*\*\*Come on, I'm sure he must have said at least **once**.*
-
-### So why's everyone confused and hatefull?
+## So why's everyone confused (and hatefull) ?
 
 I personnaly believe (and have found this to be true for me) that the reason
-people get confused about `this` (and javascript in general) is that developpers
-(and even javascript creators like [Brendan Eich](http://brendaneich.com/)) tend
+people get confused about `this` is that developpers &mdash; and even javascript creators like [Brendan Eich](http://brendaneich.com/) &mdash; tend
 to treat javascript like OO languages. Look at the `new` keyword: just syntactic
 sugar. There's no such thing as a `new` instance in javascript. There are even
 [discussions](http://brendaneich.com/2011/10/jsconf-eu/)
 about adding *Classes* to javascript in the future. But only as a **syntax**.
 Behind the scenes, javascript will still be the same.
 
-### What to do
+## What to do (IMHO)
 
 I personnaly believe that we should just start using javascript the way it was
 supposed to be. True, we are bound to using `new`, as javascript does not provide
 a *real* way to extend another Object's prototype otherwise (ironic). But we
-should embrace `this` in all it's weird, awkward forms. We should give him the
+should embrace `this` in all it's weird, awkward forms.
+
+We should give him the
 love he deserves, the warmth he craves for.
 
 In the words of Princess Fiona (Shrek):
@@ -214,5 +215,7 @@ In the words of Princess Fiona (Shrek):
 > But thy deed is great, and thy heart is pure.
 >
 > I am eternally in your debt.
+
+So&hellip;
 
 Thank you `this`.

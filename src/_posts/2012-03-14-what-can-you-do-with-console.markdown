@@ -5,12 +5,14 @@ layout: post
 tags:
   - Javascript
   - Code
-  - Fun
+  - For lolz
   - Experiment
   - Useful
 ---
 
-Lately I've been wondering: *what can you do with the javascript console object ?*. Let's figure that out.
+Lately I've been wondering: *what can you do with the javascript console object ?*.
+
+Let's find out.
 
 
 ## Get down to business
@@ -39,7 +41,7 @@ This is similar to log(), but is specifically for navigating through tree-like s
 
 ### `error()`
 
-Outputs a message with special (red) formating. If you output structures like hashes, it will parse it as a String and won't let you navigate through it like log() or dir().
+Outputs a message with special (red) formating. If you output structures like hashes, it will parse it as a String and won't let you navigate through it like log() or dir() (in Chrome or Firebug, at least).
 
 
 ### `warn()`
@@ -90,3 +92,5 @@ Allows you to view a hash as a table in your console. For it to work, your hash 
         cell2: '3.2'
       }
     }
+
+Pretty neat, no ?
