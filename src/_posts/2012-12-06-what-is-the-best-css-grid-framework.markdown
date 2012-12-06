@@ -13,19 +13,21 @@ Have you noticed how many 960gs clones, 1140, 1280, whatever resolution specific
 
 I've come to discover one that I patriculary like, and I'll share it, just with you. It'll be our special secret. 
 
-But first, let me tell you what I think a CSS grid should *not* provide.
+But first, let me tell you what I think a CSS grid should *not* do.
 
-## What a CSS Grid should *not* be
+## What a CSS Grid should *not* do
 
 * It should never, ever have ***any*** impact on design. No font styles, sizes, no line heights, no CSS resets, no fancy button styles, **nothing**.
 * It should not depend on JS ! Ever !
+* It should not provide anything else than a grid (be it responsive, fluid or fixed).
 
-## What a CSS Grid *should* be
+## What a CSS Grid *should* do
 
 * It should be lightweight. We don't want to add bloat to our designs.
 * It should be simple and intuitive. No smarty-pants classes. And by the way, adding a `last` CSS class to a column is perfectly OK. It prevents us from having to use JS for CSS3 specific selectors (like `:last-child`)
 * It should be easily extendable, if needed.
 * It could, optionnaly, provide helper classes like `hide-on-phone` or `show-on-tablet`, etc.
+* Responsive media queries would be great.
 
 ## So, what to use
 
