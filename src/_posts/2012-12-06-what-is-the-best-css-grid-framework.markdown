@@ -33,4 +33,4 @@ I came accross the [1140 CSS grid](http://cssgrid.net/) a while ago. I liked it 
 
 So, I forked it, cleaned it up, removed the style-bloat and CSS reset it included, and *voilà*: a perfect, usable and flexible CSS Grid framework !
 
-Find it here: (https://github.com/connecti/cssgrid).
+Find it here: [connecti/cssgrid](https://github.com/connecti/cssgrid).
