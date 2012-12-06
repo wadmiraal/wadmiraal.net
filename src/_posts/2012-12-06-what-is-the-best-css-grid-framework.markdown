@@ -11,7 +11,7 @@ How many CSS grid frameworks are there out there anyway ?
 
 Have you noticed how many 960gs clones, 1140, 1280, whatever resolution specific grids there are ? What gives ?
 
-I've come to discover one that I patriculary like, and I'll share it, just with you. It'll be our special secret. 
+I've come to discover one that I particulary like, and I'll share it, just with you. It'll be our little secret. 
 
 But first, let me tell you what I think a CSS grid should *not* do.
 
@@ -27,7 +27,7 @@ But first, let me tell you what I think a CSS grid should *not* do.
 * It should be simple and intuitive. No smarty-pants classes. And by the way, adding a `last` CSS class to a column is perfectly OK. It prevents us from having to use JS for CSS3 specific selectors (like `:last-child`)
 * It should be easily extendable, if needed.
 * It could, optionnaly, provide helper classes like `hide-on-phone` or `show-on-tablet`, etc.
-* Responsive media queries would be great.
+* Responsive media queries would be great, if only as a starting point.
 
 ## So, what to use
 
