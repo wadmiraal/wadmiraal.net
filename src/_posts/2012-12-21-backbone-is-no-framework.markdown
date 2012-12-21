@@ -52,7 +52,7 @@ What structure does Backbone impose to your code ?
 
 You could just use the (awesome) Model and Collection components, and ignore the rest. You could only use the Router to register some custom callbacks. All of them use the Events, obviously, but that's an added feature. It does hardly justify calling it a framework.
 
-The only part if it that *could* make it a framework is the View, which glues all the other components together.
+The only part if it that *could* make it a framework is the View, which glues all the other components together. But it doesn't *have* to. It can also be used stand-alone.
 
 But I just don't think that's enough.
 
@@ -62,8 +62,11 @@ The beauty of Backbone is that it provides a set of components with which you ca
 
 In my eyes, the guys at DocumentCloud have made a beautiful **library**, a great gift to the JS community. It Rocks. You guys at DocumentCloud **rock**!
 
-It's because of this *library* aspect that trying to squash it into a MV\* pattern is so difficult (read *impossible*).
+It's because of this *library* aspect that trying to squash it into a MV\* pattern is so difficult (read: *&ldquo;impossible&rdquo;*).
 
-So, dear fellow devs, my brethren: let us not fight over this. Let us all embrace the actual truth: it's a *library*, duh !
+So, dear fellow devs, my brethren: let us not fight over this.
+
+Let us all embrace the actual truth:
+> It's a library, duh !
 
 

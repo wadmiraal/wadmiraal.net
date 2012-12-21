@@ -94,6 +94,10 @@ blockquote {
 	line-height: 3;
 	text-indent: 3em;
 	font-style: italic;
+	
+	p {
+		text-indent: 3em;
+	}
 }
 
 
@@ -191,4 +195,9 @@ blockquote {
 .post-meta {
 	font-size: .75em;
 	font-style: italic;
+}
+
+#disqus_thread {
+	margin-top: 2em;
+	margin-bottom: 2em;
 }
