@@ -6,3 +6,33 @@ permalink: /about/
 <h1>About</h1>
 
 <p>Coming soon (or not)...</p>
+
+<div class="row">
+    <div class="col sixcol">
+        <h2>What am I saying</h2>
+        <a class="twitter-timeline" href="https://twitter.com/wadmiraal" data-widget-id="283853686986375168">Tweets by @wadmiraal</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+
+    <div class="col sixcol last">
+        <h2>What am I seeing</h2>
+        <iframe src="http://snapwidget.com/in/?u=d2FkbWlyYWFsfGlufDE1MHwyfDJ8fHllc3w1fG5vbmU=" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:330px; height: 330px" ></iframe>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col twelvecol last">
+        <h2>What am I working on</h2>
+        <div id="gh-widget"></div>
+        <script src="/js/gitview.min.js"></script>
+        <script>
+            var view = new Gitview({
+                user: 'wadmiraal',
+                domNode: document.getElementById('gh-widget'),
+                compact: false,
+                count: 3,
+                width: 'auto'
+            });
+        </script>
+    </div>
+</div>
