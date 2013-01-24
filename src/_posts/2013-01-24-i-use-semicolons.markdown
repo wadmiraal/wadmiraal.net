@@ -1,11 +1,12 @@
 ---
 title: "I use semicolons"
-description: "Why I use semicolons, and why, at the end, we shouldn't give a damn."
+description: "Why I use semicolons, and how this is related to some idiot-moron teenagers who don't know how to write."
 layout: post
 tags:
   - Javascript
   - Code
   - For lolz
+  - Rant
 ---
 
 Ok, so there's this discussion going around about wether or not one should/can use semicolons in Javascript.
