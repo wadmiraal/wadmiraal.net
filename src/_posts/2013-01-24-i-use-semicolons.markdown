@@ -27,4 +27,4 @@ Like when you have this uberlong story you want to write or just a simple commen
 
 I ***hate*** this. And when reading code with no semicolons, I sometimes get this same feeling. My brain won't stop for a &ldquo;mental breath&rdquo;, won't pause. I need to pro-actively tell him: *&ldquo;This is a new line. It's the start of a new sentence. Take a breath, easy now. And on we go...&rdquo;*
 
-So, for what it's worth, that's why I use semicolons.
+So, for what it's worth, that's why I use semicolons. Sue me.
