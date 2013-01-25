@@ -2,24 +2,24 @@
 /**
  * Fonts
  */
-@import url(http://fonts.googleapis.com/css?family=Orienta|Source+Code+Pro);
+@import url(http://fonts.googleapis.com/css?family=Orienta|Source+Code+Pro|Open+Sans);
 
 
 /**
  * Variables
  */
-$bodyFont: Orienta, sans-serif;
+$bodyFont: "Open Sans", Orienta, sans-serif;
 $bodyColor: #454037;
 
 $linkColor: #c95858;
 $linkColorHover: #f87575;
 $linkColorVisited: #912d2d;
 
-$maxWidth: 900px;
-
 $codeFont: 'Source Code Pro', console;
 $codeBackground: #F0F0F0;
 $codeBorderColor: #9caeb3;
+
+$titleFont: Orienta, sans-serif;
 
 
 /**
@@ -36,7 +36,7 @@ body {
 		size: 100%;
 	}
 	margin: 0 20px;
-	line-height: 1.75;
+	line-height: 1.5;
 	color: $bodyColor;
 }
 
@@ -44,11 +44,15 @@ a { color: $linkColor; }
 a:hover { color: $linkColorHover; }
 a:visited { color: $linkColorVisited; }
 
-p { text-indent: 2em; }
+p  {
+  text-indent: 32px;
+  margin: 0.5em;
+}
 
 h1, h2, h3, h4, h5, h6 {
-	padding-left: 2em;
 	font-weight: normal;
+    line-height: 1.1;
+    font-family: $titleFont;
 }
 
 h1:before, h2:before, h3:before { font-size: 0.8em; }
@@ -56,19 +60,22 @@ h1:before, h2:before, h3:before { font-size: 0.8em; }
 h1:before {	content: "# "; }
 h1 {
 	font-size: 2em;
-	margin-left: -1.8em;
+    padding-left: 40px;
+    text-indent: -0.75em;
 }
 
 h2:before {	content: "## "; }
 h2 {
 	font-size: 1.75em;
-	margin-left: -1.8em;
+    padding-left: 38px;
+    text-indent: -1.25em;
 }
 
 h3:before {	content: "### "; }
 h3 {
 	font-size: 1.5em;
-	margin-left: -2em;
+    padding-left: 38px;
+    text-indent: -1.75em;
 }
 
 
@@ -106,7 +113,7 @@ blockquote {
  */
 .row {
 	position: relative;
-	max-width: 700px;
+	max-width: 550px;
 	min-width: 200px;
 }
 
