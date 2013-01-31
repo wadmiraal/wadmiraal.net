@@ -2,5 +2,5 @@ url: "http://wadmiraal.net/"
 markdown: rdiscount
 auto: false
 permalink: /lore/:year/:month/:day/:title
-paginate: 10
+paginate: 30
 favorite: false
