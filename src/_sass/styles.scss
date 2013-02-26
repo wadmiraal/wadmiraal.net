@@ -1,25 +1,33 @@
+/**
+ * Compass
+ */
+@import "compass/typography/vertical_rhythm";
 
 /**
  * Fonts
  */
-@import url(http://fonts.googleapis.com/css?family=Orienta|Source+Code+Pro|Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Open+Sans+Condensed:700);
 
 
 /**
  * Variables
  */
-$bodyFont: "Open Sans", Orienta, sans-serif;
+$bodyFont: "Open Sans", sans-serif;
 $bodyColor: #454037;
 
 $linkColor: #c95858;
 $linkColorHover: #f87575;
 $linkColorVisited: #912d2d;
+$logoColor: #485566;
 
-$codeFont: 'Source Code Pro', console;
+$codeFont: "Source Code Pro", console;
 $codeBackground: #F0F0F0;
 $codeBorderColor: #9caeb3;
 
-$titleFont: Orienta, sans-serif;
+$titleFont: "Open Sans Condensed", sans-serif;
+
+$base-font-size: 16px;
+$base-line-height: 24px;
 
 
 /**
@@ -27,57 +35,53 @@ $titleFont: Orienta, sans-serif;
  */
 html {
 	padding: 50px 0;
-	-webkit-font-smoothing: subpixel-antialiased;
 }
 
 body {
   font: {
 		family: $bodyFont;
-		size: 100%;
 	}
 	margin: 0 20px;
-	line-height: 1.5;
 	color: $bodyColor;
 }
+
+// Vertical Rythm
+@include establish-baseline;
 
 a { color: $linkColor; }
 a:hover { color: $linkColorHover; }
 a:visited { color: $linkColorVisited; }
 
 p  {
-  text-indent: 32px;
-  margin: 0.5em;
+  margin: 1em;
 }
+
+p:first-child {
+  margin-top: 0;
+}
+
+h1 {
+  @include adjust-font-size-to(32px);
+  color: $logoColor;
+  margin-top: 0;
+}
+
+h2 { @include adjust-font-size-to(24px); }
+h3 { @include adjust-font-size-to(20px); }
 
 h1, h2, h3, h4, h5, h6 {
-	font-weight: normal;
-    line-height: 1.1;
-    font-family: $titleFont;
+	font-weight: 700;
+  font-family: $titleFont;
 }
 
-h1:before, h2:before, h3:before { font-size: 0.8em; }
-
-h1:before {	content: "# "; }
-h1 {
-	font-size: 2em;
-    padding-left: 40px;
-    text-indent: -0.75em;
+h2, h3, h4, h5, h6 {
+  margin: 0;
+  @include leader();
 }
 
-h2:before {	content: "## "; }
-h2 {
-	font-size: 1.75em;
-    padding-left: 38px;
-    text-indent: -1.25em;
+strong {
+  font-weight: 700;
 }
-
-h3:before {	content: "### "; }
-h3 {
-	font-size: 1.5em;
-    padding-left: 38px;
-    text-indent: -1.75em;
-}
-
 
 img {
 	max-width: 100%;
@@ -86,24 +90,27 @@ img {
 code {
 	font-family: $codeFont;
 	background: $codeBackground;
-	line-height: 1.2;
 	border: 1px solid $codeBorderColor;
+}
+
+pre {
+  @extend p;
 }
 
 pre > code {
 	display: block;
 	padding: 2em;
-	margin-left: 2em;
+  @include padding-leader();
+  @include padding-trailer();
 }
 
 blockquote {
-	background: url(../img/quote.png) 0.2em 0.5em no-repeat;
-	line-height: 3;
-	text-indent: 3em;
 	font-style: italic;
-	
+  @include adjust-leading-to(1.25);
+
 	p {
-		text-indent: 3em;
+		margin-left: 0;
+    margin-right: 0;
 	}
 }
 
@@ -170,7 +177,7 @@ blockquote {
  * Footer
  */
 #footer {
-	font-size: .9em;
+  @include adjust-font-size-to(14px);
 
   p {
     margin-top: 0;
@@ -205,7 +212,7 @@ blockquote {
  * Posts
  */
 .post-meta {
-	font-size: .75em;
+  @include adjust-font-size-to(12px);
 	font-style: italic;
 }
 

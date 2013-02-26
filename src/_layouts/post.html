@@ -20,8 +20,8 @@
   
 	<link rel="stylesheet" href="/css/html5boilerplate.css">
 	<link rel="stylesheet" href="/css/1140.css">
+  <link rel="stylesheet" href="/css/highlight.default.css" />
 	<link rel="stylesheet" href="/css/styles.css" />
-	<link rel="stylesheet" href="/css/highlight.default.css" />
 	
 	<script src="/js/modernizr.min.js"></script>
 	<script src="/js/highlight.min.js"></script>
@@ -37,6 +37,7 @@
 					<li><a href="/about">about</a></li>
 					<li><a href="http://www.twitter.com/wadmiraal">twitter</a></li>
 					<li><a href="http://github.com/wadmiraal">github</a></li>
+        </ul>
 			</nav>
 		</div>
 	</header>
@@ -47,14 +48,16 @@
 				<header class="row">
 					<h1>{{ page.title }}</h1>
 					
-					<p class="post-meta">
-						<strong>By <a href="/about/">me</a></strong>, <time datetime='{{ page.date | date_to_utc | date:"%Y-%m-%dT%H:%M:%SZ" }}'>{{ page.date | date:"%Y-%m-%d" }}</time>&nbsp;
-						
-						<strong>Tags:</strong>&nbsp;
-					
-						{% for tag in page.tags %}
-							<a href="/tag/{{ tag }}">{{ tag }}</a>
-						{% endfor %}
+					<p>
+            <span class="post-meta">
+              <strong>By <a href="/about/">me</a></strong>, <time datetime='{{ page.date | date_to_utc | date:"%Y-%m-%dT%H:%M:%SZ" }}'>{{ page.date | date:"%Y-%m-%d" }}</time>&nbsp;
+
+              <strong>Tags:</strong>&nbsp;
+
+              {% for tag in page.tags %}
+                <a href="/tag/{{ tag }}">{{ tag }}</a>
+              {% endfor %}
+            </span>
 					</p>
 				</header>
 			
