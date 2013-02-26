@@ -1,8 +1,7 @@
 ---
 title: "PHP: the language you love to hate"
-description: "For SEO"
+description: "Little rant about the PHP language. Why it's so great and so terrible at the same time."
 layout: post
-favorite: true
 tags:
   - PHP
   - Code
