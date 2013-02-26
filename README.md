@@ -1,8 +1,8 @@
 # wadmiraal.net
 
-This is my new, personal and english weblog. It will contain news, thoughts and experiments.
+This is the repo for my personal weblog. It contains news, thoughts, experiments and rants.
 
-It will also allow me to finally play with some new technologies, like SASS, html5, etc.
+[Check it out.](http://wadmiraal.net).
 
 
 ## Static and Jekyll
