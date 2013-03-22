@@ -17,51 +17,45 @@ Yes, I am.
 
 The DRY principle should always be adhered to. Always. But in *our code*. In *our* realm.
 
-As soon as we start applying this logic to our clients' data (even with the best intentions), we can unkowingly break the user experience of our product. And sometimes pretty badly so.
+As soon as we start applying this logic to our clients' data (even with the best intentions), we can unknowingly break the user experience of our product. Sometimes pretty badly.
 
 I've seen this time and time again. It's frustrating. It's mind boggling. It's a real pain.
 
-## Real world example
+## A little story
 
-A client needed a way to manage courses. In their most basic form, these courses had a title and short description. Cool. Easy. But it soon got tricky, and out of hand.
+Once uppon a time, a merchant had a problem. He had a list of products inside a system. Each product had a unique reference (a string).
 
-Each course must be in a category. We added a <abbr title="Create Read Update Delete">CRUD</abbr> area to manage these categories, and added a select list on the course form. Good.
+When someone purchased one of these products anywhere in the world, (from a physical shop), a line would get inserted into the database, containing the client information and the product reference.
 
-Next, each course needs a "color" (not related to the category). Colors can also be re-used across courses. Here again, we added a CRUD. Third one. And a new select list on the course form.
+Now, it sometimes happened that a product was purchased from a shop **before** the merchant had the time to insert the product into his system. How would one link these 2 then, because one of the 2 was missing ?
 
-Next, each course has a price list. Again, some courses have the same prices. Create a fourth CRUD. And a new select list on the course form.
+The merchant said: "Just store the bought reference. It's identical to the one the new product will have. And it's unique, too. So, when the product gets added, the link will be easy and automatic. Simple."
 
-Next, each course spans several days, with multiple breaks between sessions (like morning session and afternoon session). So we added the possibility to add multiple from-to date fields, on the fly, directly on the course form.
+But the developer saw a pitfall: what if the reference had to change ? What if the merchant wanted to change the reference of his product in the future ? This was a very serious concern.
 
-Next, each of these *sessions* has a different teacher. But some teachers give multiple sessions. So we created a fifth CRUD area to manage teachers (only their names - no address, contact info, nothing). And a select field for each session to pick a teacher (*note: most teachers are never used twice*).
+But how could one solve this ? The merchant wanted this to be automatic and straightforward. He wanted to spend as little time as possible working with this system. But the developer didn't want to duplicate information. It was against his most sacred beliefs. So he invented a new interface. This interface would list all purchases that did not relate to a product yet. And the merchant would only have to click on it, select the actual product it was related to, and click save. Easy !
 
-Next, each of these *sessions* can be in a different physical location. So we do the same trick as with the teachers. A sixth CRUD.
+The developer was really happy and proud. He told the merchant: "Now you only have to logon a few days a week to make sure that there are no unlinked purchases."
 
-So we ended up with **6 different admin pages**, each to manage a particular content. And a big form with many select fields. And a client who still can't remember how everything works, *2 years later*.
+The merchant did not understand why the developer made him logon so often to check something a computer, surly, would be able to do as well.
 
-## What should have been done
+This is actually a true story. And even though it's very simple, it highlights a big problem: **that fear of duplicate data can add complexity to a system**.
 
-Categories and locations are re-used heavily. These 2 are indeed good candidates for a separate management.
+There's absolutely no valid reason to change a product reference after it's been used before. This would take tremendous efforts, as many past orders, receipts, etc, would become invalid. This data **could safely be duplicated**, and it would make the life of our merchant a little easier.
 
-But...
+Steve Krug nailed this with his mantra &ldquo;Don't make me think !&rdquo; Every page, form, button or link that exists in such a system adds &ldquo;mental bloat&rdquo;. It forces you to *stop* and *think*.
 
-* the teacher should have been a simple textfield. The chances of having to type the same name twice is like 1/10. Not worth managing separately
-* the color field should have been a simple color picker
-* the price list should simply be a textarea, or even included in the description
+Remove just one of these *stops*, and the whole thing, all of a sudden, seems so much *easier*.
 
-This would have reduced the number of admin pages to 3. That's *half* the pages. But remember: **complexity does not grow linearly. It grows exponentially.**
-
-Steve Krug nailed this with his mantra &ldquo;Don't make me think !&rdquo; Every link that exists in such a form adds &ldquo;mental bloat&rdquo;. It forces you to *stop* and *think*. Remove just one of these *stops*, and the whole thing all of a sudden seems so much easier.
-
-This is a simple (stupid) example, but because this client has so much trouble with this interface to this day, I feel it illustrates this pretty well.
+This is a simple (read: &ldquo;stupid&rdquo;) example, but I feel it illustrates this pretty well. I've worked on projects where this fear **did** become a UX nightmare. With *dozens* of admin pages all over the place, just to manage a few *web pages*.
 
 ## Duplication of data is the client's problem
 
-It's not ours. If the data is never going to change anyway, why bother adding a layer of complexity to the system ? Sure, from time to time, this will come back and bite you. Because, sometimes the duplication can become a problem in the long run. But *it's a problem when it's a problem*. Why break the user experience now because of some issue we might never encounter ?
+It's not ours. If the data is never going to change anyway, why bother adding a layer of complexity to the system ?
 
-Either way, talk about it with the client. Share your fears, and let them decide. Explain to them you can make the system more durable, but that it comes at the price of more complexity (or vice versa).
+Sure, from time to time, this will come back and bite you. Because, sometimes the duplication can become a problem in the long run. But *it's a problem when it's a problem*. Why break the user experience now because of some issue we might never encounter ?
 
-This will not only free you from the burden of making the right decision, it will also prove that you know your business.
+A piece of advice: talk about it with the client. Share your fears, and let them decide. Explain to them you can make the system more durable, but that it comes at the price of more complexity (or vice versa). This will not only free you from the burden of making the right decision, it will also prove that you know your business.
 
 Because if your product prevents duplication of data, but becomes difficult to use, your clients will think your a nerdy idiot.
 
