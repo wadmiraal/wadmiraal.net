@@ -57,8 +57,8 @@ Sure, from time to time, this will come back and bite you. Because, sometimes th
 
 A piece of advice: talk about it with the client. Share your fears, and let them decide. Explain to them you can make the system more durable, but that it comes at the price of more complexity (or vice versa). This will not only free you from the burden of making the right decision, it will also prove that you know your business.
 
-Because if your product prevents duplication of data, but becomes difficult to use, your clients will think your a nerdy idiot.
+Because if your product prevents duplication of data, but becomes difficult to use, your clients will think you're a nerdy idiot.
 
-And if your product is easy to use, but prevents them from using key content throughout the product and makes them type it in again and again, they will think your a nerdy slacker.
+And if your product is easy to use, but prevents them from using key content throughout the product and makes them type it in again and again, they will think you're a nerdy slacker.
 
 By making them decide, you show them you know all the implications. That you care. And they will <del>love you for it</del> respect you a little more.
