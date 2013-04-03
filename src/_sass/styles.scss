@@ -99,7 +99,8 @@ pre {
 
 pre > code {
 	display: block;
-	padding: 2em;
+	padding: 1em;
+  @include adjust-font-size-to(12px);
   @include padding-leader();
   @include padding-trailer();
 }
