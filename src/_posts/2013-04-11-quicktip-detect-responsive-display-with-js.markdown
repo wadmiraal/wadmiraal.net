@@ -25,7 +25,7 @@ Just insert the following HTML at the very end of the `<body>`:
 
 This can be adapted with any class, obviously.
 
-Now, for the above example, when we're in &ldquo;mobile&rdquo; layout, this little fellow will get a `display: block;` setting. When in any other mode, it get's a `display: none;`.
+Now, for the above example, when we're in &ldquo;mobile&rdquo; layout, this little fellow will get a `display: block;` setting. When in any other mode, it gets a `display: none;`.
 
 This is won't mess up our design, because the `span` is empty and won't take up any space.
 
