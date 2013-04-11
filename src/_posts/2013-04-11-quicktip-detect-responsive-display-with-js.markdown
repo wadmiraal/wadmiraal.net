@@ -1,5 +1,5 @@
 ---
-title: "Detect the current mediaquery display with JS"
+title: "Detect the current CSS3 media query rule with Javascript"
 description: "Sometimes, we need to detect in what display 'mode' we are with JS. Classical methods involve detecting screen size or user agents, but there is a far simpler technique."
 layout: post
 tags:
@@ -8,7 +8,7 @@ tags:
   - Tip
 ---
 
-Ever needed to test some Javascript code that only is supposed to be triggered when in &ldquo;mobile&rdquo; view in a responsive layout ? Or to detect if we're in portrait or landscape mode, *but always based on the CSS rules ?*
+Ever needed to test some Javascript code that only is supposed to be triggered when in &ldquo;mobile&rdquo; view in a responsive layout ? Or to detect if we're in portrait or landscape mode, *but always based on the CSS media queries ?*
 
 Here's a Quick'n'Dirty&reg; trick to get the job done.
 
@@ -19,13 +19,15 @@ Here's a Quick'n'Dirty&reg; trick to get the job done.
 
 ## Trick
 
-Just insert the following HTML at the very end of your file:
+Just insert the following HTML at the very end of the `<body>`:
 
     <span id="mobile-layout-switch" class="show-on-phone"></span>
 
 This can be adapted with any class, obviously.
 
-Now, for the above example, when we're in &ldquo;mobile&rdquo; layout, this little fellow will get a `display: block;` setting. When in any other mode, it get's a `display: none;`. This is won't mess up our design, because the `span` is empty and won't take up any space.
+Now, for the above example, when we're in &ldquo;mobile&rdquo; layout, this little fellow will get a `display: block;` setting. When in any other mode, it get's a `display: none;`.
+
+This is won't mess up our design, because the `span` is empty and won't take up any space.
 
 Now, in Javascript, we can very easily detect in wich view we are by detecting the *display* of our span. Using jQuery:
 
@@ -33,4 +35,6 @@ Now, in Javascript, we can very easily detect in wich view we are by detecting t
       // We're in mobile view !
     }
 
-Tadah ! We can now easily detect what mode we're in, and they will always match our CSS rules. An added bonus to this is that it's much easier to test our Javascript in our desktop browser when developing: just resize the window.
+Tadah ! We can now easily detect what mode we're in, and it will always match our CSS rules. This is *much faster* and *much easier* than detecting the screen size and aspect ratio. Plus, it will scale with your CSS rules.
+
+An added bonus to this is that it's much easier to test our Javascript in our desktop browser when developing: just resize the window.
