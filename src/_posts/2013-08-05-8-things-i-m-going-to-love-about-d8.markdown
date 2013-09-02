@@ -56,7 +56,7 @@ The new multi-language initiative for Drupal will change all this. Huge efforts 
 Drupal 8 will have a killer feature called "in-line editing" (aka the "Spark" initiative). This will allow site editors to edit content *directly on the page*, without having to go to an edit-form. This will be quicker, much more user-friendly, but also will be truly WYSIWYG. The content will be edited in context, and all the "real" CSS will get applied to it in real time. 
 
 ### 8. OOP bliss
-D8 will include many OOP paradigms and requires PHP 5.3. Although the procedural style from previous versions *does* have it's advantages (whatever other devs say), the new approach will make code cleaner, nicely decoupled (if done right) and easily testable.  
+D8 will include many OOP paradigms and requires PHP 5.3. Although the procedural style from previous versions *does* have its advantages (whatever other devs say), the new approach will make code cleaner, nicely decoupled (if done right) and easily testable.
 
 ## I'm all pumped up!
 Are you?
