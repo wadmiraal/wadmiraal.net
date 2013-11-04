@@ -28,11 +28,11 @@ Likewise, would you say a person that's beautiful and smart is automatically a g
 
 If a very likable person is loved by hundreds, except you, than the problem is probably not with the person, but with you. 
 
-If a language, like JS, is loved by thousands &mdash; many of them *very* smart an talented &mdash;, used for exceptionally useful and beautiful applications, yet *you discard it*, then I say *you* have not taken the time to get to know the language that well or (more likely) haven't given it the chance it deserves. 
+If a language, like JS, is loved by thousands &mdash; many of them *very* smart an talented &mdash; and used for exceptionally useful and beautiful applications, yet you discard it, then I say you have not taken the time to get to know the language that well or (more likely) haven't given it the chance it deserves.
 
 For me, I worked with languages that are much more rigid and well thought-through than JS (no, I'm certainly **not** talking about PHP). But I still love working with JS. It's like meeting an old friend. We build great stuff together, and I enjoy (almost) every minute of it. 
 
-Don't get me wrong. I'm not saying JS is *perfect*. ***Far from it*** (some of Julik's points are totally valid and well known). I'm not saying you *must* love JS either. We all have our preferences. But that does not mean it deserves to be hated and/or discarded as a language. 
+Don't get me wrong. I'm not saying JS is perfect. ***Far from it*** (some of Julik's points are totally valid). I'm not saying you *must* love JS either. We all have our preferences. But that does not mean it deserves to be hated and/or discarded as a language.
 
 JS is an exceptional and fun tool, used for exceptional and fun projects. Period. 
 
