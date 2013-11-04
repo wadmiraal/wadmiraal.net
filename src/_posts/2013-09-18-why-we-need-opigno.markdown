@@ -21,19 +21,19 @@ Opigno is not just another wanabe-open-source-look-at-me-I'm-new project. It's a
 
 The state of e-learning software is, to put it elegantly, completely *passé*.
 
-Many existing platforme use coding techniques from the 90's. Some products **generate PHP scripts on the fly for new content**. This is amazingly stupid and is a complete nightmare to manage when one finds a bug in *every generated script* (ever heard of <abbr title="Don't Repeat Yourself">DRY</abbr> code ?).
+Many existing platforms use coding techniques from the 90's. Some products **generate PHP scripts on the fly for new content**. This is amazingly stupid and is a complete nightmare to manage when one finds a bug in *every generated script* (ever heard of <abbr title="Don't Repeat Yourself">DRY</abbr> code ?).
 
 The worst part: many do not provide sensible APIs to extend or enhance the platform in any meaningful way, going as far as to *encourage* (\*gasp\*) hacking core to add new functionality.
 
 ### Pro-version vs community... what ?
 
-This might seem irrelevant to many, but having a product with a *pro* version and a *community* doesn't work out that well. Most clients are confused to which one does what, and as professionals we've often seen that community products are just cheap, buggy versions of the pro one. The product vendors provide little to no support for these *community-version* clients, stating they should get the pro version if they want any help.
+This might seem irrelevant to many, but having a product with a *pro* version and a *community* version doesn't work out that well. Most clients are confused to which one does what, and as professionals we've often seen that community versions are just cheap, buggy versions of the pro one. The product vendors provide little to no support for these *community-version* clients, stating they should get the pro version if they want any help.
 
 Having an open-source product should *not* be about providing a freebie to lure in clients. It should be about *creating a community that helps the product grow*.
 
 ### One platform to rule them all
 
-Existing open-source platforms all look alike\* (some actually are forks of one another, but many don't say that out loud), the interfaces are either choking with vivid-colored icons or consist of just floating text all over the place.
+Existing open-source e-learning platforms all look alike\* (some actually are forks of one another, but many don't say that out loud), the interfaces are either choking with vivid-colored icons or consist of just floating text all over the place.
 
 Many try to please as many clients as possible at once, creating bloated interfaces and a terrible user-experience for both admins and users. Some products have dozens and dozens of fields just to create a new *course* ! Whereas many clients would just need one: the course title.
 
@@ -69,11 +69,11 @@ First and foremost, at it's core, Opigno is nothing more than a wrapper around O
 
 Then, there are several modules (like [Opigno Quiz](https://drupal.org/project/opigno_quiz_app) or [Opigno Certificate](https://drupal.org/project/opigno_certificate_app)) that allow you to enhance the platform as you see fit.
 
-This prevents feature bloat, and prevents your users from asking questions like *what does this button do ?*
+This prevents feature bloat and your users from asking questions like *what does this button do ?*
 
 #### An app store for your convenience
 
-Opipgno uses the App format to package all its functionality (that doesn't ship with the core). This means even beginners can easily extend their platform by using our pre-packaged functionality.
+Opigno uses the App format to package all its functionality (that doesn't ship with the core). This means even beginners can easily extend their platform by using our pre-packaged functionality.
 
 ### And much more
 
