@@ -1,0 +1,52 @@
+---
+title: "2013, what a year"
+description: "Quick retrospect on the year 2013."
+layout: post
+tags:
+  - Rant
+---
+
+2013 draws to an end. It's been a busy year, and a hectic one for many, so it seems.
+
+## Me, I'm bushed
+2013 definitely took its toll on me, and I'm more than looking forward to having a few days off soon (yep, still working). 
+
+But 2013 was also a very interesting year. A few personal highlights.
+
+## Opigno launch
+[Opigno](http://www.opigno.org) has been my brainchild for almost 2 years. To watch it finally grow into a full product, far better than what I had in mind at the time, is very satisfying. 
+
+As we speak, 100s are visiting the project site. We get 1000s of visits every week, which is amazing when you think we launched only at the end of September.
+
+## I met great people
+I had the chance of attending Blackhat Amsterdam and DrupalCon Prague this year. There are so many great and talented people to meet at conferences, it's awesome. It's amazing to be part of such a vibrant community. 
+
+2013 saw the beginning of the [Swiss Tech Talks](http://www.swisstechtalks.ch) and the [Swiss Tech Association](http://www.swisstechassociation.ch), a great initiative of a few swiss tech-enthusiasts. The people are great and the topics have been awesome so far. If you're in Switzerland, do come to one of the talks; you won't regret it. 
+
+Last but not least, our team got joined by 2 great people, one who is our Opigno community manager (Mohamed Souidi), and the other who is now the Opigno co-maintainer (James Aparicio). Both are awesome to work with, and a great addition to the company. 
+
+## Always keep learning
+I love my job, because everyday I learn new things. Work I did only 6 months ago seems already old and crude, as I continuously refine my way of writing code and architecting applications. 
+
+I started using SASS extensively (I'll post about SASS and Compass soon).  Composer is a friend I could not live without anymore.
+
+I started using GIT for *everything* even remotely related to text, not just code.
+
+Haskell radically changed the way I look at writing PHP code.
+
+And I finally dove into sys administration and I'm starting to get the hang of it.
+
+## Drupal is my buddy
+In 2013 I passed the bar of 1000 sites using my 2 most popular modules, and the bar of more than 10 projects on drupal.org (13 &mdash; there are more, but some are not actively maintained or sandboxed and I don't count them).
+
+And although I've developed on Drupal for years, in 2013 I got my first patch into Drupal core (Drupal 8)!
+
+## Fun geeky experiment reaches the masses
+I launched [Patience Is A Virtue](http://www.patience-is-a-virtue.org) end 2012 as a private joke with some friends. On a free host, with just 2Mb of disk space and 1Gb of traffic. I never bothered with it again. Until I noticed that my traffic quota was being used up every month. 
+
+That site, despite having near-zero content, gets +2000 visits a day, with peaks at +15000. It's still running on the same free host. I did almost nothing to get there. That makes me smile.
+
+## It's been an eventful year
+But I'm already looking forward to what 2014 will bring. New people to meet, Opigno to nurture and develop, and **tons** of stuff to learn. 
+
+Bring it on. 
