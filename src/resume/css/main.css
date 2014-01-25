@@ -23,18 +23,18 @@ body {
   height: 100%;
   background-attachment: fixed;
   position: relative;
+  padding: 4em 0;
 }
 
 .resume-section-content {
   max-width: 800px;
   margin: 0 auto;
-  padding: 4em 1em;
+  padding: 0 1em;
   overflow: hidden;
   position: relative;
 }
 
 .scroll-down {
-  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -203,6 +203,72 @@ h1 {
   color: #999;
 }
 
+/**
+ * Navigation
+ */
+#nav {
+  position: fixed;
+  left: 50px;
+  top: 25%;
+  z-index: 200;
+}
+
+#nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;  
+}
+
+#nav li {
+  margin: 1em 0;
+  overflow: hidden;
+}
+
+#nav a {
+  float: left;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 15px;
+  display: block;
+  font-size: 12px;
+  padding: 0 9px;
+  text-decoration: none;
+  text-indent: 10px;
+  white-space: nowrap;
+  width: 0;
+  overflow: hidden;
+  transition: padding-right .25s;
+  -moz-transition: padding-right .25s;
+  -webkit-transition: padding-right .25s;
+  -o-transition: padding-right .25s;
+}
+
+/*#nav li.active a {
+  color: black;
+  border-color: black;
+  background: white;
+}*/
+
+#nav a:hover {
+  width: auto;
+  padding-right: 19px;
+}
+
+@keyframes nav-a {
+  
+  from {
+    background: red;
+  }
+
+  to {
+    background: yellow;
+  }
+}
+
+/**
+ * Media queries
+ */
 @media (max-width: 700px) {
 
   #address,
