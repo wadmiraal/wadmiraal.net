@@ -2,7 +2,7 @@
 title: "Thank You This"
 description: "For SEO"
 layout: post
-favorite: true
+favorite: false
 tags:
   - Javascript
   - Code
