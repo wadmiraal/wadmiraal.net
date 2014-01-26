@@ -269,6 +269,14 @@ h1 {
 /**
  * Media queries
  */
+@media (max-width: 1000px) {
+
+  #nav {
+    display: none;
+  }
+
+}
+
 @media (max-width: 700px) {
 
   #address,
