@@ -1,0 +1,288 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro|Stoke|Handlee&subset=latin,latin-ext);
+
+.icon:before {
+  font-family: 'entypo', sans-serif;
+}
+
+/**
+ * Structure
+ */
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  line-height: 1.5;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.resume-section {
+  min-height: 500px;
+  height: 100%;
+  background-attachment: fixed;
+  position: relative;
+  padding: 4em 0;
+}
+
+.resume-section-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1em;
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-down {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 2em;
+}
+
+.scroll-down.js-processed {
+  cursor: pointer;
+}
+
+.scroll-down:before {
+  content: "\e75c";
+  font-family: 'entypo', sans-serif;  
+}
+
+.competence-table {
+  min-width: 50%;
+  font-size: 1.1em;
+}
+
+.competence-table th, .competence-table td {
+  padding: .5em;
+  text-align: left;
+}
+
+.competence-table .sub-header {
+  font-weight: bold;
+  font-style: italic;
+  border-bottom: 1px solid #bbb;
+}
+
+
+h2 {
+  font-size: 2.5em;
+}
+
+dt {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 1em;
+}
+
+dd {
+  margin-bottom: 2em;
+}
+
+/**
+ * Section styles
+ */
+/* Personal information */
+#personal-information {
+  background-image: url(../img/dark_exa.png);
+  color: #fff;
+}
+
+h1 {
+  font-size: 3em;
+  margin-top: 0;
+  margin-bottom: .25em;
+  float: left;
+}
+
+#birth-information {
+  margin: 0;
+  text-indent: 2em;
+  font-style: italic;
+  clear: both;
+}
+
+#contact-information, #address {
+  float: right;
+  margin: 2em 0 0 2em;
+  font-style: normal;
+}
+
+#personal-information a {
+  color: coral
+}
+
+#more-information {
+  margin-left: 2em;
+  width: 75%;
+}
+
+#more-information h4 {
+  margin-bottom: 0;
+}
+
+/* Professional experience */
+#professionla-experience {
+  font-family: 'Stoke', serif;
+  background-image: url(../img/grey.png);
+  color: #555;
+}
+
+/* Schools */
+#schools {
+  font-family: 'Handlee', cursive;
+  color: #fff;
+  background-image: url(../img/dark_wall.png);
+}
+
+#schools dt {
+  color: #fff;
+  font-weight: bold;
+}
+
+#schools dd:nth-child(n+2), #schools dt:nth-child(n+2) {
+  -moz-transform: rotate(2deg);
+  -webkit-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+#schools dd:nth-child(n+3), #schools dt:nth-child(n+3) {
+  -moz-transform: rotate(-1deg);
+  -webkit-transform: rotate(-1deg);
+  -o-transform: rotate(-1deg);
+  -ms-transform: rotate(-1deg);
+  transform: rotate(-1deg);
+}
+
+#schools dd:nth-child(n+4), #schools dt:nth-child(n+4) {
+  -moz-transform: rotate(1deg);
+  -webkit-transform: rotate(1deg);
+  -o-transform: rotate(1deg);
+  -ms-transform: rotate(1deg);
+  transform: rotate(1deg);
+}
+
+#schools dd:nth-child(n+5), #schools dt:nth-child(n+5) {
+  -moz-transform: rotate(3deg);
+  -webkit-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+
+/* Professional knowledge */
+#professional-knowledge {
+  font-family: 'Stoke', serif;
+  background-image: url(../img/grey.png);
+  color: #555;
+}
+
+/* Languages */
+#languages {
+  font-family: 'Handlee', cursive;
+  color: #fff;
+  background-image: url(../img/dark_wall.png);
+}
+
+/* Other */
+#more-personal-information {
+  background-image: url(../img/dark_exa.png);
+  color: #fff;
+}
+
+#more-personal-information a {
+  color: coral;
+}
+
+#more-personal-information dt {
+  color: #999;
+}
+
+/**
+ * Navigation
+ */
+#nav {
+  position: fixed;
+  left: 50px;
+  top: 25%;
+  z-index: 200;
+}
+
+#nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;  
+}
+
+#nav li {
+  margin: 1em 0;
+  overflow: hidden;
+}
+
+#nav a {
+  float: left;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 15px;
+  display: block;
+  font-size: 12px;
+  padding: 0 9px;
+  text-decoration: none;
+  text-indent: 10px;
+  white-space: nowrap;
+  width: 0;
+  overflow: hidden;
+  transition: padding-right .25s;
+  -moz-transition: padding-right .25s;
+  -webkit-transition: padding-right .25s;
+  -o-transition: padding-right .25s;
+}
+
+/*#nav li.active a {
+  color: black;
+  border-color: black;
+  background: white;
+}*/
+
+#nav a:hover {
+  width: auto;
+  padding-right: 19px;
+}
+
+@keyframes nav-a {
+  
+  from {
+    background: red;
+  }
+
+  to {
+    background: yellow;
+  }
+}
+
+/**
+ * Media queries
+ */
+@media (max-width: 1000px) {
+
+  #nav {
+    display: none;
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  #address,
+  #contact-information {
+    float: none;
+    margin: 2em;
+    clear: both;
+  }
+}

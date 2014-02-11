@@ -1,7 +1,8 @@
 ---
 title: "Backbone is no framework (IMHO)"
-description: "For SEO"
+description: "Discussions rage online on wether Backbone is a MVC, MV*, etc, framework. Where, in my opinion, it's not a framework at all."
 layout: post
+favorite: true
 tags:
   - Javascript
   - Code
