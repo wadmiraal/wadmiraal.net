@@ -279,10 +279,35 @@ h1 {
 
 @media (max-width: 700px) {
 
+  h1 {
+    font-size: 2em;
+  }
+
+  dd ul {
+    padding-left: 10px;
+  }
+
   #address,
   #contact-information {
     float: none;
     margin: 2em;
     clear: both;
+  }
+
+  #birth-information {
+    text-indent: 0;
+    margin: 0 2em;
+  }
+
+  .competence-table {
+    font-size: .9em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  dt {
+    font-size: 1.1em;
   }
 }
