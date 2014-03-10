@@ -26,7 +26,9 @@ However, **it's still very premature to start the theming at this point**. Just 
 
 ## Start building the site
 
-Start developing the site. Create the Views, the content types, etc. *Get the people that will manage the site content on board*. Explain to them you want to get it just right, that you want to make their job as easy and painless as possible. Their feedback will be priceless. Remember: **it's usually when the content managers get to work on the site that all the mistakes become obvious.** A missing field, an image field that should be a file field, and so forth. Small things that can ruin your day (or week) if discovered 2 days before launch. If this can be discovered during the build process, you are still flexible enough to make changes. This is so important and obvious, but often overlooked. 
+Start developing the site. Just use a core theme, like Seven or Bartik. It will look hideous, but power through.
+
+Create the Views, the content types, etc. *Get the people that will manage the site content on board*. Explain to them you want to get it just right, that you want to make their job as easy and painless as possible. Their feedback will be priceless. Remember: **it's usually when the content managers get to work on the site that all the mistakes become obvious.** A missing field, an image field that should be a file field, and so forth. Small things that can ruin your day (or week) if discovered 2 days before launch. If this can be discovered during the build process, you are still flexible enough to make changes. This is so important and obvious, but often overlooked. 
 
 ## Theme it
 
@@ -36,4 +38,4 @@ As an added bonus, the content managers can already start creating content, as t
 
 ## Final thought
 
-A few more steps that will make your clients love you and are ideal when using this approach is making the site *easy to use for content managers*. This is a topic that deserves a post on it's own, but I highly recommend the slides from Pamela Barone's talk [*For the love of the content editors*](http://fr.slideshare.net/PamelaBarone/for-the-love-of-the-content-editors-drupalcon-prague-27036809).
+A few more steps that will make your clients love you and are ideal when using this approach is making the site *easy to use for content managers*. This is a topic that deserves a post on it's own, but I highly recommend the slides from Pamela Barone's talk [*For the love of the content editors*](http://fr.slideshare.net/PamelaBarone/for-the-love-of-the-content-editors-drupalcon-prague-27036809) for some quick tips.
