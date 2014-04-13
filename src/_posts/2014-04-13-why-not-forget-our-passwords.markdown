@@ -18,7 +18,7 @@ Yes, *access* manager, not *password* manager.
 
 Email. 
 
-[I blogged about this last week](wadmiraal.net/lore/2014/04/07/less-is-more). I love email. There are so many ways we can use email.
+[I blogged about this last week](http://wadmiraal.net/lore/2014/04/07/less-is-more). I love email. There are so many ways we can use email.
 
 Most services provide one-time password resets, sent *to your email*, which allow us to easily log in. This is a secure and easy way to access the service.
 
