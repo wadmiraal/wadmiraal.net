@@ -82,7 +82,7 @@ Even better (I use this trick a lot):
 $icons: (home, forum, blog, my-account, logout, news, rss, login, settings, post, comment);
 @each $icon in $icons {
   .icon-#{$icon} {
-    background-image: url(../img/icon-#{$icon}.png;
+    background-image: url(../img/icon-#{$icon}.png);
   }
 }
 ````
@@ -92,15 +92,15 @@ Instead of...
 ````
 /* CSS */
 .icon-home {
-  background-image: url(../img/icon-home.png;
+  background-image: url(../img/icon-home.png);
 }
 
 .icon-forum {
-  background-image: url(../img/icon-forum.png;
+  background-image: url(../img/icon-forum.png);
 }
 
 .icon-blog {
-  background-image: url(../img/icon-blog.png;
+  background-image: url(../img/icon-blog.png);
 }
 
 /* You get the idea...*/

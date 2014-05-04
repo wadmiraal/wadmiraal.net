@@ -8,7 +8,7 @@ tags:
   - Bold assertions
 ---
 
-Ok folks, what's with all the JS hating out there? The post by [Julik Live](http://live.julik.nl/2013/05/javascript-is-shit) is getting tossed around the dev community, some calling it bulls*#%, but others loudly &ldquo;agreeing&rdquo; (you turncoats).
+Ok folks, what's with all the JS hating out there? The post by [Julik Live](http://live.julik.nl/2013/05/javascript-is-shit) is getting tossed around the dev community, some calling it bulls\*#%, but others loudly &ldquo;agreeing&rdquo; (you turncoats).
 
 ## Me, I love Javascript
 

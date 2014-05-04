@@ -59,7 +59,7 @@ How often have we started out planning a project using other tools or frameworks
 
 And we stick with Drupal. Every time, again and again. Don't get me wrong: I'm (kinda) happy with this. Heck, I'm usually the most fierce Drupal evangelist.
 
-But just once, I'd be happy to see a situation where we can honestly say: *&ldquo;Hey, this would be much easier if we use [other framework name here].&rdquo;*
+But just once, I'd be happy to see a situation where we can honestly say: *&ldquo;Hey, this would be much easier if we use \[other framework name here\].&rdquo;*
 
 Curse you, Drupal ;-) !
 

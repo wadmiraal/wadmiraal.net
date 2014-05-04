@@ -16,7 +16,7 @@ I'm no expert when it comes to Backbone. I've only been using it for 2 projects,
 
 ## Backbone is a library
 
-An awesome, a**-kicking library. It's a joy to work with (I'm not kidding). It's such a refreshing breeze in this sometimes confusing JS world.
+An awesome, a\*\*-kicking library. It's a joy to work with (I'm not kidding). It's such a refreshing breeze in this sometimes confusing JS world.
 
 ## You serious ?
 
