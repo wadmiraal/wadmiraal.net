@@ -1,6 +1,6 @@
 ---
 title: "Pareto Nailed It"
-description: "Why I love books and what we can learn from great authors."
+description: "What can we learn from Pareto's 80%-20% law."
 layout: post
 tags:
   - Rant
