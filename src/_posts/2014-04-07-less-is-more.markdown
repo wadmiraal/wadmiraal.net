@@ -2,6 +2,7 @@
 title: "Less is more, or why I love email"
 description: "A lot of software suffers from feature bloat, resulting in slow, unusable apps. Here's why I think we should keep things dead simple."
 layout: post
+favorite: true
 tags:
   - Rant
   - Email

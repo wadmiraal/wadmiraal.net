@@ -2,6 +2,7 @@
 title: "Why not forget all our passwords completely ?"
 description: "Heartbleed has prompted many users to change their passwords. But should we use passwords to begin with ?"
 layout: post
+favorite: true
 tags:
   - Wisdom
   - Email
