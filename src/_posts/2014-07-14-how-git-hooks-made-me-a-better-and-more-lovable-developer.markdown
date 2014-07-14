@@ -33,7 +33,7 @@ Next, open the file and (on Unix systems), add
 
     #!/bin/bash
 
-At the top.
+at the top.
 
 Finally, Git will not invoke the hook if it's not executable. Meaning you need to call
 
@@ -41,7 +41,7 @@ Finally, Git will not invoke the hook if it's not executable. Meaning you need t
 
 to &ldquo;enable&rdquo; it.
 
-### Pre-commit Hooks, Or How To Become A Better Developer (at least looking at your commit history)
+## Pre-commit Hooks, Or How To Become A Better Developer (at least looking at your commit history)
 
 The most useful, in my opinion, is *pre-commit*. Pre-commit hooks are run *before* the commit is made. This means you can use ``git add`` normally, but as soon as you run ``git commit`` (or ``git commit -am``), this hook is invoked. If it exits with something (like ``1``), Git will think there's an error and *abort the commit*.
 
@@ -49,7 +49,7 @@ How's this useful ?
 
 For starters, say you develop in PHP. You probably **never** want to commit code with PHP syntax errors, right ? But it probably has happened, and probably will happen again. So...
 
-#### Check PHP Syntax Errors Before Committing
+### Check PHP Syntax Errors Before Committing
 
 This is a nifty pre-commit hook I've set up (and set up for all PHP projects).
 
@@ -97,9 +97,9 @@ This is obvious, right ?
 
 This hook will make sure you will *never* commit invalid PHP code again. Pretty neat, huh ?
 
-#### Run Your Unit Tests
+### Run Your Unit Tests
 
-What do you mean, *&ldquo;I don't have unit tests&rdquo; ?
+What do you mean, *&ldquo;I don't have unit tests&rdquo;* ?
 
 If you have unit tests for your code, you probably **never** want to commit code that does not pass your tests. Say your tests are written for [PHPUnit](http://phpunit.de/). This will call PHPUnit and abort the commit if the tests fail.
 
@@ -119,7 +119,7 @@ I won't go over each line, but the important one is
 
 I installed PHPUnit through composer. I have a ``phpunit.xml`` file in my project configuring my test suites. If the tests fail, the commit is aborted and a red warning spit out. Pretty cool.
 
-#### Remove Debug Calls
+### Remove Debug Calls
 
 Sometimes we forget some tracer code we used locally (like ``dpm`` calls in Drupal, or ``console.log`` in Javascript). Sometimes this is just a performance problem, but other times it actually breaks the system because some debug library has not been included in the production code.
 
@@ -138,13 +138,13 @@ I won't go over each line this time, but the
 
     RESULT=$(grep "dpm(" "$FILE")
 
-line call ``grep`` and check for the ``dpm(`` pattern (Drupal debug code). If it finds it, it will print a warning message so I'm aware I'm committing a call to ``dpm()``.
+line calls ``grep`` and checks for the ``dpm(`` pattern (Drupal debug code). If it finds it, it will print a warning message so I'm aware I'm committing a call to ``dpm()``.
 
-#### Follow Coding Standards
+### Follow Coding Standards
 
 This is one of my favorites. I love coding standards, I always try to adhere very strictly to one. Doing a lot of Drupal development, I try to stick to its standards as closely as possible. But I always seem to forget some rule. Not anymore.
 
-##### Install PHP Code Sniffer And The Drupal Sniffer
+#### Install PHP Code Sniffer And The Drupal Sniffer
 
 [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer) is a handy tool that will check your code (not just PHP) and tell you where you do not comply with a given standard.
 
@@ -152,7 +152,7 @@ Drupal has its own sniffer implementation. It ships with the [Coder](https://www
 
 Install PHP Code Sniffer, and clone the Coder Git repo somewhere on your system.
 
-##### Create The Hook
+#### Create The Hook
 
 Note the paths to the ``phpcs`` executable and the path to the Drupal sniffer. Change these accordingly.
 
@@ -171,14 +171,14 @@ Again, I won'to go over each line, the important one being
 
 Here we check all files with ``phpcs``, providing the Drupal sniffer. Here again, I don't abort the commit. I can't always follow Drupal's coding-standards to the letter, but at least I am aware of it and can stick to it as much as possible.
 
-#### Puting It All Together
+### Putting It All Together
 
 If you just copy-and-paste all the above, you will notice your hook doesn't behave as expected. That is because the different invocations will override each other. So, a PHP syntax error might still get commited. If you want combine these, use ``if/else`` statements to group them, executing *blocking* conditions first and on their own (meaning, if they fail, abort and exit) and *non-blocking* conditions last and in sequence.
 
 So my above example looks like this:
 
     #!/bin/bash
-    
+
     git diff --cached --name-only | while read FILE; do
     if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
         php -l "$FILE" 1> /dev/null
@@ -187,15 +187,15 @@ So my above example looks like this:
             exit 1
         else
             /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
-          if [ $? -ne 0 ]; then
-              echo -e "\e[1;31m\tUnit tests failed ! Aborting commit." >&2
-              exit 1;
-          else
+            if [ $? -ne 0 ]; then
+                echo -e "\e[1;31m\tUnit tests failed ! Aborting commit." >&2
+                exit 1;
+            else
                 /home/wadmiraal/.composer/vendor/bin/phpcs --standard=/home/wadmiraal/.drupal/modules/coder/coder_sniffer/Drupal "$FILE" 1> /dev/null
                 if [ $? -ne 0 ]; then
                     echo -e "\e[1;33m\tWarning, some files do not respecting the Drupal coding standards. Commit was not aborted.\e[0m" >&2
                 fi
-                
+
                 RESULT=$(grep "dpm(" "$FILE")
                 if [ ! -z $RESULT ]; then
                     echo -e "\e[1;33m\tWarning, the commit contains a call to dpm(). Commit was not aborted, however.\e[0m" >&2
@@ -205,13 +205,13 @@ So my above example looks like this:
     fi
     done
 
-### Commit-msg, Or Why You're Colleagues Will Love You (for your commits)
+## Commit-msg, Or Why You're Colleagues Will Love You (for your commit messages)
 
 It's very annoying to read through bad commit messages. It's even worse when these commit messages are littered with errors. This is why I use Aspell to spellcheck my commit messages.
 
 If a message contains an error, I can use ``git commit --amend`` to change it. I also find that, because this forces me to stop and think about my commit message, I'm encouraged, when amending, to rephrase certain aspects to make the commit clearer.
 
-This requires [Aspell]() to be installed on your system.
+This requires [Aspell](http://aspell.net/) to be installed on your system.
 
     SPELL=$(which aspell)
     if [ $? -ne 0 ]; then
@@ -225,3 +225,7 @@ This requires [Aspell]() to be installed on your system.
     fi
 
 Commit-msg cannot prevent a commit, but can warn the user that's something's wrong. Which is what I do here.
+
+### Gotta Catch'em All !
+
+What about you ? Any Git hooks you use ?
