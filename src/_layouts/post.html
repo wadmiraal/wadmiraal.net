@@ -73,6 +73,24 @@
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </footer>
 		</article>
+
+    <div class="row">
+      <div class="col threecol">
+        {% if page.previous %}
+          <a id="previous-post-link" href="{{ page.previous.url }}" title="Previously: &ldquo;{{ page.previous.title }}&rdquo;">Previous post</a>
+        {% endif %}
+      </div>
+      
+      <div class="footer-content col sixcol">
+        <p><a href="http://creativecommons.org/licenses/by-sa/3.0/deed"><img src="/img/cc.png"></a></p>
+      </div>
+      
+      <div class="col threecol last">
+        {% if page.next %}
+          <a id="next-post-link" href="{{ page.next.url }}" title="Coming up: &ldquo;{{ page.next.title }}&rdquo;">Next post</a>
+        {% endif %}
+      </div>
+    </div>
 		
 		<div id="disqus_thread" class="row"></div>
 			
@@ -94,27 +112,15 @@
 	</div>
 	
 	<footer id="footer" class="container">
-		<div class="row">
-			<div class="col threecol">
-				{% if page.previous %}
-					<a id="previous-post-link" href="{{ page.previous.url }}" title="Previously: &ldquo;{{ page.previous.title }}&rdquo;">Previous post</a>
-				{% endif %}
-			</div>
-			
-			<div id="footer-content" class="col sixcol">
-				<p><a href="#">Back to top</a></p>
+    <div class="row">
+      <div class="col threecol"></div>
 
-				<p><a href="http://jekyllrb.com/">Powered by Jekyll</a></p>
+      <div class="footer-content col sixcol">
+        <p><a href="#">Back to top</a></p>
 
-        <p><a href="http://creativecommons.org/licenses/by-sa/3.0/deed"><img src="/img/cc.png"></a></p>
-			</div>
-			
-			<div class="col threecol last">
-				{% if page.next %}
-					<a id="next-post-link" href="{{ page.next.url }}" title="Coming up: &ldquo;{{ page.next.title }}&rdquo;">Next post</a>
-				{% endif %}
-			</div>
-		</div>
+        <p><a href="http://jekyllrb.com/">Powered by Jekyll</a></p>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col twelvecol last">
