@@ -118,7 +118,7 @@ function my_module_taxonomy_term_load($terms) {
 
 Even though this code is stupidly simple, running the above test takes 1min 23sec my machine.
 
-Running the **entire Symfony test suite** takes **5min 20sec** on the same machine. According to [Openhub](http://www.openhub.net/p/symfony/analyses/latest/languages_summary), Symfony represents 843'007 lines of actual code (1'424'348 total). As this includes unit tests, we can probably cut this number in two, leaving us with roughly 420,000 lines of code.
+Running the **entire Symfony test suite** takes **5min 20sec** on the same machine. According to [Openhub](http://www.openhub.net/p/symfony/analyses/latest/languages_summary), Symfony represents 843'007 lines of actual code (1'424'348 total). As this includes unit tests, we can probably cut this number in two, leaving us with roughly 420'000 lines of code.
 
 Our module is just 10 lines.
 
