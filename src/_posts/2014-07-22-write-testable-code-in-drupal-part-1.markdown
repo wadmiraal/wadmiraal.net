@@ -12,7 +12,7 @@ tags:
 
 Writing unit tests in Drupal is slow and costly, which means many projects stay away from them. This has been a problem for many years, but I have found a way to greatly speed up my Drupal development, even going as far as using <abbr title="Test Driven Development">TDD</abbr>.
 
-This is the first part in a series to write better, more testable code.
+This is the first part in a series to write better, more testable code, which will greatly speed up Drupal Simpletest.
 
 ## The Problem
 
@@ -128,7 +128,7 @@ That's 0.002% of the lines of code from Symfony, yet running the tests takes 24.
 
 If you've ever installed Drupal, you know it takes time. It takes you through some configuration forms, uses a batch to install the core module, asks for some final settings (site name, admin account credentials, etc) and then, *finally*, allows you to use it.
 
-When running a *DrupalWebTestCase* (which, in the vast majority cases, is what you do when writing Drupal tests), the Testing framework will install a fresh, virtual Drupal copy for you. *For each test*.
+When running a *DrupalWebTestCase* (which, in the vast majority cases, is what you do when writing Drupal tests), the Simpletest framework (also called Testing) will install a fresh, virtual Drupal copy for you. *For each test*.
 
 A *test* is not just the class. *Each test method* (2 in our example) will trigger a full rebuild of a virtual Drupal instance. It's like setting up a new Drupal install by hand, going through the motions and batches, for every test method.
 
@@ -148,6 +148,6 @@ However, these solutions tackle the problem from the wrong angle. Some try fixin
 
 ### Another Way
 
-I've been using another way for some time now, which focuses on writing highly modular and specialized code and functions. I have even used [PHPUnit](http://phpunit.de) for some of these modules, instead of Drupal's in-house Testing framework (previously called Simpletest). This allows me to run my tests in a [Git pre-commit hook](/lore/2014/07/14/how-git-hooks-made-me-a-better-and-more-lovable-developer/), even though there's no Drupal environment set up (which is still required for running *DrupalUnitTestCases*).
+I've been using another way for some time now, which focuses on writing highly modular and specialized code and functions. I have even used [PHPUnit](http://phpunit.de) for some of these modules, instead of Drupal's in-house Simpletest. This allows me to run my tests in a [Git pre-commit hook](/lore/2014/07/14/how-git-hooks-made-me-a-better-and-more-lovable-developer/), even though there's no Drupal core code around (which is still required for running *DrupalUnitTestCases*).
 
 In the next part, I'll discuss the theory behind this. It all begins with me learning Haskell.
