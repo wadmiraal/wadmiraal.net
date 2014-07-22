@@ -45,7 +45,7 @@ body {
 	color: $bodyColor;
 }
 
-// Vertical Rythm
+// Vertical Rhythm
 @include establish-baseline;
 
 a { color: $linkColor; }
@@ -121,7 +121,7 @@ blockquote {
  */
 .row {
 	position: relative;
-	max-width: 550px;
+	max-width: 600px;
 	min-width: 200px;
 }
 
