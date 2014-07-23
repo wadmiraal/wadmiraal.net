@@ -41,7 +41,7 @@ body {
   font: {
 		family: $bodyFont;
 	}
-	margin: 0 20px;
+	margin: 0;
 	color: $bodyColor;
 }
 
@@ -171,6 +171,18 @@ blockquote {
 		float: left;
 		margin-left: 0;
 	}
+}
+
+@media screen and (max-width: 600px) {
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+  }
+
+  p {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 
