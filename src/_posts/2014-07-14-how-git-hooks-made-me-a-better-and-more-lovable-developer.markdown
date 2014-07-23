@@ -31,13 +31,19 @@ To create (and enable) a Git hook, create a file with the hook name in ``.git/ho
 
 Next, open the file and (on Unix systems), add
 
-    #!/bin/bash
+<pre><code class="language-bash">
+#!/bin/bash
+
+</code></pre>
 
 at the top.
 
 Finally, Git will not invoke the hook if it's not executable. Meaning you need to call
 
-    chmod +x .git/hooks/pre-commit
+<pre><code class="language-bash">
+chmod +x .git/hooks/pre-commit
+
+</code></pre>
 
 to &ldquo;enable&rdquo; it.
 
@@ -53,45 +59,69 @@ For starters, say you develop in PHP. You probably **never** want to commit code
 
 This is a nifty pre-commit hook I've set up (and set up for all PHP projects).
 
-    git diff --cached --name-only | while read FILE; do
-    if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
-        php -l "$FILE" 1> /dev/null
-        if [ $? -ne 0 ]; then
-            echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
-            exit 1
-        fi
+<pre><code class="language-bash">
+git diff --cached --name-only | while read FILE; do
+if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+    php -l "$FILE" 1> /dev/null
+    if [ $? -ne 0 ]; then
+        echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
+        exit 1
     fi
-    done
+fi
+done
+
+</code></pre>
 
 Let's go through these, line by line.
 
-    git diff --cached --name-only | while read FILE; do
+<pre><code class="language-bash">
+git diff --cached --name-only | while read FILE; do
+
+</code></pre>
 
 This tells Git to return the files that have changed, but only their names. We pipe the result to a ``while`` loop, which goes over each file name, assigning them to a variable called ``FILE``.
 
-    if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+<pre><code class="language-bash">
+if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+
+</code></pre>
 
 We then pattern match the file name. If it ends in one of the listed extensions (note I'm listing Drupal file extensions as well), we...
 
-    php -l "$FILE" 1> /dev/nul
+<pre><code class="language-bash">
+php -l "$FILE" 1> /dev/nul
+
+</code></pre>
 
 Pass it through the ``php`` linter, pumping the result straight to ``/dev/null``.
 
-    if [ $? -ne 0 ]; then
+<pre><code class="language-bash">
+if [ $? -ne 0 ]; then
+
+</code></pre>
 
 If there's a result in memory, it means we have a PHP error.
 
-    echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
+<pre><code class="language-bash">
+echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
+
+</code></pre>
 
 We output an error message. Note the ``-e`` and ``\e[1;31m``, which will output the message in red.
 
-    exit 1
+<pre><code class="language-bash">
+exit 1
+
+</code></pre>
 
 We exit with &ldquo;something&rdquo;. Anything would do &mdash; we're just telling Git to abort the commit.
 
-        fi
+<pre><code class="language-bash">
     fi
-    done
+fi
+done
+
+</code></pre>
 
 This is obvious, right ?
 
@@ -103,19 +133,25 @@ What do you mean, *&ldquo;I don't have unit tests&rdquo;* ?
 
 If you have unit tests for your code, you probably **never** want to commit code that does not pass your tests. Say your tests are written for [PHPUnit](http://phpunit.de/). This will call PHPUnit and abort the commit if the tests fail.
 
-    git diff --cached --name-only | while read FILE; do
-    if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
-        /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
-        if [ $? -ne 0 ]; then
-          echo -e "\e[1;31m\tUnit tests failed ! Aborting commit." >&2
-          exit 1;
-        fi
+<pre><code class="language-bash">
+git diff --cached --name-only | while read FILE; do
+if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+    /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
+    if [ $? -ne 0 ]; then
+      echo -e "\e[1;31m\tUnit tests failed ! Aborting commit." >&2
+      exit 1;
     fi
-    done
+fi
+done
+
+</code></pre>
 
 I won't go over each line, but the important one is
 
-    /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
+<pre><code class="language-bash">
+/home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
+
+</code></pre>
 
 I installed PHPUnit through composer. I have a ``phpunit.xml`` file in my project configuring my test suites. If the tests fail, the commit is aborted and a red warning spit out. Pretty cool.
 
@@ -125,18 +161,24 @@ Sometimes we forget some tracer code we used locally (like ``dpm`` calls in Drup
 
 This pre-commit hook checks for certain patterns in code and warns me about it. Note that it does not block the commit like before, because we sometimes *want* to commit debug code. It only warns me.
 
-    git diff --cached --name-only | while read FILE; do
-    if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
-        RESULT=$(grep "dpm(" "$FILE")
-        if [ ! -z $RESULT ]; then
-          echo -e "\e[1;33m\tWarning, the commit contains a call to dpm(). Commit was not aborted, however.\e[0m" >&2
-        fi
+<pre><code class="language-bash">
+git diff --cached --name-only | while read FILE; do
+if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+    RESULT=$(grep "dpm(" "$FILE")
+    if [ ! -z $RESULT ]; then
+      echo -e "\e[1;33m\tWarning, the commit contains a call to dpm(). Commit was not aborted, however.\e[0m" >&2
     fi
-    done
+fi
+done
+
+</code></pre>
 
 I won't go over each line this time, but the
 
-    RESULT=$(grep "dpm(" "$FILE")
+<pre><code class="language-bash">
+RESULT=$(grep "dpm(" "$FILE")
+
+</code></pre>
 
 line calls ``grep`` and checks for the ``dpm(`` pattern (Drupal debug code). If it finds it, it will print a warning message so I'm aware I'm committing a call to ``dpm()``.
 
@@ -156,18 +198,24 @@ Install PHP Code Sniffer, and clone the Coder Git repo somewhere on your system.
 
 Note the paths to the ``phpcs`` executable and the path to the Drupal sniffer. Change these accordingly.
 
-    git diff --cached --name-only | while read FILE; do
-    if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
-        /home/wadmiraal/.composer/vendor/bin/phpcs --standard=/home/wadmiraal/.drupal/modules/coder/coder_sniffer/Drupal "$FILE" 1> /dev/null
-        if [ $? -ne 0 ]; then
-            echo -e "\e[1;33m\tWarning, some files do not respecting the Drupal coding standards. Commit was not aborted, however.\e[0m" >&2
-        fi
+<pre><code class="language-bash">
+git diff --cached --name-only | while read FILE; do
+if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+    /home/wadmiraal/.composer/vendor/bin/phpcs --standard=/home/wadmiraal/.drupal/modules/coder/coder_sniffer/Drupal "$FILE" 1> /dev/null
+    if [ $? -ne 0 ]; then
+        echo -e "\e[1;33m\tWarning, some files do not respecting the Drupal coding standards. Commit was not aborted, however.\e[0m" >&2
     fi
-    done
+fi
+done
+
+</code></pre>
 
 Again, I won'to go over each line, the important one being
 
-    /home/wadmiraal/.composer/vendor/bin/phpcs --standard=/home/wadmiraal/.drupal/modules/coder/coder_sniffer/Drupal "$FILE" 1> /dev/null
+<pre><code class="language-bash">
+/home/wadmiraal/.composer/vendor/bin/phpcs --standard=/home/wadmiraal/.drupal/modules/coder/coder_sniffer/Drupal "$FILE" 1> /dev/null
+
+</code></pre>
 
 Here we check all files with ``phpcs``, providing the Drupal sniffer. Here again, I don't abort the commit. I can't always follow Drupal's coding-standards to the letter, but at least I am aware of it and can stick to it as much as possible.
 
@@ -177,33 +225,36 @@ If you just copy-and-paste all the above, you will notice your hook doesn't beha
 
 So my above example looks like this:
 
-    #!/bin/bash
+<pre><code class="language-bash">
+#!/bin/bash
 
-    git diff --cached --name-only | while read FILE; do
-    if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
-        php -l "$FILE" 1> /dev/null
+git diff --cached --name-only | while read FILE; do
+if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+    php -l "$FILE" 1> /dev/null
+    if [ $? -ne 0 ]; then
+        echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
+        exit 1
+    else
+        /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
         if [ $? -ne 0 ]; then
-            echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
-            exit 1
+            echo -e "\e[1;31m\tUnit tests failed ! Aborting commit." >&2
+            exit 1;
         else
-            /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
+            /home/wadmiraal/.composer/vendor/bin/phpcs --standard=/home/wadmiraal/.drupal/modules/coder/coder_sniffer/Drupal "$FILE" 1> /dev/null
             if [ $? -ne 0 ]; then
-                echo -e "\e[1;31m\tUnit tests failed ! Aborting commit." >&2
-                exit 1;
-            else
-                /home/wadmiraal/.composer/vendor/bin/phpcs --standard=/home/wadmiraal/.drupal/modules/coder/coder_sniffer/Drupal "$FILE" 1> /dev/null
-                if [ $? -ne 0 ]; then
-                    echo -e "\e[1;33m\tWarning, some files do not respecting the Drupal coding standards. Commit was not aborted.\e[0m" >&2
-                fi
+                echo -e "\e[1;33m\tWarning, some files do not respecting the Drupal coding standards. Commit was not aborted.\e[0m" >&2
+            fi
 
-                RESULT=$(grep "dpm(" "$FILE")
-                if [ ! -z $RESULT ]; then
-                    echo -e "\e[1;33m\tWarning, the commit contains a call to dpm(). Commit was not aborted, however.\e[0m" >&2
-                fi
+            RESULT=$(grep "dpm(" "$FILE")
+            if [ ! -z $RESULT ]; then
+                echo -e "\e[1;33m\tWarning, the commit contains a call to dpm(). Commit was not aborted, however.\e[0m" >&2
             fi
         fi
     fi
-    done
+fi
+done
+
+</code></pre>
 
 ## Commit-msg, Or Why You're Colleagues Will Love You (for your commit messages)
 
@@ -213,16 +264,18 @@ If a message contains an error, I can use ``git commit --amend`` to change it. I
 
 This requires [Aspell](http://aspell.net/) to be installed on your system.
 
-    SPELL=$(which aspell)
-    if [ $? -ne 0 ]; then
-        echo "Aspell not installed - unable to check spelling" >&2
-        exit
-    else
-        WORDS=$($ASPELL list < "$1")
-    fi
-    if [ -n "$WORDS" ]; then
-        echo -e "\e[1;33m\tPossible spelling errors found in commit message. Use git commit --amend to change the message.\n\tPossible mispelled words: " $WORDS "\e[0m" >&2
-    fi
+<pre><code class="language-bash">
+ASPELL=$(which aspell)
+if [ $? -ne 0 ]; then
+    echo "Aspell not installed - unable to check spelling" >&2
+    exit
+else
+    WORDS=$($ASPELL list < "$1")
+fi
+if [ -n "$WORDS" ]; then
+    echo -e "\e[1;33m\tPossible spelling errors found in commit message. Use git commit --amend to change the message.\n\tPossible mispelled words: " $WORDS "\e[0m" >&2
+fi
+</code></pre>
 
 Commit-msg cannot prevent a commit, but can warn the user that's something's wrong. Which is what I do here.
 

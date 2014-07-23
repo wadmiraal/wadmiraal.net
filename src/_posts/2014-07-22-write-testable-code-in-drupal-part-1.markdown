@@ -33,7 +33,7 @@ This will make you cry in shock.
 
 Take this very simple test class:
 
-````
+<pre><code class="language-php">
 class MySuperTestCase extends DrupalWebTestCase {
 
   public static function getInfo() {
@@ -92,11 +92,11 @@ class MySuperTestCase extends DrupalWebTestCase {
   }
 
 }
-````
+</code></pre>
 
 It tests if our custom module correctly adds a `custom_property` property on the loaded node or term entity. These hooks are implemented like this:
 
-````
+<pre><code class="language-php">
 /**
  * Implements hook_node_load().
  */
@@ -114,7 +114,7 @@ function my_module_taxonomy_term_load($terms) {
     $term->custom_property = TRUE;
   }
 }
-````
+</code></pre>
 
 Even though this code is stupidly simple, running the above test takes 1min 23sec on my machine.
 

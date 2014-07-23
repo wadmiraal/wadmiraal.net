@@ -26,16 +26,17 @@ I guess people like SASS and Compass for different reasons. For me, my top 3 rea
 #### ...CSS3 helpers. 
 Tired of writing prefixes? Let Compass do it. 
 
-````
+<pre><code class="language-scss">
 // SCSS
 .rounded {
   @include border-radius(5px);
 }
-````
+
+</code></pre>
 
 Instead of writing...
 
-````
+<pre><code class="language-css">
 /* CSS */
 .rounded {
   -moz-border-radius: 5px;
@@ -44,12 +45,13 @@ Instead of writing...
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-````
+
+</code></pre>
 
 #### ...<abbr title="Don't Repeat Yourself">DRY</abbr> CSS
 Repetition is a plague in CSS, as it can easily introduce bugs or inconsistencies. Not anymore. 
 
-````
+<pre><code class="language-scss">
 // SCSS
 $blue: #5555ff;
 
@@ -60,11 +62,12 @@ $blue: #5555ff;
 .search {
   border-color: $blue;
 } 
-````
+
+</code></pre>
 
 Instead of...
 
-````
+<pre><code class="language-css">
 /* CSS */
 .title {
   color: #5555ff;
@@ -73,11 +76,12 @@ Instead of...
 .search {
   border-color: #55f; /* <- Different way to write the same color! Search/replace can be misleading in these cases. */
 } 
-````
+
+</code></pre>
 
 Even better (I use this trick a lot):
 
-````
+<pre><code class="language-scss">
 // SCSS
 $icons: (home, forum, blog, my-account, logout, news, rss, login, settings, post, comment);
 @each $icon in $icons {
@@ -85,11 +89,12 @@ $icons: (home, forum, blog, my-account, logout, news, rss, login, settings, post
     background-image: url(../img/icon-#{$icon}.png);
   }
 }
-````
+
+</code></pre>
 
 Instead of...
 
-````
+<pre><code class="language-css">
 /* CSS */
 .icon-home {
   background-image: url(../img/icon-home.png);
@@ -104,7 +109,8 @@ Instead of...
 }
 
 /* You get the idea...*/
-````
+
+</code></pre>
 
 #### ...Code organization
 I have yet to find a seamless, intuitive way to organize my CSS. Do I put everything in one file? Do I separate styles from structure? How do I manage hierarchy? 
@@ -132,7 +138,7 @@ Done.
 
 Compass expects to find a file called `config.rb` inside your project. In this file, you will specify where your SASS files are located an where you want the compiled CSS to go. Here's an example:
 
-````
+<pre><code class="language-ruby">
 css_dir = "/css"
 sass_dir = "/sass"
 
@@ -146,7 +152,8 @@ output_style = :expanded
 
 # To disable debugging comments that display the original location of your selectors.
 line_comments = false
-````
+
+</code></pre>
 
 Now, `cd` in your project folder (where your `config.rb` file is located) with the command line and call `compass watch`. Compass will start polling your files and, as soon as it detects a change, it compiles to CSS. This is very handy when developing. 
 
@@ -163,7 +170,7 @@ Based on this, I like to separate my style rules in many, small files. Each file
 
 It looks a bit like this:
 
-<pre><code class="css">
+<pre><code class="language-css">
 project/
 
 -- css/
@@ -210,19 +217,20 @@ As you see, I have at least 3 levels. Each sub-level has a corresponding partial
 
 For example:
 
-````
+<pre><code class="language-scss">
 /* @file styles.scss */
 @import "partials/utility";
 @import "partials/base";
 @import "partials/component";
-````
 
-````
+</code></pre>
+
+<pre><code class="language-scss">
 /* @file _utility.scss */
 @import "utility/mixins";
 @import "utility/variables";
 @import "utility/colors";
-````
+</code></pre>
 
 This recursive import allows us to keep our rules modular and well organized. 
 
