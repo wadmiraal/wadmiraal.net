@@ -150,4 +150,4 @@ However, these solutions tackle the problem from the wrong angle. Some try fixin
 
 I've been using another way for some time now, which focuses on writing highly modular and specialized code and functions. I have even used [PHPUnit](http://phpunit.de) for some of these modules, instead of Drupal's in-house Simpletest. This allows me to run my tests in a [Git pre-commit hook](/lore/2014/07/14/how-git-hooks-made-me-a-better-and-more-lovable-developer/), even though there's no Drupal core code around (which is still required for running *DrupalUnitTestCases*).
 
-In the next part, I'll discuss the theory behind this. It all begins with me learning Haskell.
+In the [next part](/lore/2014/07/23/write-testable-code-in-drupal-part-2/), I'll discuss the theory behind this. It all begins with me learning Haskell.
