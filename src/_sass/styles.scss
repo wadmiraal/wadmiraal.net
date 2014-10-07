@@ -6,14 +6,15 @@
 /**
  * Fonts
  */
- @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans+Condensed:700|Open+Sans:400italic,700italic,400,700&subset=latin,latin-ext);
-
+ @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro|Libre+Baskerville:400italic|Open+Sans+Condensed:700|Open+Sans:400italic,700italic,400,700&subset=latin,latin-ext);
 
 /**
  * Variables
  */
 $bodyFont: "Open Sans", sans-serif;
 $bodyColor: #454037;
+
+$quoteFont: "Libre Baskerville", serif;
 
 $linkColor: #c95858;
 $linkColorHover: #f87575;
@@ -105,13 +106,23 @@ pre > code {
 }
 
 blockquote {
-	font-style: italic;
+  font-family: $quoteFont;
+  font-size: 1.1em;
+  font-style: italic;
+  border-left: 1px solid $logoColor;
+  padding-left: 1.5em;
+  margin-left: 0;
   @include adjust-leading-to(1.25);
 
 	p {
 		margin-left: 0;
     margin-right: 0;
 	}
+
+  em {
+    font-style: normal;
+    font-size: 1.1em;
+  }
 }
 
 
@@ -134,7 +145,7 @@ blockquote {
  */
 #header {
 	position: relative;
-	
+
 	.row {
 		overflow: visible;
 	}
@@ -149,7 +160,7 @@ blockquote {
 	#header {
 		overflow: hidden;
 	}
-	
+
 	#menu {
 		position: relative;
 		overflow: hidden;
@@ -157,15 +168,15 @@ blockquote {
 		padding: .5em;
 		text-align: right;
 	}
-	
+
 	#menu * {
 		display: inline;
 	}
-	
+
 	#menu li {
 		margin-left: 1em;
 	}
-	
+
 	#logo {
 		float: left;
 		margin-left: 0;
@@ -218,7 +229,7 @@ blockquote {
 	article {
 		border-bottom: 1px solid $codeBorderColor;
 	}
-	
+
 	h4, p {
 		text-indent: 0;
 	}
