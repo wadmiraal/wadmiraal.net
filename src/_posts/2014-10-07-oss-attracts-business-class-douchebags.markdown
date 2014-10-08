@@ -15,7 +15,7 @@ I'm pissed today. Pissed by [this completely ridiculous claim by Tildeslash](htt
 
 I'll let you go on and read their open letter to Github. One of my favorite parts:
 
-> [private]'s dishonest exploitation of Open Source work by others for his own gain is *despicable*.
+> [private]'s dishonest exploitation of Open Source work by others for his own gain is *despicable*.  
 > (emphasis mine)
 
 But, once you read that, please go check out what Mr. Perham *did* with his derivative work: [Inspeqtor Pro](http://contribsys.com/inspeqtor/)
@@ -73,7 +73,7 @@ Exactly, in my opinion, what Tildeslash is doing here.
 
 However, *others* don't respect rule 2. They take this Open Source software and make money with it *at the expense of the original authors*. They will go, like *&ldquo;Hey, thanks for the software. Sucker !&rdquo;* This, although *legal* (in most cases), isn't really *fair*. Of course, there's a blurry line dividing what is to be considered leeching an existing software to make money from it (without sharing it with the original authors), or simple creating competing software and making money out of that.
 
-*Reasons* for creating such competing software may be a different view about what the software should *be*, or *become*. But creating a fork (or simply rewriting it), which serves the *same* purpose, for almost the *exact same audience*, and has the *same features*... To me, that's is unfair.
+*Reasons* for creating such competing software may be a different view about what the software should *be*, or *become*. But creating a fork (or simply rewriting it), which serves the *same* purpose, for almost the *exact same audience*, and has the *same features*... To me, that is unfair.
 
 Mike Perham is &ldquo;on&rdquo; this blurry line. If it really is a simple rewrite (as Tildeslash claims), it seems unfair (to me) to make a competing product. If there's no added value except a *[few bug fixes](https://github.com/mperham/inspeqtor/wiki/Other-Solutions#monit)*, than it is *not* a *new* product. Rule 2 would suggest fixing these bugs and giving it *back* to the community (and original authors). *That* is a win-win situation.
 
