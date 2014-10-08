@@ -2,6 +2,7 @@
 title: "Pareto Nailed It"
 description: "What can we learn from Pareto's 80%-20% law."
 layout: post
+favorite: true
 tags:
   - Rant
   - Wisdom
