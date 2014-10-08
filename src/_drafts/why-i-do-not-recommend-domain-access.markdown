@@ -2,23 +2,20 @@
 title: "Why I don't recommend using Domain Access for a large Drupal project"
 description: "For large, multidomain sites that need to share users and content, a common module to use is the Domain Access module. It has some serious drawbacks, though, and here's why."
 layout: post
-favorite: false
 tags:
   - Drupal
   - Wisdom
   - Rant
 ---
 
-I must first and foremost say I truly respect the maintainers of the [Domain Access](http://drupal.org/project/domain) module. It works as advertised, and works even *extremely* well. And in certain conditions, it is well worth it. But I have found it to be more of a hassle than a help for larger, more demanding projects.
-
-And I would have *loved* to know what I know now when these projects started.
+I must first and foremost say I truly respect the maintainers of the [Domain Access](http://drupal.org/project/domain) module. It works as advertised, and works even *extremely* well. And in certain conditions, it is well worth it. But I have found it to be more of a hassle than a help for larger, more demanding projects. And I would have *loved* to know what I know now when these projects started.
 
 
 ## In Short
 
 If the project is maintaining only a few, small sites that are all *very* similar, Domain Access is the way to go.
 
-If the project is maintaining many, large sites that are all *different*, Domain Access is *not* the way to go. Try using something like [Aegir](http://www.aegirproject.org/) or [Dush](http://drush.ws/) (using the `@sites` alias) to solve some of the multi-site problems.
+If the project is maintaining many, large sites, or sites that are all *different*, Domain Access is *not* the way to go. Try using something like [Aegir](http://www.aegirproject.org/) or [Dush](http://drush.ws/) (using the `@sites` alias) to solve some of the common multi-site problems.
 
 
 ## What Is Domain Access ?
@@ -56,7 +53,7 @@ Projects evolve. New editors and users get accounts. Interfaces and Views need t
 
 You start managing *exceptions* to the rules you carefully crafted at the start of the project. Users must now have certain, editorial rights on domain A, but only anonymous rights on domain B (very tricky to get right without custom code). Content types X and Y must be hidden from the "Create content" list on domain C, because editors can't find their way around an ever growing list of content types, many only used on one or two domains.
 
-Managing exceptions to rules instead of just rules is always a path to maintenance nightmare. Human brains can manage exceptions pretty well. But translating them to bug-free code can quickly get *very* complex. I once worked on a large, multi-domain ecommerce site using [Drupal Commerce](https://drupalcommerce.org/) and Domain Access. It was a **nightmare**.
+Managing exceptions to rules instead of just rules is always a path to maintenance nightmare. Human brains can manage exceptions pretty <abbr title="Not !">well</abbr>. But translating them to bug-free code can quickly get *very* complex. I once worked on a large, multi-domain ecommerce site using [Drupal Commerce](https://drupalcommerce.org/) and Domain Access. It was a **nightmare**.
 
 
 ### You start working *around* Drupal, not with it
@@ -69,9 +66,9 @@ Editors don't have straight-forward permissions anymore to create or edit conten
 
 To view a simple, published node, Drupal must now invoke the [Node Access API](https://api.drupal.org/api/drupal/modules%21node%21node.module/group/node_access/7) to make sure it's viewable on the current domain. This can add a substantial overhead to every page load (although it should be reasonable on most sites).
 
-Domain customizations, like a different theme for each domain, a different main menu, customizable blocks, etc, add extra overhead to the site. Domain Access (and its submodules) are now hooking into many layers of Drupal's system to change the relevant parts. Each of these on its own has no big impact. But on traffic heavy sites, where you use *many* of these "domain" customizations, you can add a non-negligible overhead to each page request.
+Domain customizations, like a different theme for each domain, a different main menu, customizable blocks, etc, add extra overhead to the site. Domain Access (and its submodules) are now hooking into many layers of Drupal's system to change the relevant parts. Each of these on its own has no big impact. But on traffic heavy sites, where you use *many* of these &ldquo;domain&rdquo; customizations, you can add a non-negligible overhead to each page request.
 
-Module settings are not global anymore (or, at least, probably won't be — you will almost definitely need the Domain Configuration module); they are different per domain. This means the storage/retrieval of these settings now also requires extra overhead.
+Module settings are not global anymore (or, at least, probably won't be &mdash; you will almost definitely need the Domain Configuration module); they are different per domain. This means the storage/retrieval of these settings now also requires extra overhead.
 
 And so on and so forth. All these add up and can slow down a site considerably.
 
@@ -86,22 +83,22 @@ If an editor has to manage content on many domains, the amount of information sh
 
 Errors in publishing (like publishing to the wrong domain) can be tricky to see, as an editor *can* see the content on the desired domain, but an anonymous user cannot.
 
-And let's not forget to mention the *very real risk* of wanting to save a configuration for one domain, but accidentally changing it for the entire network (raise hands everyone who has gone to "Site Information" to change the site email address, only to mess up the front pages for *all* domains in the network).
+And let's not forget to mention the *very real risk* of wanting to save a configuration for one domain, but accidentally changing it for the entire network (raise hands everyone who has gone to &ldquo;Site Information&rdquo; to change the site email address, only to mess up the front pages for *all* domains in the network).
 
 
 ### It is very difficult to setup development and staging environments
 
-This, for large and demanding projects, is a *huge* problem. Because the Domain Access module will not easily recognize *dev.domain-1.com* and *www.domain-1.com* as being the same, you will end up with unexpected errors or results. You can use &ldquo;aliases&rdquo;, but it's not optimal, as you must configure your production environment to cater for your development environment.
+This, for large and demanding projects, is a *huge* problem. Because the Domain Access module will not easily recognize *dev.domain-1.com* and *www.domain-1.com* as being the same, you will end up with unexpected errors or results. You can use &ldquo;aliases&rdquo;, but it's not optimal, as you must configure your production environment to cater for your development environment. And even if you get aliases right: if an editor makes a mistake when selecting publishing options, you could be redirected to the production platform without noticing it at first on certain nodes. You might unknowingly start tweaking or experimenting certain settings on the live platform !
 
 
 ## Alternative Solutions
 
-Of course, drawbacks are just as real using a traditional multi-site.
+Of course, drawbacks are just as real using a traditional multi-site; they are just different, as we saw in the introduction.
 
 Here are a few tips:
 
 * **Sharing configuration** is a pain, but the [Drupal 8 CMI](https://groups.drupal.org/build-systems-change-management/cmi), and the Drupal 7 [Configuration](https://www.drupal.org/project/configuration) module, coupled with the [Features](https://www.drupal.org/project/features) module, allow us to put configuration into files (where it belongs). This alleviates some of the burden of sharing and maintaining configuration across sites.
-* **Sharing content** is another problem, but probably worth the effort in regards to all the issues arising with Domain Access and many domains. Modules like [Node Export](https://www.drupal.org/project/node_export) allow editors to copy/paste their content (even complex) across domains, albeit at a cost of learning a new UI.
+* **Sharing content** is another problem, but probably worth the effort in regards to all the issues arising with Domain Access and many domains. Modules like [Node Export](https://www.drupal.org/project/node_export) allow editors to copy/paste their content (even complex) across domains, albeit at a cost of learning a new (unfriendly) UI.
 * **Managing site updates** is *very* tiresome using a traditional approach, but tools like [Aegir](http://www.aegirproject.org/) or [Dush](http://drush.ws/) (using the `@sites` alias) can help.
 * **Sharing users** can be achieved by using table prefixes and a single database for all sites. Or you can use a SSO module that will register accounts on first login. There are many solutions to this one.
 
