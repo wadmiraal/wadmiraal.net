@@ -12,7 +12,7 @@ Today is the end of the world, so let me quickly put this post together before I
 
 There's a lot of talking/arguing around Backbone wether it's an MVC, an MVP, MV\*, MP3, whatever-framework.
 
-I'm no expert when it comes to Backbone. I've only been using it for 2 projects, but I already have a strong feeling about what it is &mdash; to me.
+I'm no expert when it comes to Backbone. I've only been using it for 2 projects, but I already have a strong feeling about what it is&thinsp;&mdash;&thinsp;to me.
 
 ## Backbone is a library
 

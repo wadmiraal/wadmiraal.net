@@ -39,7 +39,7 @@ Could we apply this in software design? What if, when brainstorming for a new ap
 
 <blockquote>
 Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
-<br />&mdash; Antoine de Saint-Exupéry
+<br />&mdash;&thinsp;Antoine de Saint-Exupéry
 </blockquote>
 
 And where nothing is left to take away, nothing superfluous is left. Less help text, no user manuals, no headaches, less bugs, less maintenance time.

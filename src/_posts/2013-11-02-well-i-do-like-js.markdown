@@ -14,7 +14,7 @@ Ok folks, what's with all the JS hating out there? The post by [Julik Live](http
 
 Yes it has its quirks, its WTFs; as many (all ?) languages do. But it has some great things going for it as well. 
 
-I could list all the pros and cons of JS, but that's not what a language &mdash; or anything, for that matter &mdash; is about. That's being short-sighted. 
+I could list all the pros and cons of JS, but that's not what a language&thinsp;&mdash;&thinsp;or anything, for that matter&thinsp;&mdash;&thinsp;is about. That's being short-sighted. 
 
 Working with a language is, in my opinion, like hanging out with a person. No-one's perfect. You will *never* find someone who's 100% great *all* the time. Yet that doesn't mean you don't *love* spending time with that person.
 
@@ -28,7 +28,7 @@ Likewise, would you say a person that's beautiful and smart is automatically a g
 
 If a very likable person is loved by hundreds, except you, than the problem is probably not with the person, but with you. 
 
-If a language, like JS, is loved by thousands &mdash; many of them *very* smart an talented &mdash; and used for exceptionally useful and beautiful applications, yet you discard it, then I say you have not taken the time to get to know the language that well or (more likely) haven't given it the chance it deserves.
+If a language, like JS, is loved by thousands&thinsp;&mdash;&thinsp;many of them *very* smart an talented&thinsp;&mdash;&thinsp;and used for exceptionally useful and beautiful applications, yet you discard it, then I say you have not taken the time to get to know the language that well or (more likely) haven't given it the chance it deserves.
 
 For me, I worked with languages that are much more rigid and well thought-through than JS (no, I'm certainly **not** talking about PHP). But I still love working with JS. It's like meeting an old friend. We build great stuff together, and I enjoy (almost) every minute of it. 
 

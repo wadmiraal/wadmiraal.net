@@ -20,7 +20,7 @@ It's unbelievable the amount of work and hacking it takes to create a simple "wy
  * Gecko
  * Webkit
 
-Yup, some parts actually require to check which browser you're using &mdash; which is against all best practices, I know.
+Yup, some parts actually require to check which browser you're using&thinsp;&mdash;&thinsp;which is against all best practices, I know.
 
 One of the more infuriating problems was the Return key behavior. On content editable elements, hitting return causes either:
 

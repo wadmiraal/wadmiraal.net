@@ -23,7 +23,7 @@ TDD is completely impractical with traditional Drupal development. The reason is
 1. We often don't develop something new from scratch, but use the (very powerful) [hook](https://www.drupal.org/node/292) system to adapt the system and extend it (as we should).
 2. Drupal is **heavily** dependent on the database.
 
-Drupal needs access to the database for **everything** &mdash; it keeps extensive registries for Classes, callbacks, hook implementations, the theme layer and more.
+Drupal needs access to the database for **everything**&thinsp;&mdash;&thinsp;it keeps extensive registries for Classes, callbacks, hook implementations, the theme layer and more.
 
 So, for us to use the Drupal API, we must have an entire, bootable system that has access to this database. And this is where the trouble starts.
 

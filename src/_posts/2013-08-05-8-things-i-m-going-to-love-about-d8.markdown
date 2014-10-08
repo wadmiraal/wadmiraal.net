@@ -26,7 +26,7 @@ This is a **huge** improvement, because:
 * Devs will enjoy working on Drupal even more, being able to use great and exciting tools. 
 
 ### 2. Where's the config file?
-D7 is heavily database dependent. All config **and** content is stored in tables, making it tricky &mdash; read: "a complete nightmare" &mdash; to migrate specific settings, from staging to production for example, or even running unit tests.
+D7 is heavily database dependent. All config **and** content is stored in tables, making it tricky&thinsp;&mdash;&thinsp;read: "a complete nightmare"&thinsp;&mdash;&thinsp;to migrate specific settings, from staging to production for example, or even running unit tests.
 
 The new configuration API will change this. Configuration will now be stored in YAML files! This will make copying, versioning and migrating site settings much, much easier.
 

@@ -11,7 +11,7 @@ tags:
 
 There's a new hero in e-learning town, and he's called [Opigno](https://drupal.org/project/opigno).
 
-&ldquo;Yet another, open-source e-learning software&rdquo;, you may think. But we've worked in this industry for some time now, and we definitely think it's important &mdash; nay, mandatory &mdash; that we get another open-source e-learning platform. One that does things right.
+&ldquo;Yet another, open-source e-learning software&rdquo;, you may think. But we've worked in this industry for some time now, and we definitely think it's important&thinsp;&mdash;&thinsp;nay, mandatory&thinsp;&mdash;&thinsp;that we get another open-source e-learning platform. One that does things right.
 
 Opigno is not just another wanabe-open-source-look-at-me-I'm-new project. It's a product born out of necessity and frustration.
 

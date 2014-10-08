@@ -32,5 +32,5 @@ Now, create some content, and continue your theming. Don't worry too much about 
 You will probably end up writing a little more CSS than you usually do, but on the other hand your theme is becoming much more portable and lean. You will reduce code duplication dramatically (remember having one `node.tpl.php` file per node type? How much of each of these were actually 100% unique?) This will be even more obvious if you use a CSS preprocessor like SASS. 
 
 ## Give it a spin
-It's really worth a try. Only create a template when you really have to (which, of course, will happen) and your CSS begins to look way too hacky. I might post an example one of these days &mdash; if I find the time. 
+It's really worth a try. Only create a template when you really have to (which, of course, will happen) and your CSS begins to look way too hacky. I might post an example one of these days&thinsp;&mdash;&thinsp;if I find the time. 
 

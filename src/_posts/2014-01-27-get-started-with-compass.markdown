@@ -239,4 +239,4 @@ This recursive import allows us to keep our rules modular and well organized.
 This is just a very quick overview of Compass and SASS. I suggest you start experimenting and using it ASAP; you won't regret it.
 
 
-*\* Wait, what ? Yeah, SASS provides 2 ways to write SASS (strange sentence there). Indented (also just called SASS &mdash; think CSS written like Ruby) and SCSS (very similar to regular CSS).*
+*\* Wait, what ? Yeah, SASS provides 2 ways to write SASS (strange sentence there). Indented (also just called SASS&thinsp;&mdash;&thinsp;think CSS written like Ruby) and SCSS (very similar to regular CSS).*

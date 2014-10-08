@@ -37,7 +37,7 @@ Haskell radically changed the way I look at writing PHP code.
 And I finally dove into sys administration and I'm starting to get the hang of it.
 
 ## Drupal is my buddy
-In 2013 I passed the bar of 1000 sites using my 2 most popular modules, and the bar of more than 10 projects on drupal.org (13 &mdash; there are more, but some are not actively maintained or sandboxed and I don't count them).
+In 2013 I passed the bar of 1000 sites using my 2 most popular modules, and the bar of more than 10 projects on drupal.org (13; there are more, but some are not actively maintained or sandboxed and I don't count them).
 
 And although I've developed on Drupal for years, in 2013 I got my first patch into Drupal core (Drupal 8)!
 

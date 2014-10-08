@@ -15,19 +15,19 @@ I must first and foremost say I truly respect the maintainers of the [Domain Acc
 
 If the project is maintaining only a few, small sites that are all *very* similar, Domain Access is the way to go.
 
-If the project is maintaining many, large sites, or sites that are all *different*, Domain Access is *not* the way to go. Try using something like [Aegir](http://www.aegirproject.org/) or [Dush](http://drush.ws/) (using the `@sites` alias) to solve some of the common multi-site problems.
+If the project is maintaining many, large sites, or sites that are all *different*, Domain Access is *not* the way to go. Try using something like [Aegir](http://www.aegirproject.org/) or [Drush](http://drush.ws/) (using the `@sites` alias) to solve some of the common multi-site problems.
 
 
 ## What Is Domain Access ?
 
 For those of you not familiar with the Domain Access module, it basically takes Drupal's [multi-site](https://www.drupal.org/documentation/install/multi-site) capabilities one step further. Running a Drupal multi-site setup is a great idea if you want to host several Drupal sites on the same server, and these sites have similar setups (like same modules, module versions, etc).
 
-A traditional Drupal multi-site setup completely isolates every site from the others, except the code. This allows every site to be completely independent, and the system administrators to manage only one code-base. Plus, accelerators like [APC](http://php.net/manual/en/book.apc.php) or [OPcache](http://php.net/manual/en/book.opcache.php) will be much more efficient, as they only keep track of one code-base for caching.
+A traditional Drupal multi-site setup completely isolates every site from the others, except the code. This allows every site to be completely independent, and for the system administrators to manage only one code-base. Plus, accelerators like [APC](http://php.net/manual/en/book.apc.php) or [OPcache](http://php.net/manual/en/book.opcache.php) will be much more efficient, as they only keep track of one code-base for caching.
 
 It has some drawbacks, though:
 
 * Updates are a problem: you must put **all** sites offline, perform updates for **each one of them in sequence**, and take them all online again after that.
-* Content cannot be shared - an "About us" page might need to be the same on all sites, but you will have to create (and update) it, every single time, for every site.
+* Content cannot be shared: an &ldquo;About us&rdquo; page might need to be the same on all sites, but you will have to create (and update) it, every single time, for every site.
 * Users cannot be shared without some extra planning (but it is possible).
 * Settings are not shared.
 
@@ -38,7 +38,7 @@ Domain Access solves this by running a multi-site *from a single install*. This 
 * Updates are easy, *because you are only updating one site*.
 * Content is shared, *because it's a single site* (you can choose to publish it only to certain domains, though).
 * Users are shared, *because it's a single site* (you can assign users to certain domains so they can't publish/edit nodes on other domains).
-* Settings are shared, *because it's a single site* (you can set certain settings - like Site name - per domain).
+* Settings are shared, *because it's a single site* (you can set certain settings&thinsp;&mdash;&thinsp;like Site name&thinsp;&mdash;&thinsp;per domain).
 
 This is absolutely great ! And, believe me, the module works *very* well. It uses Drupal's incredibly flexible framework to get all this done without hacking core. Kudos to that.
 
@@ -68,7 +68,7 @@ To view a simple, published node, Drupal must now invoke the [Node Access API](h
 
 Domain customizations, like a different theme for each domain, a different main menu, customizable blocks, etc, add extra overhead to the site. Domain Access (and its submodules) are now hooking into many layers of Drupal's system to change the relevant parts. Each of these on its own has no big impact. But on traffic heavy sites, where you use *many* of these &ldquo;domain&rdquo; customizations, you can add a non-negligible overhead to each page request.
 
-Module settings are not global anymore (or, at least, probably won't be &mdash; you will almost definitely need the Domain Configuration module); they are different per domain. This means the storage/retrieval of these settings now also requires extra overhead.
+Module settings are not global anymore (or, at least, probably won't be&thinsp;&mdash;&thinsp;you will almost definitely need the Domain Configuration module); they are different per domain. This means the storage/retrieval of these settings now also requires extra overhead.
 
 And so on and so forth. All these add up and can slow down a site considerably.
 
@@ -77,7 +77,7 @@ And so on and so forth. All these add up and can slow down a site considerably.
 
 My experience has shown that, for large networks of sites, editors get confused *very fast*.
 
-Node creation forms can get incredibly complex and user unfriendly (and it's not like they were very intuitive in the first place), as the list of domains editors can publish to can be enormous (these domains will show up in an incredibly long list of checkboxes &mdash; you can, and *should*, limit this list in the content type settings). Plus, the distinction between options like &ldquo;Send to all affiliates&rdquo;, &ldquo;Source domain&rdquo; or &ldquo;Publish to [domains]&rdquo; are very difficult to explain to non-technical users (heck, I *still* don't really understand them).
+Node creation forms can get incredibly complex and user unfriendly (and it's not like they were very intuitive in the first place), as the list of domains editors can publish to can be enormous (these domains will show up in an incredibly long list of checkboxes&thinsp;&mdash;&thinsp;you can, and *should*, limit this list in the content type settings). Plus, the distinction between options like &ldquo;Send to all affiliates&rdquo;, &ldquo;Source domain&rdquo; or &ldquo;Publish to [domains]&rdquo; are very difficult to explain to non-technical users (heck, I *still* don't really understand them).
 
 If an editor has to manage content on many domains, the amount of information shown on the &ldquo;Manage content&rdquo; page can be too much to take in (tip: use [Admin Views](https://www.drupal.org/project/admin_views) and [Domain Views](https://www.drupal.org/project/domain_views) together for this).
 

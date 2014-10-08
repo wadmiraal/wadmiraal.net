@@ -191,7 +191,7 @@ works](http://blog.vjeux.com/2011/javascript/how-prototypal-inheritance-really-w
 ## So why's everyone confused (and hatefull) ?
 
 I personnaly believe (and have found this to be true for me) that the reason
-people get confused about `this` is that developpers &mdash; and even javascript creators like [Brendan Eich](http://brendaneich.com/) &mdash; tend
+people get confused about `this` is that developpers&thinsp;&mdash;&thinsp;and even javascript creators like [Brendan Eich](http://brendaneich.com/)&thinsp;&mdash;&thinsp;tend
 to treat javascript like OO languages. Look at the `new` keyword: just syntactic
 sugar. There's no such thing as a `new` instance in javascript. There are even
 [discussions](http://brendaneich.com/2011/10/jsconf-eu/)

@@ -114,7 +114,7 @@ exit 1
 
 </code></pre>
 
-We exit with &ldquo;something&rdquo;. Anything would do &mdash; we're just telling Git to abort the commit.
+We exit with &ldquo;something&rdquo;. Anything would do&thinsp;&mdash;&thinsp;we're just telling Git to abort the commit.
 
 <pre><code class="language-bash">
     fi

@@ -35,7 +35,7 @@ There are things that can turn the most friendly person into a complete a$#hole.
 
 Open Source software has always had some <abbr title="a$#holes">peculiar people</abbr> in its midsts. But we are seeing a shift in the Open Source world; all of a sudden, it seems to attract a whole new bunch of them; and they are much worse.
 
-They are business (wo)men. White collars. And I don't mean the entrepreneurs *à la* Dries Buytaert and others (who *are* a great Open Source business (wo)men &mdash; they understand the game). I mean the old guard, looking to make money at the competition's expense.
+They are business (wo)men. White collars. And I don't mean the entrepreneurs *à la* Dries Buytaert and others (who *are* a great Open Source business (wo)men&thinsp;&mdash;&thinsp;they understand the game). I mean the old guard, looking to make money at the competition's expense.
 
 ## &ldquo;Freedom Is Fine; As Long As We Can Make A Buck And Competition Can't&rdquo;
 
@@ -81,7 +81,7 @@ Mike Perham is &ldquo;on&rdquo; this blurry line. If it really is a simple rewri
 
 ## In The End, It Is About Trust And Respect
 
-In the end, everyone will criticize Tildeslash's letter (side note: you guys *really* should have handled this differently &mdash; you could have turned it around and make *Perham* look like a douchebag; too late now).
+In the end, everyone will criticize Tildeslash's letter (side note: you guys *really* should have handled this differently&thinsp;&mdash;&thinsp;you could have turned it around and make *Perham* look like a douchebag; too late now).
 
 But some (like me) will also criticize Mike Perham, for it *does* not feel right.
 

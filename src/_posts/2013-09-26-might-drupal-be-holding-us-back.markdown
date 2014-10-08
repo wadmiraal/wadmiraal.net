@@ -33,7 +33,7 @@ At one point, we had a project for a website. And it had to be in PHP. The other
 
 Months passed, and we had more and more sites that needed to be done in PHP. And I started getting more and more involved in writing PHP scripts, that eventually started looking like modules.
 
-And I learned a lot. I got better and better at PHP. Until I was actually very good at it &mdash; on par with Drupal core itself. Soon after, however, Drupal 7 came along. And it became clear that my knowledge of PHP, of the paradigms that were being used, were outdated. 
+And I learned a lot. I got better and better at PHP. Until I was actually very good at it&thinsp;&mdash;&thinsp;on par with Drupal core itself. Soon after, however, Drupal 7 came along. And it became clear that my knowledge of PHP, of the paradigms that were being used, were outdated. 
 
 PHP, and web technologies in general, had evolved. But because I had mostly been using Drupal and it&rsquo;s APIs, I hadn&rsquo;t noticed. I didn't know there were *much* better ways to do things.
 
@@ -50,9 +50,9 @@ The problem with this is, many Drupal users don&rsquo;t use or develop with othe
 
 ## A difficult problem to solve
 
-Because of Drupal&rsquo;s long release cycle, and the very fast pace at which technologies are evolving, many people &mdash; perhaps the less *technical* inclined &mdash; happily continue to use outdated techniques and deprecated functions for extended periods of time.
+Because of Drupal&rsquo;s long release cycle, and the very fast pace at which technologies are evolving, many people&thinsp;&mdash;&thinsp;perhaps the less *technical* inclined&thinsp;&mdash;&thinsp;happily continue to use outdated techniques and deprecated functions for extended periods of time.
 
-Sadly, Drupal *cannot* have a short release cycle (say one year) &mdash; it&rsquo;s to big. It takes time for it to get stable and for contrib to catch up. With shorter release cycles, even though the API changes would be smaller, maintainers would constantly be updating their modules, instead of focusing on making them better.
+Sadly, Drupal *cannot* have a short release cycle (say one year)&thinsp;&mdash;&thinsp;it&rsquo;s to big. It takes time for it to get stable and for contrib to catch up. With shorter release cycles, even though the API changes would be smaller, maintainers would constantly be updating their modules, instead of focusing on making them better.
 
 Of course, trying to &ldquo;educate&rdquo; the community (keeping them up to date with technology changes) when they have no way to apply it with their favorite software, is not going to happen. People have to be passionate about *technologies*, not just the software they use.
 

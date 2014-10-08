@@ -48,7 +48,7 @@ However, if The Client is breathing down your neck to have this change implement
 
 **If it's related to the way stuff &ldquo;works&rdquo;**, there's a <abbr title="Completely made up number">90%</abbr> chance you can achieve what you want by writing a simple, custom Drupal module.
 
-I won't go into details here, but there's an **incredible amount of [hooks](https://api.drupal.org/api/drupal/includes!module.inc/group/hooks)** you can implement &mdash; very easily &mdash; to change the way certain aspects of the site behave.
+I won't go into details here, but there's an **incredible amount of [hooks](https://api.drupal.org/api/drupal/includes!module.inc/group/hooks)** you can implement&thinsp;&mdash;&thinsp;very easily&thinsp;&mdash;&thinsp;to change the way certain aspects of the site behave.
 
 There are even a whole bunch of modules that expose *their own hooks*, allowing you to update stuff that *they* do.
 

@@ -39,14 +39,14 @@ Function purity has many advantages, but to name a few:
 
 1. The result is only dependent on the parameters passed. Call the function twice with the same parameters, you will always get the same result.
 2. The above means pure functions are very easy to write tests for.
-3. Pure functions tend to be small &mdash; as they cannot alter or access the state of the machine, nor call other functions that do so, functions tend to be highly specific and short. This makes many functions more easy to scan through and understand.
+3. Pure functions tend to be small&thinsp;&mdash;&thinsp;as they cannot alter or access the state of the machine, nor call other functions that do so, functions tend to be highly specific and short. This makes many functions more easy to scan through and understand.
 4. Compilers can easily optimize code by caching results, as calling the function several times with the same parameters will always result in the same output.
 
 Point 2 and 3 are what interest us in our PHP/Drupal world.
 
 When writing modules, we interact with the system; we access its state and alter it. This is normal, and is what makes our module useful.
 
-However, we (almost) always have to do some computation &mdash; alter data, parse a string, validate input, etc. And often, it is at these computation points that we introduce bugs. And it's these that we want to test most often.
+However, we (almost) always have to do some computation&thinsp;&mdash;&thinsp;alter data, parse a string, validate input, etc. And often, it is at these computation points that we introduce bugs. And it's these that we want to test most often.
 
 But, as we mentioned in part 1, because we want to use the Drupal framework, we often tie ourselves to having to use the global state. And thus, we need to write *DrupalWebTestCases*, which, as we mentioned in part 1, are horridly slow and make TDD unfeasible.
 
