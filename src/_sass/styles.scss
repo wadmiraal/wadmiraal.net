@@ -228,6 +228,7 @@ blockquote {
 #latest-articles, #favorite-articles {
 	article {
 		border-bottom: 1px solid $codeBorderColor;
+    min-height: 50px;
 	}
 
 	h4, p {
