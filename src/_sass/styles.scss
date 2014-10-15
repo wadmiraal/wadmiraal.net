@@ -229,6 +229,14 @@ blockquote {
 	article {
 		border-bottom: 1px solid $codeBorderColor;
     min-height: 50px;
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
 	}
 
 	h4, p {
