@@ -4,3 +4,4 @@ src/_sass/.sass-cache/
 src/css/styles.css
 design/
 .phrozn/
+*.sublime-*
