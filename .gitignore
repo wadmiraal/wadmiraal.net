@@ -1,7 +1,6 @@
 .idea
-src/_site/
-src/_sass/.sass-cache/
-src/css/styles.css
+jekyll-src/_site/
+jekyll-src/css
 design/
 .phrozn/
 *.sublime-*
