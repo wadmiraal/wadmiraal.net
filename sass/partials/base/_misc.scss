@@ -1,0 +1,16 @@
+/**
+ * @file
+ * Defines miscellaneous styles.
+ */
+
+
+@each $tag in $tags {
+
+  .show-tag-#{$tag} .tag-#{$tag}--color {
+    color: map-get($tag-color, $tag);
+  }
+
+  .show-tag-#{$tag} .tag-#{$tag}--border {
+    border-color: map-get($tag-color, $tag);
+  }
+}

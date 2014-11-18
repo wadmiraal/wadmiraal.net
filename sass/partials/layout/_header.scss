@@ -2,3 +2,22 @@
  * @file
  * Defines the header styles.
  */
+
+.site-header {
+  padding: 25px;
+  height: 75px;
+
+  position: relative;
+
+  @include box-sizing(border-box);
+
+  background: cyan;
+}
+
+.site-header__menu-toggle {
+  position: absolute;
+
+  font-size: 25px;
+
+  z-index: 900;
+}

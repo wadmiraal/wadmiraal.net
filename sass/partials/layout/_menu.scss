@@ -2,3 +2,83 @@
  * @file
  * Defines the menu styles.
  */
+
+.site-menu {
+  width: 350px;
+  padding: 75px 0 25px 0;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  background: green;
+
+  @include box-shadow(5px 0 5px rgba(0, 0, 0, .7));
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    li {
+      margin: 0;
+      padding: 10px 25px;
+    }
+  }
+}
+
+.site-menu__item {
+  border-right: 0 solid;
+
+  &.active, &:hover {
+    border-right-width: 10px;
+    background: white;
+
+    @each $tag in $tags {
+
+      .tag-#{$tag}--color {
+        color: map-get($tag-color, $tag);
+      }
+
+      .tag-#{$tag}--border {
+        border-color: map-get($tag-color, $tag);
+      }
+    }
+  }
+
+  // If the parent has the directive to show a specific tag, we activate all the
+  // borders.
+  @each $tag in $tags {
+
+    .show-tag-#{$tag} &.tag-#{$tag} {
+      border-right-width: 10px;
+    }
+  }
+}
+
+.site-menu__color-code-legends {
+  position: absolute;
+  right: 0;
+  top: 35px;
+
+  text-align: right;
+}
+
+.site-menu__color-code-legends__legend {
+  height: 10px;
+  padding: 0 10px 0 0 !important;
+  display: none;
+
+  font-size: 10px;
+
+  border-right: 10px solid;
+
+  // If the parent has the directive to show a specific tag, we activate it.
+  @each $tag in $tags {
+
+    .show-tag-#{$tag} &.tag-#{$tag} {
+      display: block;
+    }
+  }
+}

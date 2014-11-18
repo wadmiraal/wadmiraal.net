@@ -25,10 +25,10 @@ gulp.task( 'compass', function() {
 
 // Combine all CSS files and minify.
 gulp.task( 'css-min', function() {
-  gulp.src([ './tmp/*.css', './css/**/*.css' ])
+  gulp.src([ './css/**/*.css', './tmp/*.css' ])
     .pipe( concat( 'all.min.css' ) )
     .pipe( minifyCSS() )
-    .pipe( gulp.dest( './jekyll-src/css/' ) );
+    .pipe( gulp.dest( './jekyll-src/css' ) );
 });
 
 // Combine all JS files and minify.
@@ -37,6 +37,12 @@ gulp.task( 'js-min', function() {
     .pipe( concat( 'all.min.js' ) )
     .pipe( uglify() )
     .pipe( gulp.dest( './jekyll-src/js' ) )
+});
+
+// Watch files for changes.
+gulp.task( 'watch', function() {
+  gulp.watch( './js/*.js', [ 'js-min' ]);
+  gulp.watch( [ './sass/*.scss', './sass/**/*.scss'], [ 'compass', 'css-min' ]);
 });
 
 // Default tasks.
