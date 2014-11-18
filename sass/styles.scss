@@ -1,0 +1,10 @@
+/**
+ * @file
+ * Main styles file. Aggregates all partials.
+ */
+
+@import "compass";
+@import "partials/utils";
+@import "partials/base";
+@import "partials/layout";
+@import "partials/components";
