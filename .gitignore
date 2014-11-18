@@ -3,4 +3,5 @@ jekyll-src/_site/
 jekyll-src/css
 design/
 .phrozn/
+node_modules/
 *.sublime-*

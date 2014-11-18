@@ -1,0 +1,25 @@
+{
+  "name": "Blog",
+  "version": "0.0.0",
+  "description": "wadmiraal.net blog",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "~3.8.10",
+    "gulp-compass": "~2.0.2"
+  },
+  "devDependencies": {
+    "gulp-compass": "~2.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wadmiraal/wadmiraal.net.git"
+  },
+  "author": "Wouter Admiraal <wad@wadmiraal.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wadmiraal/wadmiraal.net/issues"
+  }
+}
