@@ -1,4 +1,5 @@
 .idea
+.sass-cache/
 jekyll-src/_site/
 jekyll-src/css
 design/
