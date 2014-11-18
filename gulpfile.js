@@ -7,7 +7,6 @@
 
 var gulp = require( 'gulp' );
 var compass = require( 'gulp-compass' );
-var jekyll = require( 'gulp-jekyll' );
 
 // Compile the SCSS files using Compass.
 gulp.task( 'compass', function() {
