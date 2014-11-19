@@ -3,14 +3,25 @@
  * Defines miscellaneous styles.
  */
 
-
 @each $tag in $tags {
-
-  .show-tag-#{$tag} .tag-#{$tag}--color {
+  // The first tag in the data list is the "main" tag.
+  [data-tags^="#{$tag}"].tag--color {
     color: map-get($tag-color, $tag);
   }
 
-  .show-tag-#{$tag} .tag-#{$tag}--border {
+  [data-tags^="#{$tag}"].tag--border {
     border-color: map-get($tag-color, $tag);
+  }
+
+  // We override if the data-show-posts-tagged-with attribute is set.
+  [data-show-posts-tagged-with="#{$tag}"] {
+
+    [data-tags~="#{$tag}"].tag--color {
+      color: map-get($tag-color, $tag) !important;
+    }
+
+    [data-tags~="#{$tag}"].tag--border {
+      border-color: map-get($tag-color, $tag) !important;
+    }
   }
 }
