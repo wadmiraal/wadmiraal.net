@@ -9,15 +9,49 @@
 
   position: relative;
 
-  @include box-sizing(border-box);
+  background: $header-color;
 
-  background: cyan;
+  @include box-sizing(border-box);
 }
 
 .site-header__menu-toggle {
+  height: $default-padding;
+
   position: absolute;
 
+  color: white;
   font-size: 25px;
+  line-height: 1;
 
   z-index: 900;
+}
+
+.has-js {
+
+  .site-header__menu-toggle {
+    padding-left: $default-padding + $default-spacing;
+
+    background: url(../img/toggle-icon.png) left top no-repeat;
+  }
+
+  .site-header__menu-toggle.open {
+    background-position: left bottom;
+  }
+}
+
+.site-header__about-links {
+  margin: 0;
+  padding: 0;
+
+  float: right;
+}
+
+.site-header__about-links__item {
+  float: left;
+
+  list-style: none;
+}
+
+.site-header__about-links__item + .site-header__about-links__item {
+  margin-left: $default-spacing;
 }

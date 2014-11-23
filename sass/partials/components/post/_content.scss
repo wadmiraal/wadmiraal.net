@@ -2,3 +2,15 @@
  * @file
  * Defines the post content styles, meaning post body, sub-titles, etc.
  */
+
+.post__body {
+  max-width: 580px;
+
+  p {
+    font-size: 18px;
+  }
+
+  p:first-of-type {
+    font-size: 20px;
+  }
+}

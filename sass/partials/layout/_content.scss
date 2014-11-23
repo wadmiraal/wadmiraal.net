@@ -2,3 +2,23 @@
  * @file
  * Defines the content styles.
  */
+
+.site-content {
+  padding-left: $menu-width + $default-padding;
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    padding: $default-spacing !important;
+  }
+}
+
+.has-js {
+
+  .site-content {
+    padding-left: $default-padding;
+  }
+}
+
+.site-content__post {
+  max-width: 1150px;
+  margin: 0 auto;
+}

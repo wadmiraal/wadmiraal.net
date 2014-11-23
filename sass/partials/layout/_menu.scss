@@ -4,14 +4,15 @@
  */
 
 .site-menu {
-  width: 350px;
-  padding: 75px 0 25px 0;
+  height: 100%;
+  width: $menu-width;
+  padding: $header-height 0 $default-padding 0;
 
   position: absolute;
   top: 0;
-  bottom: 0;
 
-  background: green;
+  background: $header-light-color;
+  @include background-image(linear-gradient($header-light-color, $header-light-color 80px, $light-gray 80px, $light-gray));
 
   @include box-shadow(5px 0 5px rgba(0, 0, 0, .7));
 
@@ -23,25 +24,50 @@
 
     li {
       margin: 0;
-      padding: 10px 25px;
+      padding: 0;
+
+      a {
+        display: block;
+        padding: 10px $default-padding;
+      }
     }
   }
 }
 
-.site-menu__item {
-  border-right-width: 0;
-  border-right-style: solid;
+.has-js {
 
-  &.active, &:hover {
-    border-right-width: 10px;
-    background: white;
+  .site-menu {
+    left: -100%;
   }
 
-  // If the parent has the directive to show a specific tag, we activate all the
-  // borders for posts tagged with that tag.
-  @each $tag in $tags {
-    [data-show-posts-tagged-with="#{$tag}"] &[data-tags~="#{$tag}"] {
-      border-right-width: 10px !important;
+  .site-menu.open {
+    left: 0;
+  }
+}
+
+.site-menu__item {
+  color: $header-color;
+
+  a {
+    color: inherit;
+
+    border-right-width: 0;
+    border-right-style: solid;
+
+    // If the parent has the directive to show a specific tag, we activate all
+    // the borders for posts tagged with that tag.
+    @each $tag in $tags {
+      [data-show-posts-tagged-with="#{$tag}"] &[data-tags~="#{$tag}"] {
+        border-right-width: 10px !important;
+      }
+    }
+  }
+
+  &.active, &:hover {
+
+    a {
+      border-right-width: 10px;
+      background: $very-light-gray;
     }
   }
 }
@@ -52,6 +78,7 @@
   top: 35px;
 
   text-align: right;
+  color: white;
 }
 
 .site-menu__color-code-legends__legend {

@@ -45,5 +45,11 @@ gulp.task( 'watch', function() {
   gulp.watch( [ './sass/*.scss', './sass/**/*.scss'], [ 'compass', 'css-min' ]);
 });
 
+// Move images.
+gulp.task( 'images', function() {
+  gulp.src( './img/*' )
+    .pipe( gulp.dest( './jekyll-src/img' ));
+});
+
 // Default tasks.
-gulp.task( 'default', [ 'compass', 'css-min', 'js-min' ]);
+gulp.task( 'default', [ 'compass', 'css-min', 'js-min', 'images' ]);

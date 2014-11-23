@@ -8,3 +8,4 @@ design/
 node_modules/
 tmp/
 *.sublime-*
+jekyll-src/img/toggle-icon.png

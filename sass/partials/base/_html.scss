@@ -2,3 +2,12 @@
  * @file
  * Defines the basic HTML styles.
  */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400);
+
+body {
+  position: relative;
+
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
+}

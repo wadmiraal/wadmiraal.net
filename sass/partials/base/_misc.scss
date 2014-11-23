@@ -3,13 +3,17 @@
  * Defines miscellaneous styles.
  */
 
+.icon::after {
+  content: 'IC';
+}
+
 @each $tag in $tags {
   // The first tag in the data list is the "main" tag.
-  [data-tags^="#{$tag}"].tag--color {
+  [data-tags^="#{$tag}"].tag--color, [data-tag="#{$tag}"].tag--color {
     color: map-get($tag-color, $tag);
   }
 
-  [data-tags^="#{$tag}"].tag--border {
+  [data-tags^="#{$tag}"].tag--border, [data-tag="#{$tag}"].tag--border {
     border-color: map-get($tag-color, $tag);
   }
 
