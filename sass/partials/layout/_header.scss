@@ -32,6 +32,8 @@
     padding-left: $default-padding + $default-spacing;
 
     background: url(../img/toggle-icon.png) left top no-repeat;
+
+    cursor: pointer;
   }
 
   .site-header__menu-toggle.open {

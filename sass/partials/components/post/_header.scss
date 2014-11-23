@@ -47,6 +47,10 @@
     list-style: none;
     overflow: hidden;
     @include box-sizing(border-box);
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      width: $header-height / 2;
+    }
   }
 }
 

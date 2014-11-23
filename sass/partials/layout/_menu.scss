@@ -15,6 +15,8 @@
   @include background-image(linear-gradient($header-light-color, $header-light-color 80px, $light-gray 80px, $light-gray));
 
   @include box-shadow(5px 0 5px rgba(0, 0, 0, .7));
+  @include transition-property(left);
+  @include transition-duration(.5s);
 
   ul {
     margin: 0;
@@ -37,7 +39,7 @@
 .has-js {
 
   .site-menu {
-    left: -100%;
+    left: -$menu-width;
   }
 
   .site-menu.open {
