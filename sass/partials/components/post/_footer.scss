@@ -1,0 +1,58 @@
+/**
+ * @file
+ * Defines the post footer styles.
+ */
+
+.post__footer {
+
+}
+
+.post__footer__prev-next {
+  margin: 0;
+  padding: 0;
+  max-width: 600px;
+
+  border-top: 5px solid $header-light-color;
+
+  overflow: hidden;
+
+  li {
+    width: 150px;
+    margin: 0;
+    padding: 0;
+
+    float: left;
+
+    list-style: none;
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      width: 50%;
+    }
+
+    a {
+      display: block;
+      padding: 10px;
+
+      background-color: white;
+      color: $header-light-color;
+      text-decoration: none;
+
+      cursor: pointer;
+
+      @include transition-property(color background-color);
+      @include transition-duration(.5s);
+
+      &:hover {
+        color: white;
+
+        background-color: $header-light-color;
+      }
+    }
+  }
+}
+
+.post__footer__prev-next__next {
+  float: right !important;
+
+  text-align: right;
+}

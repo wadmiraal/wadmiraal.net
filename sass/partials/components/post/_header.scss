@@ -3,3 +3,72 @@
  * Defines the post header styles, meaning title, author, etc.
  */
 
+.post__header {
+  overflow: hidden;
+}
+
+.post__header__meta {
+  margin-top: $header-height;
+
+  float: right;
+
+  color: $header-color;
+  font-style: italic;
+  font-size: 20px;
+
+  a {
+    color: inherit;
+  }
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    display: none;
+  }
+}
+
+.post__header__tags {
+  margin: 0;
+  padding: 0;
+  display: none;
+
+  li {
+    margin: 0;
+    padding: 0;
+    width: $header-height;
+    height: 10px;
+
+    float: left;
+
+    text-indent: -9999px;
+
+    border-top-style: solid;
+    border-top-width: 10px;
+
+    list-style: none;
+    overflow: hidden;
+    @include box-sizing(border-box);
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      width: $header-height / 2;
+    }
+  }
+}
+
+.has-js .post__header__tags {
+  display: block;
+}
+
+.post__header__title {
+  max-width: 800px;
+  margin-top: $header-height;
+  margin-bottom: $default-padding;
+
+  font-weight: normal;
+  font-size: 50px;
+  line-height: 1.2;
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    margin-top: $default-padding;
+
+    font-size: 35px;
+  }
+}
