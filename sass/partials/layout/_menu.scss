@@ -4,12 +4,13 @@
  */
 
 .site-menu {
-  height: 100%;
   width: $menu-width;
   padding: $header-height 0 $default-padding 0;
 
   position: absolute;
   top: 0;
+  bottom: 0;
+  z-index: 800;
 
   background: $header-light-color;
   @include background-image(linear-gradient($header-light-color, $header-light-color 80px, $light-gray 80px, $light-gray));
@@ -39,7 +40,7 @@
 .has-js {
 
   .site-menu {
-    left: -$menu-width;
+    left: -($menu-width + 10px);
   }
 
   .site-menu.open {
@@ -71,6 +72,13 @@
       border-right-width: 10px;
       background: $very-light-gray;
     }
+
+    // However, if we show tagged posts, we disable the border.
+    @each $tag in $tags {
+      [data-show-posts-tagged-with="#{$tag}"] & a {
+        border-right-width: 0;
+      }
+    }
   }
 }
 
@@ -81,6 +89,11 @@
 
   text-align: right;
   color: white;
+  line-height: 1.1;
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    top: 30px;
+  }
 }
 
 .site-menu__color-code-legends__legend {
@@ -92,6 +105,13 @@
 
   border-right-width: 10px;
   border-right-style: solid;
+
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    height: 20px;
+
+    font-size: 15px;
+  }
 
   // If the parent has the directive to show a specific tag, we activate it.
   @each $tag in $tags {

@@ -36,7 +36,7 @@
     cursor: pointer;
   }
 
-  .site-header__menu-toggle.open {
+  .site-menu.open + .site-header .site-header__menu-toggle {
     background-position: left bottom;
   }
 }

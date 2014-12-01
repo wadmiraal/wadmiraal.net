@@ -23,19 +23,24 @@
   blog.fx.activateMenuToggle = function() {
     var button = blog.fx.getToggleElement();
 
-    button.addEventListener( 'click', function() {
+    button.addEventListener( 'click', function( e ) {
+      e.stopPropagation();
+
       var menu = blog.fx.getMenuElement();
 
       if ( menu.classList.contains( 'open' )) {
         blog.fx.closeMenu();
-
-        // Disable the "show tags".
-        blog.fx.hidePostsTaggedWith();
       } else {
         blog.fx.openMenu();
       }
 
       return false;
+    }, false );
+
+    // When clicking anywhere else than the toggle button, make sur we close
+    // the menu.
+    document.getElementsByTagName( 'body' )[ 0 ].addEventListener( 'click', function() {
+      blog.fx.closeMenu();
     }, false );
   };
 
@@ -64,6 +69,8 @@
 
     for ( var i = tags.length - 1; i >= 0; --i ) {
       tags[ i ].addEventListener( 'click', function( e ) {
+        e.stopPropagation();
+
         var link = e.srcElement;
 
         blog.fx.showPostsTaggedWith( link.getAttribute( 'data-tag' ) );
@@ -88,9 +95,6 @@
   blog.fx.openMenu = function() {
     var menu = blog.fx.getMenuElement();
     menu.classList.add( 'open' );
-
-    var button = blog.fx.getToggleElement();
-    button.classList.add( 'open' );
   };
 
   // Close the menu.
@@ -98,8 +102,8 @@
     var menu = blog.fx.getMenuElement();
     menu.classList.remove( 'open' );
 
-    var button = blog.fx.getToggleElement();
-    button.classList.remove( 'open' );
+    // Disable the "show tags".
+    blog.fx.hidePostsTaggedWith();
   };
 
   // Show legend for a specific tag.
@@ -152,7 +156,6 @@
     }
   };
 
-  // @todo
   window.blog = blog;
 
 })( document );
