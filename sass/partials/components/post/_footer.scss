@@ -14,8 +14,6 @@
 
   border-top: 5px solid $header-light-color;
 
-  overflow: hidden;
-
   li {
     width: 150px;
     margin: 0;
@@ -55,4 +53,16 @@
   float: right !important;
 
   text-align: right;
+}
+
+.post__footer__copy {
+  margin-top: .5em;
+  max-width: 600px;
+
+  text-align: center;
+  font-size: 0.9em;
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    margin-top: $default-padding;
+  }
 }

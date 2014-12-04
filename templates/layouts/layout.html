@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ page.title }}</title>
+  {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+  {% endif %}
+  <meta name="author" content="Wouter Admiraal <wad@wadmiraal.net>">
+
+  <link rel="stylesheet" href="/css/all.min.css">
+</head>
+<body>
+
+<nav id="posts-menu" class="site-menu" data-show-posts-tagged-with="">
+  <div id="posts-tag-legends" class="site-menu__color-code-legends" data-show-legend-for="">
+    <ul>
+
+      <li class="site-menu__color-code-legends__legend tag--border" data-tags="drupal">Drupal</li>
+      <li class="site-menu__color-code-legends__legend tag--border" data-tags="js">JS</li>
+      <li class="site-menu__color-code-legends__legend tag--border" data-tags="wisdom">Wisdom</li>
+      <li class="site-menu__color-code-legends__legend tag--border" data-tags="performance-and-scalability">Performance and Scalability</li>
+
+    </ul>
+  </div>
+
+  <ul id="posts-items">
+    {% for post in site.posts %}
+      <li class="site-menu__item">
+        <a class="tag--border" data-tags="{% for tag in post.tags %}{{ tag | downcase | replace:' ','-' }} {% endfor %}" href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+
+<header class="site-header">
+  <span id="menu-toggle" class="site-header__menu-toggle">Blog</span>
+
+  <ul class="site-header__about-links">
+    <li class="site-header__about-links__item"><a class="icon icon--user" href="/about">About</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon--twitter" href="http://twitter.com/wadmiraal">Twitter</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon--github" href="http://github.com/wadmiraal">Github</a></li>
+  </ul>
+</header>
+
+<div id="site-content" class="site-content">
+  {% block content %}{% endblock %}
+
+  <div class="site-content__overlay"></div>
+</div>
+
+<script src="/js/all.min.js"></script>
+<script type="text/javascript">
+  blog.fx.init();
+  blog.pushState.init();
+</script>
+
+</body>
+</html>

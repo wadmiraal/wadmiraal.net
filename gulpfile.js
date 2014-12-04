@@ -35,8 +35,14 @@ gulp.task( 'css-min', function() {
 gulp.task( 'js-min', function() {
   gulp.src([ './js/vendor/**/*.js', './js/*.js' ])
     .pipe( concat( 'all.min.js' ) )
-    .pipe( uglify() )
+    //.pipe( uglify() )
     .pipe( gulp.dest( './jekyll-src/js' ) )
+});
+
+// Move and minify the layout templates.
+gulp.task( 'layouts', function() {
+  gulp.src( './templates/layouts/*.html' )
+    .pipe( gulp.dest( './jekyll-src/_layouts' ));
 });
 
 // Watch files for changes.

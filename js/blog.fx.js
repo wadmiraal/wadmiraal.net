@@ -6,9 +6,7 @@
  * or activating the JS enhanced layout.
  */
 
-(function( document ) {
-
-  var blog = blog || {};
+(function( document, blog ) {
 
   blog.fx = blog.fx || {};
 
@@ -156,6 +154,4 @@
     }
   };
 
-  window.blog = blog;
-
-})( document );
+})( document, window.blog !== undefined ? window.blog : window.blog = {} );
