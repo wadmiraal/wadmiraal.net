@@ -5,12 +5,11 @@
 
 .site-header {
   padding: 25px;
-  height: 75px;
-
-  position: relative;
+  height: $header-height;
 
   background: $header-color;
 
+  z-index: 100;
   @include box-sizing(border-box);
 }
 

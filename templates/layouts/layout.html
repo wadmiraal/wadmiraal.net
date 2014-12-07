@@ -27,7 +27,7 @@
     </ul>
   </div>
 
-  <ul id="posts-items">
+  <ul id="posts-items" class="overview">
     {% for post in site.posts %}
       <li class="site-menu__item">
         <a class="tag--border" data-tags="{% for tag in post.tags %}{{ tag | downcase | replace:' ','-' }} {% endfor %}" href="{{ post.url }}">{{ post.title }}</a>
@@ -47,7 +47,7 @@
 </header>
 
 <div class="site-content">
-  <div  id="site-content">
+  <div id="site-content">
     {% block content %}{% endblock %}
   </div>
 

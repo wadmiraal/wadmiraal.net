@@ -7,5 +7,6 @@ design/
 .phrozn/
 node_modules/
 tmp/
+css/styles.css
 *.sublime-*
 jekyll-src/img/toggle-icon.png

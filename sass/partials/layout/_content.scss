@@ -7,9 +7,6 @@
   padding-left: $menu-width + $default-padding;
   padding-bottom: $default-padding;
 
-  @include transition-property(filter);
-  @include transition-duration(1s);
-
   @media screen and (max-width: $breakpoint-mobile) {
     padding-right: $default-spacing;
     padding-left: $default-spacing !important;
@@ -39,7 +36,13 @@
   }
 
   .site-menu.open ~ .site-content {
-    @include filter(blur(5px));
+
+    article {
+      // Trick to enable hardware acceleration for the blur. Otherwise,
+      // performance is really bad.s
+      @include translate3d(0, 0, 0);
+      @include filter(blur(5px));
+    }
 
     .site-content__overlay {
       right: 0;

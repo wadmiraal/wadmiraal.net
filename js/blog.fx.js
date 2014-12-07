@@ -61,6 +61,15 @@
     }
   };
 
+  // Activate scrolling.
+  blog.fx.activateScroll = function() {
+    if ( window.tinyscrollbar !== undefined ) {
+      var menu = document.getElementById( 'scroll-wrapper' );
+      menu.classList.add( 'js-scroll-enabled' );
+      tinyscrollbar( menu );
+    }
+  };
+
   // On clicking on a tag, we activate the menu display for that tag only.
   blog.fx.activateTagLinks = function( context ) {
     var tags = context.querySelectorAll( '[data-tag]' );
@@ -138,7 +147,7 @@
       blog.fx.getLegendsContainer._container = document.getElementById( 'posts-tag-legends' );
     }
     return blog.fx.getLegendsContainer._container;
-  }
+  };
 
   // Initialize logic.
   blog.fx.init = function() {
@@ -151,6 +160,7 @@
       blog.fx.activateMenuToggle();
       blog.fx.activatePostsHover();
       blog.fx.activateTagLinks( document.getElementById( 'site-content' ) );
+      blog.fx.activateScroll();
     }
   };
 

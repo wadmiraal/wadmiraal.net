@@ -17,15 +17,15 @@ gulp.task( 'compass', function() {
     .pipe( compass({
       style: 'compressed',
       sass: 'sass',
-      css: 'tmp',
+      css: 'css',
       image: 'jekyll-src/img'
     }))
-    .pipe( gulp.dest( 'tmp' ) );
+    .pipe( gulp.dest( 'css' ) );
 });
 
 // Combine all CSS files and minify.
 gulp.task( 'css-min', function() {
-  gulp.src([ './css/**/*.css', './tmp/*.css' ])
+  gulp.src([ './css/**/*.css', './css/*.css' ])
     .pipe( concat( 'all.min.css' ) )
     .pipe( minifyCSS() )
     .pipe( gulp.dest( './jekyll-src/css' ) );
@@ -36,7 +36,7 @@ gulp.task( 'js-min', function() {
   gulp.src([ './js/vendor/**/*.js', './js/*.js' ])
     .pipe( concat( 'all.min.js' ) )
     //.pipe( uglify() )
-    .pipe( gulp.dest( './jekyll-src/js' ) )
+    .pipe( gulp.dest( './jekyll-src/js' ) );
 });
 
 // Move and minify the layout templates.
