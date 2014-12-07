@@ -1,5 +1,43 @@
 {% extends "_layouts/layout.html" %}
 
 {% block content %}
-POST
+  <article class="site-content__post post">
+    <header class="post__header">
+      <div class="post__header__meta">
+        By <a href="/about/">me</a>, <time datetime="{{ page.date | date_to_utc | date:"%Y-%m-%dT%H:%M:%SZ" }}">{{ page.date | date:"%Y-%m-%d" }}</time>
+      </div>
+
+      <h1 class="post__header__title">Why I don't recommend using Domain Access for a large Drupal project</h1>
+
+      <ul class="post__header__tags">
+        {% for tag in page.tags %}
+          <li class="tag--border" data-tag="{{ tag | downcase | replace:' ','-'  }}" title="{{ tag }}">{{ tag }}</li>
+        {% endfor %}
+      </ul>
+    </header>
+
+    <div class="post__body">
+      {{ content }}
+    </div>
+
+    <footer class="post__footer">
+      <ul class="post__footer__prev-next">
+        {% if page.previous %}
+          <li class="post__footer__prev-next__prev">
+            <a href="{{ page.previous.url }}" title="Previously: &ldquo;{{ page.previous.title }}&rdquo;">Previous post</a>
+          </li>
+        {% endif %}
+
+        {% if page.next %}
+          <li class="post__footer__prev-next__next">
+            <a href="{{ page.next.url }}" title="Coming up: &ldquo;{{ page.next.title }}&rdquo;">Next post</a>
+          </li>
+        {% endif %}
+      </ul>
+
+      <div class="post__footer__copy">
+        <p><a href="http://creativecommons.org/licenses/by-sa/3.0/deed"><img src="/img/cc.png"></a></p>
+      </div>
+    </footer>
+  </article>
 {% endblock %}
