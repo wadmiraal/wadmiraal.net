@@ -4,8 +4,8 @@ description: "Discussions rage online on wether Backbone is a MVC, MV*, etc, fra
 layout: post
 tags:
   - Javascript
-  - Code
   - Rant
+  - Code
 ---
 
 Today is the end of the world, so let me quickly put this post together before I bury myself in a bunker with my wife, our 3 animals and some canned food, with no \*gulp\* internet connection.

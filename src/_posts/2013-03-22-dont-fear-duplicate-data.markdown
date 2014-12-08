@@ -1,6 +1,6 @@
 ---
 title: "Don't fear duplicate data"
-description: "Good programmers strictly follow the DRY principle. But sometimes, this can be harmfull in terms of user experience."
+description: "Good programmers strictly follow the DRY principle. But sometimes, this can be harmful in terms of user experience."
 layout: post
 tags:
   - UX

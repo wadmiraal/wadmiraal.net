@@ -5,7 +5,6 @@ layout: post
 favorite: true
 tags:
   - Rant
-  - Email
   - Wisdom
 --- 
 

@@ -4,7 +4,6 @@ description: "Drupal is awesome, although a bit ugly. But it's so awesome, I can
 layout: post
 tags:
   - Drupal
-  - PHP
   - Rant
 ---
 

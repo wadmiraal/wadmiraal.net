@@ -7,7 +7,6 @@ tags:
   - Wisdom
   - Code
   - Drupal
-  - TDD
 ---
 
 Writing unit tests in Drupal is slow and costly, which means many projects stay away from them. This has been a problem for many years, but I have found a way to greatly speed up my Drupal development, even going as far as using <abbr title="Test Driven Development">TDD</abbr>.

@@ -4,7 +4,7 @@ description: "Programmers are not often seen as creative people except by other 
 layout: post
 tags:
   - Code
-  - For lolz
+  - Wisdom
 ---
 
 The new video from [code.org](http://www.code.org) is absolutely brilliant. It expresses something I have always trouble explaining to others.

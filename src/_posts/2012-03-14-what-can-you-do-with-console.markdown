@@ -6,8 +6,6 @@ tags:
   - Javascript
   - Code
   - For lolz
-  - Experiment
-  - Useful
 ---
 
 Lately I've been wondering: *what can you do with the javascript console object ?*.

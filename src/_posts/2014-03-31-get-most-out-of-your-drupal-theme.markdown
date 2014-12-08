@@ -6,7 +6,6 @@ tags:
   - Drupal
   - HTML
   - CSS
-  - Theming
 --- 
 
 I've seen this more often than not: Drupal themers tend to provide their own markup. They overwrite templates, use hacky approaches for beating the Drupal core HTML into submission or simply <abbr title="Hack core">kill a few kittens</abbr>. 

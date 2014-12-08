@@ -4,7 +4,6 @@ description: "Drupal 8 is on its way, and from the looks of it, it's going to be
 layout: post
 tags:
   - Drupal
-  - Rant
   - PHP
 ---
 

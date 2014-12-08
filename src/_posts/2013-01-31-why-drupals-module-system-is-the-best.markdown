@@ -5,7 +5,6 @@ layout: post
 tags:
   - Drupal
   - PHP
-  - For lolz
 ---
 Just a quicky.
 

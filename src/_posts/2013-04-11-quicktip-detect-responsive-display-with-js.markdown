@@ -5,7 +5,6 @@ layout: post
 tags:
   - Javascript
   - Code
-  - Tip
 ---
 
 Ever needed to test some Javascript code that only is supposed to be triggered when in &ldquo;mobile&rdquo; view in a responsive layout ? Or to detect if we're in portrait or landscape mode, *but always based on the CSS media queries ?*

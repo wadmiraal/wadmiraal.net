@@ -3,10 +3,9 @@ title: "I use semicolons"
 description: "Why I use semicolons, and how this is related to some idiot-moron teenagers who don't know how to write."
 layout: post
 tags:
+  - Rant
   - Javascript
   - Code
-  - For lolz
-  - Rant
 ---
 
 Ok, so there's this discussion going around about wether or not one should/can use semicolons in Javascript.

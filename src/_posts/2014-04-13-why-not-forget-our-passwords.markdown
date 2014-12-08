@@ -4,7 +4,6 @@ description: "Heartbleed has prompted many users to change their passwords. But 
 layout: post
 tags:
   - Wisdom
-  - Email
   - Rant
 ---
 

@@ -5,7 +5,6 @@ layout: post
 tags:
   - Drupal
   - Rant
-  - Bold assertions
   - Open Source
 ---
 

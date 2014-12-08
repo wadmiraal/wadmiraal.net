@@ -7,7 +7,6 @@ tags:
   - Wisdom
   - Code
   - Drupal
-  - TDD
 ---
 
 In [part 1](/lore/2014/07/22/write-testable-code-in-drupal-part-1/), I discussed what was wrong with classical Drupal unit tests. In part 2, I want to discuss how we can learn from functional programming languages like Haskell to write better, more testable Drupal code.
