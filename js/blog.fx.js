@@ -80,7 +80,7 @@
 
     // Listen to scroll events. If the menu is open, we scroll the menu content
     // only.
-    window.addEventListener( eventType, function( e ) {
+    document.addEventListener( eventType, function( e ) {
       if ( blog.fx.isMenuOpen() ) {
         e.stopPropagation();
         e.preventDefault();
