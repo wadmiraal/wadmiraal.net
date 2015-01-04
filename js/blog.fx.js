@@ -63,32 +63,58 @@
 
   // Activate scrolling.
   blog.fx.activateScroll = function() {
-    // Set the height of the menu to the viewport height. This will allow us
-    // to hijack the scrolling of the entire viewport and apply it to the menu
-    // only.
-    var menu = blog.fx.getMenuElement(),
-        postList = menu.querySelector( '#posts-items' ),
-        viewportHeight = Math.max( document.documentElement.clientHeight, window.innerHeight || 0 );
+    // To make sure we are not preventing mobile users from using the site, we
+    // require Hammer and Modernizr to be at least present. This will allow us
+    // to fallback to a "regular" scrolling menu in case of errors - which is
+    // ugly, but at least works.
+    if ( window.Modernizr !== undefined && window.Hammer !== undefined ) {
+      // Set the height of the menu to the viewport height. This will allow us
+      // to hijack the scrolling of the entire viewport and apply it to the menu
+      // only.
+      var menu = blog.fx.getMenuElement(),
+          postList = menu.querySelector( '#posts-items' ),
+          viewportHeight = Math.max( document.documentElement.clientHeight, window.innerHeight || 0 );
 
-    // Set the menu height.    
-    menu.style.height = viewportHeight + 'px';
+      // Set the menu height.
+      menu.style.height = viewportHeight + 'px';
 
-    // Make sure we listen to the correct event. The new standard is
-    // "wheel", but the old drafted name was "mousewheel". We do not get here
-    // unless the browser supports it, we can safely assume one or the other.
-    var eventType = 'onwheel' in document.createElement( 'div' ) ? 'wheel' : 'mousewheel';
+      // Make sure we listen to the correct event. The new standard is
+      // "wheel", but the old drafted name was "mousewheel". We do not get here
+      // unless the browser supports it, we can safely assume one or the other.
+      var eventType = 'onwheel' in document.createElement( 'div' ) ? 'wheel' : 'mousewheel';
 
-    // Listen to scroll events. If the menu is open, we scroll the menu content
-    // only.
-    document.addEventListener( eventType, function( e ) {
-      if ( blog.fx.isMenuOpen() ) {
-        e.stopPropagation();
-        e.preventDefault();
-        e.cancelBubble = true;
+      // Listen to scroll events. If the menu is open, we scroll the menu content
+      // only.
+      document.addEventListener( eventType, function( e ) {
+        if ( blog.fx.isMenuOpen() ) {
+          e.stopPropagation();
+          e.preventDefault();
+          e.cancelBubble = true;
 
-        postList.scrollTop += e.deltaY !== undefined ? e.deltaY : e.wheelDeltaY;
+          postList.scrollTop += e.deltaY !== undefined ? e.deltaY : e.wheelDeltaY;
+        }
+      }, false );
+
+      // If we are on a touch enabled device, use Hammer to hijack the pan and
+      // swipe gestures.
+      if ( Modernizr.touch ) {
+        var mc = new Hammer( document.body );
+
+        // Activate the pan event.
+        mc.get( 'pan' ).set({
+          direction: Hammer.DIRECTION_ALL
+        });
+
+        mc.on( 'panup pandown', function( e ) {
+          if ( blog.fx.isMenuOpen() ) {
+            e.preventDefault();
+            e.cancelBubble = true;
+
+            postList.scrollTop -= e.deltaY;
+          }
+        });
       }
-    }, false );
+    }
   };
 
   // On clicking on a tag, we activate the menu display for that tag only.

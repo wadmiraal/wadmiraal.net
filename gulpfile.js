@@ -15,7 +15,7 @@ var gulp      = require( 'gulp' ),
 gulp.task( 'compass', function() {
   gulp.src( './sass/*.scss' )
     .pipe( compass({
-      style: 'compressed',
+      style: 'expanded',
       sass: 'sass',
       css: 'css',
       image: 'jekyll-src/img'
@@ -27,7 +27,7 @@ gulp.task( 'compass', function() {
 gulp.task( 'css-min', function() {
   gulp.src([ './css/**/*.css', './css/*.css' ])
     .pipe( concat( 'all.min.css' ) )
-    .pipe( minifyCSS() )
+    //.pipe( minifyCSS() )
     .pipe( gulp.dest( './jekyll-src/css' ) );
 });
 
@@ -58,4 +58,4 @@ gulp.task( 'images', function() {
 });
 
 // Default tasks.
-gulp.task( 'default', [ 'compass', 'css-min', 'js-min', 'images' ]);
+gulp.task( 'default', [ 'compass', 'css-min', 'js-min', 'images', 'layouts' ]);
