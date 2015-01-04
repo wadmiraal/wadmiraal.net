@@ -63,11 +63,32 @@
 
   // Activate scrolling.
   blog.fx.activateScroll = function() {
-    if ( window.tinyscrollbar !== undefined ) {
-      var menu = document.getElementById( 'scroll-wrapper' );
-      menu.classList.add( 'js-scroll-enabled' );
-      tinyscrollbar( menu );
-    }
+    // Set the height of the menu to the viewport height. This will allow us
+    // to hijack the scrolling of the entire viewport and apply it to the menu
+    // only.
+    var menu = blog.fx.getMenuElement(),
+        postList = menu.querySelector( '#posts-items' ),
+        viewportHeight = Math.max( document.documentElement.clientHeight, window.innerHeight || 0 );
+
+    // Set the menu height.    
+    menu.style.height = viewportHeight + 'px';
+
+    // Make sure we listen to the correct event. The new standard is
+    // "wheel", but the old drafted name was "mousewheel". We do not get here
+    // unless the browser supports it, we can safely assume one or the other.
+    var eventType = 'onwheel' in document.createElement( 'div' ) ? 'wheel' : 'mousewheel';
+
+    // Listen to scroll events. If the menu is open, we scroll the menu content
+    // only.
+    window.addEventListener( eventType, function( e ) {
+      if ( blog.fx.isMenuOpen() ) {
+        e.stopPropagation();
+        e.preventDefault();
+        e.cancelBubble = true;
+
+        postList.scrollTop += e.deltaY !== undefined ? e.deltaY : e.wheelDeltaY;
+      }
+    }, false );
   };
 
   // On clicking on a tag, we activate the menu display for that tag only.
@@ -102,6 +123,9 @@
   blog.fx.openMenu = function() {
     var menu = blog.fx.getMenuElement();
     menu.classList.add( 'open' );
+
+    // Scroll to the top of the page.
+    window.scrollTo( 0, 0 );
   };
 
   // Close the menu.
@@ -111,6 +135,12 @@
 
     // Disable the "show tags".
     blog.fx.hidePostsTaggedWith();
+  };
+
+  // Is the menu open?
+  blog.fx.isMenuOpen = function() {
+    var menu = blog.fx.getMenuElement();
+    return menu.classList.contains( 'open' );
   };
 
   // Show legend for a specific tag.
@@ -153,7 +183,7 @@
   blog.fx.init = function() {
     // Check if the browser is compatible with what we want to do. If not, all
     // the JS enhancements will simply be ignored.
-    blog.fx.isCompatible = blog.fx.isCompatible || ( document.querySelectorAll && document.body.classList && document.body.classList.add && document.body.classList.remove );
+    blog.fx.isCompatible = blog.fx.isCompatible || ( document.querySelectorAll && document.querySelector && document.body.classList && document.body.classList.add && document.body.classList.remove && ( 'onwheel' in document.createElement( 'div' ) ? true : document.onmousewheel !== undefined ? true : false ) );
 
     if ( blog.fx.isCompatible ) {
       blog.fx.setJSFlag();

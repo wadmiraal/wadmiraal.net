@@ -39,7 +39,7 @@
 
     article {
       // Trick to enable hardware acceleration for the blur. Otherwise,
-      // performance is really bad.s
+      // performance is really bad.
       @include translate3d(0, 0, 0);
       @include filter(blur(5px));
     }

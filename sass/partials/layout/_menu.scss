@@ -9,11 +9,11 @@
 
   position: absolute;
   top: 0;
-  bottom: 0;
   z-index: 100;
 
   background: $light-gray;
 
+  @include box-sizing(border-box);
   @include box-shadow(5px 0 5px rgba(0, 0, 0, .7));
   @include transition-property(left);
   @include transition-duration(.5s);
@@ -42,6 +42,14 @@
 
   .site-menu {
     left: -($menu-width + 10px);
+
+    overflow: hidden;
+
+    ul {
+      height: 100%;
+
+      overflow: hidden;
+    }
   }
 
   .site-menu.open {
