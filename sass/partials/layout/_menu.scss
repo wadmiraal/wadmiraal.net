@@ -11,12 +11,18 @@
   top: 0;
   z-index: 100;
 
-  background: $light-gray;
+  background: url(../img/header-light.png) top left repeat-x $light-gray;
 
   @include box-sizing(border-box);
   @include box-shadow(5px 0 5px rgba(0, 0, 0, .7));
   @include transition-property(left);
   @include transition-duration(.5s);
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    // We use !important to override some JS rules necessary for larger screens.
+    bottom: 0 !important;
+    height: auto !important;
+  }
 
   ul {
     margin: 0;
@@ -49,6 +55,10 @@
       height: 100%;
 
       overflow: hidden;
+      
+      @media screen and (max-width: $breakpoint-mobile) {
+        overflow: scroll;
+      }
     }
   }
 

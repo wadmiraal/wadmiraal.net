@@ -63,11 +63,7 @@
 
   // Activate scrolling.
   blog.fx.activateScroll = function() {
-    // To make sure we are not preventing mobile users from using the site, we
-    // require Hammer and Modernizr to be at least present. This will allow us
-    // to fallback to a "regular" scrolling menu in case of errors - which is
-    // ugly, but at least works.
-    if ( window.Modernizr !== undefined && window.Hammer !== undefined ) {
+    if ( 'onwheel' in document.createElement( 'div' ) ? true : document.onmousewheel !== undefined ? true : false ) {
       // Set the height of the menu to the viewport height. This will allow us
       // to hijack the scrolling of the entire viewport and apply it to the menu
       // only.
@@ -94,26 +90,6 @@
           postList.scrollTop += e.deltaY !== undefined ? e.deltaY : e.wheelDeltaY;
         }
       }, false );
-
-      // If we are on a touch enabled device, use Hammer to hijack the pan and
-      // swipe gestures.
-      if ( Modernizr.touch ) {
-        var mc = new Hammer( document.body );
-
-        // Activate the pan event.
-        mc.get( 'pan' ).set({
-          direction: Hammer.DIRECTION_ALL
-        });
-
-        mc.on( 'panup pandown', function( e ) {
-          if ( blog.fx.isMenuOpen() ) {
-            e.preventDefault();
-            e.cancelBubble = true;
-
-            postList.scrollTop -= e.deltaY;
-          }
-        });
-      }
     }
   };
 
@@ -209,7 +185,7 @@
   blog.fx.init = function() {
     // Check if the browser is compatible with what we want to do. If not, all
     // the JS enhancements will simply be ignored.
-    blog.fx.isCompatible = blog.fx.isCompatible || ( document.querySelectorAll && document.querySelector && document.body.classList && document.body.classList.add && document.body.classList.remove && ( 'onwheel' in document.createElement( 'div' ) ? true : document.onmousewheel !== undefined ? true : false ) );
+    blog.fx.isCompatible = blog.fx.isCompatible || ( document.querySelectorAll && document.querySelector && document.body.classList && document.body.classList.add && document.body.classList.remove );
 
     if ( blog.fx.isCompatible ) {
       blog.fx.setJSFlag();
