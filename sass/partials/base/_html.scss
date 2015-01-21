@@ -4,9 +4,14 @@
  */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400);
+@import url(http://i.icomoon.io/public/temp/e8634bb515/UntitledProject/style.css);
+
+html {
+  min-height: 100%;
+}
 
 body {
-  position: relative;
+  min-height: 100%;
 
   font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
