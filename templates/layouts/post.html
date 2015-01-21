@@ -24,13 +24,13 @@
       <ul class="post__footer__prev-next">
         {% if page.previous %}
           <li class="post__footer__prev-next__prev">
-            <a href="/{{ page.previous.url }}" title="Previously: &ldquo;{{ page.previous.title }}&rdquo;">Previous post</a>
+            <a href="{{ page.previous.url }}" title="Previously: &ldquo;{{ page.previous.title }}&rdquo;">Previous post</a>
           </li>
         {% endif %}
 
         {% if page.next %}
           <li class="post__footer__prev-next__next">
-            <a href="/{{ page.next.url }}" title="Coming up: &ldquo;{{ page.next.title }}&rdquo;">Next post</a>
+            <a href="{{ page.next.url }}" title="Coming up: &ldquo;{{ page.next.title }}&rdquo;">Next post</a>
           </li>
         {% endif %}
       </ul>
