@@ -4,8 +4,8 @@ description: "A lot of software suffers from feature bloat, resulting in slow, u
 layout: post
 favorite: true
 tags:
-  - Rant
   - Email
+  - Rant
   - Wisdom
 --- 
 

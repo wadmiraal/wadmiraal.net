@@ -3,9 +3,9 @@ title: "Think Thrice Before Hacking Drupal (core and/or modules)"
 description: "Just because Drupal is Open Source and can be adapated to your needs does not mean you must do so. Some stupid, but common mistakes and their solutions."
 layout: post
 tags:
+  - Drupal
   - Rant
   - Wisdom
-  - Drupal
 ---
 
 Companies love Open Source Software. They do. Sure, you might think many think of OSS as buggy, unstable or insecure (and you're right, some do), but more and more companies embrace OSS.

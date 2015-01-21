@@ -4,8 +4,8 @@ description: "Writing unit tests in Drupal is slow and complex, which means many
 layout: post
 favorite: false
 tags:
-  - Wisdom
   - Drupal
+  - Wisdom
   - PHP
 ---
 

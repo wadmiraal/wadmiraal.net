@@ -3,8 +3,8 @@ title: "Keep it Simple and Stupid, or why there's nothing like a good book"
 description: "Why I love books and what we can learn from great authors."
 layout: post
 tags:
-  - Rant
   - Wisdom
+  - Rant
 ---
 
 Keep it simple and stupid. 

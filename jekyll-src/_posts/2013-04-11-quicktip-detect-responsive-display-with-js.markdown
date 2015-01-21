@@ -3,6 +3,7 @@ title: "Detect the current CSS3 media query rule with Javascript"
 description: "Sometimes, we need to detect in what display 'mode' we are with JS. Classical methods involve detecting screen size or user agents, but there is a far simpler technique."
 layout: post
 tags:
+  - CSS
   - Javascript
 ---
 

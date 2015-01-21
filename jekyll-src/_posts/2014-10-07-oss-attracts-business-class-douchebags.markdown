@@ -4,8 +4,8 @@ description: "The Open Source community has changed. Where there were once passi
 layout: post
 favorite: false
 tags:
-  - Rant
   - Open Source
+  - Rant
 ---
 
 ***Note: Tildeslash [retracted their claim](https://github.com/github/dmca/blob/master/2014-10-06-tildeslash-retraction.md).***

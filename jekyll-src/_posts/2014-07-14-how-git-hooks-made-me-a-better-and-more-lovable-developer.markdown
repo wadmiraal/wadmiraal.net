@@ -4,8 +4,8 @@ description: "Git are an incredible way to enhance your development workflow, en
 layout: post
 favorite: false
 tags:
-  - Wisdom
   - Git
+  - Wisdom
 ---
 
 I've, for a very long time, been telling myself *&ldquo;I really should enable some Git hooks here to (run unit tests|spell check my commit message|some other task)&rdquo;*.

@@ -4,10 +4,10 @@ description: "10 quick tips for Drupal developers, based on my 6 year long exper
 layout: post
 favorite: false
 tags:
+  - Drupal
   - Wisdom
   - Git
   - PHP
-  - Drupal
 ---
 
 You may have started developing Drupal platforms recently, or you may even have been doing so for a few years. Even after 6 years, I still learn about Drupal almost every day. It's such a vast and rich platform, it's hard to know everything.
