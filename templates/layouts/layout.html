@@ -18,12 +18,9 @@
 <nav id="posts-menu" class="site-menu" data-show-posts-tagged-with="">
   <div id="posts-tag-legends" class="site-menu__color-code-legends" data-show-legend-for="">
     <ul>
-
-      <li class="site-menu__color-code-legends__legend tag--border" data-tags="drupal">Drupal</li>
-      <li class="site-menu__color-code-legends__legend tag--border" data-tags="js">JS</li>
-      <li class="site-menu__color-code-legends__legend tag--border" data-tags="wisdom">Wisdom</li>
-      <li class="site-menu__color-code-legends__legend tag--border" data-tags="performance-and-scalability">Performance and Scalability</li>
-
+      {% for tagobj in site.tags %}
+        <li class="site-menu__color-code-legends__legend tag--border" data-tags="{{ tagobj[0] | downcase | replace:' ','-' }}">{{ tagobj[0] }}</li>
+      {% endfor %}
     </ul>
   </div>
 
