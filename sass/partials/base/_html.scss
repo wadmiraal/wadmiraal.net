@@ -16,3 +16,20 @@ body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
 }
+
+a {
+  color: $beige;
+}
+
+blockquote {
+  margin-left: 0;
+  padding-left: 1em;
+
+  font-style: italic;
+
+  border-left: 3px solid $header-color;
+
+  em {
+    font-style: normal;
+  }
+}
