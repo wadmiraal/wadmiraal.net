@@ -27,7 +27,7 @@ gulp.task( 'compass', function() {
 gulp.task( 'css-min', function() {
   gulp.src([ './css/**/*.css', './css/*.css' ])
     .pipe( concat( 'all.min.css' ) )
-    //.pipe( minifyCSS() )
+    .pipe( minifyCSS() )
     .pipe( gulp.dest( './jekyll-src/css' ) );
 });
 
@@ -35,7 +35,7 @@ gulp.task( 'css-min', function() {
 gulp.task( 'js-min', function() {
   gulp.src([ './js/vendor/**/*.js', './js/*.js' ])
     .pipe( concat( 'all.min.js' ) )
-    //.pipe( uglify() )
+    .pipe( uglify() )
     .pipe( gulp.dest( './jekyll-src/js' ) );
 });
 
