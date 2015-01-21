@@ -3,8 +3,15 @@
  * Defines miscellaneous styles.
  */
 
-.icon::after {
-  content: 'IC';
+.icon {
+  width: 1em;
+  display: block;
+
+  visibility: hidden;
+}
+
+.icon::before {
+  visibility: visible;
 }
 
 @each $tag in $tags {

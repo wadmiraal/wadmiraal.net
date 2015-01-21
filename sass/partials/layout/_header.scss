@@ -7,10 +7,17 @@
   padding: 25px;
   height: $header-height;
 
+  font-size: 1.4em;
+
   background: $header-color;
 
   z-index: 100;
   @include box-sizing(border-box);
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 .site-header__menu-toggle {
