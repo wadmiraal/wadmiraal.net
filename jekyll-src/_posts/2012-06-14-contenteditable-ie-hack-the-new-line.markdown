@@ -4,9 +4,7 @@ description: "For SEO"
 layout: post
 tags:
   - Javascript
-  - Code
   - Rant
-  - Useful
 ---
 
 Lately I've been busy creating an in-house spellchecker for our company. When doing so, we encountered a weird bug that had something to do with IE's render engine.

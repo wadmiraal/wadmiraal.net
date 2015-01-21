@@ -4,9 +4,8 @@ description: "Some tips and tricks to make awesome, flexible and scalable themes
 layout: post
 tags:
   - Drupal
-  - HTML
   - CSS
-  - Theming
+  - Wisdom
 --- 
 
 I've seen this more often than not: Drupal themers tend to provide their own markup. They overwrite templates, use hacky approaches for beating the Drupal core HTML into submission or simply <abbr title="Hack core">kill a few kittens</abbr>. 

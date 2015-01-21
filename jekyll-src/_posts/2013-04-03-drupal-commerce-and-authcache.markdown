@@ -4,7 +4,6 @@ description: "Drupal Commerce does not work well with caching solutions, as many
 layout: post
 tags:
   - Drupal
-  - Code
   - Performance and Scalability
 ---
 

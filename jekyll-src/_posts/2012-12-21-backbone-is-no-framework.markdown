@@ -4,7 +4,6 @@ description: "Discussions rage online on wether Backbone is a MVC, MV*, etc, fra
 layout: post
 tags:
   - Javascript
-  - Code
   - Rant
 ---
 

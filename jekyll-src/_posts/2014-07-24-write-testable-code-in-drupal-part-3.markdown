@@ -5,9 +5,8 @@ layout: post
 favorite: false
 tags:
   - Wisdom
-  - Code
+  - PHP
   - Drupal
-  - TDD
 ---
 
 In [part 2](/lore/2014/07/23/write-testable-code-in-drupal-part-2/), I discussed how to apply function purity to Drupal code to speed up our unit tests. In part 3, I want to explore some more, real-world examples, namely using database results and exposing your own hooks.

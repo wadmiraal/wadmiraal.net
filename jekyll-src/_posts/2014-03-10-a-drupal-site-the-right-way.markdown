@@ -4,7 +4,7 @@ description: "Many projects tend to mix up some important steps in a Drupal proj
 layout: post
 tags:
   - Drupal
-  - Project management
+  - Wisdom
   - Rant
 --- 
 

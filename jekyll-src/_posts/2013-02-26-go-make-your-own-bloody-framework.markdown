@@ -3,7 +3,6 @@ title: "Go make your own bloody framework"
 description: "Why creating your own framework will help you become a better programmer."
 layout: post
 tags:
-  - Code
   - Wisdom
 ---
 

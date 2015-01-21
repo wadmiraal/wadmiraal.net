@@ -5,7 +5,6 @@ layout: post
 favorite: false
 tags:
   - Javascript
-  - Code
   - For lolz
 ---
 

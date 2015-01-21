@@ -14,7 +14,7 @@
   visibility: visible;
 }
 
-@each $tag in $tags {
+@each $tag in map_keys($tag-color) {
   // The first tag in the data list is the "main" tag.
   [data-tags^="#{$tag}"].tag--color, [data-tag="#{$tag}"].tag--color {
     color: map-get($tag-color, $tag);

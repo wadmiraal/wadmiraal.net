@@ -3,10 +3,7 @@ title: "Get started with Compass"
 description: "Compass is your new best friend. Some tips to get started."
 layout: post
 tags:
-  - SASS
-  - HTML
   - CSS
-  - Compass
 ---
 
 One of the best tools I started using beginning 2013 is [Compass](http://compass-style.org/). I love it, and miss it dearly when I have to work on a project using plain-ol&rsquo; CSS.

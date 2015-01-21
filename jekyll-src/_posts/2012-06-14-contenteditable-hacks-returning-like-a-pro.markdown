@@ -4,8 +4,6 @@ description: "For SEO"
 layout: post
 tags:
   - Javascript
-  - Code
-  - Useful
 ---
 
 Lately I've been busy creating an in-house spellchecker for our company.

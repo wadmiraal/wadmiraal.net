@@ -4,9 +4,8 @@ description: "Some quick thoughts and tips about Drupal theming."
 layout: post
 tags:
   - Drupal
-  - HTML
   - CSS
-  - Theming
+  - Wisdom
 ---
 
 As a Drupal themer, I have had this habit for years of creating my own templates for about anything, every single project. Nodes, blocks, fields, views, etc. Maybe you did so as well. 

@@ -4,7 +4,6 @@ description: "Little rant about the PHP language. Why it's so great and so terri
 layout: post
 tags:
   - PHP
-  - Code
   - Rant
 ---
 

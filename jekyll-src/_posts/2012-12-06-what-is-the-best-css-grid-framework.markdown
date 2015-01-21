@@ -2,10 +2,7 @@
 title: "What's the best CSS grid out there ?"
 layout: post
 tags:
-  - Code
   - CSS
-  - Design
-  - Responsive
 ---
 Just my 2 cents...
 

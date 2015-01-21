@@ -6,7 +6,6 @@ favorite: false
 tags:
   - Rant
   - Open Source
-  - Bold assertions
 ---
 
 ***Note: Tildeslash [retracted their claim](https://github.com/github/dmca/blob/master/2014-10-06-tildeslash-retraction.md).***

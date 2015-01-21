@@ -55,7 +55,7 @@
       height: 100%;
 
       overflow: hidden;
-      
+
       @media screen and (max-width: $breakpoint-mobile) {
         overflow: scroll;
       }
@@ -78,7 +78,7 @@
 
     // If the parent has the directive to show a specific tag, we activate all
     // the borders for posts tagged with that tag.
-    @each $tag in $tags {
+    @each $tag in map_keys($tag-color) {
       [data-show-posts-tagged-with="#{$tag}"] &[data-tags~="#{$tag}"] {
         border-right-width: 10px !important;
       }
@@ -93,7 +93,7 @@
     }
 
     // However, if we show tagged posts, we disable the border.
-    @each $tag in $tags {
+    @each $tag in map_keys($tag-color) {
       [data-show-posts-tagged-with="#{$tag}"] & a {
         border-right-width: 0;
       }
@@ -133,7 +133,7 @@
   }
 
   // If the parent has the directive to show a specific tag, we activate it.
-  @each $tag in $tags {
+  @each $tag in map_keys($tag-color) {
     // If we must show the legend for the active post.
     [data-show-legend-for="#{$tag}"] &[data-tags="#{$tag}"] {
       display: block;

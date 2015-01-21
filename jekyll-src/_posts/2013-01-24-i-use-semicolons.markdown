@@ -4,7 +4,6 @@ description: "Why I use semicolons, and how this is related to some idiot-moron 
 layout: post
 tags:
   - Javascript
-  - Code
   - For lolz
   - Rant
 ---

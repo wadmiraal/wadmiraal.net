@@ -4,7 +4,7 @@ description: "A quick post about 5 common Drupal pitfalls or bad design decision
 layout: post
 tags:
   - Drupal
-  - Code
+  - PHP
   - Wisdom
 ---
 

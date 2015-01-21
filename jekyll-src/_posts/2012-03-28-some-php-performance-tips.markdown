@@ -4,9 +4,7 @@ description: "For SEO"
 layout: post
 tags:
   - PHP
-  - Code
-  - Performance
-  - Bold assertions
+  - Performance and Scalability
 ---
 
 I sometimes run some &laquo;scientific&raquo; (read &laquo;completely biased&raquo;) benchmarking for my PHP code to check for the most optimized way of writing some expression. But I keep on forgetting. So this is the place where I'm going to keep some references.
