@@ -1,0 +1,6 @@
+
+# Redirect old tag pages.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^tag/(.*)$ /index.html?show_tag=$1 [R=301,NC,L]
+</IfModule>

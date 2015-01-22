@@ -121,6 +121,22 @@
     menu.setAttribute( 'data-show-posts-tagged-with', '' );
   };
 
+  // Redirect the old tag pages to the front page, opening
+  // the menu and showing all posts tagged with that specific tag.
+  blog.fx.handleTagRedirection = function() {
+    // Check if we have a show_tag GET parameter in the URL. If so,
+    // we are dealing with an old page being redirected.
+    if ( /show_tag=/.test( location.search ) ) {
+      var tag = decodeURIComponent(location.search.split( 'show_tag=' )[1].split( '&' )[0]);
+
+      // Convert the tag to our new standard.
+      tag = tag.toLowerCase().replace( /\s/g, '-' );
+
+      blog.fx.openMenu();
+      blog.fx.showPostsTaggedWith( tag );
+    }
+  };
+
   // Open the menu.
   blog.fx.openMenu = function() {
     var menu = blog.fx.getMenuElement();
@@ -193,6 +209,7 @@
       blog.fx.activatePostsHover();
       blog.fx.activateTagLinks( document.getElementById( 'site-content' ) );
       blog.fx.activateScroll();
+      blog.fx.handleTagRedirection();
     }
   };
 

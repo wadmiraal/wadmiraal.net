@@ -17,3 +17,4 @@ jekyll-src/*
 !jekyll-src/about.html
 !jekyll-src/feed.xml
 !jekyll-src/index.html
+!jekyll-src/.htaccess

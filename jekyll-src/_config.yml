@@ -1,5 +1,6 @@
 url: "http://wadmiraal.net/"
 markdown: rdiscount
+include: [ '.htaccess' ]
 permalink: /lore/:year/:month/:day/:title
 paginate: 40
 paginate_path: '/lore/page:num/'
