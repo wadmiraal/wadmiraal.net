@@ -14,9 +14,29 @@
   blog.pushState.activateLinks = function( context ) {
     // We only handle internal links. Links that point to other websites
     // are ignored.
-    var links = context.querySelectorAll( 'a[href^="/"]' );
+    var links = context.querySelectorAll( 'a[href^="/"]' ),
+        ignore = [ '/feed.xml' ];
 
-    console.log(links)
+    for ( var i = links.length - 1; i >= 0; --i ) {
+      (function( link ) {
+        var href = link.getAttribute( 'href' );
+
+        if ( ignore.indexOf( href ) === -1 ) {
+          link.addEventListener( 'click', function( e ) {
+            /*e.preventDefault();
+
+            blog.pushState.ajax({
+              url: link.href,
+              success: function( xhr, e ) {
+                xhr.response
+              }
+            });
+
+            return false;*/
+          }, false );
+        }
+      })( links[ i ] );
+    }
   };
 
   // Provide a simple AJAX mechanism.
@@ -57,9 +77,9 @@
   blog.pushState.init = function() {
     // Check if the browser is compatible with what we want to do. If not, all
     // the JS enhancements will simply be ignored.
-    blog.pushState.isCompatible = blog.pushState.isCompatible || ( document.querySelectorAll && document.body.classList && document.body.classList.add && document.body.classList.remove && XMLHttpRequest !== undefined && typeof new XMLHttpRequest().responseType === 'string' );
+    blog.pushState.isCompatible = blog.pushState.isCompatible || ( document.querySelectorAll && document.body.classList && document.body.classList.add && document.body.classList.remove && history.pushState && XMLHttpRequest !== undefined && typeof new XMLHttpRequest().responseType === 'string' );
 
-    if ( blog.pushState.compatible ) {
+    if ( blog.pushState.isCompatible ) {
       // Activate all links in the document scope for PushState fetching.
       blog.pushState.activateLinks( document );
     }

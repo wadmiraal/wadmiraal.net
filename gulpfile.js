@@ -18,7 +18,6 @@ gulp.task( 'compass', function() {
       style: 'expanded',
       sass: 'sass',
       css: 'css',
-      image: 'jekyll-src/img'
     }))
     .pipe( gulp.dest( 'css' ) );
 });
