@@ -1,6 +1,15 @@
+SetEnv PHP_VER 5_TEST
+SetEnv REGISTER_GLOBALS 0
 
-# Redirect old tag pages.
 <IfModule mod_rewrite.c>
+  RewriteEngine on
+
+  # Redirect www. to base.
+  RewriteCond %{HTTP_HOST} ^www\.wadmiraal\.net$ [NC]
+  RewriteRule ^(.*)$ http://wadmiraal.net/$1 [L,R=301]
+
+  # Redirect old tag pages.
   RewriteEngine On
   RewriteRule ^tag/(.*)$ /index.html?show_tag=$1 [R=301,NC,L]
 </IfModule>
+
