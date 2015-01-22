@@ -20,6 +20,17 @@
       {{ content }}
     </div>
 
+    <div id="disqus_thread" class="post__comments"></div>
+
+    <script type="text/javascript">
+      var disqus_shortname = 'wadmiraalnet';
+      (function() {
+          var dsq = document.createElement( 'script' ); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          document.getElementById( 'disqus_thread' ).appendChild( dsq );
+      })();
+    </script>
+
     <footer class="post__footer">
       <ul class="post__footer__prev-next">
         {% if page.previous %}
