@@ -57,5 +57,11 @@ gulp.task( 'images', function() {
     .pipe( gulp.dest( './jekyll-src/img' ));
 });
 
+// Move fonts.
+gulp.task( 'fonts', function() {
+  gulp.src( './css/fonts/*' )
+    .pipe( gulp.dest( './jekyll-src/css/fonts' ));
+});
+
 // Default tasks.
-gulp.task( 'default', [ 'compass', 'css-min', 'js-min', 'images', 'layouts' ]);
+gulp.task( 'default', [ 'compass', 'css-min', 'js-min', 'images', 'fonts', 'layouts' ]);
