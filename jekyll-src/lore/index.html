@@ -3,26 +3,8 @@ layout: page
 title: "Lore"
 ---
 
-<div id="articles">
-  {% for post in paginator.posts %}
-    <article>
-      <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
-
-      {% if post.teaser %}
-        <div class="teaser">
-          {{ post.teaser }}
-        </div>
-      {% endif %}
-    </article>
-  {% endfor %}
-
-  <div id="article-pager">
-    {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page }}">Previous</a>
-    {% endif %}
-
-    {% if paginator.next_page %}
-      <a href="{{ paginator.next_page }}">Next</a>
-    {% endif %}
-  </div>
-</div>
+{% for post in paginator.posts %}
+  <article>
+    <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+  </article>
+{% endfor %}
