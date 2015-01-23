@@ -10,7 +10,7 @@ Posts are licensed under [CC BY-SA 3.0](http://creativecommons.org/licenses/by-s
 
 The blog is fully static. Except a custom build of [Modernizr](http://modernizr.com/) and of [Prism](http://prismjs.com/) (including only the relevant modules), as well as [Normalize](http://necolas.github.io/normalize.css/), the site uses no libraries.
 
-My idea was to have a site that was blazingly fast and super lightweight. The average weight of a full page is only 100Kb (not counting the Disqus plugin).
+My idea was to have a site that was blazingly fast and super lightweight. The average weight of a full page is only 100Kb (not counting the Disqus plugin, to be fair).
 
 Further speeding things up is the usage of Pushstate to load only the body of the page, to even more improve the overall speed (still in progress).
 
