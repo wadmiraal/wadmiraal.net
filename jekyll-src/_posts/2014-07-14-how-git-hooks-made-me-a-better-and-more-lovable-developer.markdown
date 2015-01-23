@@ -4,8 +4,9 @@ description: "Git are an incredible way to enhance your development workflow, en
 layout: post
 favorite: false
 tags:
-  - Git
   - Wisdom
+  - Code
+  - Git
 ---
 
 I've, for a very long time, been telling myself *&ldquo;I really should enable some Git hooks here to (run unit tests|spell check my commit message|some other task)&rdquo;*.
@@ -61,10 +62,13 @@ This is a nifty pre-commit hook I've set up (and set up for all PHP projects).
 <pre><code class="language-bash">
 git diff --cached --name-only | while read FILE; do
 if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
-    php -l "$FILE" 1> /dev/null
-    if [ $? -ne 0 ]; then
-        echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
-        exit 1
+    # Courtesy of swytsh from the comments below.
+    if [[ -f $FILE ]]; then
+        php -l "$FILE" 1> /dev/null
+        if [ $? -ne 0 ]; then
+            echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
+            exit 1
+        fi
     fi
 fi
 done
@@ -86,6 +90,13 @@ if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
 </code></pre>
 
 We then pattern match the file name. If it ends in one of the listed extensions (note I'm listing Drupal file extensions as well), we...
+
+<pre><code class="language-bash">
+if [[ -f $FILE ]]; then
+
+</code></pre>
+
+Check if it exists. When removing a file from Git, ``git diff --cached --name-only`` will still list those removed files. However, the PHP linter will still try to test it, which will result in a Fatal Error. Which brings us to...
 
 <pre><code class="language-bash">
 php -l "$FILE" 1> /dev/nul
@@ -116,6 +127,7 @@ exit 1
 We exit with &ldquo;something&rdquo;. Anything would do&thinsp;&mdash;&thinsp;we're just telling Git to abort the commit.
 
 <pre><code class="language-bash">
+        fi
     fi
 fi
 done
@@ -229,29 +241,33 @@ So my above example looks like this:
 
 git diff --cached --name-only | while read FILE; do
 if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
-    php -l "$FILE" 1> /dev/null
-    if [ $? -ne 0 ]; then
-        echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
-        exit 1
-    else
-        /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
+    if [[ -f $FILE ]]; then
+        php -l "$FILE" 1> /dev/null
         if [ $? -ne 0 ]; then
-            echo -e "\e[1;31m\tUnit tests failed ! Aborting commit." >&2
-            exit 1;
-        else
-            /home/wadmiraal/.composer/vendor/bin/phpcs --standard=/home/wadmiraal/.drupal/modules/coder/coder_sniffer/Drupal "$FILE" 1> /dev/null
-            if [ $? -ne 0 ]; then
-                echo -e "\e[1;33m\tWarning, some files do not respecting the Drupal coding standards. Commit was not aborted.\e[0m" >&2
-            fi
-
-            RESULT=$(grep "dpm(" "$FILE")
-            if [ ! -z $RESULT ]; then
-                echo -e "\e[1;33m\tWarning, the commit contains a call to dpm(). Commit was not aborted, however.\e[0m" >&2
-            fi
+            echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
+            exit 1
         fi
     fi
 fi
 done
+
+if [ $? -eq 0 ]; then
+    /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
+    if [ $? -ne 0 ]; then
+        echo -e "\e[1;31m\tUnit tests failed ! Aborting commit." >&2
+        exit 1;
+    else
+        /home/wadmiraal/.composer/vendor/bin/phpcs --standard=/home/wadmiraal/.drupal/modules/coder/coder_sniffer/Drupal "$FILE" 1> /dev/null
+        if [ $? -ne 0 ]; then
+            echo -e "\e[1;33m\tWarning, some files do not respecting the Drupal coding standards. Commit was not aborted.\e[0m" >&2
+        fi
+
+        RESULT=$(grep "dpm(" "$FILE")
+        if [ ! -z $RESULT ]; then
+            echo -e "\e[1;33m\tWarning, the commit contains a call to dpm(). Commit was not aborted, however.\e[0m" >&2
+        fi
+    fi
+fi
 
 </code></pre>
 
