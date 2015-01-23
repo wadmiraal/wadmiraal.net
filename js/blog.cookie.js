@@ -31,7 +31,7 @@
 
     question.id = 'cookie-question';
     question.setAttribute( 'class', 'site-cookie-question' );
-    question.innerHTML = "I use <a target='_blank' href='https://www.google.ch/search?q=cookies&tbm=isch'>cookies</a>, just to track visits. No personal details are stored. ";
+    question.innerHTML = "I use <a target='_blank' href='http://www.allaboutcookies.org/'>cookies</a>, just to track visits. No personal details are stored. ";
 
     yes.setAttribute( 'class', 'site-cookie-question__button site-cookie-question__button--yes' );
     yes.setAttribute( 'href', 'javascript:void(0);' );
