@@ -31,10 +31,10 @@
 
     question.id = 'cookie-question';
     question.setAttribute( 'class', 'site-cookie-question' );
-    question.innerHTML = "I use <a target='_blank' href='https://www.google.ch/search?q=cookies&tbm=isch'>cookies</a>, just to track visits. No personal details are stored.";
+    question.innerHTML = "I use <a target='_blank' href='https://www.google.ch/search?q=cookies&tbm=isch'>cookies</a>, just to track visits. No personal details are stored. ";
 
     yes.setAttribute( 'class', 'site-cookie-question__button site-cookie-question__button--yes' );
-    yes.setAttribute( 'href', '#' );
+    yes.setAttribute( 'href', 'javascript:void(0);' );
     yes.innerHTML = 'I accept the cookies. Great blog, by the way.';
     yes.addEventListener( 'click', function() {
       blog.cookie.setValue( 1 );
@@ -47,7 +47,7 @@
     }, false );
 
     no.setAttribute( 'class', 'site-cookie-question__button site-cookie-question__button--no' );
-    no.setAttribute( 'href', '#' );
+    no.setAttribute( 'href', 'javascript:void(0);' );
     no.innerHTML = 'Ah, nope. Stalker.';
 
     no.addEventListener( 'click', function() {
