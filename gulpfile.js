@@ -9,7 +9,8 @@ var gulp      = require( 'gulp' ),
     compass   = require( 'gulp-compass' ),
     concat    = require( 'gulp-concat' ),
     minifyCSS = require( 'gulp-minify-css' ),
-    uglify    = require( 'gulp-uglify' );
+    uglify    = require( 'gulp-uglify' ),
+    shell     = require( 'gulp-shell' );
 
 // Compile the SCSS files using Compass.
 gulp.task( 'compass', function() {
@@ -62,5 +63,18 @@ gulp.task( 'fonts', function() {
     .pipe( gulp.dest( './jekyll-src/css/fonts' ));
 });
 
+// Build Jekyll.
+gulp.task( 'jekyll', shell.task([
+  'jekyll build --source jekyll-src --destination jekyll-src/_site'
+]));
+
+// Serve Jekyll.
+gulp.task( 'serve-jekyll', shell.task([
+  'jekyll serve --source jekyll-src --destination jekyll-src/_site'
+]));
+
+
 // Default tasks.
-gulp.task( 'default', [ 'compass', 'css-min', 'js-min', 'images', 'fonts', 'layouts' ]);
+gulp.task( 'default', [ 'compass', 'css-min', 'js-min', 'images', 'fonts', 'layouts' ] );
+gulp.task( 'build', [ 'compass', 'default', 'jekyll' ] );
+gulp.task( 'serve', [ 'compass', 'default', 'serve-jekyll' ] );

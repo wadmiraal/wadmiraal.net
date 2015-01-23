@@ -7,7 +7,8 @@
     "gulp": "~3.8.10",
     "gulp-compass": "~2.0.2",
     "gulp-minify-css": "~0.3.11",
-    "gulp-concat": "~2.4.1"
+    "gulp-concat": "~2.4.1",
+    "gulp-shell": "~0.2.11"
   },
   "devDependencies": {
     "gulp-compass": "~2.0.2",
