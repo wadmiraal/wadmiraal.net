@@ -5,12 +5,13 @@
  * @link http://gulpjs.com/ See GulpJS for more information @endlink.
  */
 
-var gulp      = require( 'gulp' ),
-    compass   = require( 'gulp-compass' ),
-    concat    = require( 'gulp-concat' ),
-    minifyCSS = require( 'gulp-minify-css' ),
-    uglify    = require( 'gulp-uglify' ),
-    shell     = require( 'gulp-shell' );
+var gulp       = require( 'gulp' ),
+    compass    = require( 'gulp-compass' ),
+    concat     = require( 'gulp-concat' ),
+    minifyCSS  = require( 'gulp-minify-css' ),
+    uglify     = require( 'gulp-uglify' ),
+    shell      = require( 'gulp-shell' ),
+    minifyHTML = require( 'gulp-minify-html' );
 
 // Compile the SCSS files using Compass.
 gulp.task( 'compass', function() {
@@ -42,7 +43,7 @@ gulp.task( 'js-min', function() {
 // Move and minify the layout templates.
 gulp.task( 'layouts', function() {
   gulp.src( './templates/layouts/*.html' )
-    .pipe( gulp.dest( './jekyll-src/_layouts' ));
+    .pipe( gulp.dest( './jekyll-src/_layouts' ) );
 });
 
 // Watch files for changes.
@@ -54,19 +55,25 @@ gulp.task( 'watch', function() {
 // Move images.
 gulp.task( 'images', function() {
   gulp.src( './img/*' )
-    .pipe( gulp.dest( './jekyll-src/img' ));
+    .pipe( gulp.dest( './jekyll-src/img' ) );
 });
 
 // Move fonts.
 gulp.task( 'fonts', function() {
   gulp.src( './css/fonts/*' )
-    .pipe( gulp.dest( './jekyll-src/css/fonts' ));
+    .pipe( gulp.dest( './jekyll-src/css/fonts' ) );
 });
 
 // Build Jekyll.
-gulp.task( 'jekyll', shell.task([
-  'jekyll build --source jekyll-src --destination jekyll-src/_site'
-]));
+gulp.task( 'jekyll', function() {
+  shell.task([
+    'jekyll build --source jekyll-src --destination jekyll-src/_site'
+  ]);
+
+  gulp.src( './jekyll-src/_site/**/*.html' )
+    .pipe( minifyHTML() )
+    .pipe( gulp.dest( './jekyll-src/_site/' ) );
+});
 
 // Serve Jekyll.
 gulp.task( 'serve-jekyll', shell.task([
