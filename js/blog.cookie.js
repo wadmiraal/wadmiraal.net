@@ -40,6 +40,7 @@
       blog.cookie.setValue( 1 );
 
       // Reload page.
+      location.reload();
 
       blog.cookie.hideQuestion();
 
