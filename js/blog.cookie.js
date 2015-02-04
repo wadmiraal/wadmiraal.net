@@ -20,7 +20,7 @@
 
   // Set the cookie value.
   blog.cookie.setValue = function( value ) {
-    document.cookie = 'partyPooper=' + ( value ? 1 : 0 ) + '; expires=Fri, 31 Dec 9999 23:59:59 GMT;';
+    document.cookie = 'partyPooper=' + ( value ? 1 : 0 ) + '; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;';
   };
 
   // Ask the question.
@@ -52,7 +52,7 @@
     no.innerHTML = 'Ah, nope. Stalker.';
 
     no.addEventListener( 'click', function() {
-      blog.cookie.setValue( 0 );      
+      blog.cookie.setValue( 0 );
       blog.cookie.hideQuestion();
       return false;
     }, false );
