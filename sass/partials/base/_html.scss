@@ -32,3 +32,10 @@ blockquote {
     font-style: normal;
   }
 }
+
+@media screen and (max-width: $breakpoint-mobile) {
+
+  :not(pre)>code[class*=language-], pre[class*=language-] {
+    font-size: .65em;
+  }
+}
