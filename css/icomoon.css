@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-ze5zgd');
-	src:url('fonts/icomoon.eot?#iefix-ze5zgd') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-ze5zgd') format('woff'),
-		url('fonts/icomoon.ttf?-ze5zgd') format('truetype'),
-		url('fonts/icomoon.svg?-ze5zgd#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-vg3hq1');
+	src:url('fonts/icomoon.eot?#iefix-vg3hq1') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-vg3hq1') format('woff'),
+		url('fonts/icomoon.ttf?-vg3hq1') format('truetype'),
+		url('fonts/icomoon.svg?-vg3hq1#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -25,6 +25,10 @@
 
 .icon-drupal:before {
 	content: "\e600";
+}
+
+.icon-drupal2:before {
+	content: "\e601";
 }
 
 .icon-newspaper:before {
