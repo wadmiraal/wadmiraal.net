@@ -1,8 +1,0 @@
-url: "http://wadmiraal.net/"
-markdown: rdiscount
-permalink: /lore/:year/:month/:day/:title
-paginate: 40
-paginate_path: '/lore/page:num/'
-favorite: false
-name: Wouter Admiraal's Blog
-description: Thoughts from the strange mind of Wouter Admiraal

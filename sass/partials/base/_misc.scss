@@ -1,0 +1,38 @@
+/**
+ * @file
+ * Defines miscellaneous styles.
+ */
+
+.icon {
+  width: 1em;
+  display: block;
+
+  visibility: hidden;
+}
+
+.icon::before {
+  visibility: visible;
+}
+
+@each $tag in map_keys($tag-color) {
+  // The first tag in the data list is the "main" tag.
+  [data-tags^="#{$tag}"].tag--color, [data-tag="#{$tag}"].tag--color {
+    color: map-get($tag-color, $tag);
+  }
+
+  [data-tags^="#{$tag}"].tag--border, [data-tag="#{$tag}"].tag--border {
+    border-color: map-get($tag-color, $tag);
+  }
+
+  // We override if the data-show-posts-tagged-with attribute is set.
+  [data-show-posts-tagged-with="#{$tag}"] {
+
+    [data-tags~="#{$tag}"].tag--color {
+      color: map-get($tag-color, $tag) !important;
+    }
+
+    [data-tags~="#{$tag}"].tag--border {
+      border-color: map-get($tag-color, $tag) !important;
+    }
+  }
+}

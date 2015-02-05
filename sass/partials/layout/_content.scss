@@ -1,0 +1,58 @@
+/**
+ * @file
+ * Defines the content styles.
+ */
+
+.site-content {
+  padding-left: $menu-width + $default-padding;
+  padding-bottom: $default-padding;
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    padding-right: $default-spacing;
+    padding-left: $default-spacing !important;
+  }
+}
+
+.site-content__post {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.site-content__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0);
+
+  @include transition-property(background-color);
+  @include transition-duration(1s);
+}
+
+.has-js {
+
+  .site-content {
+    padding-left: $default-padding;
+  }
+
+  .site-menu.open ~ .site-content {
+
+    article {
+
+      @media screen and (min-width: $breakpoint-mobile) {
+        // Trick to enable hardware acceleration for the blur. Otherwise,
+        // performance is really bad.
+        @include translate3d(0, 0, 0);
+        @include filter(blur(5px));
+      }
+    }
+
+    .site-content__overlay {
+      right: 0;
+      bottom: 0;
+
+      background-color: rgba(0, 0, 0, .5);
+    }
+  }
+}
+

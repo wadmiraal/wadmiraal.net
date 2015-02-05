@@ -1,0 +1,51 @@
+/**
+ * @file
+ * Defines the cookie tracking question styles.
+ */
+
+.site-cookie-question {
+  position: fixed;
+  padding: .5em;
+
+  color: white;
+  text-align: center;
+  font-size: 0.8em;
+
+  background: $header-color;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  a {
+    color: inherit;
+  }
+}
+
+.site-cookie-question__button {
+  padding: .25em .5em;
+  margin: 0 .5em;
+  display: inline-block;
+
+  text-decoration: none;
+
+  &::before, &::after {
+    content: ' ';
+  }
+}
+
+.site-cookie-question__button--yes {
+  background: $green;
+
+  &:hover {
+    background: lighten($green, 10%);
+  }
+}
+
+.site-cookie-question__button--no {
+  background: $red;
+
+  &:hover {
+    background: lighten($red, 10%);
+  }
+}

@@ -1,0 +1,41 @@
+/**
+ * @file
+ * Defines the basic HTML styles.
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400);
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: $beige;
+}
+
+blockquote {
+  margin-left: 0;
+  padding-left: 1em;
+
+  font-style: italic;
+
+  border-left: 3px solid $header-color;
+
+  em {
+    font-style: normal;
+  }
+}
+
+@media screen and (max-width: $breakpoint-mobile) {
+
+  :not(pre)>code[class*=language-], pre[class*=language-] {
+    font-size: .65em;
+  }
+}

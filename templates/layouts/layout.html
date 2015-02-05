@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ page.title }}</title>
+  {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+  {% endif %}
+  <meta name="author" content="Wouter Admiraal <wad@wadmiraal.net>">
+
+  <link rel="stylesheet" href="/css/all.min.css">
+</head>
+<body>
+
+<nav id="posts-menu" class="site-menu" data-show-posts-tagged-with="">
+  <div id="posts-tag-legends" class="site-menu__color-code-legends" data-show-legend-for="">
+    <ul>
+      {% for tagobj in site.tags %}
+        <li class="site-menu__color-code-legends__legend tag--border" data-tags="{{ tagobj[0] | downcase | replace:' ','-' }}">{{ tagobj[0] }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <ul id="posts-items" class="overview">
+    {% for post in site.posts %}
+      <li class="site-menu__item">
+        <a class="tag--border" data-tags="{% for tag in post.tags %}{{ tag | downcase | replace:' ','-' }} {% endfor %}" href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+
+<header class="site-header">
+  <span id="menu-toggle" class="site-header__menu-toggle">Blog</span>
+
+  <ul class="site-header__about-links">
+    <li class="site-header__about-links__item"><a class="icon icon-feed4" href="/feed.xml" title="RSS Feed">RSS Feed</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon-hipster2" href="/about" title="About">About</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon-twitter3" href="http://twitter.com/wadmiraal" title="Twitter">Twitter</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon-drupal" href="http://drupal.org/u/wadmiraal" title="Drupal">Drupal</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon-github" href="http://github.com/wadmiraal/wadmiraal.net" title="Github">Github</a></li>
+  </ul>
+</header>
+
+<div class="site-content">
+  <div id="site-content">
+    {% block content %}{% endblock %}
+  </div>
+
+  <div class="site-content__overlay"></div>
+</div>
+
+<script src="/js/all.min.js"></script>
+<script type="text/javascript">
+  blog.fx.init();
+  blog.cookie.init();
+  blog.pushState.init();
+
+  if ( blog.cookie.getValue() ) {
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39415395-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  }
+</script>
+
+</body>
+</html>
