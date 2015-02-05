@@ -1,5 +1,7 @@
 # Wouter Admiraal's Blog
 
+Find it [here](http://wadmiraal.net) !
+
 *Blogging like a hacker !* This blog is built using [Gulp](http://gulpjs.com/), [Compass](http://compass-style.org/) and [Jekyll](http://jekyllrb.com/).
 
 All code is licensed under MIT, with the exception of code located under `js/vendor` and `css/vendor`.
