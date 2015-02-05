@@ -5,7 +5,6 @@ layout: post
 favorite: false
 tags:
   - Wisdom
-  - Code
   - Git
 ---
 
