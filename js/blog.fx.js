@@ -130,7 +130,7 @@
       var tag = decodeURIComponent(location.search.split( 'show_tag=' )[1].split( '&' )[0]);
 
       // Convert the tag to our new standard.
-      tag = tag.toLowerCase().replace( /\s/g, '-' );
+      tag = tag.toLowerCase().replace( /\s/g, '-' ).replace( /\//g, '');
 
       blog.fx.openMenu();
       blog.fx.showPostsTaggedWith( tag );
