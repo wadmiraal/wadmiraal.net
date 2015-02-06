@@ -87,7 +87,17 @@
           e.preventDefault();
           e.cancelBubble = true;
 
-          postList.scrollTop += e.deltaY !== undefined ? e.deltaY : e.wheelDeltaY;
+          // We have 3 standards to track...
+          var delta = e.deltaY !== undefined ? e.deltaY : ( e.wheelDeltaY !== undefined ? e.wheelDeltaY : -e.wheelDelta );
+
+          // FF and Chrome disagree on the value of e.deltaY. The standard seems
+          // to be FF, but I'm not sure. Anyway, I'll treat FF as the exception
+          // and make Chrome and Safari the default. Sue me...
+          if ( /Firefox/.test( navigator.userAgent )) {
+            delta += delta < 0 ? -50 : 50;
+          }
+
+          postList.scrollTop += delta;
         }
       }, false );
     }
