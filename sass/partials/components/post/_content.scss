@@ -15,3 +15,17 @@
     border-left-style: solid;
   }
 }
+
+.post__body__call-to-action {
+  margin: 3em 0;
+
+  font-size: 0.75em;
+  text-align: center;
+  color: gray;
+
+  border-top: 3px solid #5a6677;
+
+  p {
+    margin: .5em 0 0 0;
+  }
+}
