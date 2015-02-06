@@ -48,7 +48,7 @@
 
     for (var i = links.length - 1; i >= 0; --i) {
       links[ i ].addEventListener( 'mouseover', function( e ) {
-        var post = e.srcElement;
+        var post = e.target || e.srcElement;
 
         // Get the main tag (first in the list).
         var tag = post.getAttribute( 'data-tags' ).split( ' ' )[ 0 ];
@@ -101,7 +101,7 @@
       tags[ i ].addEventListener( 'click', function( e ) {
         e.stopPropagation();
 
-        var link = e.srcElement;
+        var link = e.target || e.srcElement;
 
         blog.fx.showPostsTaggedWith( link.getAttribute( 'data-tag' ) );
         blog.fx.openMenu();
