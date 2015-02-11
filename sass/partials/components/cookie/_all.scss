@@ -43,9 +43,9 @@
 }
 
 .site-cookie-question__button--no {
-  background: $red;
+  background: rgba(255, 255, 255, 0.1);
 
   &:hover {
-    background: lighten($red, 10%);
+    background: rgba(255, 255, 255, 0.3);
   }
 }
