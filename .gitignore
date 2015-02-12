@@ -11,7 +11,7 @@ css/styles.css
 # Exceptions are the actual posts, Ruby plugins and post-media.
 jekyll-src/*
 !jekyll-src/_posts/
-!jekyll-src/_draft/
+!jekyll-src/_drafts/
 !jekyll-src/lore/*
 !jekyll-src/posts-media/*
 !jekyll-src/_config.yml
