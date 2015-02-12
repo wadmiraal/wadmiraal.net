@@ -1,5 +1,5 @@
 ---
-title: "Some security tips for Drupal themers"
+title: "Quick security tips for Drupal themers"
 description: "Drupal is a very secure system, but we can make it vulnerable if we don't do our theming correctly. Here's some tips for themers."
 layout: post
 tags:
@@ -26,7 +26,7 @@ A classified ads site lets users create an account and post ads. We use a module
 
 However, the module adds one custom field for a bio section. This field is *not* handled by Drupal, and unfortunately not escaped at render time. A malevolent user, Jeannine, knows this flaw, and confirms that on the site, the themer *did not* escape the bio field.
 
-If she were to put this deceptively simple code in there, she would be able to take over *any user account* (User-1 in our example, which is the worst that could happen) as soon as *any admin* visits her ad (which is highly likely when ads are validated by hand):
+If she were to put this deceptively simple code in there, she would be able to take over *any user account* (User-1 in our example, which is the worst that could happen) as soon as *any admin* (other than User-1, as changing your own password requires you to give the old password first) visits her ad&thinsp;&mdash;&thinsp;which is highly likely when ads are validated by hand:
 
 <pre><code class="language-php">
 &lt;script type="text/javascript"&gt;
@@ -55,45 +55,49 @@ This is why you should *always* triple-check your templates and make sure that *
 
 Be paranoid. *Never* expect a variable to be safe unless it specifically says so (like the `safe_value` key on Drupal fields&thinsp;&mdash;&thinsp;you were printing these ones and *not* the `value` keys, right?) It is better to double-escape than not escaping at all. It will look ugly, but you will thank yourself later.
 
-If a variable uses no HTML markup, pass it through [`check_plain`](), like so:
+If a variable uses no HTML markup, pass it through [`check_plain`](https://api.drupal.org/api/drupal/includes%21bootstrap.inc/function/check_plain/7), like so:
 
 <pre><code class="language-php">
 &lt;?php print check_plain($value); ?&gt;
 
 </code></pre>
 
-If it does contain markup, it is going to be trickier. Usually, the variable will contain some information on the *format* being used (like *filtered HTML* or *full HTML*). In many cases, the variable will have a `value` key and a `format` key. If you do not know the format, just pick a restrictive one and use it by default. It's better to strip too much HTML than not enough. You can then use [`check_markup`]() to strip unauthorized HTML:
+If it does contain markup, it is going to be trickier. This boils down to 2 use-cases:
+
+1. We're dealing with a textfield which has no input format attached to it
+2. We're dealing with a textfield (like the Body field) for which the user can select a input format (like *filtered HTML* or *full HTML*)
+
+In the first case, use [`filter_xss`](https://api.drupal.org/api/drupal/includes%21common.inc/function/filter_xss/7). `filter_xss` is simple to use, and filters almost any HTML out. It leaves some default tags, which you can change if you wish (pass an array of allowed tags as a second parameter):
+
+<pre><code class="language-php">
+&lt;?php print filter_xss($value); ?&gt;
+
+&lt;?php print filter_xss($value, array(
+  'a',
+  'em',
+  'strong',
+)); // Specify allowed tags ?&gt;
+
+</code></pre>
+
+In the second case, the variable will contain some information on the *format* being used (like *filtered HTML* or *full HTML*). You can then use [`check_markup`](https://api.drupal.org/api/drupal/modules%21filter%21filter.module/function/check_markup/7). In many cases, the variable you need to print will have a `value` key and a `format` key. If you do not know the format, just leave it out; this will fallback to the site's default:
 
 <pre><code class="language-php">
 &lt;?php print check_markup($value['value'], $value['format']); ?&gt;
 
-</code></pre>
-
-## Hacking and SQL injection
-
-Sometimes, themers are not specially good at PHP programming (why should they? We expect them to know HTML and CSS). I've seen many themes where PHP code was being executed *directly inside a template*. Except for the fact that this violates the principle of *separation of concerns*, it sometimes also leads to vulnerabilities by SQL injection.
-
-For instance, a newcomer to Drupal might want to display some information about a node. This information (say, a read count) is not directly available on the node object. However, instead of using the appropriate APIs to retrieve this info, the themer uses something like this:
-
-<pre><code class="language-php">
-db_query("SELECT * FROM {node_read} WHERE nid = " . arg(1));
+&lt;?php print check_markup($value); // Using site defaults ?&gt;
 
 </code></pre>
 
-This will get the second part of a path and use it in this query. So, or `node/14`, `arg(1)` will return *14*. Where this gets ugly is when you have a block that can show nodes (like a View showing a random node, or the latest article, etc). If a hacker were to visit a page like `node/1ter; DROP TABLE nodes; --`, guess what would happen ? Yes, the hacker would get a 404 page, sure. But, because of that block listing nodes, you now have created an SQL vulnerability.
+## Further reading
 
-### Solution
+I suggest reading Drupal's official documentation [on writing secure code](https://www.drupal.org/writing-secure-code).
 
-RTFM, or get some help. *Never* execute SQL queries directly unless you really know what you're doing.
-
-If you *really* have to execute an SQL query:
-
-1. Don't do it in the template. Put the code in the `template.php` file, in a function called `mytheme_preprocess_{template-name}` (like [`mytheme_preprocess_node`]()).
-2. Use the [database API]() correctly.
+There's also a section on handling [user input](https://www.drupal.org/node/101495) that's interesting.
 
 ## Drupal 8 And Twig
 
-In Drupal 8, Drupal's in-house template engine PHPTemplate will be dropped in favor of Twig.
+In Drupal 8, Drupal's in-house template engine PHPTemplate will be dropped in favor of [Twig](http://twig.sensiolabs.org/).
 
 Twig is a beautifully elegant, *fast* and flexible template engine. But one of the biggest advantages it has over the old PHPTemplate is security.
 
