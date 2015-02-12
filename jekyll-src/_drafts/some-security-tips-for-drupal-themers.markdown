@@ -8,7 +8,7 @@ tags:
 
 As you probably know, the Drupal community is strongly committed to security. The [Drupal security team](https://security.drupal.org/team-members) is one of the largest of any open source project, and security vulnerabilities are treated swiftly and with great seriousness. In fact, the vast majority of security flaws are usually difficult to exploit, as it requires users to have some level of administration clearance, which on most sites is only given to trusted users. And, would a malevolent user get such an admin account, exploiting the said flaw would probably be the least of her concerns, as she would have access to much more valuable data anyway. Nonetheless, Drupal's security team deals with these vulnerabilities just as they would with more serious flaws, and modules or themes that fail to quickly correct them are blocked. But I digress.
 
-*Tip: subscribe to the security newsletter to get updates as soon as security vulnerabilities are found and corrected. Log in, go to your profile page (click on your name), click **Edit**, then **My newsletters** and check **Security announcements**.* 
+*Tip: subscribe to the security newsletter to get updates as soon as security vulnerabilities are found and corrected. Log in to www.drupal.org, go to your profile page (click on your name), click **Edit**, then **My newsletters** and check **Security announcements**.* 
 
 The reason I'm telling you all this is that Drupal sites *do* get hacked, but as many a surprised Drupal themer learns, it is more often than not the *theme* that is at fault.
 
@@ -28,21 +28,26 @@ However, the module adds one custom field for a bio section. This field is *not*
 
 If she were to put this deceptively simple code in there, she would be able to take over *any user account* (User-1 in our example, which is the worst that could happen) as soon as *any admin* visits her ad (which is highly likely when ads are validated by hand):
 
-    (function($) {
-      $.get('/user/1/edit', function (data, status) {
-        if (status == 'success') {              
-          var data = {
-            form_id: 'user_profile_form',
-            form_token: data.match(/name="form_token" value="([a-z0-9]*)"/i)[1],
-            form_build_id: data.match(/name="form_build_id" value="([\-a-z0-9]*)"/i)[1],
-            'pass[pass1]': 'pwned',
-            'pass[pass2]': 'pwned'
-          };
-          
-          $.post('/user/1/edit', data);
-        }
-      });
-    })(jQuery);
+<pre><code class="language-php">
+&lt;script type="text/javascript"&gt;
+(function($) {
+  $.get('/user/1/edit', function(data, status) {
+    if (status == 'success') {              
+      var payload = {
+        form_id: 'user_profile_form',
+        form_token: data.match(/name="form_token" value="([a-z0-9]*)"/i)[1],
+        form_build_id: data.match(/name="form_build_id" value="([\-a-z0-9]*)"/i)[1],
+        'pass[pass1]': 'pwned',
+        'pass[pass2]': 'pwned'
+      };
+      
+      $.post('/user/1/edit', payload);
+    }
+  });
+})(jQuery);
+&lt;/script&gt;
+
+</code></pre>
 
 This is why you should *always* triple-check your templates and make sure that *everything* that is being printed out is safe.
 
@@ -50,13 +55,19 @@ This is why you should *always* triple-check your templates and make sure that *
 
 Be paranoid. *Never* expect a variable to be safe unless it specifically says so (like the `safe_value` key on Drupal fields&thinsp;&mdash;&thinsp;you were printing these ones and *not* the `value` keys, right?) It is better to double-escape than not escaping at all. It will look ugly, but you will thank yourself later.
 
-If a variable uses no HTML markup, pass it through `check_plain`, like so:
+If a variable uses no HTML markup, pass it through [`check_plain`](), like so:
 
-    <?php print check_plain($value); ?>
+<pre><code class="language-php">
+&lt;?php print check_plain($value); ?&gt;
 
-If it does contain markup, it is going to be trickier. Usually, the variable will contain some information on the *format* being used (like *filtered HTML* or *full HTML*). In many cases, the variable will have a `value` key and a `format` key. If you do not know the format, just pick a restrictive one and use it by default. It's better to strip too much HTML than not enough. You can then use `check_formatmarkup` to strip unauthorized HTML:
+</code></pre>
 
-    <?php print check_markup($value['value'], $value['format']); ?>
+If it does contain markup, it is going to be trickier. Usually, the variable will contain some information on the *format* being used (like *filtered HTML* or *full HTML*). In many cases, the variable will have a `value` key and a `format` key. If you do not know the format, just pick a restrictive one and use it by default. It's better to strip too much HTML than not enough. You can then use [`check_markup`]() to strip unauthorized HTML:
+
+<pre><code class="language-php">
+&lt;?php print check_markup($value['value'], $value['format']); ?&gt;
+
+</code></pre>
 
 ## Hacking and SQL injection
 
@@ -64,9 +75,12 @@ Sometimes, themers are not specially good at PHP programming (why should they? W
 
 For instance, a newcomer to Drupal might want to display some information about a node. This information (say, a read count) is not directly available on the node object. However, instead of using the appropriate APIs to retrieve this info, the themer uses something like this:
 
-    db_query("SELECT * FROM {node_read} WHERE nid = " . arg(1));
+<pre><code class="language-php">
+db_query("SELECT * FROM {node_read} WHERE nid = " . arg(1));
 
-This will get the second part of a path and use it in this query. So, or `node/14`, `arg(1)` will return *14*. Where this gets ugly is when you have a block that can show nodes (like a View showing a random node, or the latest article, etc). If a hacker were to visit a page like `node/0; DROP TABLE nodes; --`, guess what would happen ? Yes, the hacker would get a 404 page, sure. But, because of that block listing nodes, you now have created an SQL vulnerability.
+</code></pre>
+
+This will get the second part of a path and use it in this query. So, or `node/14`, `arg(1)` will return *14*. Where this gets ugly is when you have a block that can show nodes (like a View showing a random node, or the latest article, etc). If a hacker were to visit a page like `node/1ter; DROP TABLE nodes; --`, guess what would happen ? Yes, the hacker would get a 404 page, sure. But, because of that block listing nodes, you now have created an SQL vulnerability.
 
 ### Solution
 
