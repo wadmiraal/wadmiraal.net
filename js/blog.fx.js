@@ -35,9 +35,9 @@
       return false;
     }, false );
 
-    // When clicking anywhere else than the toggle button, make sur we close
+    // When clicking anywhere else than the toggle button, make sure we close
     // the menu.
-    document.getElementsByTagName( 'body' )[ 0 ].addEventListener( 'click', function() {
+    document.body.addEventListener( 'click', function() {
       blog.fx.closeMenu();
     }, false );
   };

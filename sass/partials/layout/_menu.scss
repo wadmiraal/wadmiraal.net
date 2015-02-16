@@ -67,6 +67,13 @@
   }
 }
 
+.touch {
+
+  #posts-items {
+    overflow: scroll !important;
+  }
+}
+
 .site-menu__item {
   color: $header-color;
 
