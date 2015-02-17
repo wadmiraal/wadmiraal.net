@@ -4,6 +4,10 @@
  */
 
 .post__header {
+  // Why TF would we need this?? But in Chrome it messes up on Mobile. I don't
+  // get it.
+  width: 100%;
+
   overflow: hidden;
 }
 

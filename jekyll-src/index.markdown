@@ -5,7 +5,7 @@ layout: page
 
 This is the blog of Wouter Admiraal, web developer extraordinaire. Come here for rants, pseudo-wisdom or loosing precious time.
 
-## Latest post
+## Latest posts
 
 Straight from the press.
 
