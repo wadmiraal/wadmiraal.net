@@ -2,6 +2,7 @@
 title: "Code is creativity"
 description: "Programmers are not often seen as creative people except by other programmers."
 layout: post
+favorite: true
 tags:
   - For lolz
   - Wisdom
