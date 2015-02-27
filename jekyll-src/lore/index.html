@@ -3,6 +3,24 @@ layout: page
 title: "Lore"
 ---
 
+<h2>My favorite posts</h2>
+
+<p>Because some articles are just worth keeping.</p>
+
+{% for post in site.posts %}
+  {% if post.favorite %}
+    <article>
+      <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+
+      <p>{{ post.description }}</p>
+
+      <p><a href="{{ post.url }}">Read more&hellip;</a></p>
+    </article>
+  {% endif %}
+{% endfor %}
+
+<h2>All posts</h2>
+
 {% for post in paginator.posts %}
   <article>
     <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
