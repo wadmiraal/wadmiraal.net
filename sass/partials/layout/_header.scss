@@ -50,8 +50,11 @@
 .site-header__about-links {
   margin: 0;
   padding: 0;
+  height: 25px;
 
   float: right;
+
+  overflow: hidden;
 }
 
 .site-header__about-links__item {
