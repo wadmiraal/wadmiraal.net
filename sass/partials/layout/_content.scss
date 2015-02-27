@@ -56,3 +56,21 @@
   }
 }
 
+.touch {
+
+  .site-menu.open ~ .site-content {
+    
+    // This tries to solve a tricky bug on tablets, on which we cannot hijack
+    // scrolling. So, scrolling outside of the menu when it is open, scrolls the
+    // page, which is not what we want. This prevents it, albeit in an
+    // inelegant way. Mostly because the touch class can also be active
+    // on laptops or desktops which have a touch screen...
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    overflow: hidden;
+  }
+}
