@@ -41,7 +41,9 @@ Finally, it is a very handy place for newcomers to start learning about the proj
 
 First, [install Drush](http://www.drush.org/en/master/install/). You can test Drush is correctly installed by calling:
 
-    drush status
+<pre><code class="language-bash">
+drush status
+</code></pre>
 
 Next, create a file that will represent your project. This must either be a `.make` file (old *INI* syntax) or `.make.yml` (new *YAML* syntax, recommended). If you are going to use Git (or another CVS), I would put this at the root of a new, empty repo, along with a README file with some simple instructions and a directory for your custom patches:
 
@@ -54,7 +56,7 @@ Next, create a file that will represent your project. This must either be a `.ma
 
 The site will get built in a folder. I like to call this folder `_build/`, and I add it to my `.gitignore` file so I don't have to worry about it.
 
-Now, here's a sample `.make.yml` file content. I'll go over each line later:
+Now, here's a sample `.make.yml` file example. I'll go over each line later:
 
 <pre><code class="language-php">
 api: 2
@@ -93,7 +95,7 @@ libraries:
     directory_name: PHPExcel
 </code></pre>
 
-Lets go over each of these.
+Lets go over each one of these instructions.
 
 <pre><code class="language-php">
 api: 2
@@ -168,15 +170,15 @@ libraries:
     directory_name: PHPExcel
 </code></pre>
 
-The final part is Drush can download third-party libraries. Note that these do not go under `projects`, but inder `libraries`. Here, for example, we download the [PHPExcel](https://github.com/PHPOffice/PHPExcel) library. Because the library is available as `.tar.gz` files for each release, we use that. We tell Drush the destination is the `sites/*/libraries` folder and the extracted TAR should be renamed *PHPExcel*.
+Drush can also download third-party libraries. Note that these do not go under `projects`, but inder `libraries`. Here, for example, we download the [PHPExcel](https://github.com/PHPOffice/PHPExcel) library. Because each release of PHPExcel is available as `.tar.gz` files, we choose to download that using `wget` (`download.type` is `get`). We tell Drush the destination is the `sites/*/libraries` folder and the extracted TAR should be renamed `PHPExcel`.
 
-Now, to build this, we call this simply command:
+Now, to build this, we call this simple command:
 
 <pre><code class="language-bash">
 drush make project.make.yml _build
 </code></pre>
 
-This will tell Drush to *make* the `project.make.yml` file, and put everything inside the `_build/` directory. This `_build/` directory will contain a complete Drupal site, along with all your modules, themes and libraries, ready to be used. You could then transfer this code to your server, or, better still, build the code on the server directly.
+This will tell Drush to *make* the `project.make.yml` file, and put everything inside the `_build/` directory. This `_build/` directory will contain a complete Drupal site, along with all your modules, themes and libraries, ready to be used. You can build locally and transfer this code to your server, or, better still, SSH onto your server and use `make` to build the code on there directly.
 
 ## How To Use This
 
