@@ -52,3 +52,17 @@ blockquote {
     font-size: .65em;
   }
 }
+
+pre {
+  padding: 0 .2em;
+
+  background: $light-gray;
+
+  code {
+    background: transparent;
+  }
+}
+
+code {
+  @extend pre;
+}
