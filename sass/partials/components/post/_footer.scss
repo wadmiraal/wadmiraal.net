@@ -10,7 +10,6 @@
 .post__footer__prev-next {
   margin: 0;
   padding: 0;
-  max-width: $_post-max-width;
 
   border-top: 5px solid $header-light-color;
 
@@ -57,7 +56,6 @@
 
 .post__footer__copy {
   margin-top: .5em;
-  max-width: $_post-max-width;
 
   text-align: center;
   font-size: 0.9em;
