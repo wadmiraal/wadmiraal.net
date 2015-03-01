@@ -95,7 +95,7 @@ if [[ -f $FILE ]]; then
 
 </code></pre>
 
-Check if it exists. When removing a file from Git, ``git diff --cached --name-only`` will still list those removed files. However, the PHP linter will still try to test it, which will result in a Fatal Error. Which brings us to...
+Check if it exists (thanks to swytch for catching this). When removing a file from Git, ``git diff --cached --name-only`` will still list those removed files. However, the PHP linter will still try to test it, which will result in a Fatal Error. Which brings us to...
 
 <pre><code class="language-bash">
 php -l "$FILE" 1> /dev/nul
