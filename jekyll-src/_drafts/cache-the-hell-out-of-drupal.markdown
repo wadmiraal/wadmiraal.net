@@ -1,22 +1,23 @@
 ---
 title: "Cache the hell out of Drupal"
 description: "Leverage Drupal's Cache API to make your modules fly."
+layout: post
 tags:
   - Drupal
   - Performance and Scalability
 ---
 
-Drupal is an awesome platform to work with and develop for. But, there's one thing it os as well: it's pretty heavy. Despite the fact Drupal can be *very* performant, more often than not you will notice significant slow downs on feature-heavy websites. What can you do about it? *Cache the hell out of Drupal!*
+Drupal is an awesome platform to work with and develop for. But, there's one thing it is as well: pretty heavy. Despite the fact Drupal can be *very* performant, more often than not you will notice significant slow downs on feature-heavy websites. What can you do about it? *Cache the hell out of Drupal!*
 
 ## There's Caching, Caching and Caching
 
-When people talk about caching in Drupal, they can mean different things. The first is usually Drupal's built-in &ldquo; production mode&rdquo;. I sure hope you are using this on your site (unless you have good reasons not to). You can find it under Configuration > Performance. It tells Drupal to keep the rendered pages in cache for a certain time, greatly speeding up page load time. This can already have a huge impact on a site's performance.
+When people talk about caching in Drupal, they can mean different things. The first is usually Drupal's built-in &ldquo;production mode&rdquo;, called &ldquo;Cache pages for anonymous users&rdquo;. I sure hope you are using this on your site (unless you have good reasons not to). You can find it under *Configuration > Development > Performance*. It tells Drupal to keep the rendered pages in cache for a certain time, greatly speeding up page load time. This can already have a huge impact on a site's performance.
 
 However, on sites with heavy authenticated traffic, Drupal's page caching is turned off. The reason is simple: authenticated users might see the page differently than other users. The page might even be unique per user. So how could you cache that? Well, Drupal just doesn't. So, in these cases, you need to get that performance gain else where. In code.
 
-### ESI
+### Quick Note On ESI
 
-When dealing with heavy authenticated traffic, it's possible to use a technique called *Edge Side Includes*. This basically caches certain parts of the page, and allows you to only render the parts that are unique per user. It takes some extra work to setup though, because your web server needs to know about these parts and how to inject them into the page when serving it back to the user. Plus, it is not available on most shared hosting. This is why I won't dive into ESI in this post.
+When dealing with heavy authenticated traffic, it's possible to use a technique called *Edge Side Includes*. This basically caches parts of the page that are identical (like the header or footer), and allows you to only re-render the parts that are unique for the current user. It takes some extra work to setup though, because your web server needs to know about these parts and how to inject them into the page when serving it back to the browser. Plus, it is not available on most shared hosting. This is why I won't dive into ESI in this post. There's a [module for doing ESI](https://www.drupal.org/project/esi).
 
 ## Static PHP Cache
 
@@ -37,13 +38,13 @@ function mymodule_get_list() {
 }
 </code></pre>
 
-What this code does is checking if the list was computed. If not, it computes it and stores the result in a static variable. Think of it as a Class property, that keeps the data for later re-use. The difference is static variables are only accessible to the local function. But we don't mind: we only need it there. The next time the function is called, we use the static variable and return immediately. This is a nice improvement *(side node: Drupal provides an ever better way using [`drupal_static()`](), but the principle is the same)*. But, imagine this list only changes every 2h. If you get 100 visites per minute during these 2 hours, you will compute this list value 12000 times, with the exact same value. In these cases, you might want to look for a more permanent cache.
+What this code does is checking if the list was computed. If not, it computes it and stores the result in a static variable. Think of it as a Class property, that keeps the data for later re-use. The difference is static variables are only accessible to the local function. But we don't mind: we only need it there. The next time the function is called, we use the static variable and return immediately. This is a nice improvement *(side node: Drupal provides an even better way using [`drupal_static()`](https://api.drupal.org/api/drupal/includes%21bootstrap.inc/function/drupal_static/7), but the principle is the same)*. But, imagine this list only changes every 2h. If you get 100 visites per minute during these 2 hours, you will compute this list value 12000 times, with the exact same value. In these cases, you might want to look for a more permanent cache.
 
 ## Drupal Cache API
 
-Drupal comes with a very simple, but incredibly powerful [Cache API](). This API allows you to store data (any data&thinsp;&mdash;&thinsp;it takes care of serialization for you) in a semi permanent cache bin.
+Drupal comes with a very simple, but incredibly powerful [Cache API](https://www.drupal.org/node/145279). This API allows you to store data (any data&thinsp;&mdash;&thinsp;it takes care of serialization for you) in a semi permanent cache bin.
 
-By default, this data gets stored in the database, but many modules provide other cache backends, like Redis, Memcache or even in static files. However, as a developer, you do not control where this is stored. But that doesn't mean you shouldn't make us of the cache API.
+By default, this data gets stored in the database, but many modules provide other cache backends, like Redis, Memcache or even in static files. Of course, as a module developer, you do not control where this is stored. But that doesn't mean you shouldn't make us of the cache API.
 
 Lets take our example of the list again. This time, we use the Cache API *in conjunction with the static cache*. This is because there's a slight overhead to fetch the cached data. So, once you have it, you might as well reuse it.
 
@@ -52,7 +53,7 @@ function mymodule_get_list() {
   static $list;
 
   if (!isset($list)) {
-    $cache = cach_get('mymodule:list');
+    $cache = cache_get('mymodule:list');
 
     if (!empty($cache->data)) {
       $list = $cache->data;
@@ -72,11 +73,13 @@ function mymodule_get_list() {
 
 Notice we check if the cache contains our list by using a unique identifier (called a *cache ID*, or *CID*). Convention dictates this should be prefixed with your module name when using the default `cache` bin (more on that below).
 
-We also set an expiration timestamp. This tells the Cache API when the data goes stale and must be refreshed. One thing important to realize is that cached data must be considered volatile, meaning you cannot be sure it exists. This is why we always need to check the data and re compute if it doesn't exist.
+We also set an expiration timestamp. This tells the Cache API when the data goes stale and must be deleted. One thing important to realize is that cached data must be considered volatile, meaning you cannot be sure it exists. This is why we always need to check if the data exists and recompute if necessary.
+
+*Side note: you might hear or read complaints saying the expiration parameter doesn't work, and that expired cache entries are returned. This is not true, at least when using Drupal's database cache. However, it might be true for certain cache backends (third-party modules). If you're a site builder using a different cache backend, you might want to check it out. If you're just maintaining a module, there's nothing you can do about it.*
 
 ### Don't Cache Everything
 
-Now, when I say to cache the hell out of Drupal, I don't mean you should cache every single byte of information your module uses. If your list is a single entry from a database table, it would be overkill to cache it. Even if it is the result of a simple `SELECT` with multiple rows, it would probably still be overkill. The idea is that, if the data does not change often, and computing it takes longer than loading it from cache, cache it. Remember, though, that not all sites use the same cache backend. A site using Memcache will load cached data *much* faster than a site using the database (default).
+Now, when I say to cache the hell out of Drupal, I don't mean you should cache every single byte of information your module uses. If your list is a single entry from a database table, it would be overkill to cache it. Even if it is the result of a simple `SELECT` with hundreds of rows, it would probably still be overkill. The idea is that, if the data does not change often, and computing it takes longer than loading it from cache, cache it. Remember, though, that not all sites use the same cache backend. A site using Memcache will load cached data *much* faster than a site using the database (default).
 
 ### Custom Cache Bins
 
@@ -90,7 +93,7 @@ function mymodule_schema() {
 }
 </code></pre>
 
-This takes the schema definition for the core cache bin, and simply reuses it. Simple. Notice the convention for cache tables is to use your module name *as a suffix*, and not a prefix as usual. This is to quickly identify cache bins in the database (which you might want to exclude from your database backups).
+This takes the schema definition for the core cache bin, and simply reuses it. Simple. Notice the convention for cache tables is to use your module name *as a suffix*, and not as a prefix as usual. This is to quickly identify cache bins in the database (which you might want to exclude from your database backups).
 
 You would then be able to store data in your own cache bin like so:
 
@@ -106,16 +109,19 @@ A cache item is identified by its CID. This is not just a simple string: the Cac
 
 For instance, say you have a specific page, and this page has several parts. You want to cache each part separately, and cache the whole result as well. So, you might have something like this:
 
-    mymodule:page:{id}:complete
-    mymodule:page:{id}:block_1
-    mymodule:page:{id}:block_2
+<pre><code class="language-sql">
+mymodule:page:{id}:complete
+mymodule:page:{id}:block_1
+mymodule:page:{id}:block_2
+</code></pre>
 
 Whenever you want to clear everything for the page, you can call
 
 <pre><code class="language-php">
 // We must specify the cache bin. Passing TRUE as the last
-// Parameter tells Drupal our CID contains a wildcard.
-cache_clear('mymodule:page:{id}:*', 'cache', TRUE);
+// parameter tells Drupal to clear all entries that start with
+// the passed CID.
+cache_clear('mymodule:page:{id}:', 'cache', TRUE);
 </code></pre>
 
 This will cascade down to all the above CIDs.
