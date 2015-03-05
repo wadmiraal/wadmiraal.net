@@ -10,7 +10,7 @@ This is the blog of Wouter Admiraal, web developer extraordinaire. Come here for
 Straight from the press.
 
 {% for post in site.posts limit:3 %}
-#### [{{ post.title }}]({{ post.url }})
+#### [<time datetime="{{ post.date | date_to_utc | date:"%Y-%m-%dT%H:%M:%SZ" }}">{{ post.date | date:"%Y-%m-%d" }}</time>&thinsp;&mdash;&thinsp;{{ post.title }}]({{ post.url }})
 
 {{ post.description }}  
 [Read more&hellip;]({{ post.url }})
