@@ -64,7 +64,7 @@
   blog.cookie.init();
   blog.pushState.init();
 
-  if ( blog.cookie.getValue() ) {
+  if ( !blog.cookie.getValue() ) {
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-39415395-1']);
     _gaq.push(['_trackPageview']);

@@ -10,17 +10,29 @@
   // Get the set cookie value.
   blog.cookie.getValue = function() {
     // Check if the cookie was set.
-    if ( /partyPooper/.test( document.cookie ) ) {
+    if ( /stealthMode/.test( document.cookie ) ) {
       // Get the value.
-      return /partyPooper=1/.test( document.cookie );
+      return /stealthMode=1/.test( document.cookie );
     } else {
       return undefined;
     }
   };
 
+  // Expire old cookies.
+  // Before, we let people decide if they wished to be tracked or not. Now, we
+  // just let them now they will get tracked, period. For the really geeky ones,
+  // they can always control the tracking by changing the cookie value :-).
+  // We'll give them that.
+  blog.cookie.expireOldCookies = function() {
+    // Check the cookie. If it is using the old format, expire it.
+    if ( /partyPooper=\d/.test( document.cookie )) {
+      document.cookie = 'partyPooper=0; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+    }
+  };
+
   // Set the cookie value.
   blog.cookie.setValue = function( value ) {
-    document.cookie = 'partyPooper=' + ( value ? 1 : 0 ) + '; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;';
+    document.cookie = 'stealthMode=' + ( value ? 1 : 0 ) + '; expires=Fri, 31 Dec 9000 23:59:59 GMT; path=/;';
   };
 
   // Ask the question.
@@ -35,30 +47,16 @@
 
     yes.setAttribute( 'class', 'site-cookie-question__button site-cookie-question__button--yes' );
     yes.setAttribute( 'href', 'javascript:void(0);' );
-    yes.innerHTML = 'I accept the cookies. Great blog, by the way.';
+    yes.innerHTML = 'Got it. Great blog, by the way.';
     yes.addEventListener( 'click', function() {
-      blog.cookie.setValue( 1 );
-
-      // Reload page.
-      location.reload();
-
-      blog.cookie.hideQuestion();
-
-      return false;
-    }, false );
-
-    no.setAttribute( 'class', 'site-cookie-question__button site-cookie-question__button--no' );
-    no.setAttribute( 'href', 'javascript:void(0);' );
-    no.innerHTML = 'Ah, nope. Stalker.';
-
-    no.addEventListener( 'click', function() {
       blog.cookie.setValue( 0 );
+
       blog.cookie.hideQuestion();
+
       return false;
     }, false );
 
     question.appendChild( yes );
-    question.appendChild( no );
 
     document.body.appendChild( question );
   };
@@ -71,6 +69,9 @@
 
   // Initialize logic.
   blog.cookie.init = function() {
+    // Delete old cookies.
+    blog.cookie.expireOldCookies();
+
     // Check if the user already set a cookie. If not, present her with the
     // famous Yes Or No question.
     if ( blog.cookie.getValue() === undefined ) {
