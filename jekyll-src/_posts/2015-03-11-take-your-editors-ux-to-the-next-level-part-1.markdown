@@ -12,7 +12,7 @@ When doing a Drupal project, what is the most important group of people you shou
 
 We, as an industry, still have a lingering image of nerds and geeks that build applications that are hard to use. Sure, the last few years have seen a *tremendous* improvement in UX and UI design. But, the reputation tends to stick.
 
-What I'm getting at it, if you provide an awesome user experience to your client (which will mostly be felt by the content editors), you will stand out. And standing out is the best way to get more work.
+What I'm getting at is, if you provide an awesome user experience to your client (which will mostly be felt by the content editors), you will stand out. And standing out is the best way to get more work.
 
 ## Drupal's UX And UI
 
@@ -22,7 +22,7 @@ If you've used Drupal since Drupal 6 (or even before&thinsp;&mdash;&thinsp;I sta
 
 But, Drupal's interface **will always be intended for site builders**. Site builders are not content editors. Site builders expect UIs to be more complex, because they need all those settings to tweak the site just how they want it. Content editors, on the other hand, are usually not technically inclined, and have better things to do than read a manual.
 
-That's where you come in. For your next project, *do not settle for Drupal's default experience*. Trust me, if you invest some time (budget it upfront, if you have to) in getting the UX just right, your clients will love you for it.
+That's where you come in. For your next project, *do not settle for Drupal's default experience*. Trust me, if you invest some time in getting the UX just right (budget it upfront, if you have to), your clients will love you for it.
 
 ## Small Wins
 
