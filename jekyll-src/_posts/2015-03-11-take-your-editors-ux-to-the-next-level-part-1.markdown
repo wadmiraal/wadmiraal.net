@@ -28,7 +28,7 @@ That's where you come in. For your next project, *do not settle for Drupal's def
 
 I recommend looking [at this presentation](http://www.slideshare.net/PamelaBarone/for-the-love-of-the-content-editors-drupalcon-prague-27036809), given by Pamela Barone ([@pameeela](https://twitter.com/pameeela)) at DrupalCon Prague in 2013. It's brilliant, and packed with good advice. She talks about a bunch of modules she uses at [PreviousNext](https://www.previousnext.com.au/) to improve the content editor experience. These modules are simple to install, yet can greatly improve the content editing experience.
 
-I won't go over all these modules; to me, they don't apply to all projects. But, some that I definitely agree with are:
+I won't go over all these modules; to me, they don't apply to all projects. But, some that I definitely recommend for 95% of projects are:
 
 * [CKeditor](https://www.drupal.org/project/ckeditor)
 * [Admin views](https://www.drupal.org/project/admin_views)
