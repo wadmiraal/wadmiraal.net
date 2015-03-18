@@ -19,6 +19,31 @@
     <div class="post__body">
       {{ content }}
 
+      <div class="post__body__share-post">
+        <a class="twitter-share-button"
+          href="https://twitter.com/share?via=wadmiraal&url={{ page.url }}"
+          data-size="medium"
+          data-count="none">
+        Tweet
+        </a>
+        <script>
+        window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+        </script>
+
+        <a href="http://bufferapp.com/add" class="buffer-add-button" data-count="none" data-via="wadmiraal" ></a>
+        <script type="text/javascript" src="https://d389zggrogs7qo.cloudfront.net/js/button.js"></script>
+
+        <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+      </div>
+
       <div class="post__body__call-to-action">
         <p>Enjoyed this post? Grab the <a href="http://wadmiraal.net/feed.xml">RSS feed</a> or <a href="http://twitter.com/wadmiraal">follow me on Twitter</a>!</p>
 

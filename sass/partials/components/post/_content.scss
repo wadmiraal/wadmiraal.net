@@ -14,8 +14,19 @@
   }
 }
 
+.post__body__share-post {
+  margin: 2em 0 0 0;
+
+  text-align: right;
+
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    text-align: center;
+  }
+}
+
 .post__body__call-to-action {
-  margin: 3em 0;
+  margin: 2em 0 3em 0;
 
   font-size: 0.75em;
   text-align: center;
