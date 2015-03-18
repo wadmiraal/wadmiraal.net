@@ -40,6 +40,10 @@
   vertical-align: top !important;
 }
 
+.twitter-share-button, .buffer-button, .fb-share-button {
+  margin: 0 .25em;
+}
+
 @each $tag in map_keys($tag-color) {
   // The first tag in the data list is the "main" tag.
   [data-tags^="#{$tag}"].tag--color, [data-tag="#{$tag}"].tag--color {
