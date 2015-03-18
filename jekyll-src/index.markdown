@@ -1,6 +1,7 @@
 ---
 title: "Wouter Admiraal's lore"
 layout: page
+home: true
 ---
 
 This is the blog of Wouter Admiraal, web developer extraordinaire. Come here for rants, pseudo-wisdom or loosing precious time.
