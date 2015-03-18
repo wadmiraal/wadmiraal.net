@@ -10,8 +10,28 @@
   visibility: hidden;
 }
 
+.icon--inline {
+  display: inline;
+}
+
 .icon::before {
   visibility: visible;
+}
+
+.about-links {
+  display: inline-block;
+  padding: .25em .5em;
+  margin: .25em;
+
+  color: white;
+  text-decoration: none;
+
+  background: $header-color;
+  @include border-radius(10px);
+
+  &:hover {
+    background: $header-light-color;
+  }
 }
 
 @each $tag in map_keys($tag-color) {

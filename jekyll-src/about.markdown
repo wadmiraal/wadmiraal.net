@@ -26,3 +26,10 @@ Eventhough I'm mainly a front-end developer, I try out many different languages 
 
 Other than Javascript code, HTML markup and CSS styles, a large portion of my time goes into PHP and Drupal code.
 
+## Find Me Online
+
+<a class="about-links" href="http://twitter.com/wadmiraal"><i class="icon icon-twitter3 icon--inline"></i> Twitter</a>
+<a class="about-links" href="http://drupal.org/u/wadmiraal"><i class="icon icon-drupal icon--inline"></i> Drupal</a>
+<a class="about-links" href="http://github.com/wadmiraal/wadmiraal.net"><i class="icon icon-github icon--inline"></i> Github</a>
+<a class="about-links" href="http://www.linkedin.com/in/wadmiraal"><i class="icon icon-linkedin-with-circle icon--inline"></i> LinkedIn</a>
+
