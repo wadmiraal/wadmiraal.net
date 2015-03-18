@@ -53,7 +53,7 @@ function projectname_custom_form_node_form_alter(&$form, $form_state) {
 
 ### More save (and delete) buttons
 
-If you have a particularly long node form, it might be helpful to put some extra save button at the top (unless you use a administration theme that already provides this&thinsp;&mdash;&thinsp;some even make the buttons stick to the top when you scroll down, so you can always reach them):
+If you have a particularly long node form, it might be helpful to put some extra save button at the top (unless you use an administration theme that already provides this&thinsp;&mdash;&thinsp;some even make the buttons stick to the top when you scroll down, so you can always reach them):
 
 <pre><code class="language-php">
 function projectname_custom_form_node_form_alter(&$form, $form_state) {
@@ -84,7 +84,7 @@ function projectname_custom_form_post_node_form_alter(&$form, $form_state) {
 }
 </code></pre>
 
-Notice we can also do *the inverse*, meaning make the checkbox label say *Do not show a description*. In that case, it's as easy as setting the condition to `TRUE`:
+Notice we can also do *the inverse*, meaning make the checkbox label say *Do not show a description* and, when checked, *hide* the description field. In that case, it's as easy as setting the condition to `TRUE`:
 
 <pre><code class="language-php">
 function projectname_custom_form_post_node_form_alter(&$form, $form_state) {
@@ -113,7 +113,7 @@ You can get a full list of all possible flags [here](https://api.drupal.org/api/
 
 ## Module Or Core Customizations
 
-Sometimes you will find yourself using a module that doesn't exactly do what you want. In such cases, [**do not hack it!**](/lore/2014/06/26/think-thrice-before-hacking-core-or-contrib/). In many cases, it will expose hooks, which you can use to tweak the way the module (or Drupal core) behaves. Hooks that change a small aspect of a module are ideal candidates for our `projectname_custom` module.
+Sometimes you will find yourself using a module that doesn't exactly do what you want. In such cases, [**do not hack it**](/lore/2014/06/26/think-thrice-before-hacking-core-or-contrib/)! In many cases, it will expose hooks, which you can use to tweak the way the module (or Drupal core) behaves. Hooks that change a small aspect of a module are ideal candidates for our `projectname_custom` module.
 
 ### Expanding Drupal's permissions
 
@@ -146,20 +146,20 @@ Now, when I clear the site cache, the editors will no longer see *Configuration*
 
 **To make it very clear we &ldquo;hacked&rdquo; Drupal's core behavior this way, we need to document it!** I suggest even putting up a little warning message on the permissions page, explaining what you did and why:
 
-*Note: for readability, here's the message:  
-&ldquo;Caution: projectname_custom defines a few custom permissions that expand on the default 'Use the administration pages and help' permission. The reason is to give editors access to the administration menu, but not showing them empty entries like Configuration. Check projectname_custom_menu_alter() for more information.&rdquo;*
-
 <pre><code class="language-php">
 function projectname_custom_form_user_admin_permissions_alter() {
   drupal_set_message(t("Caution: projectname_custom defines a few custom permissions that expand on the default 'Use the administration pages and help' permission. The reason is to give editors access to the administration menu, but not showing them empty entries like Configuration. Check projectname_custom_menu_alter() for more information."), 'warning');
 }
 </code></pre>
 
+*Note: for readability, here's the message:  
+&ldquo;Caution: projectname_custom defines a few custom permissions that expand on the default 'Use the administration pages and help' permission. The reason is to give editors access to the administration menu, but not showing them empty entries like Configuration. Check projectname_custom_menu_alter() for more information.&rdquo;*
+
 ## Where To Go From Here
 
 I could go on and on, but I'm sure you get the idea. There are many small aspects that you can improve, and&thinsp;&mdash;&thinsp;I can't stress this enough&thinsp;&mdash;&thinsp;your clients will love you for it.
 
-Try to think like an editor. Try to see what is distracting, what gets in their way. Ask them for suggestions. Tell them the budget may not allow you to implement all of them, but that you really want to make the experience as seamless and enjoyable as possible.
+Try to think like a content editor. Try to see what is distracting, what gets in their way. Ask them for suggestions. Tell them the budget may not allow you to implement all of them, but that you really want to make the experience as seamless and enjoyable as possible.
 
 What about you? Do you have any tips for enhancing the editor experience? Put them in the comments.
 
