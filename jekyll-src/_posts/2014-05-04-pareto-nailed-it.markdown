@@ -1,5 +1,5 @@
 ---
-title: "Pareto Nailed It"
+title: "Pareto nailed it"
 description: "What can we learn from Pareto's 80%-20% law."
 layout: post
 favorite: true

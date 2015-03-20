@@ -1,5 +1,5 @@
 ---
-title: "Open Source Now Attracts Bussiness-class Douchebags"
+title: "Open Source now attracts business-class douchebags"
 description: "The Open Source community has changed. Where there were once passionate, rebellious freedom fighters, we now see white collars and snake-oil sales(wo)men. This is because, Open Source is now a valid business model."
 layout: post
 favorite: false

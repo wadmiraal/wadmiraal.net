@@ -1,5 +1,5 @@
 ---
-title: "Write Testable Code In Drupal - Part 1, What Is Wrong With Drupal Tests"
+title: "Write testable code in Drupal - part 1, what is wrong with Drupal tests"
 description: "Writing unit tests in Drupal is slow and complex, which means many projects stay away from unit tests. This is the first part in a series to write better, more testable code."
 layout: post
 favorite: false

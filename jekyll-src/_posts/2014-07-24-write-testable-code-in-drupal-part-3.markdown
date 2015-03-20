@@ -1,5 +1,5 @@
 ---
-title: "Write Testable Code In Drupal - Part 3, Practical Examples"
+title: "Write testable code in Drupal - part 3, practical examples"
 description: "Writing unit tests in Drupal is slow and complex, which means many projects stay away from unit tests. This is the third part in a series to write better, more testable code."
 layout: post
 favorite: false

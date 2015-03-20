@@ -1,5 +1,5 @@
 ---
-title: "Think Thrice Before Hacking Drupal (core and/or modules)"
+title: "Think thrice before hacking Drupal (core and/or modules)"
 description: "Just because Drupal is Open Source and can be adapated to your needs does not mean you must do so. Some stupid, but common mistakes and their solutions."
 layout: post
 tags:

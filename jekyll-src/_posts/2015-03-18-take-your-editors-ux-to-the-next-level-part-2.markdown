@@ -1,5 +1,5 @@
 ---
-title: Take your editor's UX to the next level, part 2.
+title: Take your editors' UX to the next level, part 2.
 description: Drupal is pretty nice out of the box, but often it can use some tweaking to improve the editors' UX. This is how I tackle this.
 layout: post
 tags:

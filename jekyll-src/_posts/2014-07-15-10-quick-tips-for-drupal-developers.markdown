@@ -1,5 +1,5 @@
 ---
-title: "10 Quick Tips For Drupal Developers"
+title: "10 quick tips for Drupal developers"
 description: "10 quick tips for Drupal developers, based on my 6 year long experience."
 layout: post
 favorite: false

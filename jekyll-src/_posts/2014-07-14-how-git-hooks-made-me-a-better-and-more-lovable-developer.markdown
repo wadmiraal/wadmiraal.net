@@ -1,5 +1,5 @@
 ---
-title: "How Git Hooks Made Me A Better (And More Lovable) Developer"
+title: "How Git hooks made me a better (and more lovable) developer"
 description: "Git are an incredible way to enhance your development workflow, encouraging - and even enforcing - you to embrace best practices and write better commit messages."
 layout: post
 favorite: false
