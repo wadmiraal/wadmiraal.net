@@ -22,7 +22,7 @@ If you go to the [Docker Hub](), and search for &ldquo;drupal&rdquo;, you will f
 
 You can find the source &ldquo;code&rdquo; [here](), and the image [here]().
 
-What I wanted, was a simple LAMP stack, with a pre-installed up-to-date version of Drupal (D7, in this case), pre-installed with [Admin menu]() and the admin account password set to &ldquo;admin&rdquo;. This would allow me to quickly start configuring the site, or run my unit tests in a clean setup. I wanted it to use MySQL (because I prefer it to Postgres) and Apache (as I'm more familiar with it then NginX). Because it is a development environment, I didn't want things like Memcache or Redis, which are more suited for production. Finally, I wanted it pre-installed with [Drush]() and [Composer](), and compatible with [Drush aliases]() (meaning it comes with a SSH server).
+What I wanted was a simple LAMP stack, with a pre-installed up-to-date version of Drupal (D7, in this case), pre-installed with [Admin menu]() and the admin account password set to &ldquo;admin&rdquo;. This would allow me to quickly start configuring the site, or run my unit tests in a clean setup. I wanted it to use MySQL (because I prefer it to Postgres) and Apache (as I'm more familiar with it then NginX). Because it is a development environment, I didn't want things like Memcache or Redis, which are more suited for production. Finally, I wanted it pre-installed with [Drush]() and [Composer](), and compatible with [Drush aliases]() (meaning it comes with a SSH server).
 
 ### Start using it for your local development
 
@@ -82,13 +82,13 @@ This final parts tells Docker which image you wish to run, in our case `wadmiraa
 
 If you didn't change the port-forwarding options, you can now point your browser to `http://localhost:8080` and see your new Drupal site. You can log in with *admin:admin*.
 
-If you have SSH capabilities in your terminal (Windows users, install [PuTTy]()), you can SSH into the Docker container using:
+You can SSH into the Docker container (Windows users, install [PuTTy]()):
 
 <pre><code class="language-bash">
 ssh root@localhost -p 8022
 </code></pre>
 
-The password is *root*. You can then do whatever you wish inside the container. But the real benefit&thinsp;&mdash;&thinsp;and the reason I added a SSH server in the first place&thinsp;&mdash;&thinsp;is being able to use *Drush aliases* (more below).
+The password is &ldquo;root&rdquo;. You can then do whatever you wish inside the container. But the real benefit&thinsp;&mdash;&thinsp;and the reason I added a SSH server in the first place&thinsp;&mdash;&thinsp;is being able to use *Drush aliases* (more below).
 
 ### Stopping, re-starting and removing the container
 
@@ -169,7 +169,7 @@ Now, here comes the really neat part. I designed this Docker image to be used wi
 
 First, make sure your container is running and you forwarded the `22` port. If you used my above `docker run ...` command, it should be forwarded to port `8022`. You need an SSH key for this to work ([read about creating SSH keys here]()). Copy the contents of your local `~/.ssh/id_rsa.pub` file and SSH into the container (remember: password is &ldquo;root&rdquo;):
 
-<pre><code class="language-phpbash">
+<pre><code class="language-bash">
 ssh root@localhost -p 8022
 </code></pre>
 
@@ -183,15 +183,15 @@ ssh root@localhost -p 8022
 
 If so, we can go on to the next step.
 
-Make sure [Drush is installed](). Create a new file inside your local `~/.drush` folder, call it something like `docker.aliases.drushrc.php`. Add the following lines to it:
+Make sure [Drush is installed](). Create a new file inside your local `~/.drush/` folder, call it something like `docker.aliases.drushrc.php`. Add the following lines to it:
 
 <pre><code class="language-php">
-<?php
+&lt;?php
 $aliases['wadmiraal_drupal'] = array(
   'root' => '/var/www',
   'remote-user' => 'root',
   'remote-host' => 'localhost',
-  'ssh-options' => '-p 8022', // Or any other port you specified.
+  'ssh-options' => '-p 8022', // Or any other port you specified for the SSH server.
 );
 
 </code></pre>
@@ -200,15 +200,14 @@ Clear your Drush cache by calling:
 
 <pre><code class="language-bash">
 drush cc drush
-</code></code>
+</code></pre>
 
-Now, you can execute *any* Drush command on the container locally by prefixing the command with `@docker.wadmiraal_drupal` (or `@[name_of_file].[name_of_alias]`):
+Now, you can execute *any* Drush command on the container locally by prefixing the command with `@docker.wadmiraal_drupal` (or `@[name_of_file].[name_of_alias]`). Let's download and enable Devel:
 
 <pre><code class="language-bash">
-# Let's download and enable Devel
 drush @docker.wadmiraal_drupal dl devel
 drush @docker.wadmiraal_drupal en devel
-</code></code>
+</code></pre>
 
-How's that for cool?
+How's that for cool? Your container now has Devel running.
 
