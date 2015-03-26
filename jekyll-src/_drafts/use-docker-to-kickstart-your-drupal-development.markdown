@@ -1,32 +1,38 @@
 ---
 title: "Use Docker to kickstart your Drupal development"
-description: "When starting a new Drupal project, setting up a development environment can take up time. But now, thanks to tools like Docker, we can start developing in seconds."
+description: "When starting a new Drupal project, setting up a development environment can take up a lot of time. But now, thanks to tools like Docker, we can start developing in seconds."
 layout: post
 tags:
  - Drupal
 ---
 
-If you're anything like me, you will know what I'm talking about when I say setting up a local development environment for your new Drupal project sucks. Maybe, like me before, you have a local \*AMP stack, with virtual hosts you point to different directories or, worse, just subdirectories inside the `/var/www/` directory.
+If you're anything like me, you will know what I'm talking about when I say setting up local development environments for your Drupal projects sucks. Maybe, like me, you had a local \*AMP stack, with virtual hosts you point to different directories or, worse, just subdirectories inside the `/var/www/` directory.
 
-Well, now there's a *much* better way: [Docker](). If you are on Linux (like me), Docker is *freakishly awesome*! It's super fast, very easy to setup, discard, rebuild, etc. Think of it as Git branches for Virtual Machines. Cheap, fast, a no-brainer. If you're on Windows or Mac, there's no big advantage in using Docker *performance-wise*, as it still needs [Virtual Box]() to run. But, it's still very useful and will allow you to get started very quickly.
+Well, now there's a *much* better way: [Docker](https://www.docker.com/). Docker is *freakishly awesome*! It's super fast and very easy to setup. Containers (think *virtual machines*) are cheap to discard, rebuild, etc. Think of it as Git branches for virtual machines.
 
 ## What Is Docker
 
-If you're not familiar with Docker, it's a way to run server software, replacing the classic virtual machine approach, or improving it (at work, we use Docker in production, but on top of virtual machines, not as a replacement). It is important to realize Docker is a *very Linux-centric product*. You *can* run it on Windows or Mac OS, but you won't get the full benefit of its performance (I won't go into details about why in this post). Plus, Docker *images* can only run Linux distributions.
+If you're not familiar with Docker, it's a way to run server software. To some, it's a replacement for the classic virtual machine approach. To others, it is merely an improvement to it (at my work, we use Docker in production, but on top of virtual machines, not as a replacement). It is important to realize Docker is a *very Linux-centric product*. You *can* run it on Windows or Mac OS, but you won't get the full benefit of its performance (I won't go into details about why in this post). It's also not as straightforward to setup. Finally, Docker *images* can only run Linux distributions (which is no problem, as you will probably use Linux servers in production anyway).
 
-A Docker *image* is a like a snapshot of a particular Linux setup. It has pre-installed packages, usually configured and ready to use. A Docker *container* is an instance of this *image*. You can have many *containers* running the same *image*. What's really cool with Docker is these *images* are usually super-lightweight and lean. A base image will usually have a very bare-bones Linux install, not even shipping with a text editor! This allows us to install *only* what we want, giving is very fast and light systems, which are ideal in production. Furthermore, *images* are incredibly fast to instantiate. Creating a new *container* takes literally **seconds**, giving us a whole new, pristine and running system in no time. And this last part is what makes it ideal for development.
+A Docker *image* is a like a snapshot of a particular Linux setup. It has pre-installed packages, usually configured and ready to use. A Docker *container* is an instance of this *image*. You can have many containers running the same image. What's really cool with Docker is these images are usually super-lightweight and lean. A base image will have a very bare-bones Linux install, not even shipping with a text editor! This allows us to install *only* what we want, giving is very fast and light systems. Furthermore, containers are incredibly fast to instantiate. Creating a new container takes literally **seconds**, giving us a whole new, pristine and running system in no time. And this last part is what makes it ideal for development.
 
 ## An Example: wadmiraal/drupal
 
-If you go to the [Docker Hub](), and search for &ldquo;drupal&rdquo;, you will find **many** Docker *images*, ready to be used. You can use any image you wish. I created my own to get a better understanding of how Docker works, and because I had a clear idea of what I wanted it to be.
+If you go to the [Docker Hub](https://registry.hub.docker.com/), and search for &ldquo;drupal&rdquo;, you will find **many** Docker images, ready to be used. You can use any image you wish. I created my own to get a better understanding of how Docker works, and because I had a clear idea of what I wanted it to be.
 
-You can find the source &ldquo;code&rdquo; [here](), and the image [here]().
+You can find the source &ldquo;code&rdquo; [here](https://github.com/wadmiraal/docker-drupal), and the image [here](https://registry.hub.docker.com/u/wadmiraal/drupal/).
 
-What I wanted was a simple LAMP stack, with a pre-installed up-to-date version of Drupal (D7, in this case), pre-installed with [Admin menu]() and the admin account password set to &ldquo;admin&rdquo;. This would allow me to quickly start configuring the site, or run my unit tests in a clean setup. I wanted it to use MySQL (because I prefer it to Postgres) and Apache (as I'm more familiar with it then NginX). Because it is a development environment, I didn't want things like Memcache or Redis, which are more suited for production. Finally, I wanted it pre-installed with [Drush]() and [Composer](), and compatible with [Drush aliases]() (meaning it comes with a SSH server).
+What I wanted was a simple LAMP stack, with a pre-installed up-to-date version of Drupal (D7, in this case), pre-installed with [Admin menu](https://www.drupal.org/project/admin_menu) and the admin account password set to &ldquo;admin&rdquo;. This would allow me to quickly start configuring the site, or run my unit tests in a clean setup. I wanted it to use MySQL (because I prefer it to Postgres) and Apache (as I'm more familiar with it then NginX). Because it is a development environment, I didn't want things like Memcache or Redis, which are more suited for production. Finally, I wanted it pre-installed with [Drush](http://www.drush.org/en/master/) and [Composer](https://getcomposer.org/), and compatible with [Drush aliases](http://www.astonishdesign.com/blog/drush-aliases-what-why-and-how) (meaning it comes with a SSH server).
+
+### Preamble: non-Linux users
+
+If you're on Mac OS or Windows, the following will require a little more work. This is because of the way Docker works (Docker only works on Linux... so, to bypass this problem on Mac OS and Windows, it runs Linux inside a &ldquo;classic&rdquo; virtual machine in Virtual Box, and starts Docker there&thinsp;&mdash;&thinsp;actually pretty clever).
+
+I don't work with Mac OS, but [this article](http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide) seems pretty good at covering most caveats I could think of (especially the port forwarding). For Windows, I found [this article](), but let me know if you find any better resources. 
 
 ### Start using it for your local development
 
-So, first you need to [install Docker](). After installing it, fire up a terminal and call the following:
+So, first you need to [install Docker](https://docs.docker.com/installation/). After installing it, fire up a terminal and call the following:
 
 <pre><code class="language-bash">
 docker pull wadmiraal/drupal
@@ -47,6 +53,8 @@ Now, `cd` into this `project/` directory and call:
 <pre><code class="language-bash">
 docker run -i -d -p 8080:80 -p 8022:22 -v `pwd`/modules:/var/www/sites/all/modules/custom -v `pwd`/themes:/var/www/sites/all/themes wadmiraal/drupal
 </code></pre>
+
+*Note: Windows users, the `pwd` part won't work. Pass the absolute path instead.*
 
 Let me go through each part and explain what they do.
 
@@ -82,7 +90,7 @@ This final parts tells Docker which image you wish to run, in our case `wadmiraa
 
 If you didn't change the port-forwarding options, you can now point your browser to `http://localhost:8080` and see your new Drupal site. You can log in with *admin:admin*.
 
-You can SSH into the Docker container (Windows users, install [PuTTy]()):
+You can SSH into the Docker container (Windows users, use [PuTTy](http://www.chiark.greenend.org.uk/~sgtatham/putty/)):
 
 <pre><code class="language-bash">
 ssh root@localhost -p 8022
@@ -209,5 +217,14 @@ drush @docker.wadmiraal_drupal dl devel
 drush @docker.wadmiraal_drupal en devel
 </code></pre>
 
-How's that for cool? Your container now has Devel running.
+How's that for cool? Your container now has Devel, and you didn't even log in to the container.
 
+## Where do I go from here
+
+Surely you get the idea of how powerful this is. It is much better than having a local \*AMP stack, because each environment is separated. You don't pollute your local system with otherwise unneeded software, and you can even work with different versions of Apache, PHP, etc.
+
+There's a lot more you can do with Docker, like creating your custom images, or creating a new image based on the current state of a container (also very handy). I'll dive into all this in a future post.
+
+If you are on Mac OS or Windows, I'd love some feedback on how this works for you. I know it takes some more work, especially the port forwarding part.
+
+If you have any trouble, you can [submit issues here](), or [fork the repo]() and submit a pull-request.
