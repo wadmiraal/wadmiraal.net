@@ -6,13 +6,13 @@ tags:
  - Drupal
 ---
 
-If you're anything like me, you will know what I'm talking about when I say setting up local development environments for your Drupal projects sucks. Maybe, like me, you had a local \*AMP stack, with virtual hosts you point to different directories or, worse, just subdirectories inside the `/var/www/` directory.
+If you're anything like me, you will know what I'm talking about when I say setting up local development environments for your Drupal projects sucks. Maybe, like me, you had a local \*AMP stack, with virtual hosts pointing to different directories or, worse, just subdirectories inside the `/var/www/` directory.
 
-Well, now there's a *much* better way: [Docker](https://www.docker.com/). Docker is *freakishly awesome*! It's super fast and very easy to setup. Containers (think *virtual machines*) are cheap to discard, rebuild, etc. Think of it as Git branches for virtual machines.
+Well, now there's a *much* better way: [Docker](https://www.docker.com/). Docker is *freakishly awesome*! It's super fast and very easy to setup. Containers (&ldquo;virtual machines&rdquo;) are cheap to discard, rebuild, etc. Think of it as Git branches for virtual machines.
 
 ## What Is Docker
 
-If you're not familiar with Docker, it's a way to run server software. To some, it's a replacement for the classic virtual machine approach. To others, it is merely an improvement to it (at my work, we use Docker in production, but on top of virtual machines, not as a replacement). It is important to realize Docker is a *very Linux-centric product*. You *can* run it on Windows or Mac OS, but you won't get the full benefit of its performance (I won't go into details about why in this post). It's also not as straightforward to setup. Finally, Docker *images* can only run Linux distributions (which is no problem, as you will probably use Linux servers in production anyway).
+If you're not familiar with Docker, it's a way to run server software. To some, it's a replacement for the classic virtual machine approach. To others, it is merely an improvement to it (where I work, we use Docker in production, but on top of virtual machines, not as a replacement). It is important to realize Docker is a *very Linux-centric product*. You *can* run it on Windows or Mac OS, but you won't get the full benefit of its performance (I won't go into details about why in this post). It's also not as straightforward to setup. Finally, Docker *images* can only run Linux distributions (which is no problem, as you will probably use Linux servers in production anyway).
 
 A Docker *image* is a like a snapshot of a particular Linux setup. It has pre-installed packages, usually configured and ready to use. A Docker *container* is an instance of this *image*. You can have many containers running the same image. What's really cool with Docker is these images are usually super-lightweight and lean. A base image will have a very bare-bones Linux install, not even shipping with a text editor! This allows us to install *only* what we want, giving is very fast and light systems. Furthermore, containers are incredibly fast to instantiate. Creating a new container takes literally **seconds**, giving us a whole new, pristine and running system in no time. And this last part is what makes it ideal for development.
 
@@ -24,11 +24,13 @@ You can find the source &ldquo;code&rdquo; [here](https://github.com/wadmiraal/d
 
 What I wanted was a simple LAMP stack, with a pre-installed up-to-date version of Drupal (D7, in this case), pre-installed with [Admin menu](https://www.drupal.org/project/admin_menu) and the admin account password set to &ldquo;admin&rdquo;. This would allow me to quickly start configuring the site, or run my unit tests in a clean setup. I wanted it to use MySQL (because I prefer it to Postgres) and Apache (as I'm more familiar with it then NginX). Because it is a development environment, I didn't want things like Memcache or Redis, which are more suited for production. Finally, I wanted it pre-installed with [Drush](http://www.drush.org/en/master/) and [Composer](https://getcomposer.org/), and compatible with [Drush aliases](http://www.astonishdesign.com/blog/drush-aliases-what-why-and-how) (meaning it comes with a SSH server).
 
-### Preamble: non-Linux users
+### Preamble: attention non-Linux users
 
-If you're on Mac OS or Windows, the following will require a little more work. This is because of the way Docker works (Docker only works on Linux... so, to bypass this problem on Mac OS and Windows, it runs Linux inside a &ldquo;classic&rdquo; virtual machine in Virtual Box, and starts Docker there&thinsp;&mdash;&thinsp;actually pretty clever).
+If you're on Mac OS or Windows, the following will require a little more work. This is because of the way Docker works (Docker only works on Linux... so, to bypass this problem on Mac OS and Windows, it runs Linux inside a &ldquo;classic&rdquo; virtual machine through Virtual Box, and starts Docker there&thinsp;&mdash;&thinsp;actually pretty clever).
 
-I don't work with Mac OS, but [this article](http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide) seems pretty good at covering most caveats I could think of (especially the port forwarding). For Windows, I found [this article](), but let me know if you find any better resources. 
+I don't work with Mac OS, but [this article](http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide) seems pretty good at covering most caveats I could think of (especially the port forwarding).
+
+For Windows, I found [this article](http://blog.tutum.co/2014/11/05/how-to-use-docker-on-windows/) by Tutum. Tutum is pretty active with everything Docker related, so they probably know their stuff. However, please let me know if you find any better resources. 
 
 ### Start using it for your local development
 
@@ -38,7 +40,7 @@ So, first you need to [install Docker](https://docs.docker.com/installation/). A
 docker pull wadmiraal/drupal
 </code></pre>
 
-If you're on Linux, you might need *sudo*&thinsp;&mdash;&thinsp;at my work, we simply aliased `docker` to `sudo docker` (`alias docker="sudo docker"` in your `~/.bashrc` file).
+If you're on Linux, you might need *sudo*&thinsp;&mdash;&thinsp;at the office, we simply aliased `docker` to `sudo docker` (`alias docker="sudo docker"` in your `~/.bashrc` file).
 
 This will take some time, but it only takes time *the first time you call it*. After that, the image will be saved on your hard drive and firing up new instances of it will take *seconds*.
 
@@ -89,6 +91,8 @@ This final parts tells Docker which image you wish to run, in our case `wadmiraa
 ### The result
 
 If you didn't change the port-forwarding options, you can now point your browser to `http://localhost:8080` and see your new Drupal site. You can log in with *admin:admin*.
+
+*Note: remember that Windows and Mac OS requires an extra step for the port-forwarding. Read the above articles.*
 
 You can SSH into the Docker container (Windows users, use [PuTTy](http://www.chiark.greenend.org.uk/~sgtatham/putty/)):
 
@@ -175,7 +179,7 @@ Just so you get an idea of how **fast** Docker is, create a new instance using t
 
 Now, here comes the really neat part. I designed this Docker image to be used with [Drush aliases](http://www.astonishdesign.com/blog/drush-aliases-what-why-and-how). It's very easy to implement.
 
-First, make sure your container is running and you forwarded the `22` port. If you used my above `docker run ...` command, it should be forwarded to port `8022`. You need an SSH key for this to work ([read about creating SSH keys here]()). Copy the contents of your local `~/.ssh/id_rsa.pub` file and SSH into the container (remember: password is &ldquo;root&rdquo;):
+First, make sure your container is running and you forwarded the `22` port. If you used my above `docker run ...` command, it should be forwarded to port `8022`. You need an SSH key for this to work ([read about creating SSH keys here](https://help.github.com/articles/generating-ssh-keys/)). Copy the contents of your local `~/.ssh/id_rsa.pub` file and SSH into the container (remember: password is &ldquo;root&rdquo;):
 
 <pre><code class="language-bash">
 ssh root@localhost -p 8022
@@ -191,7 +195,7 @@ ssh root@localhost -p 8022
 
 If so, we can go on to the next step.
 
-Make sure [Drush is installed](). Create a new file inside your local `~/.drush/` folder, call it something like `docker.aliases.drushrc.php`. Add the following lines to it:
+Make sure [Drush is installed](http://www.drush.org/en/master/install/). Create a new file inside your local `~/.drush/` folder, call it something like `docker.aliases.drushrc.php`. Add the following lines to it:
 
 <pre><code class="language-php">
 &lt;?php
@@ -227,4 +231,4 @@ There's a lot more you can do with Docker, like creating your custom images, or 
 
 If you are on Mac OS or Windows, I'd love some feedback on how this works for you. I know it takes some more work, especially the port forwarding part.
 
-If you have any trouble, you can [submit issues here](), or [fork the repo]() and submit a pull-request.
+If you have any trouble, you can [submit issues here](https://github.com/wadmiraal/docker-drupal/issues), or [fork the repo](https://github.com/wadmiraal/docker-drupal) and submit a pull-request.
