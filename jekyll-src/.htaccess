@@ -12,7 +12,7 @@ DirectoryIndex index.php index.html
 
   # In accordance what we wrote above, this will redirect the homepage to the
   # index.php script, redirecting back to index.html
-  RewriteRule ^$ /index.php [L,R=301]
+  RewriteRule ^$ /index.php [L,R=302]
 
   # Redirect old tag pages.
   RewriteRule ^tag/(.*)$ /index.html?show_tag=$1 [R=301,NC,L]
