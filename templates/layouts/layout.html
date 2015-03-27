@@ -11,12 +11,15 @@
   {% endif %}
   <meta name="author" content="Wouter Admiraal <wad@wadmiraal.net>">
   <meta name="keywords" content="drupal,development,web,web development,javascript,js,css,css3">
+  {% if page.home %}
+  <link rel="canonical" href="http://wadmiraal.net/" />
+  {% endif %}
   <link rel="alternate" type="application/rss+xml" title="wadmiraal.net RSS" href="http://wadmiraal.net/feed.xml">
 
   <link rel="icon" sizes="72x72" href="/img/logo.png">
   <meta name="theme-color" content="#485566">
 
-  <link rel="stylesheet" href="/css/all.min.css">
+  <link rel="stylesheet" href="/css/all.min.css?v=1.0">
 </head>
 <body>
 
@@ -63,7 +66,7 @@
   <div class="site-content__overlay"></div>
 </div>
 
-<script src="/js/all.min.js"></script>
+<script src="/js/all.min.js?v=1.0"></script>
 <script type="text/javascript">
   blog.fx.init();
   blog.cookie.init();
