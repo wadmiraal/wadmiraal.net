@@ -53,7 +53,7 @@ After that, I recommend setting up a new directory like this:
 Now, `cd` into this `project/` directory and call:
 
 <pre><code class="language-bash">
-docker run -i -d -p 8080:80 -p 8022:22 -v `pwd`/modules:/var/www/sites/all/modules/custom -v `pwd`/themes:/var/www/sites/all/themes wadmiraal/drupal
+docker run -d -p 8080:80 -p 8022:22 -v `pwd`/modules:/var/www/sites/all/modules/custom -v `pwd`/themes:/var/www/sites/all/themes wadmiraal/drupal
 </code></pre>
 
 *Note: Windows users, the `pwd` part won't work. Pass the absolute path instead.*
@@ -61,7 +61,7 @@ docker run -i -d -p 8080:80 -p 8022:22 -v `pwd`/modules:/var/www/sites/all/modul
 Let me go through each part and explain what they do.
 
 <pre><code class="language-bash">
-docker run -i -d
+docker run -d
 </code></pre>
 
 This tells Docker to run the image in *detached* mode. It basically runs Docker in the background, giving you back control over your terminal. Otherwise, the process will continue inside your terminal until you interrupt it, stopping the container as well.
