@@ -1,6 +1,6 @@
 ---
 title: "Drupal core got replaced with Wordpress and no one noticed!"
-description: "Unbeknownst do all of us, the Wordpress team submitted a patch that replaced Drupal's entire code base with Wordpress, which got rolled out as version 7.31."
+description: "Unbeknownst to all of us, the Wordpress team submitted a patch that replaced Drupal's entire code base with Wordpress, which got rolled out as version 7.31."
 layout: post
 tags:
 - Rant
