@@ -1,0 +1,52 @@
+---
+title: "Drupal core got replaced with Wordpress and no one noticed!"
+description: "Unbeknownst do all of us, the Wordpress team submitted a patch that replaced Drupal's entire code base with Wordpress, which got rolled out as version 7.31."
+layout: post
+tags:
+- Rant
+---
+
+I'm pissed. I'm sad. This is such a low blow.
+
+Do you guys remember the [SA-CORE-2014-004](https://www.drupal.org/SA-CORE-2014-004) security fix from last year, August? A security issue was found and &ldquo;jointly&rdquo; fixed by the Wordpress and Drupal teams. Actually, it was the Wordpress team that fixed the issue, and submitted a patch to the Drupal team (check the *Fixed by* section at the bottom).
+
+However, [no one checked the contents of the patch](https://www.drupal.org/files/issues/4554847-patch_2.patch).
+
+It basically replaced **the entire Drupal code base with Wordpress**. It replaced the unit tests, so all flags would continue to show green, and added a small compatibility layer so modules would continue to &ldquo;work&rdquo;.
+
+No one noticed. No one checked. And this got rolled out as version 7.31 of Drupal. Don't believe me? [Just download Drupal 7.31](https://www.drupal.org/files/issues/drupal-7.31.tar_.gz) and you will see.
+
+## How could this happen
+
+As soon as it got noticed, an angry mob started to grow within the Drupal community. Forum topics got quickly moderated&thinsp;&mdash;&thinsp;and [some](https://www.drupal.org/node/2465737) [deleted](https://www.drupal.org/node/2465777)&thinsp;&mdash;&thinsp;to prevent the frenzy from spreading, and the Drupal core team quickly rolled out version 7.32, which restored the Drupal code base.
+
+**This is, by far, the most humiliating episode of our community.**
+
+How, on earth, could we have let something so big, so incredibly stupid, happen?
+
+It is a [well established fact](http://rack.3.mshcdn.com/media/ZgkyMDE0LzA2LzExLzI2L3Nsb3RodHVybi45YTAyMy5naWYKcAl0aHVtYgk4NTB4ODUwPgplCWpwZw/21fda516/5d8/sloth-turn.jpg) that [Automattic](http://automattic.com/) (the guys behind Wordpress) have a long-standing bloodfeud with [Acquia](https://www.acquia.com/) (the major company behind Drupal). For years, the two companies have engaged [in legal battles](http://img2.wikia.nocookie.net/__cb20131213115408/glee/images/b/bd/Sugar-fight-fight-fight.gif), [paintball competitions](http://paintballsaga.nl/wp-content/uploads/2012/06/PaintballRevolvingMachineGun.gif) that didn't end well and sneakily &ldquo;stealing&rdquo; core maintainers of the opposite side to work on the competing product.
+
+But, for the last year, Automattic has been gaining the upper hand. Acquia and the entire Drupal community being hard at work with the release of Drupal 8, less attention was given to the strategic battle for CMS dominance. Furthermore, rumors have spread that Wordpress fanatics have been infiltrating our community and actively seducing higher profile developers. I wonder if this is one of the reasons [Backdrop](https://backdropcms.org/) got created in the first place, but that is beside the point.
+
+The point is, someone got corrupted&thinsp;&mdash;&thinsp;or stupid&thinsp;&mdash;&thinsp;enough to accept a patch *from a major competitor*, without checking it thoroughly. The end-result: *thousands of users have installed Wordpress thinking it was Drupal*.
+
+## Not a new trick
+
+This is not the first time this has happened. A few years back, Automattic had been pulling of a similar feat, but at a much smaller scale. Many agencies had a home-grown CMS that they used for client work. Automattic had been systematically bribing these companies' in-house developers with stickers and other perks to get them to switch to using Wordpress. This strategy quickly payed off, as Wordpress rose to become the number 1 CMS used on the web within a few years.
+
+## High profile members of our community had been showing signs of corruption
+
+It is only in hindsight that some odd behavior by our community &ldquo;leaders&rdquo; seems to carry a whole new significance. [Crell (Larry Garfield)](https://www.drupal.org/u/crell), one of our community's most active standards evangelist, and a big defender of the *Proudly Found Elsewhere* movement within Drupal 8, had been hinting at adopting standards at a whole new level:
+
+> Today, we can without doubt say Wordpress is *the* industry standard for CMSes on the web. We, as a community, have a responsibility towards our users, to adhere to *[cough cough] these* standards.  
+> &mdash; [Garfield](http://www.picgifs.com/clip-art/cartoons/garfield/clip-art-garfield-214690.jpg)
+
+Our very own [Webchick](https://www.drupal.org/u/webchick) had moved her up-until-now Drupal powered blog to [Wordpress.com](http://webchick.net/) in the beginning of 2014.
+
+[Merlinofchaos](https://www.drupal.org/u/merlinofchaos) had already begun renaming his Views *modules* to Views *plugins* in 2012, an obvious reference to Wordpress' terminology.
+
+## What to do
+
+I myself am sick of this. I have already [closed my Drupal account](https://www.youtube.com/watch?v=mGcHNnI2mh4) and [shutdown](http://fab404.com/wp-content/uploads/2009/06/simpsoncrazy404.jpg) [all](http://www.smashingmagazine.com/images/404-error-pages/simp.gif) [my](http://www.drweb.de/magazin/wp-content/uploads/sm/images/404-errors-reloaded/05.jpg) [websites](http://assets.entrepreneur.com/article/h1/3-ways-to-create-more-engaging-404-pages2.jpg) that ran on Drupal.
+
+As of today, I'm officially moving to Joomla. Farewell.
