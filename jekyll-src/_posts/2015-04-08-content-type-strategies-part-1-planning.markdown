@@ -3,8 +3,8 @@ title: "Content Type Strategies: planning, naming things, field reuse and DRY th
 description: "Creating and maintaining content types in Drupal can be a challenge and get overwhelming. Here are a few tips based on my experience."
 layout: post
 tags:
-- Drupal
 - Wisdom
+- Drupal
 ---
 
 When you first start creating your own content types in Drupal, it's like being a kid in a candy store. All of a sudden, there's a world of possibilities opening up in front of you. However, as projects drag on, your carefully crafted content types can become an unmaintainable mess. Here are a few tips on how to make most out of your content type strategy.
