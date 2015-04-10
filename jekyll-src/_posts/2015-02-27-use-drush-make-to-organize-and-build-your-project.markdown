@@ -204,7 +204,7 @@ projects[drupal][version] = 7.34
   
 projects[ctools][subdir] = contrib
 projects[ctools][patch][] = https://www.drupal.org/sites/default/files/ctools_patch_6778098_3.patch
-projects[ctools][patch][] =  ./patch/ctools_change-something.patch
+projects[ctools][patch][] = ./patch/ctools_change-something.patch
 
 projects[views][version] = 3.10
 projects[views][subdir] = contrib
@@ -217,7 +217,7 @@ projects[mymodule][download][type] = git
 projects[mymodule][download][url] = https://git.bitbucket.org/myname/mymodule.git
 projects[mymodule][download][tag] = 1.2
 
-libraries[phpexcel][download][type] =get
+libraries[phpexcel][download][type] = get
 libraries[phpexcel][download][url] = https://github.com/PHPOffice/PHPExcel/archive/1.8.0.tar.gz
 libraries[phpexcel][download][destination] = libraries
 libraries[phpexcel][download][directory_name] = PHPExcel
