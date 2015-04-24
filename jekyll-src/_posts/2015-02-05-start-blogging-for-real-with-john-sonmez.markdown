@@ -12,6 +12,14 @@ This is kind of special for me. I've been wanting to redesign my blog for a whil
 
 I also have been following [John Sonmez's email course](http://simpleprogrammer.com/products/) on how to start your own blog. Sure, I already had one. But I needed some motivation and guidance to keep it going and take it to the next level. John gave me both.
 
+## Update, 24.04.2015
+
+So, I graduated from John's blogging course!
+
+[![Badge](//simpleprogrammer.com/wp-content/uploads/2015/04/badge.png)](http://simpleprogrammer.com/2015/03/02/my-free-blogging-course-is-getting-unbelievable-results/)
+
+I'm really happy I took it, as well as taking the time to blog on a regular basis. Thanks John!
+
 ## Getting back on track
 
 If you have no blog yet, or, like me, have one and struggle with it, I urge you to subscribe to John's email course. It's free, it's simple, and packed with superb advice. I'm going to put all of it into practice for a few months and see how it goes. I'm super motivated, and have a long list of topics (about Drupal) just waiting to get some attention.
