@@ -34,7 +34,11 @@ Create a new module structure. We will mainly need:
 * an `.install` file
 * an `includes/` directory, with a file called `mymodule.node_types.inc` in it
 
-I'll take it you know how to write [an `.info` file](https://www.drupal.org/node/542202).
+I'll take it you know how to write [an `.info` file](https://www.drupal.org/node/542202). Our module will have multiple dependencies:
+
+* Field *(note: even though Field is required by Drupal itself, it's good practice to define it anyway)*
+* Text
+* Image
 
 The `.module` file will be empty, except for these hook implementations:
 
@@ -147,4 +151,118 @@ This final hook implements one of our special *node-type-specific* hooks. Rememb
 At this point, you have already defined a custom content type. [Bravo](https://www.youtube.com/watch?v=g_FdDtCB8xw)! Of course, it is not very useful yet. Let's improve it.
 
 ## Adding fields
+
+Fields don't live within the context of a content type. Fields live on their own. They are floating elements that we can attach to content types (called &ldquo;bundles&rdquo; in fields' context).
+
+So, before we can add a field to our content type, we need to create it. And there's a catch: a field with the same name *might already exist*. If you choose a field name that is fairly unique (by prefixing it with your module name), there's still a chance your module was enabled before, disabled for some time, and then re-enabled. When re-enabled, the fields will still exist, so if you try to create it again, your site will break.
+
+Thus, it is *always* a good idea to check if the field already exists. The same goes for field *instances*. An *instance* is a field attached to a particular content type (or, actually, to a particular *bundle* of an *entity*, but that's beyond the scope of this post). If your module got disabled, than re-enabled again, it will try to attach a field to its content type. But disabling the module does not necessarily disable the content type. So, here again, when re-enabling our module, we might trigger errors. So, to prevent that, we check if the instance exists as well.
+
+We will be adding 3 fields.
+
+Let's add a text field to our page, which can have multiple occurrences, but a maximum of 5.
+
+### The text field
+
+In our `includes/mymodule.node_types.inc` file:
+
+<pre><code class="language-php">
+&lt;?php
+
+/**
+ * Add fields to our custom content type.
+ */
+function _mymodule_node_type_insert($content_type) {
+  $field = field_info_field('mymodule_text');
+  if (empty($field)) {
+    field_create_field(array(
+      'field_name' => 'mymodule_text',
+      'cardinality' => 5,
+      'type' => 'text',
+    ));
+  }
+
+  $instance = field_info_instance('node', 'mymodule_text', 'mymodule_page');
+  if (empty($instance)) {
+    field_create_instance(array(
+      'entity_type' => 'node',
+      'bundle' => 'mymodule_page',
+      'field_name' => 'mymodule_text',
+      'label' => t("Some text"),
+      'required' => TRUE,
+      'widget' => array(
+        'type' => 'text_textfield',
+      ),
+    ));
+  }
+}
+</code></pre>
+
+Notice we gave it a type of *text*, which means the field can contain a string of maximum 255 characters, and used an appropriate widget, *text_textfield*. If we wanted a longer text, we could have used a type of *text_long* and the *text_textarea* widget. Drupal provides many other field types, like *file*, *image*, *number_integer*, *number_float*, etc. There are plenty of widget types as well: *list_text* (select list), *options_buttons* (radio buttons or checkboxes), etc.
+
+
+### The image field
+
+Let's add another field, an image that can have an unlimited number of items. Still in our `includes/mymodule.node_types.inc` file:
+
+<pre><code class="language-php">
+&lt;?php
+
+/**
+ * Add fields to our custom content type.
+ */
+function _mymodule_node_type_insert($content_type) {
+  // Text field logic...
+
+  $field = field_info_field('mymodule_image');
+  if (empty($field)) {
+    field_create_field(array(
+      'field_name' => 'mymodule_image',
+      'cardinality' => -1,
+      'type' => 'image',
+    ));
+  }
+
+  $instance = field_info_instance('node', 'mymodule_image', 'mymodule_page');
+  if (empty($instance)) {
+    field_create_instance(array(
+      'entity_type' => 'node',
+      'bundle' => 'mymodule_page',
+      'field_name' => 'mymodule_image',
+      'label' => t("Some image"),
+      'required' => FALSE,
+      'widget' => array(
+        'type' => 'image_image',
+      ),
+    ));
+  }
+}
+</code></pre>
+
+Notice the *cardinality* that was set to `-1`. This means *no limit*, so the users can add as many items for that field as necessary.
+
+We use mostly the defaults for our fields. But, every setting that can be set through the UI, can also be set here. For example, we might want to limit the images to only JPG:
+
+<pre><code class="language-php">
+  $instance = field_info_instance('node', 'mymodule_image', 'mymodule_page');
+  if (empty($instance)) {
+    field_create_instance(array(
+      'entity_type' => 'node',
+      'bundle' => 'mymodule_page',
+      'field_name' => 'mymodule_image',
+      'label' => t("Some image"),
+      'required' => FALSE,
+      'widget' => array(
+        'type' => 'image_image',
+      ),
+      'settings' => array(
+        'file_extensions' => 'jpg jpeg',
+      ),
+    ));
+  }
+</code></pre>
+
+In this particular case, the file extensions are an *instance* setting, so we must set it on the instance creation. Some settings, however, are *global*; these are set in the same manner (using a `settings` key), but when creating the field itself.
+
+[Here you can see a full list](https://api.drupal.org/api/drupal/modules%21field%21field.api.php/function/implementations/hook_field_info/7) of core modules that implement [`hook_field_info()`](https://api.drupal.org/api/drupal/modules%21field%21field.api.php/function/hook_field_info/7). By looking at what each of the modules return for field types, as well as settings for each of these types, you can figure out how to define your settings when creating fields and instances.
 
