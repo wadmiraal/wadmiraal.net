@@ -7,15 +7,15 @@ tags:
 - Drupal
 ---
 
-If [creating content types can sometimes be a hassle](/lore/2015/04/08/content-type-strategies-part-1-planning/), maintaining them is even worse. Updating fields is tricky, as it will affect existing content. Versioning these changes is virtually impossible if created through the UI. Furthermore, because Drupal keeps content type configuration in the database, it is hard to reproduce in development or staging environments, and usually involves dumping the whole production database and importing it back again on staging or dev.
+If [creating content types can sometimes be a hassle](/lore/2015/04/08/content-type-strategies-part-1-planning/), maintaining them can be even worse, especially if you create your content types through the UI. Updating fields is tricky, as it will affect existing content. Keeping a history of these changes is virtually impossible. Furthermore, because Drupal keeps content type configuration in the database, it is hard to reproduce in development or staging environments, and usually involves dumping the whole production database and importing it back again on staging or dev.
 
-The good news is, in Drupal 8, with the [CMI](http://drupal8cmi.org/ "Configuration Management Initiative"), we won't have to worry about this as much; configuration will finally be shippable as plain YAML files, which can be imported and versioned in our CVS. The bad news is, many projects will continue to use D7 for probably *at least* another year, as it will take time for contrib to catch up with D8.
+The good news is, in Drupal 8, thanks to the [Configuration Management Initiative](http://drupal8cmi.org/), we won't have to worry about this as much; configuration will finally be shippable as plain YAML files, which can be imported and versioned in our favorite CVS. The bad news is, many projects will continue to use D7 for probably *at least* another year, as it will take time for contrib to catch up with D8.
 
 So, here's a guide to maintaining content types in code, for Drupal 7.
 
 ## A quick note about Features
 
-If you don't know [Features](https://www.drupal.org/project/features), it is a module that allows you to export your Drupal site configuration to a Drupal module. You can then download this module, and simply enable it on another site. It is very powerful, and enables us to maintain our content types in code, while also managing updates and versioning. The only drawback is that the exported module requires Features as a dependency, also on the sites on which you wish to &ldquo;install&rdquo; the configuration.
+If you don't know [Features](https://www.drupal.org/project/features), it is a module that allows you to export your Drupal site configuration to a Drupal module. You can then download this module, and simply enable it on another site to activate the exported configuration. It is very powerful, and enables us to maintain our content types in code, while also managing updates and versioning. The only drawback is that the exported module requires Features as a dependency, also on the sites on which you wish to &ldquo;install&rdquo; the configuration.
 
 If you have never tried it out, give it a spin. It's very powerful, and the preferred method for many [Drupal distributions](https://www.drupal.org/project/project_distribution) to ship default configuration out of the box (we used it extensively when I was still on the [Opigno](https://www.drupal.org/project/opigno_lms) team).
 
@@ -23,7 +23,7 @@ However, in this post I will focus on the Drupal-only solution, using the APIs p
 
 ## Getting started
 
-*Tip: you can use [my Docker image](/lore/2015/03/27/use-docker-to-kickstart-your-drupal-development/) to try the following on a clean development environment.*
+*Tip: you can use [my Docker image](/lore/2015/03/27/use-docker-to-kickstart-your-drupal-development/) to try the following on a clean development environment. I used it extensively while writing this post.*
 
 I prefer having one module per content type, as it keeps things clearer. But you can manage multiple content types in one module.
 
@@ -31,14 +31,14 @@ Create a new module structure. We will mainly need:
 
 * an `.info` file
 * a `.module` file
-* an `.install` file
 * an `includes/` directory, with a file called `mymodule.node_types.inc` in it
 
 I'll take it you know how to write [an `.info` file](https://www.drupal.org/node/542202). Our module will have multiple dependencies:
 
-* Field *(note: even though Field is required by Drupal itself, it's good practice to define it anyway)*
-* Text
-* Image
+* text
+* image
+* options
+* list *(note: even though List depends on Options anyway, the fact we use Options explicitly justifies we list it as a dependency as well)*
 
 The `.module` file will be empty, except for these hook implementations:
 
@@ -160,9 +160,17 @@ Thus, it is *always* a good idea to check if the field already exists. The same 
 
 We will be adding 3 fields.
 
-Let's add a text field to our page, which can have multiple occurrences, but a maximum of 5.
+#### Quick note about fields vs widgets
+
+When creating a field for your content type, you need to do two things: create a *field*, and attach it to the content type using a *widget*.
+
+The *field* on itself is not usable in a form. It is just a data structure definition. Creating a field creates a new set of tables in the database, ready to store and version data.
+
+In order to show the field on a form, you need a *widget*. Some fields can be used with different widgets; more on this below.
 
 ### The text field
+
+Let's add a text field to our page, which can have multiple occurrences, but a maximum of 5.
 
 In our `includes/mymodule.node_types.inc` file:
 
@@ -188,7 +196,7 @@ function _mymodule_node_type_insert($content_type) {
       'entity_type' => 'node',
       'bundle' => 'mymodule_page',
       'field_name' => 'mymodule_text',
-      'label' => t("Some text"),
+      'label' => "Some text",
       'required' => TRUE,
       'widget' => array(
         'type' => 'text_textfield',
@@ -200,6 +208,9 @@ function _mymodule_node_type_insert($content_type) {
 
 Notice we gave it a type of *text*, which means the field can contain a string of maximum 255 characters, and used an appropriate widget, *text_textfield*. If we wanted a longer text, we could have used a type of *text_long* and the *text_textarea* widget. Drupal provides many other field types, like *file*, *image*, *number_integer*, *number_float*, etc. There are plenty of widget types as well: *list_text* (select list), *options_buttons* (radio buttons or checkboxes), etc.
 
+Also notice we do *not* use [`t()`](https://api.drupal.org/api/drupal/includes%21bootstrap.inc/function/t/7) on the field label. The reason is, the labels will be in the language of the session during which the module was enabled. Meaning, if you enable this module while seeing the interface in French, the fields will get French labels. But these labels will be in French *for all* languages. This would make it untranslatable in many cases. Instead, we give it the English value, and can rely on the [Internationalization module](https://www.drupal.org/project/i18n) for translation.
+
+If you are puzzled by this, you are allowed to be: multilingual support in Drupal up to version 7 is very bad. Drupal 8 will address this issue fully, thanks to the [Multilingual Initiative](http://www.drupal8multilingual.org/).
 
 ### The image field
 
@@ -229,7 +240,7 @@ function _mymodule_node_type_insert($content_type) {
       'entity_type' => 'node',
       'bundle' => 'mymodule_page',
       'field_name' => 'mymodule_image',
-      'label' => t("Some image"),
+      'label' => "Some image",
       'required' => FALSE,
       'widget' => array(
         'type' => 'image_image',
@@ -250,7 +261,7 @@ We use mostly the defaults for our fields. But, every setting that can be set th
       'entity_type' => 'node',
       'bundle' => 'mymodule_page',
       'field_name' => 'mymodule_image',
-      'label' => t("Some image"),
+      'label' => "Some image",
       'required' => FALSE,
       'widget' => array(
         'type' => 'image_image',
@@ -262,7 +273,104 @@ We use mostly the defaults for our fields. But, every setting that can be set th
   }
 </code></pre>
 
-In this particular case, the file extensions are an *instance* setting, so we must set it on the instance creation. Some settings, however, are *global*; these are set in the same manner (using a `settings` key), but when creating the field itself.
+In this particular case, the file extensions are an *instance* setting, so we must set it on the instance creation. Some settings, however, are *global*; these are set in the same manner (using a `settings` key), but when creating the field itself (example below).
 
-[Here you can see a full list](https://api.drupal.org/api/drupal/modules%21field%21field.api.php/function/implementations/hook_field_info/7) of core modules that implement [`hook_field_info()`](https://api.drupal.org/api/drupal/modules%21field%21field.api.php/function/hook_field_info/7). By looking at what each of the modules return for field types, as well as settings for each of these types, you can figure out how to define your settings when creating fields and instances.
+[Here](https://api.drupal.org/api/drupal/modules%21field%21field.api.php/function/implementations/hook_field_info/7) you can see a full list of core modules that implement [`hook_field_info()`](https://api.drupal.org/api/drupal/modules%21field%21field.api.php/function/hook_field_info/7). By looking at what each of the modules return for field types, as well as settings for each of these types, you can figure out how to define your settings when creating fields and instances. And [here](https://api.drupal.org/api/drupal/modules%21field%21field.api.php/function/implementations/hook_field_widget_info/7) you can see a full list of core modules that implement [`hook_field_widget_info()`](https://api.drupal.org/api/drupal/modules%21field%21field.api.php/function/hook_field_widget_info/7). By looking at these, you will be able to determine what widget to use for your fields.
+
+### The radio buttons
+
+Let's add one final field, a list of radio buttons. This field will be a little bit special, as the options will not be defined when creating the field, but generated dynamically. Still in our `includes/mymodule.node_types.inc` file:
+
+<pre><code class="language-php">
+&lt;?php
+
+/**
+ * Add fields to our custom content type.
+ */
+function _mymodule_node_type_insert($content_type) {
+  // Text field logic...
+
+  // Image field logic...
+
+  $field = field_info_field('mymodule_options');
+  if (empty($field)) {
+    field_create_field(array(
+      'field_name' => 'mymodule_options',
+      'cardinality' => 1,
+      'type' => 'list_text',
+      'settings' => array(
+        'allowed_values_function' => 'mymodule_field_options',
+      ),
+    ));
+  }
+
+  $instance = field_info_instance('node', 'mymodule_options', 'mymodule_page');
+  if (empty($instance)) {
+    field_create_instance(array(
+      'entity_type' => 'node',
+      'bundle' => 'mymodule_page',
+      'field_name' => 'mymodule_options',
+      'label' => "Some options",
+      'required' => TRUE,
+      'widget' => array(
+        'type' => 'options_buttons',
+      ),
+    ));
+  }
+}
+</code></pre>
+
+You notice we use the *list_text* field type, which means each entry will be stored as text. We use the *options_buttons* widget, which will render a list of checkboxes if the cardinality is different from 1, and as radio buttons if the cardinality is exactly 1.
+
+Now, when you go to the `node/add/mymodule-page` URL, you will get an error. That's because we must define the function that generates the radio button values, `mymodule_field_options`. Inside `mymodule.module`, add the following:
+
+<pre><code class="language-php">
+/**
+ * Return a list of possible values for our node field.
+ *
+ * @return array
+ *    A list if values.
+ */
+function mymodule_field_options() {
+  return array(
+    'option_1' => t("Option 1"),
+    'option_2' => t("Option 2"),
+  );
+}
+</code></pre>
+
+This is just a hard-coded list, but you could get values from a database, from a custom hook implementation, etc.
+
+Of course, you could use a pre-defined, hard-coded list of values. You would do so like this:
+
+<pre><code class="language-php">
+  $field = field_info_field('mymodule_options');
+  if (empty($field)) {
+    field_create_field(array(
+      'field_name' => 'mymodule_options',
+      'cardinality' => 1,
+      'type' => 'list_text',
+      'settings' => array(
+        'allowed_values' => array(
+          'option_1' => "Option 1",
+          'option_2' => "Option 2",
+        ),
+      ),
+    ));
+  }
+</code></pre>
+
+Notice that, here again, we do *not* use [`t()`](https://api.drupal.org/api/drupal/includes%21bootstrap.inc/function/t/7) on the options, for the same reason as mentioned before.
+
+## Conclusion
+
+As you can see, it is fairly straightforward to define your content types in code. It usually takes some time to figure out how to get the settings right, especially for non-Core field types (like Entityreference). However, the code is fairly minimal, and easy to read (it's pretty self-documenting when you think about it).
+
+Now, this is just the tip of the iceberg. The real challenge is handling *updates*; when the content type *changes*. I will discuss that in my next post.
+
+### Final word about Features
+
+Features would make all the above easier, by allowing you to create the content type through the UI and simply export a module. But, Features is mainly a tool for site-builders. I, as a developer, prefer installing as little modules on my sites as possible. And, although Features certainly doesn't add a large overhead, I still find it annoying to have it initialize itself on each page load, although I only needed it once to actually import my content type.
+
+But maybe that's just me...
 
