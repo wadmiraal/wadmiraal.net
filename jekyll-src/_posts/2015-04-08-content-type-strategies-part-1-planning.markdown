@@ -50,4 +50,4 @@ And if you wish to render this field differently in the context of a specific co
 
 There are many aspects that can lead to content type mayhem. Projects evolve, sites change, etc. But, if you can at least make sure that when the site launches, everything is fine and dandy, you will make sure the whole thing is maintainable, easier to debug and probably self-documenting enough for you to drastically cut down support time. And that is invaluable to any agency or freelancer.
 
-In a next post, I'll explain how you can &ldquo;easily&rdquo; maintain those content types in code. This allows you to keep that configuration in a Git repository and version it, which is also highly important for long-term maintenance.
+[In a next post](/lore/2015/05/01/content-type-strategies-part-2-in-code/), I'll explain how you can &ldquo;easily&rdquo; maintain those content types in code. This allows you to keep that configuration in a Git repository and version it, which is also highly important for long-term maintenance.
