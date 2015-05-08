@@ -7,13 +7,13 @@ tags:
 - Drupal
 ---
 
-As [we saw before](), maintaining content types is an important aspect of any Drupal project. Now that [we know how to define them in code](), let's dive into one of the more serious parts: handling updates and versioning.
+As [we saw before](/lore/2015/04/08/content-type-strategies-part-1-planning/), maintaining content types is an important aspect of any Drupal project. Now that [we know how to define them in code](/lore/2015/05/01/content-type-strategies-part-2-in-code/), let's dive into one of the more serious parts: handling updates and versioning.
 
-I will be using the same example as in [part 2]().
+I will be using the same example as in [part 2](/lore/2015/05/01/content-type-strategies-part-2-in-code/).
 
 ## Scenarios and caveats
 
-There are multiple scenarios we can think of when it comes to changing content types. The easiest is adding a new field, while making sure all our content gets a default value assigned. Another is changing a multi-value field to a single-value field (or a no-limit field to a field with a limit). This one takes some planning, because: *what do we do with the data?* Do we delete the instances that are over our new limit? Do we combine them? Do we want to keep a backup in the database, just in case? Another challenge is changing the field type completely. For example, we might want to change a previous *text* field to a *number* field. This requires updating all field instances as well.
+There are multiple scenarios we can think of when it comes to changing content types. The easiest is adding a new field, while making sure all our content gets a default value assigned. Another is changing a multi-value field to a single-value field (or a no-limit field to a field with a limit). This one takes some planning, because: *what do we do with the data?* Do we delete the items that are over our new limit? Do we combine them? Do we want to keep a backup in the database, just in case?
 
 Updating all field instances is potentially a heavy task. If your site has a dozen nodes of this content type, you might get away with doing everything in one go. But if you have hundreds or thousands, we need to do this in a batch. Luckily, Drupal provides us with all the tools we need.
 
@@ -21,13 +21,13 @@ Updating all field instances is potentially a heavy task. If your site has a doz
 
 You've probably updated Drupal before. You upload (or whatever) the new code to the server, and navigate to `/update.php`. Drupal will then tell you if there are any updates pending or not. For your module to tell Drupal it requires an update, we simply implement a special hook: [`hook_update_N()`]().
 
-When you first enable a module, Drupal will look for any `hook_update_N()` function in the `.install`  file, take the highest one and store it as the current &ldquo;schema version&rdquo; (if it doesn't find one, it simply stores null). When a new version of the module is uploaded, and the `/update.php` page visited, Drupal will start looking for a `hook_schema_N()` function with a *higher* value than the one stored. If it finds one (or more), it will tell the site administrator an update is pending. When the site administrator launches the updates, Drupal will call these functions in sequence. At the end, it will store the name of the last one executed.
+When you first enable a module, Drupal will look for any `hook_update_N()` functions in the `.install`  file, take the highest one and store it as the current &ldquo;schema version&rdquo; (if it doesn't find one, it simply stores null). When a new version of the module is uploaded, and the `/update.php` page visited, Drupal will start looking for a `hook_schema_N()` function with a *higher* value than the one stored. If it finds one (or more), it will tell the site administrator an update is pending. When the site administrator launches the updates, Drupal will call these functions in sequence. At the end, it will store the name of the last one executed.
 
 The naming schema for these `hook_update_N()` functions should be `hook_update_{core}{major version}{update number (2 digits)}()`. Notice that the first 2 digits (core version and your module major version) *are important*. Drupal uses those to trigger the correct updates. The two remaining digits are sequential, and you can simply start at `00`, incrementing with 1 every update, all the way up to `99`.
 
 ### Update hooks and a clean install
 
-It is a common misconception that Drupal will run update hooks on a clean install. When you install a module for the first time, even if this module *has* update hooks, Drupal will *not* invoke them. It will simply look for the update hook with the highest value and store *that* as the current &ldquo;schema version&rdquo;. This means, you cannot simply leave old code in your module and think Drupal will update it for you. In our case, we will need to update our content type definition in our update hooks *and* in the `includes/mymodule.node_types.inc` file.
+It is a common misconception that Drupal will run update hooks on a clean install. When you install a module for the first time, even if this module *has* update hooks, Drupal will *not* invoke them. It will simply look for the update hook with the highest value and store *that* as the current &ldquo;schema version&rdquo;. This means, you cannot simply leave old code in your module and think Drupal will update it for you when enabling the module for the first time. In our case, we will need to update our content type definition in our update hooks *and* in the `includes/mymodule.node_types.inc` file.
 
 ## Adding a new field
 
@@ -109,7 +109,7 @@ function mymodule_update_7101(&$sandbox) {
 }
 </code></pre>
 
-See what we did there? We re-used our content type logic we use when installing our module! We can, because we added a systematic check if a field and/or its instance already exist (read [the previous post]() for more information).
+See what we did there? We re-used the same function we use when installing our module! We can, because we added a systematic check if a field and/or its instance already exist (read [the previous post](/lore/2015/05/01/content-type-strategies-part-2-in-code/) for more information).
 
 We also *must* return a string with a message for the user. You can also return an empty string if you wish, but you *must* return something.
 
@@ -173,7 +173,7 @@ After running this update, all your nodes will have the new field, a new revisio
 
 ## Add a new limit to our image field
 
-Sometimes, we want to have a new limit on a field. This is pretty simple in practice, however it requires we ask ourselves: *what do we do with the data that goes over the limit?*
+Sometimes, we want to have a new limit on a field. This is pretty simple in practice, however we must we ask ourselves: *what do we do with the data that goes over the limit?*
 
 Let's tackle the new limit first. Let's say we go from unlimited to only 5. We first update `includes/mymodule.node_types.inc`, so fresh installs get the correct limit:
 
@@ -310,7 +310,6 @@ function mymodule_update_7102(&$sandbox) {
 
 Now, we only have our 5 first images, and our DB is clean.
 
-## Change our text list to a number list
+## Wrapping up
 
-Sometimes, we actually change the field *type*. This is a tricky one. It's not simply updating and saving. Changing the field *type* will trigger a change in the database schema.
-
+This two part tutorial showed you how you can handle your content types' in code, including versioning and updates, without relying on any third-party modules. As you can see, Drupal provides us with all the necessary tools. We have many options available to us and, if used wisely, we can provide a robust and traceable solution for our project, greatly simplifying the deployment of our content type configuration across environments.
