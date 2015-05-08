@@ -19,7 +19,7 @@ Updating all field instances is potentially a heavy task. If your site has a doz
 
 ## Registering an update
 
-You've probably updated Drupal before. You upload (or whatever) the new code to the server, and navigate to `/update.php`. Drupal will then tell you if there are any updates pending or not. For your module to tell Drupal it requires an update, we simply implement a special hook: [`hook_update_N()`]().
+You've probably updated Drupal before. You upload (or whatever) the new code to the server, and navigate to `/update.php`. Drupal will then tell you if there are any updates pending or not. For your module to tell Drupal it requires an update, we simply implement a special hook: [`hook_update_N()`](https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_update_N/7).
 
 When you first enable a module, Drupal will look for any `hook_update_N()` functions in the `.install`  file, take the highest one and store it as the current &ldquo;schema version&rdquo; (if it doesn't find one, it simply stores null). When a new version of the module is uploaded, and the `/update.php` page visited, Drupal will start looking for a `hook_schema_N()` function with a *higher* value than the one stored. If it finds one (or more), it will tell the site administrator an update is pending. When the site administrator launches the updates, Drupal will call these functions in sequence. At the end, it will store the name of the last one executed.
 
