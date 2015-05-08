@@ -5,6 +5,8 @@ layout: post
 tags:
   - Drupal
   - Wisdom
+credits:
+  - { name: s427, site: "http://s427.ch/" }
 ---
 
 How do you maintain your site code-base? Do you activate notification for updates, and when a new version comes out you simply FTP it to your server? How 2002. Or do you put the whole shebang inside a Git repo, pushing, merging and pulling the entire code-base regularly? Talking about overkill. And how do you keep track of applied patches? Do you keep a list of them in Excel and try to re-apply them on each update by hand? How's your sanity doing today?

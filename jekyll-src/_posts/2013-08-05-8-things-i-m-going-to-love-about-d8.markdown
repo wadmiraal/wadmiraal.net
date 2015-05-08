@@ -5,6 +5,8 @@ layout: post
 tags:
   - Drupal
   - PHP
+credits:
+  - { name: Gary }
 ---
 
 Drupal 8 is on its way, and from the looks of it, it's going to be awesome.
