@@ -39,7 +39,7 @@
       </li>
     {% endunless %}
     {% for post in site.posts %}
-      <li class="site-menu__item">
+      <li class="site-menu__item{% if page.title == post.title %} active{% endif %}">
         <a class="tag--border" data-tags="{% for tag in post.tags %}{{ tag | downcase | replace:' ','-' }} {% endfor %}" href="{{ post.url }}">{{ post.title }}</a>
       </li>
     {% endfor %}
