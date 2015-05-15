@@ -5,6 +5,8 @@ layout: post
 tags:
   - Drupal
   - Wisdom
+credits:
+  - { name: s427, site: "http://s427.ch/" }
 ---
 
 How do you maintain your site code-base? Do you activate notification for updates, and when a new version comes out you simply FTP it to your server? How 2002. Or do you put the whole shebang inside a Git repo, pushing, merging and pulling the entire code-base regularly? Talking about overkill. And how do you keep track of applied patches? Do you keep a list of them in Excel and try to re-apply them on each update by hand? How's your sanity doing today?
@@ -24,6 +26,8 @@ Drush ships with a `make` command. This command allows you to provide a `.make` 
 ### New: Now With YAML!
 
 With the latest version of Drush, following the move of Drupal 8 away from the *INI* format in favor of *YAML*, `.make` files can be (and should, from now on), be written using YAML. The old syntax will still work, though, no worries. If you want to use the new YAML syntax, simply suffix the file with `.make.yml`. If you wish to use the old *INI* syntax, just use `.make`. Many examples you can find online still use the old *INI* format, but as you will see, the instructions are very similar and translate easily from one format to another.
+
+*Note: as noted in the comments by s427, the new YAML format does not seem to work with Drush 6, at least on Windows (but probably it is not related to the OS). If you encounter issues with Drush make, switch back to the old INI syntax. I've added an example in INI format at the end of this post.*
 
 ## Why Using Drush Make Is Good
 
@@ -189,3 +193,35 @@ You can simply check this in your favorite CVS tool, version it, keep track of y
 ## Just Scratching The Surface
 
 The above just scratches the surface of what `drush make` can achieve. It is a very powerful tool, and it can greatly simplify your code maintenance and build workflow. I hope this small introduction will help you adopt this tool as part of your Drupal toolbox and workflow.
+
+## Example in INI format
+
+Some may not be able to use the YAML format because of an older Drush version. In that case, just use the old INI format. Here's the exact same make file, but in INI (don't forget to change the extension from `.make.yml` to `.make`):
+
+<pre><code class="language-php">
+api = 2
+core = 7.x
+
+projects[drupal][version] = 7.34
+  
+projects[ctools][subdir] = contrib
+projects[ctools][patch][] = https://www.drupal.org/sites/default/files/ctools_patch_6778098_3.patch
+projects[ctools][patch][] = ./patch/ctools_change-something.patch
+
+projects[views][version] = 3.10
+projects[views][subdir] = contrib
+  
+projects[zen][version] = 5.5
+
+projects[mymodule][type] = module
+projects[mymodule][subdir] = custom
+projects[mymodule][download][type] = git
+projects[mymodule][download][url] = https://git.bitbucket.org/myname/mymodule.git
+projects[mymodule][download][tag] = 1.2
+
+libraries[phpexcel][download][type] = get
+libraries[phpexcel][download][url] = https://github.com/PHPOffice/PHPExcel/archive/1.8.0.tar.gz
+libraries[phpexcel][download][destination] = libraries
+libraries[phpexcel][download][directory_name] = PHPExcel
+
+</code></pre>

@@ -6,6 +6,8 @@ favorite: false
 tags:
   - Wisdom
   - Git
+credits:
+  - { name: swytsh }
 ---
 
 I've, for a very long time, been telling myself *&ldquo;I really should enable some Git hooks here to (run unit tests|spell check my commit message|some other task)&rdquo;*.

@@ -17,10 +17,6 @@ Straight from the press.
 [Read more&hellip;]({{ post.url }})
 {% endfor %}
 
-## How About Some Weekend Reads?
-
-The Top 3 is a weekly email I send with 3 interesting links about the web and more. Short and sweet. [Subscribe here](http://www.getrevue.co/profile/wadmiraal). You can read past issues [here](https://www.getrevue.co/profile/wadmiraal#archive).
-
 ## Find Me Online
 
 I'm *wadmiraal* online. [Google it](https://www.google.ch/search?q=wadmiraal), most links are about me. Social accounts:

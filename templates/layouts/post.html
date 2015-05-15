@@ -47,7 +47,21 @@
       <div class="post__body__call-to-action">
         <p>Enjoyed this post? Grab the <a href="http://wadmiraal.net/feed.xml">RSS feed</a> or <a href="http://twitter.com/wadmiraal">follow me on Twitter</a>!</p>
 
-        <p>Psst! Did you know I also publish a weekly newsletter called <a href="http://www.getrevue.co/profile/wadmiraal">The Top 3</a>?</p>
+        {% if page.credits %}
+          <p>Special thanks to:</p>
+        {% endif %}
+        {% for credit in page.credits %}
+          <div>
+          {% if credit.site %}
+            <a href="{{ credit.site }}">{{ credit.name }}</a>
+          {% else %}
+            {{ credit.name }}
+          {% endif %}
+          </div>
+        {% endfor %}
+        {% if page.credits %}
+          <p>for contributing to this post.</p>
+        {% endif %}
 
         <p>Found a typo ? <a href="https://github.com/wadmiraal/wadmiraal.net/fork">Correct it, submit a pull-request and get credited here</a>!</p>
       </div>
