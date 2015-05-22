@@ -3,12 +3,14 @@ title: "Use Docker to kickstart your Drupal development"
 description: "When starting a new Drupal project, setting up a development environment can take up a lot of time. But now, thanks to tools like Docker, we can start developing in seconds."
 layout: post
 tags:
- - Drupal
+ - Drupal 7
 ---
 
 If you're anything like me, you will know what I'm talking about when I say setting up local development environments for your Drupal projects sucks. Maybe, like me, you had a local \*AMP stack, with virtual hosts pointing to different directories or, worse, just subdirectories inside the `/var/www/` directory.
 
 Well, now there's a *much* better way: [Docker](https://www.docker.com/). Docker is *freakishly awesome*! It's super fast and very easy to setup. Containers (&ldquo;virtual machines&rdquo;) are cheap to discard, rebuild, etc. Think of it as Git branches for virtual machines.
+
+*Update 2015-05-22: I added some new functionality to my Docker image, as well as use it a little bit differently. Check at the bottom of this post for more information.*
 
 ## What Is Docker
 
@@ -232,3 +234,51 @@ There's a lot more you can do with Docker, like creating your custom images, or 
 If you are on Mac OS or Windows, I'd love some feedback on how this works for you. I know it takes some more work, especially the port forwarding part.
 
 If you have any trouble, you can [submit issues here](https://github.com/wadmiraal/docker-drupal/issues), or [fork the repo](https://github.com/wadmiraal/docker-drupal) and submit a pull-request.
+
+## 2015-05-22 update
+
+So, I updated my `wadmiraal/drupal` image a little bit since my original post. First and foremost, I've taken the habit to *not* run my containers in daemonized mode. This means my Terminal is unusable for as long as the container is running. But, this has 2 nice advantages:
+
+* I can stop my container by hitting *^C* (*Ctrl + C* or *&#8984; + C*). Much easier than `docker stop [id or name]`.
+* It allows me to run the container with the `--rm` flag. This will *remove* the container as soon as it stops, cleaning up my system.
+
+This last point is a big deal. If you start new containers a lot, you will probably notice your start having a *lot* of stale containers on your system. The `--rm` flag solves this problem nicely.
+
+So, compared to what I wrote above, I now use a command that looks more like this:
+
+<pre><code class="language-bash">
+docker run -it --rm -p 8080:80 -p 8022:22 -v `pwd`/modules:/var/www/sites/all/modules/custom -v `pwd`/themes:/var/www/sites/all/themes wadmiraal/drupal
+</code></pre>
+
+
+### Running unit tests
+
+Running unit tests takes a little tweaking if you don't forward to `80` or `8080`. This is because of the way Drupal's Simpletest runs its tests. If you forward your container's port `80` to something other than `80` or `8080` on localhost, you must add a little line to the container's Apache configuration. SSH into your running container (don't forget to forward your port `22`) and make Apache bind to your other port:
+
+<pre><code class="language-bash">
+# If you forwarded to another port than 8022, change accordingly.
+# Remember, password is "root".
+ssh root@localhost -p 8022
+# Change the port number accordingly. This example is if you forward
+# to port 8081.
+echo "Listen 8081" >> /etc/apache2/ports.conf
+/etc/init.d/apache2 restart
+</code></pre>
+
+Now you will be able to run your Simpletests without problem, even if you don't use ports `80` or `8080`.
+
+### PHPMyAdmin
+
+The new image comes with [PHPMyAdmin](http://www.phpmyadmin.net/home_page/index.php) installed by default. Just navigate to `http://localhost:[forwarded_ip]/phpmyadmin`. The root user is `root` and does not use any password.
+
+### Blackfire
+
+The latest version of the image comes with [Blackfire](https://blackfire.io) pre-installed. Blackfire is a new, free tool developed by [Sensiolabs](https://sensiolabs.com/) (the guys behind the [Symfony](http://symfony.com/) framework). To use it with your container, you must first register at the Blackfire website. You will get a *server ID* and a *server token*. You can pass these to the container when starting it. If the container detects these variables, it will start Blackfire. You will then be able to profile your application. How's that for cool?
+
+To tell the container about your server ID and token, you must pass it as Docker *environment variables*. This is done using the `-e` option. The variables are called `BLACKFIREIO_SERVER_ID` and `BLACKFIREIO_SERVER_TOKEN`.
+
+Example:
+
+<pre><code class="language-bash">
+docker run -it --rm -e BLACKFIREIO_SERVER_ID="[your id here]" -e BLACKFIREIO_SERVER_TOKEN="[your token here]" -p 8022:22 -p 8080:80 wadmiraal/drupal
+</code></pre>
