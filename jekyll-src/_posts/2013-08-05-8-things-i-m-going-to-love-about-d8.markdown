@@ -3,7 +3,7 @@ title: "8 things I'm going to love about Drupal 8"
 description: "Drupal 8 is on its way, and from the looks of it, it's going to be awesome."
 layout: post
 tags:
-  - Drupal
+  - Drupal 8
   - PHP
 credits:
   - { name: Gary }
