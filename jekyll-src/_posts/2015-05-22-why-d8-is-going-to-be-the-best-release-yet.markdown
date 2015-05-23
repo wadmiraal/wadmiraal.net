@@ -6,13 +6,15 @@ tags:
   - Drupal 8
   - Open Source
   - PHP
+credits:
+  - { name: "Greg Boggs", site: "http://www.gregboggs.com" }
 ---
 
 Drupal 8 is under way, and it's going to be awesome. There are many, many new features in core that will make this a CMS to be reckoned with. The Drupal team has made many design decisions that will ensure the relevance of the system for years to come.
 
 We mainly talk about Drupal's new features when talking about Drupal 8. But I would like to focus on another point. One I feel is much more important.
 
-## Getting of the Island
+## Getting off the Island
 
 Drupal has a history of re-inventing the wheel. Except for jQuery, up until Drupal 7, everything in core was custom built. There was a reason for this: for years, it was hard to find quality, well-maintained libraries in the PHP world. Sure, there were some. But, as you will probably remember (or, maybe not), much of third-party PHP libraries on the Internet were clumsy and amateurish in their design (not that Drupal didn't have design issues of its own). So, pretty early on, the Drupal team decided to keep things in-house, so as to have control over the quality.
 
