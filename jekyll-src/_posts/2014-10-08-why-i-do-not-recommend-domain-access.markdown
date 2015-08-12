@@ -6,6 +6,8 @@ tags:
   - Drupal
   - Wisdom
   - Rant
+credits:
+  - { name: "al Pett" }
 ---
 
 I must first and foremost say I truly respect the maintainers of the [Domain Access](http://drupal.org/project/domain) module. It works as advertised, and works even *extremely* well. And in certain conditions, it is well worth it. But I have found it to be more of a hassle than a help for larger, more demanding projects. And I would have *loved* to know what I know now when these projects started.
@@ -99,7 +101,7 @@ Here are a few tips:
 
 * **Sharing configuration** is a pain, but the [Drupal 8 CMI](https://groups.drupal.org/build-systems-change-management/cmi), and the Drupal 7 [Configuration](https://www.drupal.org/project/configuration) module, coupled with the [Features](https://www.drupal.org/project/features) module, allow us to put configuration into files (where it belongs). This alleviates some of the burden of sharing and maintaining configuration across sites.
 * **Sharing content** is another problem, but probably worth the effort in regards to all the issues arising with Domain Access and many domains. Modules like [Node Export](https://www.drupal.org/project/node_export) allow editors to copy/paste their content (even complex) across domains, albeit at a cost of learning a new (unfriendly) UI.
-* **Managing site updates** is *very* tiresome using a traditional approach, but tools like [Aegir](http://www.aegirproject.org/) or [Dush](http://drush.ws/) (using the `@sites` alias) can help.
+* **Managing site updates** is *very* tiresome using a traditional approach, but tools like [Aegir](http://www.aegirproject.org/) or [Drush](http://drush.ws/) (using the `@sites` alias) can help.
 * **Sharing users** can be achieved by using table prefixes and a single database for all sites. Or you can use a SSO module that will register accounts on first login. There are many solutions to this one.
 
 ## In The End...
