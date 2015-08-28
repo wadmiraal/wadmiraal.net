@@ -82,13 +82,13 @@
       <ul class="post__footer__prev-next">
         {% if page.previous %}
           <li class="post__footer__prev-next__prev">
-            <a href="{{ page.previous.url }}" title="Previously: &ldquo;{{ page.previous.title }}&rdquo;">Previous post</a>
+            <a href="{{ page.previous.url }}" title="Previously: &ldquo;{{ page.previous.title }}&rdquo;" alt="{{ page.previous.title }}">Previous post</a>
           </li>
         {% endif %}
 
         {% if page.next %}
           <li class="post__footer__prev-next__next">
-            <a href="{{ page.next.url }}" title="Coming up: &ldquo;{{ page.next.title }}&rdquo;">Next post</a>
+            <a href="{{ page.next.url }}" title="Coming up: &ldquo;{{ page.next.title }}&rdquo;" alt="{{ page.next.title }}">Next post</a>
           </li>
         {% endif %}
       </ul>
@@ -98,4 +98,33 @@
       </div>
     </footer>
   </article>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "http://wadmiraal.net/",
+        "name": "Home"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "http://wadmiraal.net/lore/",
+        "name": "Blog"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "{{ page.url }}",
+        "name": "{{ page.title }}"
+      }
+    }]
+  }
+  </script>
 {% endblock %}

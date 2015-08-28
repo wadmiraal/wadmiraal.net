@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{{ page.title }}</title>
+  <title>{{ page.title }} | Wouter Admiraal's Blog</title>
   {% if page.description %}
     <meta name="description" content="{{ page.description }}">
   {% endif %}
@@ -13,7 +13,30 @@
   <meta name="keywords" content="drupal,development,web,web development,javascript,js,css,css3">
   {% if page.home %}
   <link rel="canonical" href="http://wadmiraal.net/" />
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "WebSite",
+    "name" : "wadmiraal.net",
+    "alternateName" : "Wouter Admiraal's Blog",
+    "url" : "http://wadmiraal.net"
+  }
+  </script>
   {% endif %}
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "Person",
+    "name" : "Wouter Admiraal",
+    "url" : "http://wadmiraal.net",
+    "sameAs" : [
+      "http://www.twitter.com/wadmiraal",
+      "https://www.linkedin.com/in/wadmiraal",
+      "https://www.drupal.org/u/wadmiraal",
+      "https://github.com/wadmiraal"
+    ]
+  }
+  </script>
   <link rel="alternate" type="application/rss+xml" title="wadmiraal.net RSS" href="http://wadmiraal.net/feed.xml">
 
   <link rel="icon" sizes="72x72" href="/img/logo.png">

@@ -33,3 +33,25 @@ Other than Javascript code, HTML markup and CSS styles, a large portion of my ti
 <a class="about-links" href="http://github.com/wadmiraal/wadmiraal.net"><i class="icon icon-github icon--inline"></i> Github</a>
 <a class="about-links" href="http://www.linkedin.com/in/wadmiraal"><i class="icon icon-linkedin-with-circle icon--inline"></i> LinkedIn</a>
 
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "http://wadmiraal.net/",
+      "name": "Home"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "http://wadmiraal.net/about/",
+      "name": "About"
+    }
+  }]
+}
+</script>
