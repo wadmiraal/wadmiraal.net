@@ -1,5 +1,6 @@
 ---
 title: "Wouter Admiraal's lore"
+description: "This is the blog of Wouter Admiraal, web developer extraordinaire and Drupal enthusiast."
 layout: page
 home: true
 ---
