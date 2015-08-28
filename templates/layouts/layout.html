@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html class="no-js">
-<head>
+<head prefix="g: http://ogp.me/ns#">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>{{ page.title }} | Wouter Admiraal's Blog</title>
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:site_name" content="Wouter Admiraal's Blog" />
+  <meta name="twitter:title" content="{{ page.title }}" />
+
   {% if page.description %}
     <meta name="description" content="{{ page.description }}">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta name="twitter:description" content="{{ page.description }}" />
   {% endif %}
+
   <meta name="author" content="Wouter Admiraal <wad@wadmiraal.net>">
+
+  <meta property="og:url" content="{{ page.url }}">
+  <meta property="og:type" content="article">
+  <meta name="twitter:site" content="@wadmiraal">
+  <meta name="twitter:card" content="summary" />
+
   <meta name="keywords" content="drupal,development,web,web development,javascript,js,css,css3">
   {% if page.home %}
   <link rel="canonical" href="http://wadmiraal.net/" />
