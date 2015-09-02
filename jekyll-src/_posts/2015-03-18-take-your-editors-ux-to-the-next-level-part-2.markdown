@@ -1,6 +1,6 @@
 ---
 title: Take your editors' UX to the next level, part 2.
-description: Drupal is pretty nice out of the box, but often it can use some tweaking to improve the editors' UX. This is how I tackle this.
+description: Drupal is pretty nice out of the box, but often it can use some tweaking to improve the editors' UX. This is the second part in a series of tips on improving the editor experience.
 layout: post
 tags:
  - Drupal

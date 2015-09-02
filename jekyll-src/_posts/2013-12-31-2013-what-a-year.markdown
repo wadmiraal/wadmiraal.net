@@ -1,6 +1,6 @@
 ---
 title: "2013, what a year"
-description: "Quick retrospect on the year 2013."
+description: "A quick, personal retrospect on the year 2013, which saw the launch of Opigno, my personal experiment Patience Is A Virtue, and more."
 layout: post
 tags:
   - Rant

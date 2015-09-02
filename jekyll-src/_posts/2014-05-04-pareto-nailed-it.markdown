@@ -1,6 +1,6 @@
 ---
 title: "Pareto nailed it"
-description: "What can we learn from Pareto's 80%-20% law."
+description: "What can we learn from Pareto's 80%-20% law, or how you can achieve great results by keeping things simple."
 layout: post
 favorite: true
 tags:

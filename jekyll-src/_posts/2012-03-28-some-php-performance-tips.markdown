@@ -1,6 +1,6 @@
 ---
 title: "Some PHP performance tips"
-description: "For SEO"
+description: "I sometimes run some &laquo;scientific&raquo; (read &laquo;completely biased&raquo;) benchmarking for my PHP code to check for the most optimized way of writing some expression. But I keep on forgetting. So this is the place where I'm going to keep some references."
 layout: post
 tags:
   - PHP

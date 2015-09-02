@@ -1,6 +1,6 @@
 ---
 title: "What can you do with console"
-description: "For SEO"
+description: "Lately I've been wondering: what can you do with the javascript console object ?. Let's find out."
 layout: post
 tags:
   - Javascript

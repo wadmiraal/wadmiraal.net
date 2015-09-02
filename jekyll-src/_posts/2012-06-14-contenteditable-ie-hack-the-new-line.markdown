@@ -1,6 +1,6 @@
 ---
 title: "Content Editable Hacks: IE and the new line render bug"
-description: "For SEO"
+description: "Content Editable Hacks: IE and its new line rendering bugs."
 layout: post
 tags:
   - Javascript

@@ -1,6 +1,6 @@
 ---
 title: "Content Editable Hacks: returning like a pro"
-description: "For SEO"
+description: "Content Editable Hacks: adding new lines."
 layout: post
 tags:
   - Javascript
