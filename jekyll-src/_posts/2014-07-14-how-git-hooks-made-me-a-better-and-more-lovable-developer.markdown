@@ -1,6 +1,6 @@
 ---
 title: "How Git hooks made me a better (and more lovable) developer"
-description: "Git are an incredible way to enhance your development workflow, encouraging - and even enforcing - you to embrace best practices and write better commit messages."
+description: "Git are an incredible way to enhance your development workflow, encouraging - and even forcing - you to embrace best practices and write better commit messages."
 layout: post
 favorite: false
 tags:
@@ -12,13 +12,13 @@ credits:
 
 I've, for a very long time, been telling myself *&ldquo;I really should enable some Git hooks here to (run unit tests|spell check my commit message|some other task)&rdquo;*.
 
-But, as usual, I've also, for a very long time, postponed this enabling of Git hooks for reasons we all know: layzness, to busy, procrastination.
+But, as usual, I've also, for a very long time, postponed this enabling of Git hooks for reasons we all know: laziness, too busy, procrastination.
 
 Then, I finally decided it was time I dug into it.
 
 ## Git Hooks Allow You To Enforce Best Practices (For Yourself)
 
-We all know (and love) best practives. We just don't always have the time (or mental energy) to apply them. It's lazyness on our part, but what can you do ?
+We all know (and love) best practices. We just don't always have the time (or mental energy) to apply them. It's laziness on our part, but what can you do ?
 
 Well, for a start, you can create a *Git hook*.
 
@@ -26,7 +26,7 @@ Well, for a start, you can create a *Git hook*.
 
 If you're not familiar with Git hooks, they basically are small shell scripts that can be automatically run on certain *events*, like a commit, a push, etc.
 
-There are a lot of them. You can find information on existing hooks, what they do and how to implement them [here](http://www.githooks.com).
+There are a lot of them. You can find information on existing hooks, what they do and how to implement them [here](http://githooks.com).
 
 To create (and enable) a Git hook, create a file with the hook name in ``.git/hooks``. So for a *pre-commit* hook, you would create ``.git/hooks/pre-commit``.
 
