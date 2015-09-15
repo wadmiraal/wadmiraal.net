@@ -1,12 +1,13 @@
 ---
 title: "How Git hooks made me a better (and more lovable) developer"
-description: "Git are an incredible way to enhance your development workflow, encouraging - and even forcing - you to embrace best practices and write better commit messages."
+description: "Git hooks are an incredible way to enhance your development workflow, encouraging - and even forcing - you to embrace best practices and write better commit messages."
 layout: post
 favorite: false
 tags:
   - Wisdom
   - Git
 credits:
+  - { name: "Lisa J. Lovchik", site: "https://github.com/g33kgrrl" }
   - { name: swytsh }
 ---
 
