@@ -73,7 +73,7 @@ if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
         fi
     fi
 fi
-done
+done || exit $?
 
 </code></pre>
 
@@ -132,7 +132,7 @@ We exit with &ldquo;something&rdquo;. Anything would do&thinsp;&mdash;&thinsp;we
         fi
     fi
 fi
-done
+done || exit $?
 
 </code></pre>
 
@@ -155,7 +155,7 @@ if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
       exit 1;
     fi
 fi
-done
+done || exit $?
 
 </code></pre>
 
@@ -251,7 +251,7 @@ if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
         fi
     fi
 fi
-done
+done || exit $?
 
 if [ $? -eq 0 ]; then
     /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
