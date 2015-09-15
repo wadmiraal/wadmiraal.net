@@ -8,6 +8,7 @@ tags:
   - Git
 credits:
   - { name: "Lisa J. Lovchik", site: "https://github.com/g33kgrrl" }
+  - { name: "Jan van Dijk", site: "https://github.com/janvandijk" }
   - { name: swytsh }
 ---
 
@@ -136,7 +137,7 @@ done || exit $?
 
 </code></pre>
 
-This is obvious, right ?
+This is obvious, right ? Note the `|| exit $?` though; this is to prevent a small issue you might run into with certain shells. Because we use a pipe to trigger our `while` loop, we create a new shell process. Our `exit 1` will exit the sub-shell routine, but not the &ldquo;parent&rdquo; shell. See this [Stackoverflow question](http://stackoverflow.com/questions/29969093/exit-1-in-pre-commit-doesnt-abort-git-commit) for more information. Thanks to [Jan van Dijk](https://github.com/wadmiraal/wadmiraal.net/pull/14) for catching that.
 
 This hook will make sure you will *never* commit invalid PHP code again. Pretty neat, huh ?
 
