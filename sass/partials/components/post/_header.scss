@@ -50,6 +50,7 @@
 
     list-style: none;
     overflow: hidden;
+    cursor: pointer;
     @include box-sizing(border-box);
 
     @media screen and (max-width: $breakpoint-mobile) {
