@@ -67,12 +67,17 @@
       // Set the height of the menu to the viewport height. This will allow us
       // to hijack the scrolling of the entire viewport and apply it to the menu
       // only.
-      var menu = blog.fx.getMenuElement(),
-          postList = menu.querySelector( '#posts-items' ),
-          viewportHeight = Math.max( document.documentElement.clientHeight, window.innerHeight || 0 );
+      blog.fx.setMenuHeight();
 
-      // Set the menu height.
-      menu.style.height = viewportHeight + 'px';
+      // Make sure we resize the menu when the viewport is resized. This is for
+      // all us nerds out there that activate/deactivate the developer tools,
+      // messing up the menu :-).
+      window.onresize = function( e ) {
+        blog.fx.setMenuHeight();
+      };
+
+      var menu = blog.fx.getMenuElement(),
+          postList = menu.querySelector( '#posts-items' );
 
       // Make sure we listen to the correct event. The new standard is
       // "wheel", but the old drafted name was "mousewheel". We do not get here
@@ -101,6 +106,15 @@
         }
       }, false );
     }
+  };
+
+  // Set the menu height based on the viewport height.
+  blog.fx.setMenuHeight = function() {
+    var menu = blog.fx.getMenuElement(),
+        viewportHeight = Math.max( document.documentElement.clientHeight, window.innerHeight || 0 );
+
+    // Set the menu height.
+    menu.style.height = viewportHeight + 'px';
   };
 
   // On clicking on a tag, we activate the menu display for that tag only.
