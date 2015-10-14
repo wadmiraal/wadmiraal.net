@@ -19,3 +19,4 @@ jekyll-src/*
 !jekyll-src/feed.xml
 !jekyll-src/index.html
 !jekyll-src/.htaccess
+!jekyll-src/opensearch.xml
