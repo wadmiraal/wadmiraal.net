@@ -12,6 +12,8 @@ Well, now there's a *much* better way: [Docker](https://www.docker.com/). Docker
 
 *Update 2015-05-22: I added some new functionality to my Docker image, as well as use it a little bit differently. Check at the bottom of this post for more information.*
 
+*Update 2015-12-07: I added support for tags, so you can now pull the image for a specific Drupal version, like `docker pull wadmiraal/drupal:7.41`. The latest version now also supports Drupal 8 (`docker pull wadmiraal/drupal:8.0.0`, or `docker pull wadmiraal/drupal:8`). The Drupal 8 image also ships with [Drupal Console](http://www.drupalconsole.com/).*
+
 ## What Is Docker
 
 If you're not familiar with Docker, it's a way to run server software. To some, it's a replacement for the classic virtual machine approach. To others, it is merely an improvement to it (where I work, we use Docker in production, but on top of virtual machines, not as a replacement). It is important to realize Docker is a *very Linux-centric product*. You *can* run it on Windows or Mac OS, but you won't get the full benefit of its performance (I won't go into details about why in this post). It's also not as straightforward to setup. Finally, Docker *images* can only run Linux distributions (which is no problem, as you will probably use Linux servers in production anyway).
