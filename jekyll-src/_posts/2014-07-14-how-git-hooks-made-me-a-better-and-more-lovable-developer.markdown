@@ -7,6 +7,7 @@ tags:
   - Wisdom
   - Git
 credits:
+  - { name: "Vincent Robinson" }
   - { name: "Lisa J. Lovchik", site: "https://github.com/g33kgrrl" }
   - { name: "Jan van Dijk", site: "https://github.com/janvandijk" }
   - { name: swytsh }
@@ -69,7 +70,7 @@ if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
     if [[ -f $FILE ]]; then
         php -l "$FILE" 1> /dev/null
         if [ $? -ne 0 ]; then
-            echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
+            echo -e "\e[1;31m\tAborting commit due to files with syntax errors.\e[0m" >&2
             exit 1
         fi
     fi
@@ -116,7 +117,7 @@ if [ $? -ne 0 ]; then
 If there's a result in memory, it means we have a PHP error.
 
 <pre><code class="language-bash">
-echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
+echo -e "\e[1;31m\tAborting commit due to files with syntax errors.\e[0m" >&2
 
 </code></pre>
 
@@ -152,7 +153,7 @@ git diff --cached --name-only | while read FILE; do
 if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
     /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
     if [ $? -ne 0 ]; then
-      echo -e "\e[1;31m\tUnit tests failed ! Aborting commit." >&2
+      echo -e "\e[1;31m\tUnit tests failed ! Aborting commit.\e[0m" >&2
       exit 1;
     fi
 fi
@@ -247,7 +248,7 @@ if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
     if [[ -f $FILE ]]; then
         php -l "$FILE" 1> /dev/null
         if [ $? -ne 0 ]; then
-            echo -e "\e[1;31m\tAborting commit due to files with syntax errors" >&2
+            echo -e "\e[1;31m\tAborting commit due to files with syntax errors.\e[0m" >&2
             exit 1
         fi
     fi
@@ -257,7 +258,7 @@ done || exit $?
 if [ $? -eq 0 ]; then
     /home/wadmiraal/.composer/vendor/bin/phpunit 1> /dev/null
     if [ $? -ne 0 ]; then
-        echo -e "\e[1;31m\tUnit tests failed ! Aborting commit." >&2
+        echo -e "\e[1;31m\tUnit tests failed ! Aborting commit.\e[0m" >&2
         exit 1;
     else
         /home/wadmiraal/.composer/vendor/bin/phpcs --standard=/home/wadmiraal/.drupal/modules/coder/coder_sniffer/Drupal "$FILE" 1> /dev/null
@@ -291,7 +292,7 @@ else
     WORDS=$($ASPELL list < "$1")
 fi
 if [ -n "$WORDS" ]; then
-    echo -e "\e[1;33m\tPossible spelling errors found in commit message. Use git commit --amend to change the message.\n\tPossible mispelled words: " $WORDS "\e[0m" >&2
+    echo -e "\e[1;33m\tPossible spelling errors found in commit message. Use git commit --amend to change the message.\n\tPossible mispelled words: " $WORDS ".\e[0m" >&2
 fi
 </code></pre>
 
