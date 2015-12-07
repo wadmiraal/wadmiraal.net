@@ -12,7 +12,16 @@ Well, now there's a *much* better way: [Docker](https://www.docker.com/). Docker
 
 *Update 2015-05-22: I added some new functionality to my Docker image, as well as use it a little bit differently. Check at the bottom of this post for more information.*
 
-*Update 2015-12-07: I added support for tags, so you can now pull the image for a specific Drupal version, like `docker pull wadmiraal/drupal:7.41`. The latest version now also supports Drupal 8 (`docker pull wadmiraal/drupal:8.0.0`, or `docker pull wadmiraal/drupal:8`). The Drupal 8 image also ships with [Drupal Console](http://www.drupalconsole.com/).*
+*Update 2015-12-07: I added support for tags, so you can now pull the image for a specific Drupal version, like*
+
+<pre><code class="language-bash">
+docker pull wadmiraal/drupal:7.41
+docker pull wadmiraal/drupal:7 # Gets the latest D7 version
+docker pull wadmiraal/drupal:8.0.1
+docker pull wadmiraal/drupal:8 # Gets the latest D8 version
+</code></pre>
+
+*Drupal 8 containers also ship with [Drupal Console](http://www.drupalconsole.com/).*
 
 ## What Is Docker
 
