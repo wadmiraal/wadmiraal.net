@@ -275,7 +275,7 @@ fi
 
 </code></pre>
 
-## Commit-msg, Or Why You're Colleagues Will Love You (for your commit messages)
+## Commit-msg, Or Why Your Colleagues Will Love You (for your commit messages)
 
 It's very annoying to read through bad commit messages. It's even worse when these commit messages are littered with errors. This is why I use Aspell to spellcheck my commit messages.
 
