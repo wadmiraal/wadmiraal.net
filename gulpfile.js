@@ -6,22 +6,18 @@
  */
 
 var gulp       = require( 'gulp' ),
-    compass    = require( 'gulp-compass' ),
+    sass       = require( 'gulp-sass' ),
     concat     = require( 'gulp-concat' ),
     minifyCSS  = require( 'gulp-minify-css' ),
     uglify     = require( 'gulp-uglify' ),
     shell      = require( 'gulp-shell' ),
     minifyHTML = require( 'gulp-minify-html' );
 
-// Compile the SCSS files using Compass.
-gulp.task( 'compass', function() {
+// Compile the SCSS files.
+gulp.task( 'sass', function() {
   gulp.src( './sass/*.scss' )
-    .pipe( compass({
-      style: 'expanded',
-      sass: 'sass',
-      css: 'css',
-    }))
-    .pipe( gulp.dest( 'css' ) );
+    .pipe( sass().on( 'error', sass.logError ) )
+    .pipe( gulp.dest( './css' ) );
 });
 
 // Combine all CSS files and minify.
@@ -49,7 +45,7 @@ gulp.task( 'layouts', function() {
 // Watch files for changes.
 gulp.task( 'watch', function() {
   gulp.watch( './js/*.js', [ 'js-min' ]);
-  gulp.watch( [ './sass/*.scss', './sass/**/*.scss'], [ 'compass', 'css-min' ]);
+  gulp.watch( [ './sass/*.scss', './sass/**/*.scss'], [ 'sass', 'css-min' ]);
 });
 
 // Move images.
@@ -82,6 +78,6 @@ gulp.task( 'serve-jekyll', shell.task([
 
 
 // Default tasks.
-gulp.task( 'default', [ 'compass', 'css-min', 'js-min', 'images', 'fonts', 'layouts' ] );
-gulp.task( 'build', [ 'compass', 'default', 'jekyll' ] );
-gulp.task( 'serve', [ 'compass', 'default', 'serve-jekyll' ] );
+gulp.task( 'default', [ 'sass', 'css-min', 'js-min', 'images', 'fonts', 'layouts' ] );
+gulp.task( 'build', [ 'sass', 'default' ] );
+gulp.task( 'serve', [ 'sass', 'default' ] );
