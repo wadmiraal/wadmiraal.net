@@ -1,22 +1,9 @@
-# IDE, design and build files
-.idea
 .sass-cache/
 design/
-*.sublime-*
+_tmp/
+_build/
 node_modules/
-tmp/
-css/styles.css
 
-# Ignore all Jekyll source files, as they will be built by Gulp.
-# Exceptions are the actual posts, Ruby plugins and post-media.
-jekyll-src/*
-!jekyll-src/_posts/
-!jekyll-src/_drafts/
-!jekyll-src/lore/*
-!jekyll-src/posts-media/*
-!jekyll-src/_config.yml
-!jekyll-src/about.html
-!jekyll-src/feed.xml
-!jekyll-src/index.html
-!jekyll-src/.htaccess
-!jekyll-src/opensearch.xml
+css/styles.css
+*.sublime-*
+
