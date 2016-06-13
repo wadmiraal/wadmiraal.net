@@ -48,7 +48,7 @@ body {
 
 .scroll-down:before {
   content: "\e75c";
-  font-family: 'entypo', sans-serif;  
+  font-family: 'entypo', sans-serif;
 }
 
 .competence-table {
@@ -143,6 +143,10 @@ h1 {
   font-weight: bold;
 }
 
+#schools a {
+  color: #eee;
+}
+
 #schools dd:nth-child(n+2), #schools dt:nth-child(n+2) {
   -moz-transform: rotate(2deg);
   -webkit-transform: rotate(2deg);
@@ -216,7 +220,7 @@ h1 {
 #nav ul {
   list-style: none;
   padding: 0;
-  margin: 0;  
+  margin: 0;
 }
 
 #nav li {
@@ -256,7 +260,7 @@ h1 {
 }
 
 @keyframes nav-a {
-  
+
   from {
     background: red;
   }
