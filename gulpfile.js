@@ -11,7 +11,9 @@ var gulp       = require( 'gulp' ),
     minifyCSS  = require( 'gulp-minify-css' ),
     uglify     = require( 'gulp-uglify' ),
     shell      = require( 'gulp-shell' ),
-    minifyHTML = require( 'gulp-minify-html' );
+    minifyHTML = require( 'gulp-minify-html' ),
+    assemble   = require( 'assemble' );
+    app        = assemble();
 
 // Compile the SCSS files.
 gulp.task( 'sass', function() {
@@ -54,8 +56,18 @@ gulp.task( 'fonts', function() {
     .pipe( gulp.dest( './_build/css/fonts' ) );
 });
 
+// Run Assemble.
+gulp.task( 'assemble', function() {
+  app.pages( './pages/*.md' );
+  cb();
+
+  return app.toStream( 'pages' )
+    .pipe( app.renderFile() )
+    .pipe( app.dest( '_build' ) );
+});
+
 
 // Default tasks.
-gulp.task( 'default', [ 'sass', 'css-min', 'js-min', 'images', 'fonts', 'layouts' ] );
-gulp.task( 'build', [ 'sass', 'default' ] );
-gulp.task( 'serve', [ 'sass', 'default' ] );
+gulp.task( 'default', [ 'sass', 'css-min', 'js-min', 'images', 'fonts', 'assemble' ] );
+gulp.task( 'build', [ 'default' ] );
+gulp.task( 'serve', [ 'default' ] );
