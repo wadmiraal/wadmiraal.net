@@ -2,7 +2,7 @@
 title: "Thank You This"
 description: "The this keyword in Javascript has been screamed at, laughed at, insulted, and many more terrible things. When I believe
 we should be thankful for this little guy: he's here for a reason."
-layout: post
+layout: post.hbs
 favorite: false
 tags:
   - Javascript

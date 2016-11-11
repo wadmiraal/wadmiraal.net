@@ -1,0 +1,129 @@
+---
+layout: layout.hbs
+---
+<article class="site-content__post post" itemscope itemtype="http://schema.org/Article">
+  <header class="post__header">
+    <div class="post__header__meta">
+      <time datetime="{{ page.date }}">{{ page.date }}</time>
+    </div>
+
+    <h1 class="post__header__title" itemprop="name">{{ page.title }}</h1>
+
+    <ul class="post__header__tags">
+      {{# page.tags }}
+        <li class="tag--border" data-tag="{{ render_tag this }}" title="{{ this }}">{{ this }}</li>
+      {{/ page.tags }}
+    </ul>
+  </header>
+
+  <div class="post__body" itemprop="description">
+    {% body %}
+
+    <div class="post__body__share-post">
+      <a class="twitter-share-button"
+        href="https://twitter.com/share?via=wadmiraal&url={{ post.url }}"
+        data-size="medium"
+        data-count="none">
+      Tweet
+      </a>
+      <script>
+      window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+      </script>
+
+      <a href="http://bufferapp.com/add" class="buffer-add-button" data-count="none" data-via="wadmiraal" ></a>
+      <script type="text/javascript" src="https://d389zggrogs7qo.cloudfront.net/js/button.js"></script>
+
+      <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </div>
+
+    <div class="post__body__call-to-action">
+      <p>Enjoyed this post? Grab the <a href="http://wadmiraal.net/feed.xml">RSS feed</a> or <a href="http://twitter.com/wadmiraal">follow me on Twitter</a>!</p>
+
+      {% if page.credits %}
+        <p>Special thanks to:</p>
+      {% endif %}
+      {% for credit in page.credits %}
+        <div>
+        {% if credit.site %}
+          <a href="{{ credit.site }}">{{ credit.name }}</a>
+        {% else %}
+          {{ credit.name }}
+        {% endif %}
+        </div>
+      {% endfor %}
+      {% if page.credits %}
+        <p>for contributing to this post.</p>
+      {% endif %}
+
+      <p>Found a typo ? <a href="https://github.com/wadmiraal/wadmiraal.net/fork">Correct it, submit a pull-request and get credited here</a>!</p>
+    </div>
+  </div>
+
+  <div id="disqus_thread" class="post__comments"></div>
+
+  <script type="text/javascript">
+    var disqus_shortname = 'wadmiraalnet';
+    (function() {
+        var dsq = document.createElement( 'script' ); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        document.getElementById( 'disqus_thread' ).appendChild( dsq );
+    })();
+  </script>
+
+  <footer class="post__footer">
+    <ul class="post__footer__prev-next">
+      {% if page.previous %}
+        <li class="post__footer__prev-next__prev">
+          <a href="{{ page.previous.url }}" title="Previously: &ldquo;{{ page.previous.title }}&rdquo;" alt="{{ page.previous.title }}">Previous post</a>
+        </li>
+      {% endif %}
+
+      {% if page.next %}
+        <li class="post__footer__prev-next__next">
+          <a href="{{ page.next.url }}" title="Coming up: &ldquo;{{ page.next.title }}&rdquo;" alt="{{ page.next.title }}">Next post</a>
+        </li>
+      {% endif %}
+    </ul>
+
+    <div class="post__footer__copy">
+      <p><a href="http://creativecommons.org/licenses/by-sa/3.0/deed"><img src="/img/cc.png"></a></p>
+    </div>
+  </footer>
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "http://wadmiraal.net/",
+      "name": "Home"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "http://wadmiraal.net/lore/",
+      "name": "Blog"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "item": {
+      "@id": "{{ page.url }}",
+      "name": "{{ page.title }}"
+    }
+  }]
+}
+</script>
