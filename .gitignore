@@ -20,3 +20,5 @@ jekyll-src/*
 !jekyll-src/index.html
 !jekyll-src/.htaccess
 !jekyll-src/opensearch.xml
+.bundle/
+vendor/
