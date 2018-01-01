@@ -22,3 +22,4 @@ jekyll-src/*
 !jekyll-src/opensearch.xml
 .bundle/
 vendor/
+package-lock.json
