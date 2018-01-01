@@ -18,7 +18,7 @@ Straight from the press.
 [Read more&hellip;]({{ post.url }})
 {% endfor %}
 
-## Find Me Online
+## Find me online
 
 I'm *wadmiraal* online. [Google it](https://www.google.ch/search?q=wadmiraal), most links are about me. Social accounts:
 

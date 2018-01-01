@@ -4,15 +4,15 @@ layout: page
 permalink: /about/
 ---
 
-I'm a dutch guy, married to a beautiful french woman and living in Switzerland, in the old and gorgeous city of [Fribourg](http://en.wikipedia.org/wiki/Fribourg), which also has the particularity of having two official languages (French and German), despite being a city of only ~30'000.
+I'm a dutch guy, married to a beautiful swiss woman and living in France, in the gorgeous town of [Divonne les bains](https://en.wikipedia.org/wiki/Divonne-les-Bains). I work for a distributed Drupal agency called [Inovae](https://www.inovae.ch/), at its headquarters in the international city of Geneva.
 
 Talk about a cultural mixup...
 
 Anyhow...
 
-I'm a &ldquo;full-stack&rdquo; web developer. As such, I have had the privilege of working on several great and challenging products. I do both front-end and the back-end development, although I consider myself more of a front-end specialist.
+I'm a &ldquo;full-stack&rdquo; web developer. As such, I have had the privilege of working on several great and challenging products. I do both front-end and the back-end development, although I've been much more active on the back-end side of things in the past few years.
 
-I studied interaction design, and as such am very picky when it comes to UX and beatiful UIs.
+I studied interaction design, and as such am very picky when it comes to UX and beautiful UIs.
 
 I work a *lot* with Drupal, and am the author of several modules on [www.drupal.org](http://www.drupal.org).
 
@@ -22,11 +22,11 @@ Except coding and crafting intuitive UIs, I thoroughly enjoy reading.
 
 Other than that, I like the classic, boring, I've-read-that-before-stuff, like movies, music, spending time with my family and friends, etc.
 
-Eventhough I'm mainly a front-end developer, I try out many different languages and try to keep up with the rapidly changing technology landscape. At the time of writing, I'm digging into [Haskell](http://www.haskell.org).
+Even though I'm mainly a back-end developer, I try out many different languages and try to keep up with the rapidly changing technology landscape. At the time of writing, I'm digging into [Haskell](http://www.haskell.org).
 
-Other than Javascript code, HTML markup and CSS styles, a large portion of my time goes into PHP and Drupal code.
+Other than PHP and Drupal, a large portion of my time goes into Javascript code, HTML markup and CSS styles.
 
-## Find Me Online
+## Find me online
 
 <a class="about-links" href="http://twitter.com/wadmiraal"><i class="icon icon-twitter3 icon--inline"></i> Twitter</a>
 <a class="about-links" href="http://drupal.org/u/wadmiraal"><i class="icon icon-drupal icon--inline"></i> Drupal</a>

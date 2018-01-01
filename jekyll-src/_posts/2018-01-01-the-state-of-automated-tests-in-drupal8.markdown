@@ -1,5 +1,5 @@
 ---
-title: "The State Of Automated Testing In Drupal 8"
+title: "The state of automated testing in Drupal 8"
 description: "In Drupal 7, automated testing practices were terrible. In this post, I want to outline what has changed with Drupal 8."
 layout: post
 tags:
@@ -8,9 +8,9 @@ tags:
   - PHP
 ---
 
-3 years ago, [I wrote a series of blog posts](/lore/2014/07/22/write-testable-code-in-drupal-part-1/) about adopting new practices for writing better automated tests for Drupal 7. Now, with Drupal 8.5 being finalized, and the Drupal community having embraced standards like PHPUnit and dependency injection, I thought it was time to look at how we, as a community, have evolved in our practice of writing more and better tests.
+3 years ago, [I wrote a series of blog posts](/lore/2014/07/22/write-testable-code-in-drupal-part-1/) about adopting new practices for writing better automated tests in Drupal 7. Now, with Drupal 8.5 getting finalized, and the project having embraced standards like PHPUnit and dependency injection, I thought it was time to look at how we, as a community, have evolved in our practice of writing tests.
 
-## Why Automated Tests Matter
+## Why automated tests matter
 
 There are many reasons projects benefit from automated tests, but in my opinion, the single most important aspect is _confidence_. 
 
@@ -18,17 +18,19 @@ For the development team, confidence that what is shipped works, confidence that
 
 For organizations that have to choose a framework, confidence that the work is well done, and future releases are likely to remain stable.
 
-For larger projects like Drupal, which receive contributions from people outside the core team, confidence that this new patch from a person I don't know actually works, and doesn't break anything.
+For larger projects like Drupal, which receive contributions from people outside the core team, confidence that this new patch from a new community member actually works, and doesn't break anything.
 
-Personally, as a professional, I have come to rely on tests so much, that I strongly dislike working on projects that don't have any. Of course, I'm not talking about your typical news website, or blog; those fair well enough without tests. No, I'm talking about websites with complex functionality, like intranet sites, or even web applications. The amount of stress a team has to cope with when deployment comes around can be nerve wracking for &ldquo;unstable&rdquo; projects. Running a suite of tests with +95% coverage prior to deployment, on the other hand, gives a team confidence. So much, in fact, that more and more major companies get into the practice of deploying to production several times _per day_.
+Personally, as a professional, I have come to rely on tests so much, that I strongly dislike working on projects that don't have any. Of course, I'm not talking about your typical news website, or blog; those fare well enough without tests. No, I'm talking about websites with complex functionality, like intranet sites or web applications. When deployment day comes around, it can be nerve wracking to push &ldquo;unstable&rdquo; projects to production. &ldquo;What might break this time?&rdquo; Running a suite of tests with +95% coverage prior to deployment, on the other hand, gives a team confidence. So much, in fact, that more and more major companies get into the practice of deploying to production several times _per day_.
 
 Unfortunately for us, Drupal developers, ...
 
-## Testing Drupal Projects Is Hard
+## Testing Drupal projects is hard
 
-And, if you've never done Drupal 7 or earlier testing, believe me: _it used to be much worse_. The fact is, Drupal is an incredibly complex beast, and it's architecture means that testing can be very complicated indeed. Not only that, the _time_ it takes to run these tests tends to be **much** higher than for other PHP projects, further discouraging programmers from writing them&emdash;upfront, or _at all_.
+And, if you've never done Drupal 7 or earlier testing, believe me: _it used to be much worse_. The fact is, Drupal is an incredibly complex beast, and it's architecture means that testing can be very complicated indeed. Not only that, the _time_ it takes to run these tests tends to be **much** higher than for other PHP projects, further discouraging programmers from writing them&mdash;whether upfront, or _at all_.
 
-The Drupal core team, as a whole, doesn't really help here either. Although Drupal 8 has a very impressive set of tests, one cannot say that it's exemplary either. Consider this small experiment, which compares running the entire Symfony Framework test suite with running Drupal core's suite. I'm running these on a brand new Macbook Pro (2017, 4 CPUs, 16Gb of RAM, using SSDs), using PHP 7.1.4. I purposefully disabled all other non-critical software running on my Mac during the tests, so nothing would slow it down. 
+The Drupal core team, as a whole, doesn't really help here, unfortunately. Although Drupal 8 has a very impressive set of tests, one cannot say that it's exemplary either. 
+
+Consider this small experiment, which compares running the entire Symfony 4 Framework test suite with running Drupal 8.5.x's suite. I'm running these on a brand new Macbook Pro (2017, 4 CPUs, 16Gb of RAM, using SSDs), using PHP 7.1.4. I purposefully disabled all other non-critical software running on my Mac during the tests, so nothing would slow it down. 
 
 ### Symfony 4
 
@@ -99,18 +101,18 @@ This might seem very low, until you consider that &ldquo;functional&rdquo; tests
 I see 3 issues with this suite:
 
 1. **The time to run them is _way_ to long.** This breaks developer momentum: they cannot stop and run the tests to see if everything still works. A single error could mean running the tests multiple times, potentially spending _hours_ waiting for results to come back. Of course, one can filter the tests by group, or even class or test method. But this doesn't change the fact that, at some point, the whole suite must be run. And when it takes this long, developers tend to choose the path of least resistance, and skip them altogether, if they can. This has 2 consequences:
-    1.1 Developers tend to _write_ less tests, because they don't have the time to run them.
-    1.2 Developers tend to _refactor_ existing tests less, for the same reason. This means that tests become obsolete over time, and might explain why almost 6'000 errors still exist in Drupal core's test suite.
+    1. Developers tend to _write_ less tests, because they don't have the time to run them.
+    2. Developers tend to _refactor_ existing tests less, for the same reason. This means that tests become obsolete over time, and might explain why almost 6'000 errors still exist in Drupal core's test suite.
 2. **The test coverage is unknown, and thus confidence drops.** If you cannot reliably compute what your test coverage is, you tend to lose confidence. Of course, coverage metrics are no silver bullet. You could cover 100% of code and not have a single reliable test. But it gives _an idea_ of how well you're doing.
-3. The final point relates to the first 2: **this encourage &ldquo;bad&rdquo; practices**, especially for less experienced developers. If the Drupal core team values automates tests this little, why would newcomers bother writing them?
+3. The final point relates to the first two: **this encourage &ldquo;bad&rdquo; practices**, especially for less experienced developers. If the Drupal core team values automated tests this little, why would newcomers bother writing them?
 
-## This Is Bad
+## This is bad
 
 Seriously, why even bother writing tests if you cannot run them reliably? And why ask of people who want to participate in the project to do so, if you don't give the example?
 
-I must admit I felt quite disappointed when seeing these results. Which is why I decided to see how contrib was fairing.
+I must admit I felt quite disappointed when seeing these results. Which is why I decided to see how contrib was faring.
 
-## Core Can Learn From Contrib
+## What we can learn from contrib
 
 I decided to check a few popular modules on drupal.org. I'll show the results for [Token](https://www.drupal.org/project/token), being the most installed Drupal 8 module, and [Webform](https://www.drupal.org/project/webform), another one of the most popular modules, which also happens to have an above average level of complexity.
 
@@ -121,10 +123,10 @@ composer create-project drupal-composer/drupal-project:8.x-dev run_tests --stabi
 cd run_tests
 composer require drupal/token
 composer require "drupal/webform:5.0-rc1" # No stable release yet.
-# The latest PHPUnit fails if the -c option points to a file inside a folder, for some.
+# The latest PHPUnit fails if the -c option points to a file inside a folder, for some
 # reason. This is a work-around:
 cp web/core/phpunit.xml.dist .
-sed -i 's/test\//web\/core\/tests\//' phpunit.xml.dist
+sed -i '' 's/tests\//web\/core\/tests\//' phpunit.xml.dist
 </code></pre>
 
 The above code will use Drupal 8.4.3. Unfortunately, Drupal introduced a bug which makes Kernel tests incompatible with SQLite, which is what I use when running tests. To correct the issue, I had to apply the following patch:
@@ -176,9 +178,9 @@ Generating a coverage report gives us the following statistics:
 * **Functions and Methods:** 29.82% (17 / 57)
 * **Classes and Traits:** 14.29% (2 / 14)
 
-This seemed very low to me at first, until I decided to look what was exactly covered. The maintainers made the decision to focus their efforts on the actual business logic of the module. Aspects like rendering local tasks, or form elements, are not covered by tests. But I'd argue they don't necessarily _have_ to be: when using an API, like Drupal, you don't want to test the fact the API works as desired. You _might_ want to test your &ldquo;bridge code&rdquo; works (in our case, hook implementations and plugin definitions), but usually this adds relatively little value compared to other aspects.
+This seemed very low to me at first, until I decided to look what was exactly covered. The maintainers made the decision to focus their efforts on the actual business logic of the module. Aspects like rendering local tasks, or form elements, are not covered by tests. But I'd argue they don't necessarily _have_ to be: when using an API, like Drupal, you don't want to test the fact the API works as desired. You _might_ want to test your &ldquo;bridge code&rdquo; (in our case, hook implementations and plugin definitions), but usually this adds relatively little value compared to other aspects.
 
-1m for running a test suite is still reasonable, although a far cry from the mere seconds it usually takes for similar sized projects in other frameworks. As a comparison, it takes 30s to run the _entire_ test suite for the Laravel framework...
+1 minute for running a test suite is still reasonable, although a far cry from the mere seconds it usually takes for similar sized projects in other frameworks. As a comparison, it takes 30s to run the _entire_ test suite for the Laravel framework...
 
 Still, this is short enough to encourage running them frequently. Furthermore, all tests pass, which suggests the suite is actively maintained.
 
@@ -209,17 +211,19 @@ Generating a coverage report gives us the following statistics:
 * **Functions and Methods:** 10.39% (236 / 2271)
 * **Classes and Traits:** 10.19% (37 / 363)
 
-The coverage stats are very low, but just as for Drupal core, part of the tests are functional, meaning the code they cover cannot be computed. 
+The coverage stats are very low, but just as for Drupal core, part of the tests are functional, meaning the code they cover cannot be computed.
 
-3m 30s for running a test suite is too long. I'd say anything above 30s would break your momentum when developing. **However**, the maintainers were smart enough to split their tests into 3 distinct groups. If you only run the _webform_ group, the time drops to 41s, which is great when you consider the amount of code covered by these tests!
+3m 30s for running a test suite is too long. I'd say anything above 30s will break your momentum when writing code. **However**, the maintainers were smart enough to split their tests into 3 distinct groups. If you only run the _webform_ group, the time drops to 41s.
 
 Still, even with 3m 30s for the whole suite, this is short enough to encourage running them frequently. Furthermore, almost all tests pass, suggesting the suite is being maintained.
 
-I'd also like to note that Webform is relying on both unit and &ldquo;kernel&rdquo; tests for the bulk of its tests (142 out of 148), using functional tests where it would be difficult to do otherwise. I think this is the best approach for a Drupal project, favoring fast test types for the bulk of the business logic, and resorting to functional tests to add &ldquo;coverage&rdquo; for UI-related functionality.
+I'd also like to note that Webform is relying on both unit and kernel tests for the bulk of its tests (142 out of 148), using functional tests where it would be difficult to do otherwise. I think this is the best approach for a Drupal project, favoring fast test types for the bulk of the business logic, and resorting to functional tests to add &ldquo;coverage&rdquo; for UI-related functionality.
 
-## Lessons For The Future
+## Lessons for the future
 
-I'm pleasantly surprised by the fact that (at least some) contrib is adopting better testing practices. If we, as a community, want to provide the best possible code for our clients and projects, investing time in automated tests is not only useful; it's _mandatory_.
+I'm pleasantly surprised by the fact that (at least some) contrib is adopting better testing practices. In Drupal 7, a lot&mdash;if not most&mdash;of contrib didn't have tests _at all_. 
+
+If we, as a community, want to provide the best possible code for our clients and projects, investing time in automated tests is not only useful; it's _mandatory_.
 
 I think the number 1 factor we need to strive for is writing tests that are _faster to run_. Only then will developers be encouraged to run suites more frequently, which in turn will lead to them writing more tests. This means looking to projects like Webform for inspiration: 
 

@@ -142,4 +142,4 @@ We explored a very simple example here, but hopefully you already see the incred
 
 Of course, you will not always be able to escape the use of *DrupalWebTestCases*. Sometimes you just *have* to test your code against the entire Drupal stack. However, by splitting the complexity into smaller chunks, we can probably use a TDD approach for at least part of our module, and greatly speed up writing and running tests.
 
-In part 3, I'll explore some more complex, real-world examples, like testing your own API (by exposing your own hooks) and using database results.
+In [part 3](/lore/2014/07/24/write-testable-code-in-drupal-part-3/), I'll explore some more complex, real-world examples, like testing your own API (by exposing your own hooks) and using database results.
