@@ -99,7 +99,7 @@
           // to be FF, but I'm not sure. Anyway, I'll treat FF as the exception
           // and make Chrome and Safari the default. Sue me...
           if ( /Firefox/.test( navigator.userAgent )) {
-            delta += delta < 0 ? -50 : 50;
+            delta += delta < 0 ? -30 : 30;
           }
 
           postList.scrollTop += delta;
