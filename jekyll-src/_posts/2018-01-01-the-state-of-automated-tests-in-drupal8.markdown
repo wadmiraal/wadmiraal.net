@@ -8,6 +8,8 @@ tags:
   - PHP
 ---
 
+**UPDATE 2018-01-05: I made a huge mistake when running the Drupal core tests, resulting in incorrect data. My bad. Corrected data below.**
+
 3 years ago, [I wrote a series of blog posts](/lore/2014/07/22/write-testable-code-in-drupal-part-1/) about adopting new practices for writing better automated tests in Drupal 7. Now, with Drupal 8.5 getting finalized, and the project having embraced standards like PHPUnit and dependency injection, I thought it was time to look at how we, as a community, have evolved in our practice of writing tests.
 
 ## Why automated tests matter
@@ -69,26 +71,23 @@ The result shows a _very_ valuable test suite:
 
 Now, compare that with Drupal.
 
-### Drupal 8.5.x
+### Drupal 8.5
+
+**UPDATE: in my original post, I forgot to run the tests with the `SIMPLETEST_BASE_URL` environment variable, so of course many tests were reported as failing. Stupid&hellip; In my defense, they should have been marked as _skipped_, not _failing_.**
 
 I used the following command to run the tests:
 
 <pre><code class="language-bash">
-SIMPLETEST_DB=sqlite://testdb.sqlite time ./vendor/bin/phpunit -c core/phpunit.xml.dist
+SIMPLETEST_BASE_URL=http://localhost SIMPLETEST_DB=mysql://drupal:drupal@db/drupal time ./vendor/bin/phpunit -c core/phpunit.xml.dist
 </code></pre>
 
 Here's PHPUnit's output:
 
-    Time: 27 minutes, Memory: 772.00MB
-    Tests: 23785, Assertions: 28383, Errors: 5884, Failures: 9, Skipped: 1907, Incomplete: 1, Risky: 1.
+    Time: 72 minutes, Memory: 772.00MB
 
-Here's the actual time measurement:
+So, running the _entire_ suite takes approximately **72m**. Here again, we have many skipped tests, but like before, this can be because of missing services.
 
-    real	27m4.217s
-    user	17m31.298s
-    sys	    8m52.700s
-
-So, running the _entire_ suite takes approximately **27m**. Even though I ran these on the 8.5.x development branch, this is not a reasonable explanation for why there are almost _6'000 errors_. Here again, we have many skipped tests, but they are irrelevant in the light of the amount of failing tests.
+_In Drupal's defense, I ran this inside a Docker container, and IO performance is notoriously bad on Docker for Mac. So this number may be much lower for other setups. If you can make tests run as fast as the [drupal.org CI server](https://dispatcher.drupalci.org/job/drupal_patches/), you may need approximately 40 minutes to run the entire suite. I doubt, however, that you can get much lower than that._
 
 Furthermore, generating a coverage report gives us the following statistics:
 
@@ -98,17 +97,16 @@ Furthermore, generating a coverage report gives us the following statistics:
 
 This might seem very low, until you consider that &ldquo;functional&rdquo; tests don't allow PHPUnit to compute code coverage. The actual coverage is probably much higher, but the fact is: _we don't know_. 
 
-I see 3 issues with this suite:
+I see 2 issues with this suite:
 
 1. **The time to run them is _way_ to long.** This breaks developer momentum: they cannot stop and run the tests to see if everything still works. A single error could mean running the tests multiple times, potentially spending _hours_ waiting for results to come back. Of course, one can filter the tests by group, or even class or test method. But this doesn't change the fact that, at some point, the whole suite must be run. And when it takes this long, developers tend to choose the path of least resistance, and skip them altogether, if they can. This has 2 consequences:
     1. Developers tend to _write_ less tests, because they don't have the time to run them.
-    2. Developers tend to _refactor_ existing tests less, for the same reason. This means that tests become obsolete over time, and might explain why almost 6'000 errors still exist in Drupal core's test suite.
+    2. Developers tend to _refactor_ existing tests less, for the same reason. This means that tests risk becoming obsolete over time.
 2. **The test coverage is unknown, and thus confidence drops.** If you cannot reliably compute what your test coverage is, you tend to lose confidence. Of course, coverage metrics are no silver bullet. You could cover 100% of code and not have a single reliable test. But it gives _an idea_ of how well you're doing.
-3. The final point relates to the first two: **this encourage &ldquo;bad&rdquo; practices**, especially for less experienced developers. If the Drupal core team values automated tests this little, why would newcomers bother writing them?
 
 ## This is bad
 
-Seriously, why even bother writing tests if you cannot run them reliably? And why ask of people who want to participate in the project to do so, if you don't give the example?
+This must be a major hurdle when trying to contribute to the Drupal project (I know it is for me). It's already difficult to get a patch accepted, but the time it tales to simply write a failing test, test your patch, then test (at the very least) the module you worked on, before _finally_ submitting the patch, is already a _huge_ (and not very enjoyable, I might add) endeavour. I fully agree with the fact patches _must_ come with failing regression tests, but admit that submitting a bug fix to the community takes a lot of commitment.
 
 I must admit I felt quite disappointed when seeing these results. Which is why I decided to see how contrib was faring.
 
@@ -158,19 +156,13 @@ The above code will use Drupal 8.4.3. Unfortunately, Drupal introduced a bug whi
 I used the following command to run the tests:
 
 <pre><code class="language-bash">
-SIMPLETEST_DB=sqlite://testdb.sqlite time ./vendor/bin/phpunit --group token
+SIMPLETEST_DB=sqlite://testdb.sqlite ./vendor/bin/phpunit --group token
 </code></pre>
 
 Here's PHPUnit's output:
 
     Time: 1.05 minutes, Memory: 210.00MB
     OK (23 tests, 372 assertions)
-
-Here's the actual time measurement:
-
-    real	63.72
-    user	53.80
-    sys	    7.46 sys
 
 Generating a coverage report gives us the following statistics:
 
@@ -180,30 +172,26 @@ Generating a coverage report gives us the following statistics:
 
 This seemed very low to me at first, until I decided to look what was exactly covered. The maintainers made the decision to focus their efforts on the actual business logic of the module. Aspects like rendering local tasks, or form elements, are not covered by tests. But I'd argue they don't necessarily _have_ to be: when using an API, like Drupal, you don't want to test the fact the API works as desired. You _might_ want to test your &ldquo;bridge code&rdquo; (in our case, hook implementations and plugin definitions), but usually this adds relatively little value compared to other aspects.
 
-1 minute for running a test suite is still reasonable, although a far cry from the mere seconds it usually takes for similar sized projects in other frameworks. As a comparison, it takes 30s to run the _entire_ test suite for the Laravel framework...
+1 minute for running a test suite is still reasonable, although a far cry from the mere seconds it usually takes for similar sized projects in other frameworks. As a comparison, it takes 30s to run the _entire_ test suite for the Laravel framework&hellip; I want to emphasize this is not the maintainers' fault, rather it's a limitation from Drupal's architecture.
 
 Still, this is short enough to encourage running them frequently. Furthermore, all tests pass, which suggests the suite is actively maintained.
 
-I'd also like to note that Token is relying solely on &ldquo;kernel&rdquo; tests. Kernel tests are a great alternative to &ldquo;functional&rdquo; tests, as they provide almost the same level of flexibility, yet run in a fraction of the time. Furthermore, PHPUnit can compute code coverage using kernel tests, which is another nice plus.
+I'd also like to note that Token is relying solely on &ldquo;kernel&rdquo; tests. Kernel tests are a great alternative to &ldquo;functional&rdquo; tests, as they provide almost the same level of flexibility, yet run in a fraction of the time, and don't require a fully set up webserver. Furthermore, PHPUnit can compute code coverage using kernel tests, which is another nice plus.
 
 ### Webform
 
-I used the following command to run the tests (I used a local Docker container, running on port 8875, for the functional tests):
+I used the following command to run the tests:
 
 <pre><code class="language-bash">
-SIMPLETEST_BASE_URL=http://localhost:8875 SIMPLETEST_DB=sqlite://testdb.sqlite time ./vendor/bin/phpunit --group webform,webform_browser,webform_javascript
+SIMPLETEST_BASE_URL=http://localhost SIMPLETEST_DB=sqlite://testdb.sqlite ./vendor/bin/phpunit --group webform,webform_browser,webform_javascript
 </code></pre>
 
 Here's PHPUnit's output:
 
-    Time: 3.29 minutes, Memory: 212.00MB
-    Tests: 148, Assertions: 292, Errors: 4, Failures: 1, Skipped: 1
+    Time: 14.25 minutes, Memory: 212.00MB
+    Tests: 148, Assertions: 300, Failures: 1, Skipped: 1
 
-Here's the actual time measurement:
-
-    real	198.29
-    user	103.15
-    sys	    17.24
+_Here again, I ran this inside a Docker container, which has bad IO. Actual numbers may be much lower for other setups._
 
 Generating a coverage report gives us the following statistics:
 
@@ -213,9 +201,9 @@ Generating a coverage report gives us the following statistics:
 
 The coverage stats are very low, but just as for Drupal core, part of the tests are functional, meaning the code they cover cannot be computed.
 
-3m 30s for running a test suite is too long. I'd say anything above 30s will break your momentum when writing code. **However**, the maintainers were smart enough to split their tests into 3 distinct groups. If you only run the _webform_ group, the time drops to 41s.
+14m 15s for running a test suite is too long (but, again, not using Docker may prove _much_ faster). I'd say anything above 30s will break your momentum when writing code. **However**, the maintainers were smart enough to split their tests into 3 distinct groups. If you only run the _webform_ group, the time drops to 41s (and you don't need a running webserver).
 
-Still, even with 3m 30s for the whole suite, this is short enough to encourage running them frequently. Furthermore, almost all tests pass, suggesting the suite is being maintained.
+Still, even with 14m 15s for the whole suite, this is short enough to encourage running them relatively frequently. Furthermore, almost all tests pass, suggesting the suite is being maintained.
 
 I'd also like to note that Webform is relying on both unit and kernel tests for the bulk of its tests (142 out of 148), using functional tests where it would be difficult to do otherwise. I think this is the best approach for a Drupal project, favoring fast test types for the bulk of the business logic, and resorting to functional tests to add &ldquo;coverage&rdquo; for UI-related functionality.
 
