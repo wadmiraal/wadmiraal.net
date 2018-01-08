@@ -8,7 +8,7 @@ tags:
   - PHP
 ---
 
-**UPDATE 2018-01-05: I made a huge mistake when running the Drupal core tests, resulting in incorrect data. My bad. Corrected data below.**
+**UPDATE 2018-01-07: I made a mistake when running the Drupal core tests, resulting in incorrect data. My bad. Corrected data below.**
 
 3 years ago, [I wrote a series of blog posts](/lore/2014/07/22/write-testable-code-in-drupal-part-1/) about adopting new practices for writing better automated tests in Drupal 7. Now, with Drupal 8.5 getting finalized, and the project having embraced standards like PHPUnit and dependency injection, I thought it was time to look at how we, as a community, have evolved in our practice of writing tests.
 
@@ -73,21 +73,11 @@ Now, compare that with Drupal.
 
 ### Drupal 8.5
 
-**UPDATE: in my original post, I forgot to run the tests with the `SIMPLETEST_BASE_URL` environment variable, so of course many tests were reported as failing. Stupid&hellip; In my defense, they should have been marked as _skipped_, not _failing_.**
+**UPDATE 2018-01-07: in my original post, I forgot to run the tests with the `SIMPLETEST_BASE_URL` environment variable, so of course many tests were reported as failing. Stupid&hellip; In my defense, they should have been marked as _skipped_, not _failing_. However, I have tried running the entire suite on my Macbook several times since, to no avail: using Docker, using MAMP, using `vendor/bin/phpunit` or `core/scripts/run-tests.sh` script, they all crash after about 1h. So I'm going to base my data on the results we get from the Drupal CI.**
 
-I used the following command to run the tests:
+It's hard (impossible?) to run the entire test suite on my Macbook Pro. For some reason, the functional tests make the terminal crash after some time (which then crashes my whole Mac). I tried with different terminal apps, so I guess it's system related (macOS High Sierra update?) So I will base my comparison on how long it takes for Jenkins to run the test suite.
 
-<pre><code class="language-bash">
-SIMPLETEST_BASE_URL=http://localhost SIMPLETEST_DB=mysql://drupal:drupal@db/drupal time ./vendor/bin/phpunit -c core/phpunit.xml.dist
-</code></pre>
-
-Here's PHPUnit's output:
-
-    Time: 72 minutes, Memory: 772.00MB
-
-So, running the _entire_ suite takes approximately **72m**. Here again, we have many skipped tests, but like before, this can be because of missing services.
-
-_In Drupal's defense, I ran this inside a Docker container, and IO performance is notoriously bad on Docker for Mac. So this number may be much lower for other setups. If you can make tests run as fast as the [drupal.org CI server](https://dispatcher.drupalci.org/job/drupal_patches/), you may need approximately 40 minutes to run the entire suite. I doubt, however, that you can get much lower than that._
+drupal.org runs tests whenever patches are submitted. A typical test run on [the Drupal CI](https://dispatcher.drupalci.org/job/drupal_patches/) takes about 40 minutes. I doubt you can get it to run much faster than that.
 
 Furthermore, generating a coverage report gives us the following statistics:
 
@@ -99,14 +89,14 @@ This might seem very low, until you consider that &ldquo;functional&rdquo; tests
 
 I see 2 issues with this suite:
 
-1. **The time to run them is _way_ to long.** This breaks developer momentum: they cannot stop and run the tests to see if everything still works. A single error could mean running the tests multiple times, potentially spending _hours_ waiting for results to come back. Of course, one can filter the tests by group, or even class or test method. But this doesn't change the fact that, at some point, the whole suite must be run. And when it takes this long, developers tend to choose the path of least resistance, and skip them altogether, if they can. This has 2 consequences:
+1. **The time to run them is _way_ too long.** This breaks developer momentum: they cannot stop and run the tests to see if everything still works. A single error could mean running the tests multiple times, potentially spending _hours_ waiting for results to come back. Of course, one can filter the tests by group, or even class or test method. But this doesn't change the fact that, at some point, the whole suite must be run. And when it takes this long, developers tend to choose the path of least resistance, and skip them altogether, if they can. This has 2 consequences:
     1. Developers tend to _write_ less tests, because they don't have the time to run them.
     2. Developers tend to _refactor_ existing tests less, for the same reason. This means that tests risk becoming obsolete over time.
 2. **The test coverage is unknown, and thus confidence drops.** If you cannot reliably compute what your test coverage is, you tend to lose confidence. Of course, coverage metrics are no silver bullet. You could cover 100% of code and not have a single reliable test. But it gives _an idea_ of how well you're doing.
 
 ## This is bad
 
-This must be a major hurdle when trying to contribute to the Drupal project (I know it is for me). It's already difficult to get a patch accepted, but the time it tales to simply write a failing test, test your patch, then test (at the very least) the module you worked on, before _finally_ submitting the patch, is already a _huge_ (and not very enjoyable, I might add) endeavour. I fully agree with the fact patches _must_ come with failing regression tests, but admit that submitting a bug fix to the community takes a lot of commitment.
+This must be a major hurdle when trying to contribute to the Drupal project (I know it is for me). It's already difficult to get even a simple patch accepted, but the time it takes to simply write a failing test, test your patch, then test (at the very least) the module you worked on, before _finally_ submitting the patch, is already a _huge_ (and not very enjoyable, I might add) endeavour. I fully agree with the fact patches _must_ come with failing regression tests, but let us admit that submitting a bug fix for Drupal core takes a lot of commitment.
 
 I must admit I felt quite disappointed when seeing these results. Which is why I decided to see how contrib was faring.
 
@@ -114,20 +104,9 @@ I must admit I felt quite disappointed when seeing these results. Which is why I
 
 I decided to check a few popular modules on drupal.org. I'll show the results for [Token](https://www.drupal.org/project/token), being the most installed Drupal 8 module, and [Webform](https://www.drupal.org/project/webform), another one of the most popular modules, which also happens to have an above average level of complexity.
 
-To set up, I used the [Composer template for Drupal projects](https://github.com/drupal-composer/drupal-project):
+### Token
 
-<pre><code class="language-bash">
-composer create-project drupal-composer/drupal-project:8.x-dev run_tests --stability dev --no-interaction
-cd run_tests
-composer require drupal/token
-composer require "drupal/webform:5.0-rc1" # No stable release yet.
-# The latest PHPUnit fails if the -c option points to a file inside a folder, for some
-# reason. This is a work-around:
-cp web/core/phpunit.xml.dist .
-sed -i '' 's/tests\//web\/core\/tests\//' phpunit.xml.dist
-</code></pre>
-
-The above code will use Drupal 8.4.3. Unfortunately, Drupal introduced a bug which makes Kernel tests incompatible with SQLite, which is what I use when running tests. To correct the issue, I had to apply the following patch:
+I decided to run the tests against Drupal 8.4.3, so as not to test against an &ldquo;unstable&rdquo; core. Unfortunately, Drupal introduced a bug which makes kernel tests incompatible with SQLite, which is what I use when running them. To correct the issue, I had to apply the following patch:
 
     diff --git a/core/lib/Drupal/Core/Database/Database.php b/core/lib/Drupal/Core/Database/Database.php
     index dd19018828..f3abe2b24e 100644
@@ -151,8 +130,6 @@ The above code will use Drupal 8.4.3. Unfortunately, Drupal introduced a bug whi
            'user' => '',
            'pass' => '',
 
-### Token
-
 I used the following command to run the tests:
 
 <pre><code class="language-bash">
@@ -172,7 +149,7 @@ Generating a coverage report gives us the following statistics:
 
 This seemed very low to me at first, until I decided to look what was exactly covered. The maintainers made the decision to focus their efforts on the actual business logic of the module. Aspects like rendering local tasks, or form elements, are not covered by tests. But I'd argue they don't necessarily _have_ to be: when using an API, like Drupal, you don't want to test the fact the API works as desired. You _might_ want to test your &ldquo;bridge code&rdquo; (in our case, hook implementations and plugin definitions), but usually this adds relatively little value compared to other aspects.
 
-1 minute for running a test suite is still reasonable, although a far cry from the mere seconds it usually takes for similar sized projects in other frameworks. As a comparison, it takes 30s to run the _entire_ test suite for the Laravel framework&hellip; I want to emphasize this is not the maintainers' fault, rather it's a limitation from Drupal's architecture.
+1 minute for running a test suite is still reasonable, although a far cry from the mere seconds it usually takes for similar sized projects in other frameworks. As a comparison, it takes 30s to run the _entire_ test suite for the Laravel framework&hellip; I want to emphasize this is not the maintainers' fault, but rather a limitation stemming from Drupal's architecture.
 
 Still, this is short enough to encourage running them frequently. Furthermore, all tests pass, which suggests the suite is actively maintained.
 
@@ -180,18 +157,18 @@ I'd also like to note that Token is relying solely on &ldquo;kernel&rdquo; tests
 
 ### Webform
 
+**UPDATE 2018-01-06: I originally ran functional tests inside Docker, which has terrible IO on Mac. To get a more accurate measuring, I ran them again using MAMP, which is much faster. Corrected data below.**
+
 I used the following command to run the tests:
 
 <pre><code class="language-bash">
-SIMPLETEST_BASE_URL=http://localhost SIMPLETEST_DB=sqlite://testdb.sqlite ./vendor/bin/phpunit --group webform,webform_browser,webform_javascript
+SIMPLETEST_BASE_URL=http://localhost:8888 SIMPLETEST_DB=mysql://root:root@127.0.0.1:8889/webform time ./vendor/bin/phpunit -c core/phpunit.xml.dist --group webform,webform_browser,webform_javascript
 </code></pre>
 
 Here's PHPUnit's output:
 
-    Time: 14.25 minutes, Memory: 212.00MB
-    Tests: 148, Assertions: 300, Failures: 1, Skipped: 1
-
-_Here again, I ran this inside a Docker container, which has bad IO. Actual numbers may be much lower for other setups._
+    Time: 2.25 minutes, Memory: 212.00MB
+    Tests: 148, Assertions: 307, Skipped: 1
 
 Generating a coverage report gives us the following statistics:
 
@@ -201,11 +178,11 @@ Generating a coverage report gives us the following statistics:
 
 The coverage stats are very low, but just as for Drupal core, part of the tests are functional, meaning the code they cover cannot be computed.
 
-14m 15s for running a test suite is too long (but, again, not using Docker may prove _much_ faster). I'd say anything above 30s will break your momentum when writing code. **However**, the maintainers were smart enough to split their tests into 3 distinct groups. If you only run the _webform_ group, the time drops to 41s (and you don't need a running webserver).
+2m 15s for running a test suite is too long for true TDD. I'd say anything above 30s will break your momentum when writing code. **However**, the maintainers were smart enough to split their tests into 3 distinct groups. If you only run the _webform_ group, the time drops to 41s. 
 
-Still, even with 14m 15s for the whole suite, this is short enough to encourage running them relatively frequently. Furthermore, almost all tests pass, suggesting the suite is being maintained.
+Even so, 2m 15s is short enough to encourage running them frequently. And here again, all tests pass, which suggests the suite is actively maintained.
 
-I'd also like to note that Webform is relying on both unit and kernel tests for the bulk of its tests (142 out of 148), using functional tests where it would be difficult to do otherwise. I think this is the best approach for a Drupal project, favoring fast test types for the bulk of the business logic, and resorting to functional tests to add &ldquo;coverage&rdquo; for UI-related functionality.
+I'd also like to point out that Webform is relying on both unit and kernel tests for the bulk of its tests (142 out of 148), using functional tests where it would be difficult to do otherwise. I think this is the best approach for a Drupal project, favoring fast test types for the bulk of the business logic, and resorting to functional tests to add &ldquo;coverage&rdquo; for UI-related functionality.
 
 ## Lessons for the future
 
@@ -216,7 +193,7 @@ If we, as a community, want to provide the best possible code for our clients an
 I think the number 1 factor we need to strive for is writing tests that are _faster to run_. Only then will developers be encouraged to run suites more frequently, which in turn will lead to them writing more tests. This means looking to projects like Webform for inspiration: 
 
 * Put the bulk of your logic in standalone, Drupal-independent units, which are easily tested by _unit_ tests.
-* For logic that _has_ to use the Drupal API (requiring a database), use _kernel_ tests as much as possible.
+* For logic that _has_ to use the Drupal API (requiring a database) and where mocking would become a nightmare, use _kernel_ tests.
 * Finally, for the few cases where you _have_ to test the interface itself (and _only_ then), rely on functional tests. 
 
 If we strive to achieve this, I reckon our community will only benefit from it.
