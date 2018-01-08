@@ -28,10 +28,10 @@ Other than PHP and Drupal, a large portion of my time goes into Javascript code,
 
 ## Find me online
 
-<a class="about-links" href="http://twitter.com/wadmiraal"><i class="icon icon-twitter3 icon--inline"></i> Twitter</a>
-<a class="about-links" href="http://drupal.org/u/wadmiraal"><i class="icon icon-drupal icon--inline"></i> Drupal</a>
-<a class="about-links" href="http://github.com/wadmiraal/wadmiraal.net"><i class="icon icon-github icon--inline"></i> Github</a>
-<a class="about-links" href="http://www.linkedin.com/in/wadmiraal"><i class="icon icon-linkedin-with-circle icon--inline"></i> LinkedIn</a>
+<a class="about-links" href="http://twitter.com/wadmiraal" title="My twitter account"><span class="icon icon-twitter3 icon--inline"></span> Twitter</a>
+<a class="about-links" href="http://drupal.org/u/wadmiraal" title="My Drupal.org profile"><span class="icon icon-drupal icon--inline"></span> Drupal</a>
+<a class="about-links" href="http://github.com/wadmiraal/wadmiraal.net" title="My Github profile"><span class="icon icon-github icon--inline"></span> Github</a>
+<a class="about-links" href="http://www.linkedin.com/in/wadmiraal" title="My LinkedIn profile"><span class="icon icon-linkedin-with-circle icon--inline"></span> LinkedIn</a>
 
 
 <script type="application/ld+json">

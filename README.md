@@ -29,24 +29,23 @@ Use `npm` and `bundler` to install dependencies:
     npm install
     bundler install
 
-Use `gulp` to build all source files, which will be placed under `jekyll-src/`. This is what I do when developing.
+Use the `build` script to build all source files, which will be placed under `jekyll-src/_site`:
 
-    gulp
-
-Then, in another terminal, you can `cd` into `jekyll-src` and call `jekyll` to serve the files on `http://localhost:4000` while watching for changes.
-
-    cd jekyll-src
-    jekyll serve --watch
-
-Or, alternatively, you can call
-
-    gulp serve
-
-Which will build the site and start serving it at `http://localhost:4000` (but won't watch the files for changes).
-
-When ready to deploy, use `gulp build` to generate the full site in `jekyll-src/_site` (this is similar to using `jekyll build`, except Gulp will minimize the HTML files as well).
+    npm run build
 
 Then FTP it to your host and you're done.
+
+While writing (or hacking), you can call
+
+    npm run serve
+
+Which will build the site and start serving it at `http://localhost:4000` (Jekyll will also watch the files for changes).
+
+## Accessibility
+
+I embedded an accessibility check, to ensure the site follows the most critical WCAG 2.0 guidelines. Once the site is built, run the `test` script to test for accessibility:
+
+    npm test 
 
 ## Next steps
 
