@@ -5,7 +5,7 @@ layout: post
 favorite: false
 tags:
   - Drupal 8
-  - Wisdom
+  - Rant
   - PHP
 ---
 
@@ -13,7 +13,7 @@ Writing unit tests in Drupal used to be excruciatingly slow and costly, which me
 
 The main difficulty comes from the fact that TDD practices rely on a _very_ quick feedback loop. You write a test, you run it, red flag, you write code, you run the test again, green flag. Rinse and repeat. When the running part takes _minutes_, it slows the process down so much, that you lose all the benefits. It's hard to keep concentrating on your code when you wait idly for the test to complete.
  
-I am personally a big fan of TDD, and find it greatly improves the code I write. In my personal experience, I find that projects using TDD not only have a much higher test coverage than projects that do not, the tests are usually also more &ldquo:complete&rdquo;, covering more edge-cases and possible scenarios.
+I am personally a big fan of TDD, and find it greatly improves the code I write. In my personal experience, I find that projects using TDD not only have much higher test coverage than projects that do not, the tests are usually also more &ldquo;complete&rdquo;, covering more edge-cases and possible scenarios.
 
 In any case, whether you want to apply TDD in your Drupal development workflow, or simply want to increase the amount of tests you write, the effort you'll be willing to invest in writing tests is inversely proportional to the amount of time it takes to run them.
 
@@ -27,7 +27,7 @@ To illustrate, let's take the following 3 test classes:
 
 <pre><code class="language-php">
 # tests/src/Unit/MyUnitTest.php
-<?php
+&lt;?php
 
 namespace Drupal\my_module\Tests\Unit;
 
@@ -42,7 +42,7 @@ class MyUnitTest extends UnitTestCase {
 }
 
 # tests/src/Kernel/MyKernelTest.php
-<?php
+&lt;?php
 
 namespace Drupal\my_module\Tests\Kernel;
 
@@ -57,7 +57,7 @@ class MyKernelTest extends KernelTestBase {
 }
 
 # tests/src/Functional/MyFunctionalTest.php
-<?php
+&lt;?php
 
 namespace Drupal\my_module\Tests\Functional;
 
@@ -77,12 +77,19 @@ As you can see, they all do nothing. I just want to demonstrate the _startup_ ti
 Now, we run them, separately (I'm on a brand new 2017 Macbook Pro, 4 CPUs, 16Gb of RAM, using PHP 7.1.4):
 
 <pre><code class="language-bash">
+# Unit tests can be run without any special environment 
+# settings.
 ./vendor/bin/phpunit web/modules/my_module/tests/src/Unit/
 
 # I use SQLite for the Kernel tests.
 SIMPLETEST_DB=sqlite://testdb.sqlite ./vendor/bin/phpunit web/modules/my_module/tests/src/Kernel/
 
-# I use MAMP for the functional tests, as it is faster than using Docker.
+# Here I use MAMP for the functional tests, as it is 
+# faster than using Docker. In my typical workflow, 
+# I prefer using Docker, but the I/O is terrible. 
+# Test times are almost twice as long compared to MAMP
+# (using Docker for Mac), so for more accurate and 
+# realistic results, I'll stick to MAMP in this example.
 SIMPLETEST_BASE_URL=http://localhost:8888 SIMPLETEST_DB=mysql://root:root@127.0.0.1:8889/testdb ./vendor/bin/phpunit web/modules/my_module/tests/src/Functional/
 </code></pre>
 
@@ -96,7 +103,7 @@ _Side note: although startup times in unit tests are pretty constant, they can v
 
 Remember, this is mainly counting the startup time. So, functional test, without doing anything, takes ~10x longer than kernel tests, and ~24x times longer than unit tests.
 
-Now, let's add 2 more test methods to each test class, again, not testing anything:
+Now, let's add 4 more test methods to each test class, again, not testing anything:
 
 <pre><code class="language-php">
   public function testMe2() {
@@ -106,15 +113,23 @@ Now, let's add 2 more test methods to each test class, again, not testing anythi
   public function testMe3() {
     $this->assertTrue(true, "It works");
   }
+  
+  public function testMe4() {
+    $this->assertTrue(true, "It works");
+  }
+  
+  public function testMe5() {
+    $this->assertTrue(true, "It works");
+  }
 </code></pre>
 
 And run the tests again. This time, the results are as follows:
 
-* 420ms for the unit test
-* 2.68 seconds for the kernel test
-* 29.07 seconds for the functional test
+* 452ms for the unit test
+* 4.19 seconds for the kernel test
+* 49.31 seconds for the functional test
 
-You see where I'm going with this. If you want any reasonable amount of test coverage _and_ run those tests frequently, functional tests are a no-go. I cannot conceive that all those bloggers giving TDD examples using functional tests are actually practicing what they preach. It's no way to program, at least not in true TDD fashion. 
+You see where I'm going with this. If you want any reasonable amount of test coverage _and_ run those tests frequently, functional tests are a no-go. Just 5 test methods already take close to 1 minute, and it's not even testing anything yet! For me, any test suite that takes longer than 30s is too long for TDD (and that's _already_ very long, IMHO&mdash;just try it: sit still for 30s staring at your terminal; now imagine doing that every 2 to 5 minutes). I cannot conceive that all those bloggers giving TDD examples using functional tests are actually practicing what they preach. It's no way to do true TDD. Of course, these examples are not _bad_, per-se. Just don't go claiming it's the way to do TDD, discouraging newcomers from adopting the practice.
 
 ## TDD is all about speed
 

@@ -4,7 +4,7 @@ description: "In Drupal 7, automated testing practices were terrible. In this po
 layout: post
 tags:
   - Drupal 8
-  - Wisdom
+  - Rant
   - PHP
 ---
 
