@@ -94,8 +94,16 @@ gulp.task( 'serve-jekyll', shell.task([
 ], { cwd: './jekyll-src' }));
 
 // Default tasks.
-gulp.task( 'default', [ 'compass', 'css-min', 'js-min', 'images', 'fonts', 'layouts' ] );
+// Compass runs in its own process. This means its result won't get piped
+// correctly to the next tasks. For this reason, we use the gulp-run-command
+// module, and run two Gulp commands in sequence.
+gulp.task( 'default', run(
+    [ 'gulp compass', 'gulp css-min js-min images fonts layouts' ]
+));
 gulp.task( 'serve', [ 'default', 'serve-jekyll' ] );
+// Jekyll runs in its own process. This means its result won't get piped
+// correctly to the next tasks. For this reason, we use the gulp-run-command
+// module, and run two Gulp commands in sequence.
 gulp.task( 'build', [ 'default' ], run(
   [ 'gulp jekyll-build', 'gulp html-min' ]
 ));
