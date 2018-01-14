@@ -38,22 +38,23 @@ Consider this small experiment, which compares running the entire Symfony 4 Fram
 
 I used the following command to run the tests:
 
-<pre><code class="language-bash">
-time ./phpunit
+<pre><code class="language-bash">time ./phpunit
 </code></pre>
 
 This not only runs the tests, but gets a more accurate measurement of the total amount of time it takes to run them.
 
 Here's PHPUnit's output:
 
-    Time: 2.71 minutes, Memory: 522.25MB
-    Tests: 23401, Assertions: 43504, Errors: 13, Failures: 2, Skipped: 2615, Incomplete: 8
+<pre><code class="language-bash">Time: 2.71 minutes, Memory: 522.25MB
+Tests: 23401, Assertions: 43504, Errors: 13, Failures: 2, Skipped: 2615, Incomplete: 8
+</code></pre>
 
 Here's the actual time measurement:
 
-    real	2m43.190s
-    user	2m2.076s
-    sys	    0m17.604s
+<pre><code class="language-bash">real	2m43.190s
+user	2m2.076s
+sys	    0m17.604s
+</code></pre>
     
 So, running the _entire_ suite takes approximately 2m 43s. I ran these on the latest master-dev, which likely explains the 15 errors, a small thing to fix. There were also 2'615 skipped tests. This is a lot, but negligible when considering there are 23'401 tests total. They mostly concern tests using services that I didn't have running on my Mac when launching the tests (like LDAP, Redis, etc).
 
@@ -108,38 +109,40 @@ I decided to check a few popular modules on drupal.org. I'll show the results fo
 
 I decided to run the tests against Drupal 8.4.3, so as not to test against an &ldquo;unstable&rdquo; core. Unfortunately, Drupal introduced a bug which makes kernel tests incompatible with SQLite, which is what I use when running them. To correct the issue, I had to apply the following patch:
 
-    diff --git a/core/lib/Drupal/Core/Database/Database.php b/core/lib/Drupal/Core/Database/Database.php
-    index dd19018828..f3abe2b24e 100644
-    --- a/core/lib/Drupal/Core/Database/Database.php
-    +++ b/core/lib/Drupal/Core/Database/Database.php
-    @@ -456,9 +456,15 @@ public static function ignoreTarget($key, $target) {
-        */
-       public static function convertDbUrlToConnectionInfo($url, $root) {
-         $info = parse_url($url);
-    -    if (!isset($info['scheme'], $info['host'], $info['path'])) {
-    +    if (!isset($info['scheme'], $info['host'])) {
-           throw new \InvalidArgumentException('Minimum requirement: driver://host/database');
-         }
-    +    if ($info['scheme'] !== 'sqlite' && !isset($info['path'])) {
-    +      throw new \InvalidArgumentException('Minimum requirement: driver://host/database');
-    +    }
-    +    elseif ($info['scheme'] === 'sqlite') {
-    +      $info['path'] = $info['host'];
-    +    }
-         $info += [
-           'user' => '',
-           'pass' => '',
+<pre><code class="language-diff">diff --git a/core/lib/Drupal/Core/Database/Database.php b/core/lib/Drupal/Core/Database/Database.php
+index dd19018828..f3abe2b24e 100644
+--- a/core/lib/Drupal/Core/Database/Database.php
++++ b/core/lib/Drupal/Core/Database/Database.php
+@@ -456,9 +456,15 @@ public static function ignoreTarget($key, $target) {
+    */
+   public static function convertDbUrlToConnectionInfo($url, $root) {
+     $info = parse_url($url);
+-    if (!isset($info['scheme'], $info['host'], $info['path'])) {
++    if (!isset($info['scheme'], $info['host'])) {
+       throw new \InvalidArgumentException('Minimum requirement: driver://host/database');
+     }
++    if ($info['scheme'] !== 'sqlite' && !isset($info['path'])) {
++      throw new \InvalidArgumentException('Minimum requirement: driver://host/database');
++    }
++    elseif ($info['scheme'] === 'sqlite') {
++      $info['path'] = $info['host'];
++    }
+     $info += [
+       'user' => '',
+       'pass' => '',
+</code></pre>
 
 I used the following command to run the tests:
 
-<pre><code class="language-bash">
-SIMPLETEST_DB=sqlite://testdb.sqlite ./vendor/bin/phpunit --group token
+<pre><code class="language-bash">SIMPLETEST_DB=sqlite://testdb.sqlite \
+./vendor/bin/phpunit --group token
 </code></pre>
 
 Here's PHPUnit's output:
 
-    Time: 1.05 minutes, Memory: 210.00MB
-    OK (23 tests, 372 assertions)
+<pre><code class="language-bash">Time: 1.05 minutes, Memory: 210.00MB
+OK (23 tests, 372 assertions)
+</code></pre>
 
 Generating a coverage report gives us the following statistics:
 
@@ -161,14 +164,17 @@ I'd also like to note that Token is relying solely on &ldquo;kernel&rdquo; tests
 
 I used the following command to run the tests:
 
-<pre><code class="language-bash">
-SIMPLETEST_BASE_URL=http://localhost:8888 SIMPLETEST_DB=mysql://root:root@127.0.0.1:8889/webform time ./vendor/bin/phpunit -c core/phpunit.xml.dist --group webform,webform_browser,webform_javascript
+<pre><code class="language-bash">SIMPLETEST_BASE_URL=http://localhost:8888 \
+SIMPLETEST_DB=mysql://root:root@127.0.0.1:8889/webform \
+time ./vendor/bin/phpunit -c core/phpunit.xml.dist \
+--group webform,webform_browser,webform_javascript
 </code></pre>
 
 Here's PHPUnit's output:
 
-    Time: 2.25 minutes, Memory: 212.00MB
-    Tests: 148, Assertions: 307, Skipped: 1
+<pre><code class="language-bash">Time: 2.25 minutes, Memory: 212.00MB
+Tests: 148, Assertions: 307, Skipped: 1
+</code></pre>
 
 Generating a coverage report gives us the following statistics:
 

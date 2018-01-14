@@ -24,7 +24,7 @@ Your own hooks will usually be of 2 kinds:
 1. An *information* hook, which allows other modules to let your module know about certain functionality.
 2. An *alter* hook, which allows other modules to have a say in what happens to data you're processing.
 
-The second one can be tricky to test depending on when or where you allow other modules to alter data. If you use it in a similar fashion to the `hook_menu`/``hook_menu_alter` hooks, testing is pretty easy. If you allow other modules to have a say in the middle of a complex function (like `hook_node_load`), you're in trouble.
+The second one can be tricky to test depending on when or where you allow other modules to alter data. If you use it in a similar fashion to the `hook_menu`/`hook_menu_alter` hooks, testing is pretty easy. If you allow other modules to have a say in the middle of a complex function (like `hook_node_load`), you're in trouble.
 
 The Guide Me module provides a single hook, called `hook_guideme_path` ([doc here](http://cgit.drupalcode.org/guideme/tree/guideme.api.php?h=7.x-1.x)).
 
