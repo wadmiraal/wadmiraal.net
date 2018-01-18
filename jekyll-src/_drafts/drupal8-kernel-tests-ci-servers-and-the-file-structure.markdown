@@ -1,6 +1,6 @@
 ---
-title: "Drupal 8 unit and kernel tests, with Travis CI and Sonarcloud"
-description: "It's possible (and pretty simple) to start using Drupal unit and kernel tests along with your favourite CI server, as well as add some static code analysis to the mix. In this post, I'll explain how to set up a Drupal module with Travis CI and Sonarcloud."
+title: "Drupal 8 with Travis CI and Sonarcloud"
+description: "It's pretty easy to start using Drupal along with your favourite CI server, as well as add some static code analysis to the mix. In this post, I'll explain how to set up a Drupal project with Travis CI and Sonarcloud integration."
 layout: post
 favorite: false
 tags:
@@ -9,64 +9,65 @@ tags:
   - PHP
 ---
 
-...
+Using a service like Travis CI or Sonarcloud has always seemed like the holly grail for Drupal projects. It's unfortunate that these usually require quite a tedious setup, which includes installing a database and webserver, configuring them, and finally going as far as to install _Drupal itself_.
+
+However, the main hurdle here is using _functional_ tests (or Behat tests, although I believe using Behat would justify the long setup). If your project only includes unit and/or kernel tests (and I argue _it should_), using a CI actually becomes _much_ easier.
 
 ## Understanding Drupal unit and kernel tests
 
-In Drupal 8, it has become much more feasible to write _actual_ unit tests. In Drupal 7, unit tests were close to unusable, only serving very specific cases, with little added benefit. You almost always had to rely on &ldquo;web tests&rdquo; (`DrupalWebTestCase`, called &ldquo;functional tests&rdquo; in Drupal 8) to get things done (_tip: checkout my [previous posts](/lore/2014/07/23/write-testable-code-in-drupal-part-1/) on how to use unit tests more efficiently in Drupal 7_). In Drupal 8, thanks to the inclusion of a _dependency injection container_, we can now mock parts of core in our test environments, allowing us to truly use unit tests (`Drupal\Tests\UnitTestCase`). They complete in mere milliseconds (if set up correctly), and the feedback is almost instantaneous.
+In Drupal 8, thanks to the inclusion of a _dependency injection container_, we can now mock parts of core in our test environments, allowing us to truly use unit tests. They complete in mere milliseconds, and are ideal for both <abbr title="Test Driven Development">TDD</abbr> and using <abbr title="Continuous Integration">CI</abbr>.
 
-However, Drupal 8's maze of dependencies and services mean we sometimes need to mock _a lot_ of Drupal code. So much in fact, that the `setUp()` method of a unit test class can become larger than the actual test methods _combined_. Switching back to browser tests is not an option either: they are _way_ to slow to run, sometimes taking **several minutes** to run.
+However, Drupal 8's maze of dependencies and services mean we sometimes need to mock _a lot_ of Drupal code. So much in fact, that the `setUp()` method of a unit test class can become larger than the actual test methods _combined_. For this reason, some projects revert to functional tests, but&mdash;as I've discussed before&mdash;they are _way_ to slow to run, and extremely hard to debug.
 
-Enter &ldquo;kernel tests&rdquo;, which can be seen as a hybrid between unit functional tests. It needs a database to run (which can be a SQLite file), and can &ldquo;install&rdquo; modules. However, contrary to functional tests, the test class doesn't install anything unless told to, which is a huge time saver. It also doesn't require a running webserver, which is another huge win when configuring a CI environment.
+Kernel tests, on the other hand, are much faster. They do need a database to run. However, contrary to functional tests, they don't require a running webserver. This is a huge win when setting up a CI environment, as most have some sort of built-in PHP environment, which often includes SQLite support. This means the runner setup will only include downloading Drupal, and moving our code into the correct location.
+
+Finally, both kernel and unit tests can be used to compute code coverage, which is incredibly useful when performing more in depth code analysis and quality control. This is not the case with functional tests.
 
 ## Kernel tests depend on Drupal's file structure
 
-When running automated tests on a CI server, it's tempting to use `composer require drupal/core:8.4.1` followed by `phpunit`, but unfortunately it's not that simple.
+When running automated tests on a CI server, it's tempting to use `composer require drupal/core:~8.4` followed by `phpunit`, but unfortunately it's not that simple.
 
 Although this would work for unit tests, kernel tests assume they are run in context of a Drupal project, so they will look for folders and files in places you may not expect.
 
-## A working example: Travis CI and Sonarcloud
+It's still worth the effort to set up, though. It may seem complicated at first, but I assure you: it's really not. Plus, it's still _much_ easier than if you were using functional tests&hellip;
 
-In this example, I will use [Travis CI](https://travis-ci.org), but of course other CI vendors would work too.
+## A working example with Travis CI and Sonarcloud
 
-Basically, we need to: 
-
-1. Download Drupal.
-2. If Drupal 8.4.x, apply a small patch to make SQLite work (called `sqlite-driver-exception.patch` in our example).
-3. Update the `phpunit.xml.dist` file, so we only generate code coverage stats for our own code (we'll ship with a 2nd patch file for convenience, called `travis-ci-phpunit.xml.dist.patch` in our example).
-4. Copy our code to the correct location in the Drupal file structure.
-5. Run PHPUnit.
+In this example, I will use [Travis CI](https://travis-ci.org), but of course other CI vendors would work too. It will &ldquo;build&rdquo; a fresh Drupal site, run our tests, and push our code, with test statistics, to [Sonarcloud](https://sonarcloud.io) for static code analysis. 
 
 You can see a working example [here](https://github.com/wadmiraal/guernsey).
 
-Here's our module file structure:
+Imagine this is our module's file structure:
 
-<pre><code class="language-yaml">
+<pre><code class="language-yaml">├── .travis.yml
 ├── config/
 │   └── install/
 │       └── ...
-├── .travis.yml
 ├── my_module.info.yml
 ├── my_module.permissions.yml
 ├── my_module.routing.yml
 ├── sonar-project.properties
 ├── sqlite-driver-exception.patch
 ├── src/
-│   ├── Entity/
-│   │   └── ...
-│   └── Form/
-│       └── ...
+│   └── ...
 ├── templates/
 │   └── ...
 ├── tests/
 │   └── src/
+│       └── Unit/
+│           └── ...
 │       └── Kernel/
-│           └── Entity/
-│               └── ...
+│           └── ...
 └── travis-ci-phpunit.xml.dist.patch
 </code></pre>
 
-Here's an example `.travis.yml` file:
+Our example `sonar-project.properties` file looks like this:
+
+<pre><code class="language-ini">sonar.projectKey=my_organization:my_module
+sonar.projectName=My Module
+</code></pre>
+
+And here's our example `.travis.yml` file:
 
 <pre><code class="language-yaml">language: php
 php:
@@ -81,6 +82,7 @@ env:
   - SIMPLETEST_DB=sqlite://testdb.sqlite
 install:
   - composer create-project drupal-composer/drupal-project:8.x-dev drupal --stability dev --no-interaction
+  - composer require -d drupal 'drupal/flag:4.0-alpha2'
   - patch -d drupal/web -p1 < sqlite-driver-exception.patch
   - patch -d drupal/web/core -p1 < travis-ci-phpunit.xml.dist.patch
   - mkdir -p drupal/web/modules/my_module && cp -a my_module* tests templates src config drupal/web/modules/my_module
@@ -107,17 +109,24 @@ These are no-brainers: we're telling Travis to run these tests in PHP 7.0 and 7.
 
 Here we tell Travis to include the Sonarcloud plugin. We need to add the Sonarcloud _organization_ key, as well as an authentication token generated specifically for our repo. **Don't add this in plain text!** You can securely add this key using [`travis encrypt`](https://docs.travis-ci.com/user/environment-variables/#Encrypting-environment-variables).
 
+If your favorite CI doesn't have built-in support for Sonarcloud, they have an executable you can download and run after the build is complete.
+
 <pre><code class="language-yaml">env:
   - SIMPLETEST_DB=sqlite://testdb.sqlite
 </code></pre>
 
-Kernel tests require a running database. The easiest solution is to use SQLite, which is basically a static file. You can either add this information to the `phpunit.xml.dist` file, or set it as an environment variable. As many examples seem to use a running MySQL database, which is a lot harder and longer to set up, I prefer to make it explicit. Hence this line.
+Kernel tests require a running database. The easiest solution is to use SQLite, which is basically a static file. You can either add this information to the `phpunit.xml.dist` file, or set it as an environment variable. I prefer to make it explicit, hence this line.
 
 <pre><code class="language-yaml">install:
   - composer create-project drupal-composer/drupal-project:8.x-dev drupal --stability dev --no-interaction
 </code></pre>
 
 This is where we download a full copy of Drupal. We use the [Composer template for Drupal projects](https://github.com/drupal-composer/drupal-project), and save it to a folder called `drupal`.
+
+<pre><code class="language-yaml">  - composer require -d drupal 'drupal/flag:4.0-alpha2'
+</code></pre>
+
+Here we install our dependencies. In our example, we depend on a specific version of the [Flag](http://www.drupal.org/project/flag) module. You could add any modules (or even themes and profiles) you need, and Composer will put them in the correct location, thanks to the configuration shipping with the Composer template we're using.
 
 <pre><code class="language-yaml">  - patch -d drupal/web -p1 < sqlite-driver-exception.patch
 </code></pre>
@@ -154,7 +163,7 @@ Next&hellip;
 <pre><code class="language-yaml">  - patch -d drupal/web/core -p1 < travis-ci-phpunit.xml.dist.patch
 </code></pre>
 
-Here, we apply our `travis-ci-phpunit.xml.dist.patch` to Drupal core. This patch basically tells PHPUnit we only want to compute code coverage statistics for our own code.
+Here, we apply our `travis-ci-phpunit.xml.dist.patch` to Drupal core. This patch basically tells PHPUnit we only want to compute code coverage statistics for our own code, to speed things up a bit, and avoid unnecessary warnings in Sonarcloud.
 
 It contains the following:
 
@@ -181,15 +190,27 @@ Next&hellip;
 <pre><code class="language-yaml">mkdir -p drupal/web/modules/my_module && cp -a my_module* tests templates src config drupal/web/modules/my_module
 </code></pre>
 
-Here, we copy all our code over to the `drupal/web/modules/` directory. This is necessary for kernel tests, which will only search for code in specific locations.
+Here, we copy all our code over to the `drupal/web/modules/my_module` directory. This is necessary for kernel tests, which will only search for our code inside the Drupal root.
 
 <pre><code class="language-yaml">script:
   - drupal/vendor/bin/phpunit -c drupal/web/core drupal/web/modules/my_module/tests/ --coverage-clover clover.xml --log-junit junit.log
-  - sonar-scanner -Dsonar.sources=drupal/web/modules/my_module/src -Dsonar.php.tests.reportPath=junit.log -Dsonar.php.coverage.reportPaths=drupal/web/clover.xml
 </code></pre>
 
 Here we finally do the running part. We use the version of PHPUnit that comes with Drupal, to make sure we don't run into compatibility issues if Travis updates its binaries. We give the location to the `phpunit.xml.dist` file using `-c`, pass our module's code location to tell PHPUnit to _only_ run our tests, and generate coverage stats.
 
+<pre><code class="language-yaml"> - sonar-scanner -Dsonar.sources=drupal/web/modules/my_module/src -Dsonar.php.tests.reportPath=junit.log -Dsonar.php.coverage.reportPaths=drupal/web/clover.xml
+</code></pre>
+
 In the second part, we run the `sonar-scanner` plugin, passing the Clover and JUnit log files for coverage analysis. Because of this, we need to pass the path to the source code actually tested, and _not_ the code in the Travis build root. Which is why `-Dsonar.sources` points to our copied code, instead of simply the root of the folder.
 
 In our particular case, we only have kernel tests. If we had any unit tests, they would run fine as well. Functional tests, however, would not run in our case, but as I've written on this blog before, you shouldn't necessarily _write_ functional tests in the first place (and they're _way_ more complex to run in a CI environment).
+
+Now, whenever we push to our repository, Travis CI will fetch the code and run our build, run the tests, and push the files for code analysis to Sonarcloud.
+
+## What can we learn from this example
+
+This setup is pretty straightforward, once you know it. It's easy to replicate, and the only thing that will likely change is the dependency management. It also encourages us to use kernel and unit tests, and stay away from functional tests as much as possible.
+
+The ability to run tests using a CI server also opens the door for code analysis tools, like Code Climate (my personal favorite) and Sonarqube. These tools are invaluable for producing better quality code. And as icing on the cake: the ability to add test coverage statistics to the mix further encourages to write unit and kernel tests, _and_ to write _more_ of them (functional tests cannot compute code coverage; one more reason not to use them).
+
+All this isn't to say functional tests are _bad_. They are just very complicated and time consuming to write, run, and debug. For this reason, they should not be used for testing highly specific units of logic; rather, they are best used for testing UIs and very high-level concepts. And even then, I'd argue you'd be better of using Behat tests, which, although even _more_ complicated to set up, at least encourage you to think more about the behavior and UI, rather than the underlying code. But that's a topic for another day.
