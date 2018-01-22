@@ -5,6 +5,7 @@ layout: post
 favorite: false
 tags:
   - Drupal 8
+  - Automated Testing
   - Rant
   - PHP
 ---
