@@ -1,6 +1,6 @@
 ---
 title: "Drupal Forms and TDD, part 1: file validation"
-description: "In this series of posts, I'll show how you can write forms in Drupal while using true TDD. In this first part, we'll talk about file upload validation."
+description: "In this series of posts, I'll demonstrate how you can write forms in Drupal while using true TDD. In this first part, we'll talk about file upload validation."
 layout: post
 favorite: false
 tags:
@@ -21,5 +21,6 @@ Furthermore, upon submission, we will parse the CSV file and create new entities
 
 ## Links
 
+* The [source code](https://github.com/wadmiraal/drupal8_tdd_form_validation) for the example.
 * The [Composer template for Drupal project](https://github.com/drupal-composer/drupal-project) used for the project structure.
 * The [official documentation for writing automated tests in Drupal 8](https://api.drupal.org/api/drupal/core%21core.api.php/group/testing/8.5.x).
