@@ -9,9 +9,9 @@ tags:
   - PHP
 ---
 
-In [part 1](/lore/2018/01/29/drupal-forms-and-tdd-part-1-file-validation/), I showed how you can start using <abbr title="Test Driven Development">TDD</abbr> when writing Drupal code. In this part, I'll show how you can test the form building part.
+In [part 1](/lore/2018/01/29/drupal-forms-and-tdd-part-1-file-validation/), I showed how you can start using <abbr title="Test Driven Development">TDD</abbr> when writing Drupal code, and how to apply it to testing a custom file validation callback. In this part, I'll show how you can test the form building.
 
-<iframe width="700" height="394" src="https://www.youtube.com/embed/iK15gqkV9oc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/spY5tu1JT1U?ecver=2" width="700" height="394" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Links
 
