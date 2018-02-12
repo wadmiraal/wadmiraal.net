@@ -11,7 +11,11 @@ tags:
 
 In [part 1](/lore/2018/01/29/drupal-forms-and-tdd-part-1-file-validation/), I showed how you can start using <abbr title="Test Driven Development">TDD</abbr> when writing Drupal code, and how to apply it to testing a custom file validation callback. In [part 2](/lore/2018/02/05/drupal-forms-and-tdd-part-2-form-building/), we tackled testing the form building. In this part, I'll show how you can test the form validation.
 
-<iframe src="https://www.youtube.com/embed/spY5tu1JT1U?ecver=2" width="700" height="394" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/yLpNHiTVlhY" width="700" height="394" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+I also decided to shoot a quick bonus video with a functional test, to demonstrate the difference in time execution. Food for thought: in our particular example, the functional tests take **~300x** longer than the unit tests, without adding any more value. As I mention towards the end, you could probably get that down 60x times longer, at the cost of maintainability.
+
+<iframe src="https://www.youtube.com/embed/Mze8aLFecp0" width="700" height="394" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Links
 
