@@ -13,7 +13,7 @@ In [part 1](/lore/2018/01/29/drupal-forms-and-tdd-part-1-file-validation/), I sh
 
 <iframe src="https://www.youtube.com/embed/yLpNHiTVlhY" width="700" height="394" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-I also decided to shoot a quick bonus video with a functional test, to demonstrate the difference in time execution. Food for thought: in our particular example, the functional tests take **~300x** longer than the unit tests, without adding any more value. As I mention towards the end, you could probably get that down 60x times longer, at the cost of maintainability.
+I also decided to shoot a quick bonus video with a functional test, to demonstrate the difference in time execution. Food for thought: in our particular example, the functional tests take **~300x** longer than the unit tests, without adding any more value. As I mention towards the end, you could probably get that down to &ldquo;only&rdquo; 60x times longer, at the cost of maintainability.
 
 <iframe src="https://www.youtube.com/embed/Mze8aLFecp0" width="700" height="394" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
