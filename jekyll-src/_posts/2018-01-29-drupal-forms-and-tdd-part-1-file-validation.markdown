@@ -26,6 +26,7 @@ Furthermore, upon submission, we will parse the CSV file and create new entities
 
 * [Part 2](/lore/2018/02/05/drupal-forms-and-tdd-part-2-form-building/).
 * [Part 3](/lore/2018/02/12/drupal-forms-and-tdd-part-3-form-validation/).
+* [Part 4](/lore/2018/02/19/drupal-forms-and-tdd-part-4-form-submission/).
 * The [source code](https://github.com/wadmiraal/drupal8_tdd_form_validation) for the example.
 * The [Composer template for Drupal project](https://github.com/drupal-composer/drupal-project) used for the project structure.
 * The [official documentation for writing automated tests in Drupal 8](https://api.drupal.org/api/drupal/core%21core.api.php/group/testing/8.5.x).
