@@ -1,5 +1,5 @@
 ---
-title: "Book review: &ldquo;Deep work&rdquo;, by Cal Newport"
+title: "Book review: &ldquo;Deep Work&rdquo;, by Cal Newport"
 description: "Some time ago, I read a blog post entitled _Deep Work: Gaining Focus and Nobility in Your Work_, and immediately thought: &ldquo;I just _have_ to read this!&rdquo; And I am so glad I did."
 layout: post
 favorite: false
@@ -18,11 +18,11 @@ I decided to read _[Deep Work](http://calnewport.com/books/deep-work/)_ after re
 
 ## Embrace boredom
 
-We live in a highly connected world, where distraction is just a tap away. How often do you find yourself having to wait for more than 1 minute, and automatically grabbing your phone to check up on some Tweets, emails, etc? How often, if you have more than 10 minutes to wait, will you open Youtube?
+We live in a highly connected world, where distraction is just a tap away. How often do you find yourself having to wait for more than 1 minute, and automatically grabbing your phone to check up on some Tweets, emails, etc? How often, if you have more than 10 minutes on your hands, will you open Youtube?
 
-I did that. A lot. I didn't even do it to &ldquo;just pass the time&rdquo;. I did it to _use_ my time efficiently&mdash;or so I thought. I used this to quickly catch up on interesting Tweets, for instance. I'm a big fan of learning, and love Youtube channels like [Kurzgesagt](http://kurzgesagt.org/), [Crash Course](https://thecrashcourse.com/), and [Ted ED](https://ed.ted.com/). So, when commuting, or waiting for a doctor's appointment, why not learn something, thanks to these bite-sized videos which usually last less than 10 minutes? 
+I did that. A lot. I didn't even do it to &ldquo;just pass the time&rdquo;. I did it to _use_ my time efficiently&mdash;or so I thought. I used this to quickly catch up on interesting Tweets, for instance (I mainly follow people that work in our industry, not so much friends or relatives). I'm a big fan of learning, and love Youtube channels like [Kurzgesagt](http://kurzgesagt.org/), [Crash Course](https://thecrashcourse.com/), and [Ted ED](https://ed.ted.com/). So, when commuting, or waiting for a doctor's appointment, why not learn something, thanks to these bite-sized videos which usually last less than 10 minutes? 
 
-It turns out, this is _terribly wrong_. It becomes addictive. I would use every spare minute during my day to try and squeeze in some more information. But, as Cal Newport puts it in this book, it's a &ldquo;shallow&rdquo; type of information and brain activity. It trains the brain to crave for small, distracting pieces of information, and makes it lose the ability for longer bouts of intense concentration and creativity. It's also, paradoxically, pretty tiring, which at times left me feeling mentally exhausted, but without a sense of having used my time wisely.
+It turns out, this is _terribly wrong_. It becomes addictive. I would use every spare minute during my day to try and squeeze in some more information. But, as Cal Newport puts it in this book, it's a &ldquo;shallow&rdquo; type of information and brain activity. It trains the brain to crave for small, distracting pieces of information, and makes it lose the ability for longer bouts of intense concentration and creativity. It's also pretty tiring, which at times left me feeling mentally exhausted, but without a sense of having used my time wisely.
 
 So when Cal Newport goes on to prove, using scientifc studies for supporting evidence, how much these habits can hurt, not only our day-to-day job performance, but in fact _every aspect of your life_, it makes you stop and think really hard about your daily habits.
 
@@ -42,7 +42,7 @@ We all do. It's so easy. Struggle with something? Ask Jane, she's online, and pr
 
 Cal Newport has whole sections dedicated to these kinds of distractions, but also, more importantly, _how you can deal with them_. It's brilliant. 
 
-I think the best advice is that, _you don't have to answer immediately!_ We think we should answer chat messages within seconds, and emails within the next 15 minutes. But the fact usually is: you don't. If you ignore most chat messages in group channels, and only answer your emails once every other hour, you're _probably_ going to be OK (of course, there are exceptions to these rules, especially if you deal with support requests).
+I think the best advice is that, _you don't have to answer immediately!_ We think we should answer chat messages within seconds, and emails within the next 15 minutes. But the fact (usually) is: you don't. If you ignore most chat messages in group channels, and only answer your emails once every other hour, you're _probably_ going to be OK (of course, there are exceptions to these rules, especially if you deal with client support).
 
 I disabled all notifications on my phone for work-related emails and chat. I now use Slack's _snooze_ functionality aggressively when I know I have to concentrate. I try to plan my work load in such a way that I get smaller, &ldquo;shallow&rdquo; tasks done in batches, so I have long stretches of time to focus on more complex tasks.
 
@@ -60,7 +60,7 @@ It then traces a parallel with modern &ldquo;knowledge worker&rdquo; trades, whi
 
 ## This is just the tip of the iceberg
 
-There's so much valuable information in this book that it's impossible to summarize all of it here. And it's pretty dense and deep, so, in order to get the most out of it, I suggest you don't just read it like a novel. Instead, find some quiet time, go over the ideas in sequence, and don't hesitate to pause and think. I used some markers and a pen to make notes, to think about how some things apply to my daily life, and what strategies I could use to make it better. 
+There's so much valuable information in this book that it's impossible to summarize all of it here. And it's pretty dense and deep, so, in order to get the most out of it, I suggest you don't just read it like a novel. Instead, find some quiet time, go over the ideas in sequence, and don't hesitate to pause and think. I used some markers, and pen and paper to make notes, to think about how some things apply to my daily life, and what strategies I could use to make it better. 
 
 For example, the next thing I'd like to implement is Cal Newport's strategies to mitigate the [Zeigarnik effect](https://en.wikipedia.org/wiki/Zeigarnik_effect) (I had never heard of it either). It takes time and practice. But even implementing the most simple ideas of this book will already get you a long way.
 
