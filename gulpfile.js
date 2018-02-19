@@ -37,9 +37,9 @@ gulp.task( 'compass', function() {
 
 // Combine all CSS files and minify.
 gulp.task( 'css-min', function() {
-  gulp.src([ './css/**/*.css', './css/*.css' ])
+  gulp.src([ './css/*.css', './css/**/*.css' ])
     .pipe( concat( 'all.min.css' ) )
-    .pipe( minifyCSS() )
+    .pipe( minifyCSS({ processImport: false }) )
     .pipe( gulp.dest( './jekyll-src/css' ) );
 });
 
