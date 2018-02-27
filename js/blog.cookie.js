@@ -56,7 +56,12 @@
       return false;
     }, false );
 
+    no.setAttribute( 'class', 'site-cookie-question__button site-cookie-question__button--no' );
+    no.setAttribute( 'href', 'https://duckduckgo.com/' );
+    no.innerHTML = 'Heck no! Beam me up, Scotty!';
+
     question.appendChild( yes );
+    question.appendChild( no );
 
     document.body.appendChild( question );
   };

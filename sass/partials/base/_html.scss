@@ -3,7 +3,7 @@
  * Defines the basic HTML styles.
  */
 
-@import url('https://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans:400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i');
 
 html {
   min-height: 100%;
@@ -14,10 +14,6 @@ body {
 
   font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Bree Serif', 'Open Sans', sans-serif;
 }
 
 a {

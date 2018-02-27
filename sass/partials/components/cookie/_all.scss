@@ -20,6 +20,10 @@
   a {
     color: inherit;
   }
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    line-height: 3;
+  }
 }
 
 .site-cookie-question__button {

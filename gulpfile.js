@@ -37,7 +37,10 @@ gulp.task( 'compass', function() {
 
 // Combine all CSS files and minify.
 gulp.task( 'css-min', function() {
-  gulp.src([ './css/*.css', './css/**/*.css' ])
+  // If icomoon.css is treated first, the Google Fonts @import declaration
+  // in styles.css won't be at the top, and won't work correctly. Hard-code
+  // the order, instead of using wildcards.
+  gulp.src([ './css/styles.css', './css/icomoon.css', './css/**/*.css' ])
     .pipe( concat( 'all.min.css' ) )
     .pipe( minifyCSS({ processImport: false }) )
     .pipe( gulp.dest( './jekyll-src/css' ) );
