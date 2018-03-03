@@ -16,6 +16,9 @@ DirectoryIndex index.php index.html
 
   # Redirect old tag pages.
   RewriteRule ^tag/(.*)$ /index.html?show_tag=$1 [R=301,NC,L]
+
+  # Redirect old post.
+  RewriteRule ^/lore/2013/02/26/go-make-your-own-bloody-framework/$ /lore/2013/02/26/go-make-your-own-framework/ [R=301,NC,L]
 </IfModule>
 
 <IfModule mod_expires.c>

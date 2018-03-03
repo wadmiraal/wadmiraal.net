@@ -1,5 +1,5 @@
 ---
-title: "Go make your own bloody framework"
+title: "Go make your own framework"
 description: "Why creating your own framework will help you become a better programmer."
 layout: post
 tags:

@@ -30,7 +30,7 @@ I, for instance, decided to uninstall Twitter, and remove Youtube from my phone'
 
 Since the beginning of the year, I try really hard to embrace boredom, to not immediately grab my phone whenever I have to wait for something. Instead, I try to let my mind wander, focus on some tricky tasks, or simply enjoy my surroundings.
 
-And it bloody works.
+And it _**really**_ works.
 
 ## Get rid of distractions
 
@@ -46,7 +46,7 @@ I think the best advice is that, _you don't have to answer immediately!_ We thin
 
 I disabled all notifications on my phone for work-related emails and chat. I now use Slack's _snooze_ functionality aggressively when I know I have to concentrate. I try to plan my work load in such a way that I get smaller, &ldquo;shallow&rdquo; tasks done in batches, so I have long stretches of time to focus on more complex tasks.
 
-And here again, it bloody works.
+And here again, it _**really**_ works.
 
 ## Almost a philosophical journey
 
