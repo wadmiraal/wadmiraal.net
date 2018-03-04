@@ -1,7 +1,4 @@
-# Because of some naive and stupid aggressive caching strategy, the home page
-# won't get refreshed before a looong time. Stupid... The PHP script will simply
-# redirect to the home page, but put in a GET parameter to bust the cache.
-DirectoryIndex index.php index.html
+DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine on
@@ -10,15 +7,11 @@ DirectoryIndex index.php index.html
   RewriteCond %{HTTP_HOST} ^www\.wadmiraal\.net$ [NC]
   RewriteRule ^(.*)$ http://wadmiraal.net/$1 [L,R=301]
 
-  # In accordance what we wrote above, this will redirect the homepage to the
-  # index.php script, redirecting back to index.html
-  RewriteRule ^$ /index.php [L,R=302]
-
   # Redirect old tag pages.
   RewriteRule ^tag/(.*)$ /index.html?show_tag=$1 [R=301,NC,L]
 
-  # Redirect old post.
-  RewriteRule ^/lore/2013/02/26/go-make-your-own-bloody-framework/$ /lore/2013/02/26/go-make-your-own-framework/ [R=301,NC,L]
+  # Redirect old post URL to its new home.
+  Redirect permanent /lore/2013/02/26/go-make-your-own-bloody-framework/ http://wadmiraal.net/lore/2013/02/26/go-make-your-own-framework/
 </IfModule>
 
 <IfModule mod_expires.c>
