@@ -132,7 +132,7 @@ Here we install our dependencies. In our example, we depend on a specific versio
 <pre><code class="language-yaml">  - patch -d drupal/web -p1 < sqlite-driver-exception.patch
 </code></pre>
 
-Here, we apply our `sqlite-driver-exception.patch` to Drupal core. This patch is&mdash;at the time of writing&mdash;required to make SQLite work with Drupal.
+Here, we apply our `sqlite-driver-exception.patch` to Drupal core. This patch is&mdash;at the time of writing&mdash;required to make SQLite work with Drupal when running tests.
 
 It contains the following:
 
