@@ -48,11 +48,14 @@
 
     for (var i = links.length - 1; i >= 0; --i) {
       links[ i ].addEventListener( 'mouseover', function( e ) {
-        var post = e.target || e.srcElement;
+        var post = e.target || e.srcElement,
+            tagValue;
 
         // Get the main tag (first in the list).
-        var tag = post.getAttribute( 'data-tags' ).split( ' ' )[ 0 ];
-        blog.fx.showLegendForTag( tag );
+        if ( tagValue = post.getAttribute( 'data-tags' ) ) {
+          var tag = tagValue.split(' ')[0];
+          blog.fx.showLegendForTag(tag);
+        }
       }, false );
 
       links[ i ].addEventListener( 'mouseout', function() {

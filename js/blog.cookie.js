@@ -19,10 +19,7 @@
   };
 
   // Expire old cookies.
-  // Before, we let people decide if they wished to be tracked or not. Now, we
-  // just let them now they will get tracked, period. For the really geeky ones,
-  // they can always control the tracking by changing the cookie value :-).
-  // We'll give them that.
+  // We changed the value of the cookie.
   blog.cookie.expireOldCookies = function() {
     // Check the cookie. If it is using the old format, expire it.
     if ( /partyPooper=\d/.test( document.cookie )) {
@@ -43,7 +40,7 @@
 
     question.id = 'cookie-question';
     question.setAttribute( 'class', 'site-cookie-question' );
-    question.innerHTML = "I use <a target='_blank' href='http://www.allaboutcookies.org/'>cookies</a>, just to track visits. No personal details are stored. ";
+    question.innerHTML = "I use <a target='_blank' href='http://www.allaboutcookies.org/' title='This link will open in a new window, and take you to a site where they explain all there is to know about cookies.'>cookies</a>, just to track visits. <a target='_blank' href='/privacy/' title='This link will open in a new window, and take you to a page where I explain exactly what the cookie is used for on this blog.'>No personal details are stored</a>.";
 
     yes.setAttribute( 'class', 'site-cookie-question__button site-cookie-question__button--yes' );
     yes.setAttribute( 'href', 'javascript:void(0);' );
@@ -53,12 +50,21 @@
 
       blog.cookie.hideQuestion();
 
+      blog.cookie.track();
+
       return false;
     }, false );
 
     no.setAttribute( 'class', 'site-cookie-question__button site-cookie-question__button--no' );
-    no.setAttribute( 'href', 'https://duckduckgo.com/' );
-    no.innerHTML = 'Heck no! Beam me up, Scotty!';
+    no.setAttribute( 'href', 'javascript:void(0);' );
+    no.innerHTML = 'Heck no! Enable stealth mode!';
+    no.addEventListener( 'click', function() {
+      blog.cookie.setValue( 1 );
+
+      blog.cookie.hideQuestion();
+
+      return false;
+    }, false );
 
     question.appendChild( yes );
     question.appendChild( no );
@@ -70,6 +76,19 @@
   blog.cookie.hideQuestion = function() {
     var question = document.getElementById( 'cookie-question' );
     question.parentNode.removeChild( question );
+  };
+
+  // Perform the tracking.
+  blog.cookie.track = function() {
+    // This is simply a verbatim copy-paste of the code Google provides, with
+    // the extra line to anonymize IP addresses.
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-39415395-1', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
   };
 
   // Initialize logic.

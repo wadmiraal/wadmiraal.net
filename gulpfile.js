@@ -10,6 +10,7 @@ var gulp       = require( 'gulp' ),
     concat     = require( 'gulp-concat' ),
     minifyCSS  = require( 'gulp-minify-css' ),
     uglify     = require( 'gulp-uglify' ),
+    sourcemaps = require( 'gulp-sourcemaps' ),
     shell      = require( 'gulp-shell' ),
     minifyHTML = require( 'gulp-minify-html' ),
     run        = require( 'gulp-run-command' ).default,
@@ -30,7 +31,7 @@ gulp.task( 'compass', function() {
     .pipe( compass({
       style: 'expanded',
       sass: 'sass',
-      css: 'css',
+      css: 'css'
     }))
     .pipe( gulp.dest( 'css' ) );
 });
@@ -49,8 +50,10 @@ gulp.task( 'css-min', function() {
 // Combine all JS files and minify.
 gulp.task( 'js-min', function() {
   gulp.src([ './js/vendor/**/*.js', './js/*.js' ])
+    .pipe( sourcemaps.init() )
     .pipe( concat( 'all.min.js' ) )
     .pipe( uglify() )
+    .pipe( sourcemaps.write() )
     .pipe( gulp.dest( './jekyll-src/js' ) );
 });
 
