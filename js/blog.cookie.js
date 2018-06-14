@@ -40,7 +40,7 @@
 
     question.id = 'cookie-question';
     question.setAttribute( 'class', 'site-cookie-question' );
-    question.innerHTML = "I use <a target='_blank' href='http://www.allaboutcookies.org/' title='This link will open in a new window, and take you to a site where they explain all there is to know about cookies.'>cookies</a>, just to track visits. <a target='_blank' href='/privacy/' title='This link will open in a new window, and take you to a page where I explain exactly what the cookie is used for on this blog.'>No personal details are stored</a>.";
+    question.innerHTML = "I use cookies to track visits. <a target='_blank' href='/privacy/' title='This link will open in a new window, and take you to the Privacy Policy page.'>You can read more about what these cookies are for here</a>.";
 
     yes.setAttribute( 'class', 'site-cookie-question__button site-cookie-question__button--yes' );
     yes.setAttribute( 'href', 'javascript:void(0);' );

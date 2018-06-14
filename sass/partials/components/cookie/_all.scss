@@ -22,7 +22,7 @@
   }
 
   @media screen and (max-width: $breakpoint-mobile) {
-    line-height: 3;
+    line-height: 2;
   }
 }
 
@@ -35,6 +35,11 @@
 
   &::before, &::after {
     content: ' ';
+  }
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    display: block;
+    margin: 0.5em 0;
   }
 }
 
