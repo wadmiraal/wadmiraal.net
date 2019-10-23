@@ -7,3 +7,5 @@ paginate_path: '/lore/page:num/'
 favorite: false
 name: Wouter Admiraal's Blog
 description: Thoughts from the strange mind of Wouter Admiraal
+plugins: [ jekyll-paginate ]
+

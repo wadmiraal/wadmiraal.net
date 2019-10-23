@@ -1,20 +1,19 @@
-{% extends "_layouts/layout.html" %}
+---
+layout: layout
+---
+<article class="site-content__post post">
+  <header class="post__header">
+    <h1 class="post__header__title">{{ page.title }}</h1>
+  </header>
 
-{% block content %}
-  <article class="site-content__post post">
-    <header class="post__header">
-      <h1 class="post__header__title">{{ page.title }}</h1>
-    </header>
+  <div class="post__body">
+    {{ content }}
+  </div>
 
-    <div class="post__body">
-      {{ content }}
+  <footer class="post__footer">
+    <div class="post__footer__copy">
+      <p><a href="http://creativecommons.org/licenses/by-sa/3.0/deed" title="Read more about the CC BY-SA 3.0 license"><img src="/img/cc.png" alt="All posts are licensed under the CC BY-SA 3.0 license"></a></p>
+      <p><a href="/privacy/" title="Read more about this site's privacy policy">Privacy Policy</a></p>
     </div>
-
-    <footer class="post__footer">
-      <div class="post__footer__copy">
-        <p><a href="http://creativecommons.org/licenses/by-sa/3.0/deed" title="Read more about the CC BY-SA 3.0 license"><img src="/img/cc.png" alt="All posts are licensed under the CC BY-SA 3.0 license"></a></p>
-        <p><a href="/privacy/" title="Read more about this site's privacy policy">Privacy Policy</a></p>
-      </div>
-    </footer>
-  </article>
-{% endblock %}
+  </footer>
+</article>

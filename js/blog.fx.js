@@ -168,6 +168,7 @@
   blog.fx.openMenu = function() {
     var menu = blog.fx.getMenuElement();
     menu.classList.add( 'open' );
+    document.body.classList.add( 'menu-is-open' );
 
     // Scroll to the top of the page.
     window.scrollTo( 0, 0 );
@@ -177,6 +178,7 @@
   blog.fx.closeMenu = function() {
     var menu = blog.fx.getMenuElement();
     menu.classList.remove( 'open' );
+    document.body.classList.remove( 'menu-is-open' );
 
     // Disable the "show tags".
     blog.fx.hidePostsTaggedWith();

@@ -16,6 +16,10 @@ body {
   line-height: 1.5;
 }
 
+body.menu-is-open {
+  overflow: hidden;
+}
+
 a {
   color: $beige;
 }
