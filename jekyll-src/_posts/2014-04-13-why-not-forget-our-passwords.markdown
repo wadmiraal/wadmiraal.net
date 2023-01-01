@@ -30,5 +30,5 @@ This is much easier to use/implement than two factor authentication, yet almost 
 
 What do you think? Can we just rely on our email?
 
-\* You can use [online](https://www.random.org/passwords/), [random](http://passwordsgenerator.net/) [password](https://identitysafe.norton.com/password-generator/) generators. Remember that many services still use hash-mechanisms for which lookup tables exist. Get as long a password as possible. Some (idiotic) services set a maximum length for passwords, but if that's not the case, go berserk. I like +20 characters in my passwords, but now use at least 30. You're never too safe.
+\* You can use [online](https://www.random.org/passwords/), [random](https://passwords-generator.org/) [password](https://identitysafe.norton.com/password-generator/) generators. Remember that many services still use hash-mechanisms for which lookup tables exist. Get as long a password as possible. Some (idiotic) services set a maximum length for passwords, but if that's not the case, go berserk. I like +20 characters in my passwords, but now use at least 30. You're never too safe.
 
