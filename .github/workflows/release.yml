@@ -16,3 +16,13 @@ jobs:
 
       - name: Build
         run: bundler exec jekyll build
+
+      - name: Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: _site/
+          server-dir: www/
+          dry-run: true
