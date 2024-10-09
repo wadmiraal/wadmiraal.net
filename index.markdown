@@ -5,7 +5,7 @@ layout: page
 home: true
 ---
 
-This is the blog of Wouter Admiraal, web developer extraordinaire. Come here for rants, pseudo-wisdom or loosing precious time.
+This is the blog of Wouter Admiraal, web developer extraordinaire turned engineering manager @ [Sonar](https://www.sonarsource.com/). Come here for rants, pseudo-wisdom or loosing precious time.
 
 ## Latest post
 
@@ -22,7 +22,7 @@ Straight from the press.
 
 I'm *wadmiraal* online. [Google it](https://www.google.ch/search?q=wadmiraal), most links are about me. Social accounts:
 
-<a class="about-links" href="http://twitter.com/wadmiraal" title="My Twitter profile"><span class="icon icon-twitter3 icon--inline"></span> Twitter</a>
-<a class="about-links" href="http://drupal.org/u/wadmiraal" title="My Drupal.org profile"><span class="icon icon-drupal icon--inline"></span> Drupal</a>
 <a class="about-links" href="http://github.com/wadmiraal" title="My Github profile"><span class="icon icon-github icon--inline"></span> Github</a>
 <a class="about-links" href="http://www.linkedin.com/in/wadmiraal" title="My LinkedIn profile"><span class="icon icon-linkedin-with-circle icon--inline"></span> LinkedIn</a>
+<a class="about-links" href="http://twitter.com/wadmiraal" title="My Twitter profile"><span class="icon icon-twitter3 icon--inline"></span> Twitter</a>
+<a class="about-links" href="http://drupal.org/u/wadmiraal" title="My Drupal.org profile"><span class="icon icon-drupal icon--inline"></span> Drupal</a>
