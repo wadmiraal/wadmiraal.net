@@ -56,6 +56,6 @@ Of course, if no CS degree nor experience, might be necessary. But Make sure you
 
 ---
 
-***Further reading:** I highly recommend checking out [Show Your Work](https://austinkleon.com/show-your-work/) by Austin Kleon. The book is mostly targeted at creatives, but a lot of tips apply to software engineers.*
+***Further reading:** I highly recommend checking out [Show Your Work](https://austinkleon.com/show-your-work/) by Austin Kleon. The book is mostly targeted at creatives, but a lot of tips apply to software engineers. You can read an article I wrote about this book [here](/lore/2018/01/15/book-review-show-your-work/).*
 
 ---
