@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head prefix="g: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ page.title }} | Wouter Admiraal's Blog</title>
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:site_name" content="Wouter Admiraal's Blog" />
+  <meta name="twitter:title" content="{{ page.title }}" />
+
+  {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta name="twitter:description" content="{{ page.description }}" />
+  {% endif %}
+
+  <meta name="author" content="Wouter Admiraal <wad@wadmiraal.net>">
+
+  <meta property="og:url" content="{{ page.url }}">
+  <meta property="og:type" content="article">
+  <meta name="twitter:site" content="@wadmiraal">
+  <meta name="twitter:card" content="summary" />
+
+  <meta name="keywords" content="drupal,development,web,web development,javascript,js,css,css3">
+  <link href="/opensearch.xml" rel="search" title="wadmiraal.net" type="application/opensearchdescription+xml">
+  {% if page.home %}
+  <link rel="canonical" href="http://wadmiraal.net/" />
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "WebSite",
+    "name" : "wadmiraal.net",
+    "alternateName" : "Wouter Admiraal's Blog",
+    "url" : "http://wadmiraal.net"
+  }
+  </script>
+  {% endif %}
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "Person",
+    "name" : "Wouter Admiraal",
+    "url" : "http://wadmiraal.net",
+    "sameAs" : [
+      "http://www.twitter.com/wadmiraal",
+      "https://www.linkedin.com/in/wadmiraal",
+      "https://www.drupal.org/u/wadmiraal",
+      "https://github.com/wadmiraal"
+    ]
+  }
+  </script>
+  <link rel="alternate" type="application/rss+xml" title="wadmiraal.net RSS" href="http://wadmiraal.net/feed.xml">
+
+  <link rel="icon" sizes="72x72" href="/img/logo.png">
+  <meta name="theme-color" content="#485566">
+
+  <link rel="stylesheet" href="/css/all.min.css?v=1.2">
+</head>
+<body>
+
+<nav id="posts-menu" class="site-menu" data-show-posts-tagged-with="">
+  <div id="posts-tag-legends" class="site-menu__color-code-legends" data-show-legend-for="">
+    <ul>
+      {% for tagobj in site.tags %}
+        <li class="site-menu__color-code-legends__legend tag--border" data-tags="{{ tagobj[0] | downcase | replace:' ','-' }}">{{ tagobj[0] }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <ul id="posts-items" class="overview">
+    {% unless page.home %}
+      <li class="site-menu__item site-menu__item--back-to-home">
+        <a href="/">&laquo; Back to the home page</a>
+      </li>
+    {% endunless %}
+    {% for post in site.posts %}
+      <li class="site-menu__item{% if page.title == post.title %} active{% endif %}">
+        <a class="tag--border" data-tags="{% for tag in post.tags %}{{ tag | downcase | replace:' ','-' }} {% endfor %}" href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+
+<header class="site-header">
+  <span id="menu-toggle" class="site-header__menu-toggle">Blog</span>
+
+  <ul class="site-header__about-links">
+    <li class="site-header__about-links__item"><a class="icon icon-feed4" href="/feed.xml">RSS Feed</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon-happy2" href="/about" title="More information about me">About</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon-twitter3" href="http://twitter.com/wadmiraal" title="My Twitter profile">Twitter</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon-drupal" href="http://drupal.org/u/wadmiraal" title="My Drupal.org profile">Drupal</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon-github" href="http://github.com/wadmiraal" title="My Github profile">Github</a></li>
+    <li class="site-header__about-links__item"><a class="icon icon-linkedin-with-circle" href="http://www.linkedin.com/in/wadmiraal" title="My LinkedId profile">LinkedId</a></li>
+  </ul>
+</header>
+
+<div class="site-content">
+  <div id="site-content">
+    {{ content }}
+  </div>
+
+  <div class="site-content__overlay"></div>
+</div>
+
+<script src="/js/vendor/modernizr/modernizr-2.8.3-custom.js?v=1.3"></script>
+<script src="/js/vendor/prism/prism.js?v=1.3"></script>
+<script src="/js/blog.cookie.js?v=1.3"></script>
+<script src="/js/blog.fx.js?v=1.3"></script>
+<script type="text/javascript">
+  blog.fx.init();
+  blog.cookie.init();
+
+  if ( blog.cookie.getValue() === false ) {
+    blog.cookie.track();
+  }
+</script>
+
+</body>
+</html>

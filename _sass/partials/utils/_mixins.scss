@@ -1,0 +1,53 @@
+/**
+ * @file
+ * Port of Compass mixins.
+ */
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -o-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-sizing($box) {
+  -moz-box-sizing: $box;
+  -o-box-sizing: $box;
+  -webkit-box-sizing: $box;
+  box-sizing: $box;
+}
+
+@mixin transition-property($properties) {
+  -moz-transition-property: $properties;
+  -o-transition-property: $properties;
+  -webkit-transition-property: $properties;
+  transition-property: $properties;
+}
+
+@mixin transition-duration($duration) {
+  -moz-transition-duration: $duration;
+  -o-transition-duration: $duration;
+  -webkit-transition-duration: $duration;
+  transition-duration: $duration;
+}
+
+@mixin translate3d($x, $y, $z) {
+  -moz-transform: translate3d($x, $y, $z);
+  -o-transform: translate3d($x, $y, $z);
+  -webkit-transform: translate3d($x, $y, $z);
+  transform: translate3d($x, $y, $z);
+}
+
+@mixin filter($filter) {
+  -moz-filter: $filter;
+  -o-filter: $filter;
+  -webkit-filter: $filter;
+  filter: $filter;
+}
+
+@mixin box-shadow($shadow) {
+  -moz-box-shadow: $shadow;
+  -o-box-shadow: $shadow;
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
