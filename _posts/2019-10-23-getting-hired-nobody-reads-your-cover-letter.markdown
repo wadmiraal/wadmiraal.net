@@ -1,6 +1,6 @@
 ---
 title: "Getting Hired: Nobody reads your cover letter"
-description: ""
+description: "Over the years, I've given advice to several junior developers on how to land their first job and have been responsible for hiring new developers at multiple companies. Here's one important thing you must know: Nobody reads your cover letter. Here's what to do instead."
 layout: post
 favorite: false
 tags:
