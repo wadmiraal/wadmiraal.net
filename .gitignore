@@ -1,9 +1,3 @@
 _site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-.bundle/
+node_modules/
 .vscode/
-vendor/
-!_sass/vendor/
-!js/vendor/

@@ -5,15 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{{ page.title }} | Wouter Admiraal's Blog</title>
-  <meta property="og:title" content="{{ page.title }}">
+  <title>{{ title }} | Wouter Admiraal's Blog</title>
+  <meta property="og:title" content="{{ title }}">
   <meta property="og:site_name" content="Wouter Admiraal's Blog" />
-  <meta name="twitter:title" content="{{ page.title }}" />
+  <meta name="twitter:title" content="{{ title }}" />
 
-  {% if page.description %}
-    <meta name="description" content="{{ page.description }}">
-    <meta property="og:description" content="{{ page.description }}">
-    <meta name="twitter:description" content="{{ page.description }}" />
+  {% if description %}
+    <meta name="description" content="{{ description }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta name="twitter:description" content="{{ description }}" />
   {% endif %}
 
   <meta name="author" content="Wouter Admiraal <wad@wadmiraal.net>">
@@ -25,7 +25,7 @@
 
   <meta name="keywords" content="drupal,development,web,web development,javascript,js,css,css3">
   <link href="/opensearch.xml" rel="search" title="wadmiraal.net" type="application/opensearchdescription+xml">
-  {% if page.home %}
+  {% if home %}
   <link rel="canonical" href="http://wadmiraal.net/" />
   <script type="application/ld+json">
   {
@@ -56,28 +56,30 @@
   <link rel="icon" sizes="72x72" href="/img/logo.png">
   <meta name="theme-color" content="#485566">
 
-  <link rel="stylesheet" href="/css/all.min.css?v=1.2">
+  <link rel="stylesheet" href="/css/all.css?v=1.2">
 </head>
 <body>
 
 <nav id="posts-menu" class="site-menu" data-show-posts-tagged-with="">
   <div id="posts-tag-legends" class="site-menu__color-code-legends" data-show-legend-for="">
     <ul>
-      {% for tagobj in site.tags %}
-        <li class="site-menu__color-code-legends__legend tag--border" data-tags="{{ tagobj[0] | downcase | replace:' ','-' }}">{{ tagobj[0] }}</li>
+      {% assign allTags = collections.posts | getAllTags %}
+      {% for tag in allTags %}
+        <li class="site-menu__color-code-legends__legend tag--border" data-tags="{{ tag | downcase | replace:' ','-' }}">{{ tag }}</li>
       {% endfor %}
     </ul>
   </div>
 
   <ul id="posts-items" class="overview">
-    {% unless page.home %}
+    {% unless home %}
       <li class="site-menu__item site-menu__item--back-to-home">
         <a href="/">&laquo; Back to the home page</a>
       </li>
     {% endunless %}
-    {% for post in site.posts %}
-      <li class="site-menu__item{% if page.title == post.title %} active{% endif %}">
-        <a class="tag--border" data-tags="{% for tag in post.tags %}{{ tag | downcase | replace:' ','-' }} {% endfor %}" href="{{ post.url }}">{{ post.title }}</a>
+    {% assign reversedPosts = collections.posts | reverse %}
+    {% for post in reversedPosts %}
+      <li class="site-menu__item{% if title == post.data.title %} active{% endif %}">
+        <a class="tag--border" data-tags="{% for tag in post.data.tags %}{{ tag | downcase | replace:' ','-' }} {% endfor %}" href="{{ post.url }}">{{ post.data.title }}</a>
       </li>
     {% endfor %}
   </ul>
