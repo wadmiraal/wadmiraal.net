@@ -2,13 +2,13 @@
 
 Find it [here](http://wadmiraal.net) !
 
-All code is licensed under MIT, with the exception of code located under `js/vendor` and `css/vendor`.
+All code is licensed under MIT, with the exception of code located under `src/js/vendor` and vendor CSS inlined in `src/css/all.css`.
 
 Posts are licensed under [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/deed).
 
 ## Concept and logic
 
-The blog is fully static. Except a custom build of [Modernizr](http://modernizr.com/) and of [Prism](http://prismjs.com/) (including only the relevant modules), as well as [Normalize](http://necolas.github.io/normalize.css/), the site uses no libraries.
+The blog is fully static, built with [Eleventy (11ty)](https://www.11ty.dev/). Except a custom build of [Modernizr](http://modernizr.com/) and of [Prism](http://prismjs.com/) (including only the relevant modules), as well as [Normalize](http://necolas.github.io/normalize.css/), the site uses no libraries.
 
 ## Fork it
 
@@ -16,18 +16,16 @@ Feel free to use it for your own blog !
 
 ## Develop and build
 
-Use `bundler` to install dependencies:
+Install dependencies:
 
-    bundler install
+    npm install
 
-Use the `jekyll build` command to build the site, which will be placed under `/_site`:
+Build the site (output goes to `_site/`):
 
-    bundle exec jekyll build
+    npm run build
 
-Then FTP it to your host and you're done.
+While writing (or hacking), you can run the dev server:
 
-While writing (or hacking), you can call
+    npm run serve
 
-    bundle exec jekyll serve
-
-Which will build the site and start serving it at `http://localhost:4000` (Jekyll will also watch the files for changes).
+This will build the site, start serving it at `http://localhost:8080`, and watch for changes.
