@@ -11,10 +11,11 @@ This is the blog of Wouter Admiraal, web developer extraordinaire turned enginee
 
 Straight from the press.
 
-{% for post in site.posts limit:1 %}
-### [<time datetime="{{ post.date | date_to_utc | date:"%Y-%m-%dT%H:%M:%SZ" }}">{{ post.date | date:"%Y-%m-%d" }}</time>&thinsp;&mdash;&thinsp;{{ post.title }}]({{ post.url }})
+{% assign reversedPosts = collections.posts | reverse %}
+{% for post in reversedPosts limit:1 %}
+### [<time datetime="{{ post.date | toISOString }}">{{ post.date | toUTCDate }}</time>&thinsp;&mdash;&thinsp;{{ post.data.title }}]({{ post.url }})
 
-{{ post.description }}  
+{{ post.data.description }}
 [Read more&hellip;]({{ post.url }})
 {% endfor %}
 
