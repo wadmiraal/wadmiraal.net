@@ -1219,6 +1219,15 @@ pre code {
 [data-show-legend-for="git"] .site-menu__color-code-legends__legend[data-tags="git"] { display: block; }
 [data-show-posts-tagged-with="git"] .site-menu__color-code-legends__legend[data-tags="git"] { display: block !important; }
 
+/* --- engineering-management (#E88310) --- */
+[data-tags^="engineering-management"].tag--color, [data-tag="engineering-management"].tag--color { color: #E88310; }
+[data-tags^="engineering-management"].tag--border, [data-tag="engineering-management"].tag--border { border-color: #E88310; }
+[data-show-posts-tagged-with="engineering-management"] [data-tags~="engineering-management"].tag--color { color: #E88310 !important; }
+[data-show-posts-tagged-with="engineering-management"] [data-tags~="engineering-management"].tag--border { border-color: #E88310 !important; }
+[data-show-posts-tagged-with="engineering-management"] .site-menu__item a[data-tags~="engineering-management"] { border-right-width: 10px !important; }
+[data-show-legend-for="engineering-management"] .site-menu__color-code-legends__legend[data-tags="engineering-management"] { display: block; }
+[data-show-posts-tagged-with="engineering-management"] .site-menu__color-code-legends__legend[data-tags="engineering-management"] { display: block !important; }
+
 /* Consolidated: when any tag filter is active, reset active/hover borders and hide all legends */
 [data-show-posts-tagged-with]:not([data-show-posts-tagged-with=""]) .site-menu__item.active a,
 [data-show-posts-tagged-with]:not([data-show-posts-tagged-with=""]) .site-menu__item:hover a {
