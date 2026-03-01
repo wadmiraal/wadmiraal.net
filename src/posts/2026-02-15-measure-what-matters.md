@@ -10,7 +10,7 @@ tags:
 
 About a year ago, Sonar decided to introduce [DX](https://getdx.com/). I'll admit I was sceptical and hesitant to use it for my team. Because, how can you possible hope to measure an activity like software engineering objectively? Every team's context is different, which means certain metrics might look "bad" for one team while actually being acceptable, or look "ok" for another while being totally unacceptable. Furthermore, software engineering is both a creative activity and a team effort, which makes measuring _individual_ productivity incredibly difficult and error-prone. I had +15 years of experience at that time, and +5 years as a leader; I had learned to trust my instincts and value things like extreme ownership, honesty and transparency, continuous improvement, etc, as sure indicators of my teams performing well. I couldn't see how you could _measure_ such things objectively (and, spoiler alert, you can't; at least, not _directly_).
 
-I also remembered the [highly controversial McKinsey article](https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/yes-you-can-measure-software-developer-productivity) which claimed to have cracked the code on measuring software developer productivity. I didn't buy it and know many others didn't either. I already saw my own engineers push back and challenge &emdash; for good reasons &emdash; what I thought would be the go-to metrics, like amounts of PRs closed per engineer, or lines of code written (to be fair, this is not what McKinsey was suggesting).
+I also remembered the [highly controversial McKinsey article](https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/yes-you-can-measure-software-developer-productivity) which claimed to have cracked the code on measuring software developer productivity. I didn't buy it and know many others didn't either. I already saw my own engineers push back and challenge — for good reasons — what I thought would be the go-to metrics, like amounts of PRs closed per engineer, or lines of code written (to be fair, this is not what McKinsey was suggesting).
 
 So yeah... I was sceptical. The only reason I did give it an honest shot was that I had read [Accelerate](https://www.goodreads.com/book/show/35747076-accelerate) a few months before, which explains how the DORA metrics work. This was extremely insightful and showed that, maybe, if used correctly and intelligently, we may gain something from using DX.
 
@@ -29,16 +29,16 @@ Let me say that again: **the metric is not the objective!** Seriously, it's so t
 Instead, always remind yourself and the team that metrics should be seen as "proxies", or _signals_.
 
 
-## Using them as signals, not objective truths
+## Context beats data, every time
 
 These tools are extremely powerful when used as _signals_, not as objective truths. Take PR cycle time for example. It's is very interesting to look at the team's PR cycle times and then discuss with them how they _feel_ about their PR review times. If the data shows it's quite slow but they're happy with it, what does that mean? Is it because they're very quality-focused and are OK to take more time to ship better code? Or, do they feel it's too slow even if the data shows it's actually quite good? Many metrics won't tell you much until you look at the broader context and _correlate_ it with the engineers' experience. I.e., it's a signal, but it's up to you to dig deeper and understand what it actually means in your specific context. This digging deeper is where you will get the real value out of this data.
 
-Furthermore, many metrics can &emdash; and should &emdash; be looked at over long periods of time to identify trends. If you have a graph showing PR throughput, for instance, you will likely see it swing wildly week over week (because people were sick, or on holiday, or at a conference, etc). But over the long term, what is the _trend_? Over a 3 month, or even 6 month period, is it stable? Or going up? Or down? And what does that tell you? Did you expect it?
+Furthermore, many metrics can — and should — be looked at over long periods of time to identify trends. If you have a graph showing PR throughput, for instance, you will likely see it swing wildly week over week (because people were sick, or on holiday, or at a conference, etc). But over the long term, what is the _trend_? Over a 3 month, or even 6 month period, is it stable? Or going up? Or down? And what does that tell you? Did you expect it?
 
 There is no single right answer to such questions. But just like a good doctor will treat certain symptoms as signals that guide his diagnostic, you will need to step back and reflect on this with your team to understand what these metrics are telling you. They don't necessarily need to lead to immediate action; the understanding itself is already valuable.
 
 
-## Looking at multiple metrics holistically
+## Never look at just one metric. Ever.
 
 This is probably obvious, but let me state it anyway: the single biggest mistake you can make is look at only 1 metric. It's not only meaningless, it can actually be harmful. It's as if you were looking at the number of unique visitors to your website but are ignoring bounce rate. If you only focus on getting more visits but don't realize 95% are bouncing, you're wasting a lot of that effort.
 
@@ -54,7 +54,7 @@ Be very open with your engineers; tell them you're looking at data and _show_ it
 What I did with my team was first share my dashboard and suggest we look at it together every retrospective. We would spend ~10mins going over the graphs and trying to understand what we were looking at. And I would always remind them (and myself) about the number 1 rule: **the metric is not the objective**. To illustrate, I've had the experience multiple times now were an engineer, when first exposed to the graphs, would say something like "Oh, but I like to open a PR very early in draft mode. That will impact the metrics, should I not do that?" And I always say the same thing: "**You do what makes sense to you.** The metrics don't matter, we don't change what we do just to make the numbers look better." I feel this has helped build trust: my engineers know we're not changing our ways of working only to make a graph look better, we're trying to see how the graphs correlate to our ways of working (which can, ultimately, lead to real improvements; more on that later).
 
 
-## Using percentiles and avoid sterile debates
+## Percentiles: your shield against sterile debates
 
 You might face a situation where your engineers start pointing out reasons the data is tainted and thus unreliable. For instance, on my team, we sometimes need to make changes on repos where we need to ask another team for a review, which is typically slow. There are also company-wide sensitive repos where we cannot merge on Fridays, so some PRs need to wait until Monday morning to be merged. These situations can can really mess up our PR cycle time data, especially if you look at the _averages_. But in our case these are exceptions, not the norm. Because of that they will impact our _average_ values but not _median_ values. This is why I have found that splitting data into p50, p75, and p90 buckets really helps:
 
@@ -81,11 +81,10 @@ This person had moved to a full stack position a few months prior, having been a
 This showed me that the data could be used as _signals_ to start better understanding the team's way of working.
 
 
-## Looking for correlations and indirect impacts
+## The data is only as good as what you do with it
 
-Say you change your spec process and make it a lot more thorough to avoid surprises. You can expect to see a slight dip in your PR throughput, although it shouldn't impact your PR cycle time. But, you would expect your change fail rate to drop, or your sprint burnup chart to show better results, etc. This correlation with data is very powerful, because we can now use data to check what we're doing well or not. We don't need to rely on our gut feeling (only); we should actually see impact in the data. This moves the conversation from subjective "feelings" to objectively measurable results.
+Say you change your spec process and make it a lot more thorough to avoid surprises. You can expect to see a slight dip in your PR throughput, although it shouldn't impact your PR cycle time. But, you would expect your change fail rate to drop, or your sprint burnup chart to show better results, etc. This correlation with data is very powerful, because we can now use data to check what we're doing well or not. We don't need to rely on our gut feeling (only); we should actually see impact in the data.
 
+This moves the conversation from subjective "feelings" to objectively measurable results. And the more you do this — the more you correlate, observe, and discuss — the more your team starts to *trust* the data. Not because it's always right, but because they've seen it lead to real improvements they were part of shaping.
 
-
-
-
+Here's the thing: after a year of using DX, I'm convinced the tool is almost beside the point. What made it work for us wasn't the software — it was deciding upfront that we'd use it *with* the team, not against them. Transparency over surveillance. Curiosity over judgment. Signals, not verdicts. If your engineers don't trust you with this data yet, that's not a data problem. That's a trust problem — and no tool in the world will fix that for you.
