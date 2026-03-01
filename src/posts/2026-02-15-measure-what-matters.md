@@ -29,7 +29,7 @@ Let me say that again: **the metric is not the objective!** Seriously, it's so t
 Instead, always remind yourself and the team that metrics should be seen as "proxies", or _signals_.
 
 
-## Context beats data, every time
+## Data as a signal, not a verdict
 
 These tools are extremely powerful when used as _signals_, not as objective truths. Take PR cycle time for example. It's is very interesting to look at the team's PR cycle times and then discuss with them how they _feel_ about their PR review times. If the data shows it's quite slow but they're happy with it, what does that mean? Is it because they're very quality-focused and are OK to take more time to ship better code? Or, do they feel it's too slow even if the data shows it's actually quite good? Many metrics won't tell you much until you look at the broader context and _correlate_ it with the engineers' experience. I.e., it's a signal, but it's up to you to dig deeper and understand what it actually means in your specific context. This digging deeper is where you will get the real value out of this data.
 
@@ -87,4 +87,4 @@ Say you change your spec process and make it a lot more thorough to avoid surpri
 
 This moves the conversation from subjective "feelings" to objectively measurable results. And the more you do this — the more you correlate, observe, and discuss — the more your team starts to *trust* the data. Not because it's always right, but because they've seen it lead to real improvements they were part of shaping.
 
-Here's the thing: after a year of using DX, I'm convinced the tool is almost beside the point. What made it work for us wasn't the software — it was deciding upfront that we'd use it *with* the team, not against them. Transparency over surveillance. Curiosity over judgment. Signals, not verdicts. If your engineers don't trust you with this data yet, that's not a data problem. That's a trust problem — and no tool in the world will fix that for you.
+Here's the thing: after a year of using DX, I'm convinced using engineering-related productivity data is extremely powerful. What made it work for my team wasn't the software — it was deciding upfront that we'd be open minded about it and use it to try to learn, not assess individual performance. Transparency over surveillance. Curiosity over judgment. Signals, not verdicts. If you get that mindset right, the tool almost doesn't matter — and your engineers won't just tolerate the dashboard, they'll start asking to look at it with you. That's when you know you've got it right.
